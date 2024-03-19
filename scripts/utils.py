@@ -26,30 +26,6 @@ MAX_LENGTH = (
 )
 
 
-def get_heading(level, content):
-    if level == 1:
-        heading = "heading_1"
-    elif level == 2:
-        heading = "heading_2"
-    else:
-        heading = "heading_3"
-    return {
-        "type": heading,
-        heading: {
-            "rich_text": [
-                {
-                    "type": "text",
-                    "text": {
-                        "content": content[:MAX_LENGTH],
-                    },
-                }
-            ],
-            "color": "default",
-            "is_toggleable": False,
-        },
-    }
-
-
 def get_table_of_contents():
     """获取目录"""
     return {"type": "table_of_contents", "table_of_contents": {"color": "default"}}
@@ -114,46 +90,6 @@ def get_quote(content):
             "color": "default",
         },
     }
-
-
-def get_callout(content, style, colorStyle, reviewId):
-    # 根据不同的划线样式设置不同的emoji 直线type=0 背景颜色是1 波浪线是2
-    emoji = "〰️"
-    if style == 0:
-        emoji = "💡"
-    elif style == 1:
-        emoji = "⭐"
-    # 如果reviewId不是空说明是笔记
-    if reviewId != None:
-        emoji = "✍️"
-    color = "default"
-    # 根据划线颜色设置文字的颜色
-    if colorStyle == 1:
-        color = "red"
-    elif colorStyle == 2:
-        color = "purple"
-    elif colorStyle == 3:
-        color = "blue"
-    elif colorStyle == 4:
-        color = "green"
-    elif colorStyle == 5:
-        color = "yellow"
-    return {
-        "type": "callout",
-        "callout": {
-            "rich_text": [
-                {
-                    "type": "text",
-                    "text": {
-                        "content": content[:MAX_LENGTH],
-                    },
-                }
-            ],
-            "icon": {"emoji": emoji},
-            "color": color,
-        },
-    }
-
 
 def get_rich_text_from_result(result, name):
     return result.get("properties").get(name).get("rich_text")[0].get("plain_text")

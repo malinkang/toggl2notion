@@ -17,7 +17,7 @@ def get_file():
         return None
     
 if __name__ == "__main__":
-    notion_helper = NotionHelper(os.getenv("NOTION_URL"))
+    notion_helper = NotionHelper()
     image_file = get_file()
     if image_file:
         image_url = upload_image(f"heatmap/{os.getenv('REPOSITORY').split('/')[0]}",image_file,f"./OUT_FOLDER/{image_file}")

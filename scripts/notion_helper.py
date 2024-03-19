@@ -77,8 +77,8 @@ class NotionHelper:
         self.tag_database_id = self.database_id_dict.get(
             self.database_name_dict.get("TAG_DATABASE_NAME")
         )
-        if self.day_database_id:
-            self.write_database_id(self.day_database_id)
+        if self.time_database_id:
+            self.write_database_id(self.time_database_id)
 
     def write_database_id(self, database_id):
         env_file = os.getenv('GITHUB_ENV')
