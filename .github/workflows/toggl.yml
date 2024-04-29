@@ -33,19 +33,27 @@ jobs:
       - name: toggl sync
         run: |
           python -u scripts/toggl.py
-      - name: Remove folder
-        run: rm -rf ./OUT_FOLDER
       - name: Set default year if not provided
         run: echo "YEAR=$(date +"%Y")" >> $GITHUB_ENV
         if: env.YEAR == ''
       - name: notion heatmap
         run: |
-          github_heatmap notion  --notion_token "${{secrets.NOTION_TOKEN}}" --database_id "${{ env.DATABASE_ID }}" --date_prop_name "时间" --value_prop_name "金币" --unit "金币" --year $YEAR  --me "${{secrets.NAME}}" --without-type-name --with-animation --background-color=${{ vars.background_color||'#FFFFFF'}} --track-color=${{ vars.track_color||'#f44336'}} --special-color1=${{ vars.special_color||'#ffd966'}} --special-color2=${{ vars.special_color2||'#549F57'}} --dom-color=${{ vars.dom_color||'#EBEDF0'}} --text-color=${{ vars.text_color||'#000000'}}
+          github_heatmap notion  --notion_token "${{secrets.NOTION_TOKEN}}" --database_id "${{ env.DATABASE_ID }}" --date_prop_name "时间" --value_prop_name "金币" --unit "金币" --year $YEAR  --me "${{secrets.NAME}}" --without-type-name  --without-type-name --background-color=${{ vars.background_color||'#FFFFFF'}} --track-color=${{ vars.track_color||'#ACE7AE'}} --special-color1=${{ vars.special_color||'#69C16E'}} --special-color2=${{ vars.special_color2||'#549F57'}} --dom-color=${{ vars.dom_color||'#EBEDF0'}} --text-color=${{ vars.text_color||'#000000'}}
       - name: Rename notion.svg to a random name
         run: |
-            RANDOM_FILENAME=$(uuidgen).svg
-            mv ./OUT_FOLDER/notion.svg ./OUT_FOLDER/$RANDOM_FILENAME
-            echo "Renamed file to $RANDOM_FILENAME"
+          cd OUT_FOLDER
+          find . -type f ! -name "notion.svg" -exec rm -f {} +
+          cd ..
+          RANDOM_FILENAME=$(uuidgen).svg
+          mv ./OUT_FOLDER/notion.svg ./OUT_FOLDER/$RANDOM_FILENAME
+          echo "Renamed file to $RANDOM_FILENAME"
+      - name: push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m 'add new heatmap' || echo "nothing to commit"
+          git push || echo "nothing to push"
       - name: udpate heatmap 
         run: |
             python -u scripts/update_heatmap.py
