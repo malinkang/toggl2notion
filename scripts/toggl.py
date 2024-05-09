@@ -44,7 +44,7 @@ def insert_to_notion():
             response.get("results")[0]
             .get("properties")
             .get("时间")
-            .get("start")
+            .get("date")
             .get("end")
         )
     params = {"start_date": start, "end_date": end}
@@ -53,6 +53,7 @@ def insert_to_notion():
     )
     time_entries = response.json()
     time_entries.sort(key=lambda x: x["start"], reverse=False)
+
     for task in time_entries:
         if task.get("pid") is not None and task.get("stop") is not None:
             item = {}
@@ -121,7 +122,6 @@ def insert_to_notion():
             )
             icon = {"type": "emoji", "emoji": emoji}
             notion_helper.create_page(parent=parent, properties=properties, icon=icon)
-
 
 if __name__ == "__main__":
     notion_helper = NotionHelper()
