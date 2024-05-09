@@ -48,25 +48,11 @@ def insert_to_notion():
             .get("end")
         )
     params = {"start_date": start, "end_date": end}
-
-    # ...省略之前的代码...
-
     response = requests.get(
         "https://api.track.toggl.com/api/v9/me/time_entries", params=params, auth=auth
     )
     time_entries = response.json()
-
-    # 添加类型检查
-    if not isinstance(time_entries, list):
-        print("time_entries 不是一个列表, 实际类型:", type(time_entries))
-        print("time_entries 内容:", time_entries)
-        return  # 可以选择在这里返回或处理错误
-
-    # 现在可以安全地进行排序
     time_entries.sort(key=lambda x: x["start"], reverse=False)
-
-    # ...省略之后的代码...
-
     for task in time_entries:
         if task.get("pid") is not None and task.get("stop") is not None:
             item = {}
