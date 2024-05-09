@@ -15,7 +15,7 @@ def get_time_entries():
     now = pendulum.now("UTC")
     # toggl只支持90天的数据
     end = now.to_iso8601_string()
-    start = now.subtract(days=90).start_of("day")
+    start = now.subtract(days=89).start_of("day")
     # 格式化时间
     start = start.to_iso8601_string()
     params = {"start_date": start, "end_date": end}
@@ -31,7 +31,7 @@ def insert_to_notion():
     now = pendulum.now("Asia/Shanghai")
     # toggl只支持90天的数据
     end = now.to_iso8601_string()
-    start = now.subtract(days=90).start_of("day")
+    start = now.subtract(days=89).start_of("day")
     # 格式化时间
     start = start.to_iso8601_string()
     sorts = [{"property": "时间", "direction": "descending"}]
@@ -44,7 +44,7 @@ def insert_to_notion():
             response.get("results")[0]
             .get("properties")
             .get("时间")
-            .get("date")
+            .get("start")
             .get("end")
         )
     params = {"start_date": start, "end_date": end}
