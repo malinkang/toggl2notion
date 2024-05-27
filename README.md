@@ -18,7 +18,7 @@
 > 欢迎加入微信群讨论。可以讨论使用中遇到的任何问题，也可以讨论Notion使用，后续我也会在群中分享更多Notion自动化工具。
 
 
-![群](https://drive.malinkang.com/api/raw/?path=/Images/group2.jpg)
+![群](https://github.com/WhatsApp2Plus/weread2notion-pro2/assets/3365208/02d1e431-7550-4f8c-8de7-67b5c6a59410)
 
 
 
