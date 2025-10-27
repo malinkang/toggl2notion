@@ -4,3 +4,4 @@ github-heatmap
 retrying
 pendulum
 emoji
+python-dotenv
