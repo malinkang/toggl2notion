@@ -11,20 +11,6 @@ from utils import get_icon, split_emoji_from_string
 from dotenv import load_dotenv
 load_dotenv()
 
-def get_time_entries():
-    # 获取当前UTC时间
-    now = pendulum.now("UTC")
-    # toggl只支持90天的数据
-    end = now.to_iso8601_string()
-    start = now.subtract(days=90).start_of("day")
-    # 格式化时间
-    start = start.to_iso8601_string()
-    params = {"start_date": start, "end_date": end}
-    response = requests.get(
-        "https://api.track.toggl.com/api/v9/me/time_entries", params=params, auth=auth
-    )
-    time_entries = response.json()
-    return time_entries
 
 
 def insert_to_notion():
@@ -49,10 +35,11 @@ def insert_to_notion():
             .get("end")
         )
     params = {"start_date": start, "end_date": end}
+    print(f"Fetching time entries from {start} to {end}")
     response = requests.get(
         "https://api.track.toggl.com/api/v9/me/time_entries", params=params, auth=auth
     )
-    print(response.text)
+    print(f"Response : {response.text}")
     if response.ok:
         time_entries = response.json()
         time_entries.sort(key=lambda x: x["start"], reverse=False)
