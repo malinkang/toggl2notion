@@ -1,12 +1,11 @@
 import logging
 import os
 import re
-import time
 
 from notion_client import Client
 from retrying import retry
-from datetime import timedelta
-
+from dotenv import load_dotenv
+load_dotenv()
 from utils import (
     format_date,
     get_date,
@@ -14,12 +13,8 @@ from utils import (
     get_first_and_last_day_of_week,
     get_first_and_last_day_of_year,
     get_icon,
-    get_number,
     get_relation,
-    get_rich_text,
     get_title,
-    timestamp_to_date,
-    get_property_value,
 )
 
 TAG_ICON_URL = "https://www.notion.so/icons/tag_gray.svg"
