@@ -20,7 +20,7 @@ def get_workspaces():
     if response.ok:
         return response.json()
     else:
-        print(f"Failed to get workspaces: {response.text}")
+        utils.log(f"Failed to get workspaces: {response.text}")
         return []
 
 def get_detailed_report(workspace_id, start_date, end_date):
@@ -35,7 +35,7 @@ def get_detailed_report(workspace_id, start_date, end_date):
     all_entries = []
     
     while True:
-        print(f"Fetching report page {params['page']} for workspace {workspace_id} from {start_date} to {end_date}")
+        utils.log(f"Fetching report page {params['page']} for workspace {workspace_id} from {start_date} to {end_date}")
         response = requests.get(url, params=params, auth=auth)
         if response.ok:
             data = response.json()
@@ -50,7 +50,7 @@ def get_detailed_report(workspace_id, start_date, end_date):
             
             params["page"] += 1
         else:
-            print(f"Failed to fetch report: {response.text}")
+            utils.log(f"Failed to fetch report: {response.text}")
             break
             
     return all_entries
@@ -165,7 +165,7 @@ def insert_to_notion():
 
     end = now
     
-    print(f"Synchronizing from {start.to_iso8601_string()} to {end.to_iso8601_string()}")
+    utils.log(f"Synchronizing from {start.to_iso8601_string()} to {end.to_iso8601_string()}")
 
     workspaces = get_workspaces()
     all_time_entries = []
@@ -199,7 +199,7 @@ def insert_to_notion():
     unique_entries = {entry['id']: entry for entry in all_time_entries}.values()
     sorted_entries = sorted(unique_entries, key=lambda x: x['start'])
     
-    print(f"Total entries to process: {len(sorted_entries)}")
+    utils.log(f"Total entries to process: {len(sorted_entries)}")
     
     for task in sorted_entries:
         # Check if already in Notion? (Original code didn't check ID existence per row, relied on date filtering)
@@ -239,7 +239,7 @@ def insert_to_notion():
              notion_helper.create_page(parent=parent, properties=properties, icon=icon)
              
         except Exception as e:
-            print(f"Error processing task {task.get('id')}: {e}")
+            utils.log(f"Error processing task {task.get('id')}: {e}")
 
 
 
