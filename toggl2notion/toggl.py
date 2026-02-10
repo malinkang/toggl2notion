@@ -90,15 +90,17 @@ def load_workspace_cache(workspace_id):
 def get_time_entries(start_date, end_date):
     """Fetch raw time entries using Track API v9 (Free)"""
     url = "https://api.track.toggl.com/api/v9/me/time_entries"
+    # Toggl v9 API expects ISO8601, preferably in UTC or with explicit offset
+    # Using .format("YYYY-MM-DDTHH:mm:ssZ") ensures compatibility
     params = {
-        "start_date": start_date.to_iso8601_string(),
-        "end_date": end_date.to_iso8601_string(),
+        "start_date": start_date.format("YYYY-MM-DDTHH:mm:ssZ"),
+        "end_date": end_date.format("YYYY-MM-DDTHH:mm:ssZ"),
     }
     response = requests.get(url, params=params, auth=auth)
     if response.ok:
         return response.json()
     else:
-        utils.log(f"Failed to fetch time entries: {response.text}")
+        utils.log(f"Failed to fetch time entries ({start_date.to_date_string()} to {end_date.to_date_string()}): {response.status_code} {response.text}")
         return []
 
 def process_entry(task):
@@ -186,9 +188,20 @@ def insert_to_notion():
     )
     
     if len(response.get("results")) > 0:
-        date_prop = response.get("results")[0].get("properties").get("时间").get("date")
+        latest_page = response.get("results")[0]
+        latest_id = latest_page.get("id")
+        # Try to get title for logging
+        properties = latest_page.get("properties", {})
+        title_list = properties.get("标题", {}).get("title", [])
+        title = title_list[0].get("text", {}).get("content", "Untitled") if title_list else "Untitled"
+        
+        date_prop = properties.get("时间", {}).get("date")
         if date_prop and date_prop.get("end"):
              start = pendulum.parse(date_prop.get("end")).in_timezone("Asia/Shanghai")
+             utils.log(f"🔍 Found latest entry in Notion: [{title}] (ID: {latest_id}) with end time {start.to_iso8601_string()}")
+        elif date_prop and date_prop.get("start"):
+             start = pendulum.parse(date_prop.get("start")).in_timezone("Asia/Shanghai")
+             utils.log(f"🔍 Found latest entry in Notion (start only): [{title}] (ID: {latest_id}) at {start.to_iso8601_string()}")
     
     if not start:
         start = get_created_at().in_timezone("Asia/Shanghai")
