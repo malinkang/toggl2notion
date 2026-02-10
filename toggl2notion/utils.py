@@ -381,3 +381,33 @@ def split_emoji_from_string(s):
 
 def get_embed(url):
     return {"type": "embed", "embed": {"url": url}}
+
+
+def log(message: str):
+    """
+    添加一条新的日志，并写入日志文件。
+    """
+    timestamp = datetime.now().strftime("%H:%M:%S")
+    timestamped_message = f"• [{timestamp}] {message}"
+    print(timestamped_message)
+    _write_to_log_file(timestamped_message)
+
+
+def _write_to_log_file(message: str):
+    """
+    将日志消息写入文件。
+    """
+    try:
+        activation_code = os.getenv("ACTIVATION_CODE")
+        if not activation_code:
+            activation_code = "default"
+        log_dir = "log"
+        if not os.path.exists(log_dir):
+            os.makedirs(log_dir)
+        log_file_path = os.path.join(log_dir, f"{activation_code}.log")
+        date_str = datetime.now().strftime("%Y-%m-%d")
+        full_message = f"[{date_str}] {message}\n"
+        with open(log_file_path, "a", encoding="utf-8") as f:
+            f.write(full_message)
+    except Exception as e:
+        print(f"Failed to write to log file: {e}")
