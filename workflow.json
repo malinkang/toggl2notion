@@ -16,7 +16,7 @@
         },
         {
             "parameters": {
-                "command": "python3 -m toggl2notion.toggl"
+                "command": "python3 -m toggl2notion.toggl && github_heatmap notion --notion_token \"$NOTION_TOKEN\" --database_id \"$TIME_DATABASE_NAME\" --date_prop_name \"时间\" --value_prop_name \"金币\" --unit \"金币\" --year \"$(date +%Y)\" --me \"Self\" --without-type-name --background-color=\"#FFFFFF\" --track-color=\"#ACE7AE\" --special-color1=\"#69C16E\" --special-color2=\"#549F57\" --dom-color=\"#EBEDF0\" --text-color=\"#000000\" && mkdir -p OUT_FOLDER && cd OUT_FOLDER && find . -type f ! -name \"notion.svg\" -exec rm -f {} + && mv notion.svg \"$(uuidgen).svg\" && cd .. && python3 -m toggl2notion.update_heatmap"
             },
             "name": "Execute Script",
             "type": "n8n-nodes-base.executeCommand",
@@ -29,7 +29,9 @@
                 "NOTION_TOKEN": "={{$node[\"Webhook\"].json[\"body\"][\"notion_token\"]}}",
                 "TOGGL_TOKEN": "={{$node[\"Webhook\"].json[\"body\"][\"toggl_token\"]}}",
                 "TIME_DATABASE_NAME": "={{$node[\"Webhook\"].json[\"body\"][\"database_id\"]}}",
-                "ACTIVATION_CODE": "={{$node[\"Webhook\"].json[\"body\"][\"activation_code\"]}}"
+                "ACTIVATION_CODE": "={{$node[\"Webhook\"].json[\"body\"][\"activation_code\"]}}",
+                "REPOSITORY": "malinkang/toggl2notion",
+                "REF": "refs/heads/main"
             }
         }
     ],

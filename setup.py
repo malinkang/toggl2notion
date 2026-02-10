@@ -11,6 +11,7 @@ setup(
         "notion-client",
         "python-dotenv",
         "emoji",
+        "github-heatmap",
     ],
     entry_points={
         "console_scripts": [
