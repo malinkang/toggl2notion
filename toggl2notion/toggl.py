@@ -36,6 +36,21 @@ def init():
     auth = HTTPBasicAuth(f"{toggl_token}", "api_token")
     return True
 
+auth = None
+notion_helper = None
+project_cache = {}
+client_cache = {}
+
+def init():
+    global auth, notion_helper
+    notion_helper = NotionHelper()
+    toggl_token = os.getenv("TOGGL_TOKEN")
+    if not toggl_token:
+        utils.log("❌ Missing TOGGL_TOKEN environment variable.")
+        return False
+    auth = HTTPBasicAuth(f"{toggl_token}", "api_token")
+    return True
+
 def get_created_at():
     response = requests.get("https://api.track.toggl.com/api/v9/me", auth=auth)
     if response.ok:
@@ -44,7 +59,6 @@ def get_created_at():
     else:
         utils.log(f"Failed to get user info: {response.text}")
         return pendulum.datetime(2010, 1, 1, tz="Asia/Shanghai")
-
 
 def get_workspaces():
     response = requests.get(
@@ -56,39 +70,38 @@ def get_workspaces():
         utils.log(f"Failed to get workspaces: {response.text}")
         return []
 
-def get_detailed_report(workspace_id, start_date, end_date):
-    url = "https://api.track.toggl.com/reports/api/v2/details"
-    params = {
-        "workspace_id": workspace_id,
-        "since": start_date,
-        "until": end_date,
-        "user_agent": "toggl2notion",
-        "page": 1,
-    }
-    all_entries = []
+def load_workspace_cache(workspace_id):
+    global project_cache, client_cache
+    # Load Clients
+    response = requests.get(f"https://api.track.toggl.com/api/v9/workspaces/{workspace_id}/clients", auth=auth)
+    if response.ok:
+        for c in response.json():
+            client_cache[c["id"]] = c["name"]
     
-    while True:
-        utils.log(f"Fetching report page {params['page']} for workspace {workspace_id} from {start_date} to {end_date}")
-        response = requests.get(url, params=params, auth=auth)
-        if response.ok:
-            data = response.json()
-            entries = data.get("data", [])
-            all_entries.extend(entries)
-            
-            total_count = data.get("total_count", 0)
-            per_page = data.get("per_page", 50)
-            
-            if len(all_entries) >= total_count:
-                break
-            
-            params["page"] += 1
-        else:
-            utils.log(f"Failed to fetch report: {response.text}")
-            break
-            
-    return all_entries
+    # Load Projects
+    response = requests.get(f"https://api.track.toggl.com/api/v9/workspaces/{workspace_id}/projects", auth=auth)
+    if response.ok:
+        for p in response.json():
+            project_cache[p["id"]] = {
+                "name": p["name"],
+                "client_id": p.get("client_id")
+            }
 
-def process_entry(task, workspace_id):
+def get_time_entries(start_date, end_date):
+    """Fetch raw time entries using Track API v9 (Free)"""
+    url = "https://api.track.toggl.com/api/v9/me/time_entries"
+    params = {
+        "start_date": start_date.to_iso8601_string(),
+        "end_date": end_date.to_iso8601_string(),
+    }
+    response = requests.get(url, params=params, auth=auth)
+    if response.ok:
+        return response.json()
+    else:
+        utils.log(f"Failed to fetch time entries: {response.text}")
+        return []
+
+def process_entry(task):
     item = {}
     tags = task.get("tags")
     if tags:
@@ -99,24 +112,26 @@ def process_entry(task, workspace_id):
             for tag in tags
         ]
     
-    id = task.get("id")
-    item["Id"] = id 
+    item["Id"] = task.get("id")
     
     start = pendulum.parse(task.get("start"))
-    stop = pendulum.parse(task.get("end")) 
+    stop = pendulum.parse(task.get("stop") or task.get("end") or pendulum.now().to_iso8601_string())
     start_ts = start.in_timezone("Asia/Shanghai").int_timestamp
     stop_ts = stop.in_timezone("Asia/Shanghai").int_timestamp
     item["时间"] = (start_ts, stop_ts)
     
-    project_name = task.get("project")
-    if project_name:
+    pid = task.get("project_id") or task.get("pid")
+    if pid and pid in project_cache:
+        project_info = project_cache[pid]
+        project_name = project_info["name"]
         emoji, project_name = split_emoji_from_string(project_name)
         item["标题"] = project_name
         
-        client_name = task.get("client")
+        client_id = project_info.get("client_id")
         project_properties = {"金币":{"number": 1}}
         
-        if client_name:
+        if client_id and client_id in client_cache:
+            client_name = client_cache[client_id]
             client_emoji, client_name = split_emoji_from_string(client_name)
             item["Client"] = [
                 notion_helper.get_relation_id(
@@ -137,6 +152,8 @@ def process_entry(task, workspace_id):
                 properties=project_properties,
             )
         ]
+    else:
+        item["标题"] = task.get("description") or "无描述"
         
     description = task.get("description")
     if description:
@@ -162,71 +179,54 @@ def insert_to_notion():
     now = pendulum.now("Asia/Shanghai")
     start = None
     
+    # Check latest entry in Notion
     sorts = [{"property": "时间", "direction": "descending"}]
-    page_size = 1
     response = notion_helper.query(
-        database_id=notion_helper.time_database_id, sorts=sorts, page_size=page_size
+        database_id=notion_helper.time_database_id, sorts=sorts, page_size=1
     )
     
     if len(response.get("results")) > 0:
-        notion_latest_end = (
-            response.get("results")[0]
-            .get("properties")
-            .get("时间")
-            .get("date")
-            .get("end")
-        )
-        if notion_latest_end:
-             start = pendulum.parse(notion_latest_end).in_timezone("Asia/Shanghai")
+        date_prop = response.get("results")[0].get("properties").get("时间").get("date")
+        if date_prop and date_prop.get("end"):
+             start = pendulum.parse(date_prop.get("end")).in_timezone("Asia/Shanghai")
     
     if not start:
-        reg_time = get_created_at()
-        start = reg_time.in_timezone("Asia/Shanghai")
+        start = get_created_at().in_timezone("Asia/Shanghai")
         utils.log(f"Notion is empty. Starting from account registration date: {start.to_date_string()}")
 
-    end = now
-    utils.log(f"Synchronizing from {start.to_iso8601_string()} to {end.to_iso8601_string()}")
-
+    # Track API v9 returns all entries for the user. We only need to load workspace projects once.
     workspaces = get_workspaces()
-    if not workspaces:
-        utils.log("No workspaces found.")
-        return
-
     for ws in workspaces:
-        ws_id = ws.get("id")
-        utils.log(f"Processing workspace: {ws.get('name')} ({ws_id})")
+        load_workspace_cache(ws["id"])
+
+    # Loop backward from now to start in smaller chunks (e.g., 10 days) to avoid API limits and provide feedback
+    current_end = now
+    utils.log(f"Synchronizing from {start.to_iso8601_string()} to {current_end.to_iso8601_string()}")
+
+    while current_end > start:
+        current_start = current_end.subtract(days=10)
+        if current_start < start:
+            current_start = start
         
-        # Reports API limit is 1 year per request. Loop by year, newest first.
-        current_end = end
-        while current_end > start:
-            current_start = current_end.subtract(years=1).add(days=1)
-            if current_start < start:
-                current_start = start
+        entries = get_time_entries(current_start, current_end)
+        
+        if entries:
+            utils.log(f"Found {len(entries)} entries from {current_start.to_date_string()} to {current_end.to_date_string()}. Processing...")
+            # Sort newest first
+            entries.sort(key=lambda x: x['start'], reverse=True)
             
-            entries = get_detailed_report(
-                ws_id, 
-                current_start.to_date_string(), 
-                current_end.to_date_string()
-            )
-            
-            if entries:
-                utils.log(f"Found {len(entries)} entries for period {current_start.to_date_string()} to {current_end.to_date_string()}. Inserting in reverse order...")
-                # Reports API returns newest first? No, usually sorted by date. 
-                # Let's sort them descending (newest first) for immediate feedback in Notion.
-                entries.sort(key=lambda x: x['start'], reverse=True)
-                
-                for task in entries:
-                    try:
-                        parent, properties, icon = process_entry(task, ws_id)
-                        notion_helper.create_page(parent=parent, properties=properties, icon=icon)
-                    except Exception as e:
-                        utils.log(f"Error processing task {task.get('id')}: {e}")
-            else:
-                utils.log(f"No entries found for period {current_start.to_date_string()} to {current_end.to_date_string()}")
-            
-            if current_start <= start:
-                break
-            current_end = current_start.subtract(days=1)
+            for task in entries:
+                if task.get("server_deleted_at"):
+                    continue
+                try:
+                    parent, properties, icon = process_entry(task)
+                    notion_helper.create_page(parent=parent, properties=properties, icon=icon)
+                except Exception as e:
+                    utils.log(f"Error processing task {task.get('id')}: {e}")
+        
+        if current_start <= start:
+            break
+        current_end = current_start.subtract(seconds=1)
 
 if __name__ == "__main__":
     if init():
