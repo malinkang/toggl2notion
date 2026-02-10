@@ -1,6 +1,13 @@
-[2026-02-10] • [23:29:13] Synchronizing from 2010-01-01T00:00:00+08:00 to 2026-02-10T23:29:12.752125+08:00
-[2026-02-10] • [23:29:14] Fetching report page 1 for workspace 5952284 from 2010-01-01T00:00:00+08:00 to 2011-01-01T00:00:00+08:00
-[2026-02-10] • [23:29:15] Fetching report page 1 for workspace 5952284 from 2011-01-01T00:00:01+08:00 to 2012-01-01T00:00:01+08:00
-[2026-02-10] • [23:29:16] Fetching report page 1 for workspace 5952284 from 2012-01-01T00:00:02+08:00 to 2013-01-01T00:00:02+08:00
-[2026-02-10] • [23:29:16] Fetching report page 1 for workspace 5952284 from 2013-01-01T00:00:03+08:00 to 2014-01-01T00:00:03+08:00
-[2026-02-10] • [23:29:17] Fetching report page 1 for workspace 5952284 from 2014-01-01T00:00:04+08:00 to 2015-01-01T00:00:04+08:00
+[2026-02-10] • [23:33:29] Synchronizing from 2021-12-06T19:32:33.454814+08:00 to 2026-02-10T23:33:26.698475+08:00
+[2026-02-10] • [23:33:30] Fetching report page 1 for workspace 5952284 from 2021-12-06T19:32:33.454814+08:00 to 2022-12-06T19:32:33.454814+08:00
+[2026-02-10] • [23:33:30] Failed to fetch report: {"error":{"message":"Payment Required - feature is not included in current subscription level of workspace","tip":"Please contact support@toggl.com with information on your request","code":402}}
+[2026-02-10] • [23:33:30] Fetching report page 1 for workspace 5952284 from 2022-12-06T19:32:34.454814+08:00 to 2023-12-06T19:32:34.454814+08:00
+[2026-02-10] • [23:33:31] Failed to fetch report: {"error":{"message":"Payment Required - feature is not included in current subscription level of workspace","tip":"Please contact support@toggl.com with information on your request","code":402}}
+[2026-02-10] • [23:33:31] Fetching report page 1 for workspace 5952284 from 2023-12-06T19:32:35.454814+08:00 to 2024-12-06T19:32:35.454814+08:00
+[2026-02-10] • [23:33:32] Failed to fetch report: {"error":{"message":"Payment Required - feature is not included in current subscription level of workspace","tip":"Please contact support@toggl.com with information on your request","code":402}}
+[2026-02-10] • [23:33:32] Fetching report page 1 for workspace 5952284 from 2024-12-06T19:32:36.454814+08:00 to 2025-12-06T19:32:36.454814+08:00
+[2026-02-10] • [23:33:33] Failed to fetch report: {"error":{"message":"Payment Required - feature is not included in current subscription level of workspace","tip":"Please contact support@toggl.com with information on your request","code":402}}
+[2026-02-10] • [23:33:33] Fetching report page 1 for workspace 5952284 from 2025-12-06T19:32:37.454814+08:00 to 2026-02-10T23:33:26.698475+08:00
+[2026-02-10] • [23:33:33] Failed to fetch report: {"error":{"message":"Payment Required - feature is not included in current subscription level of workspace","tip":"Please contact support@toggl.com with information on your request","code":402}}
+[2026-02-10] • [23:33:33] Total entries to process: 0
+[2026-02-10] • [23:33:35] No heatmap file found.

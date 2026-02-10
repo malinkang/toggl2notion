@@ -23,6 +23,29 @@ def get_created_at():
         return pendulum.datetime(2010, 1, 1, tz="Asia/Shanghai")
 
 
+auth = None
+notion_helper = None
+
+def init():
+    global auth, notion_helper
+    notion_helper = NotionHelper()
+    toggl_token = os.getenv("TOGGL_TOKEN")
+    if not toggl_token:
+        utils.log("❌ Missing TOGGL_TOKEN environment variable.")
+        return False
+    auth = HTTPBasicAuth(f"{toggl_token}", "api_token")
+    return True
+
+def get_created_at():
+    response = requests.get("https://api.track.toggl.com/api/v9/me", auth=auth)
+    if response.ok:
+        data = response.json()
+        return pendulum.parse(data.get("created_at"))
+    else:
+        utils.log(f"Failed to get user info: {response.text}")
+        return pendulum.datetime(2010, 1, 1, tz="Asia/Shanghai")
+
+
 def get_workspaces():
     response = requests.get(
         "https://api.track.toggl.com/api/v9/me/workspaces", auth=auth
@@ -77,11 +100,10 @@ def process_entry(task, workspace_id):
         ]
     
     id = task.get("id")
-    # Reports API returns IDs as integers, ensure consistency
     item["Id"] = id 
     
     start = pendulum.parse(task.get("start"))
-    stop = pendulum.parse(task.get("end")) # Reports API uses 'end', not 'stop'
+    stop = pendulum.parse(task.get("end")) 
     start_ts = start.in_timezone("Asia/Shanghai").int_timestamp
     stop_ts = stop.in_timezone("Asia/Shanghai").int_timestamp
     item["时间"] = (start_ts, stop_ts)
@@ -91,7 +113,6 @@ def process_entry(task, workspace_id):
         emoji, project_name = split_emoji_from_string(project_name)
         item["标题"] = project_name
         
-        # Reports API returns client name directly
         client_name = task.get("client")
         project_properties = {"金币":{"number": 1}}
         
@@ -130,8 +151,6 @@ def process_entry(task, workspace_id):
         properties, pendulum.from_timestamp(stop_ts, tz="Asia/Shanghai")
     )
     
-    # Use project emoji as icon if available, else default?
-    # Original code used emoji from project name splitting
     icon = None
     if 'emoji' in locals() and emoji:
          icon = {"type": "emoji", "emoji": emoji}
@@ -140,11 +159,8 @@ def process_entry(task, workspace_id):
 
 
 def insert_to_notion():
-    # 获取当前UTC时间
     now = pendulum.now("Asia/Shanghai")
-    
-    # 确定起始时间
-    start = now.subtract(days=1) # Default to recent if no history
+    start = None
     
     sorts = [{"property": "时间", "direction": "descending"}]
     page_size = 1
@@ -152,7 +168,6 @@ def insert_to_notion():
         database_id=notion_helper.time_database_id, sorts=sorts, page_size=page_size
     )
     
-    notion_latest_end = None
     if len(response.get("results")) > 0:
         notion_latest_end = (
             response.get("results")[0]
@@ -164,105 +179,56 @@ def insert_to_notion():
         if notion_latest_end:
              start = pendulum.parse(notion_latest_end).in_timezone("Asia/Shanghai")
     
-    # 如果 Notion 中没有数据，或者数据很久远，我们默认同步最近 1 年？ 
-    # 用户需求是 "从注册 toggl 到今天"，所以如果没有 notion 数据，应该尽可能早。
-    # Toggl Reports API 最好不要一次性拉取太多年的空数据，这里我们假设如果 Notion 空，则同步过去 365 天。
-    # 或者给一个特定的环境变量 START_DATE?
-    # 暂时由 Notion 最新时间决定。如果没有，默认 2010 年？(Toggl 成立时间附近)
-    
-    if not notion_latest_end:
-        start = get_created_at().in_timezone("Asia/Shanghai")
+    if not start:
+        reg_time = get_created_at()
+        start = reg_time.in_timezone("Asia/Shanghai")
+        utils.log(f"Notion is empty. Starting from account registration date: {start.to_date_string()}")
 
     end = now
-    
     utils.log(f"Synchronizing from {start.to_iso8601_string()} to {end.to_iso8601_string()}")
 
     workspaces = get_workspaces()
-    all_time_entries = []
+    if not workspaces:
+        utils.log("No workspaces found.")
+        return
 
     for ws in workspaces:
         ws_id = ws.get("id")
+        utils.log(f"Processing workspace: {ws.get('name')} ({ws_id})")
         
-        # Reports API limit is 1 year per request. Loop by year.
-        current_start = start
-        while current_start < end:
-            current_end = current_start.add(years=1)
-            if current_end > end:
-                current_end = end
+        # Reports API limit is 1 year per request. Loop by year, newest first.
+        current_end = end
+        while current_end > start:
+            current_start = current_end.subtract(years=1).add(days=1)
+            if current_start < start:
+                current_start = start
             
             entries = get_detailed_report(
                 ws_id, 
-                current_start.to_iso8601_string(), 
-                current_end.to_iso8601_string()
+                current_start.to_date_string(), 
+                current_end.to_date_string()
             )
-            all_time_entries.extend(entries)
             
-            current_start = current_end.add(seconds=1) # Avoid overlap? actually Reports API includes bounds usually? 
-            # Reports API: "Detailed reports return time entries that have a start time within the given date range."
-            # precise check: if current_end == end, break
-            if current_end >= end:
+            if entries:
+                utils.log(f"Found {len(entries)} entries for period {current_start.to_date_string()} to {current_end.to_date_string()}. Inserting in reverse order...")
+                # Reports API returns newest first? No, usually sorted by date. 
+                # Let's sort them descending (newest first) for immediate feedback in Notion.
+                entries.sort(key=lambda x: x['start'], reverse=True)
+                
+                for task in entries:
+                    try:
+                        parent, properties, icon = process_entry(task, ws_id)
+                        notion_helper.create_page(parent=parent, properties=properties, icon=icon)
+                    except Exception as e:
+                        utils.log(f"Error processing task {task.get('id')}: {e}")
+            else:
+                utils.log(f"No entries found for period {current_start.to_date_string()} to {current_end.to_date_string()}")
+            
+            if current_start <= start:
                 break
-    
-    # Remove duplicates based on ID?
-    # Reports API pagination handles duplicates usually, but across workspaces/requests...
-    # Entries have unique 'id'.
-    unique_entries = {entry['id']: entry for entry in all_time_entries}.values()
-    sorted_entries = sorted(unique_entries, key=lambda x: x['start'])
-    
-    utils.log(f"Total entries to process: {len(sorted_entries)}")
-    
-    for task in sorted_entries:
-        # Check if already in Notion? (Original code didn't check ID existence per row, relied on date filtering)
-        # But if we fetch from `notion_latest_end`, we might overlap newly added entry.
-        # Original code: "start = ...get('end')" -> fetch "start_date" = start
-        # Notion end time matches Toggl end time?
-        # Let's rely on Notion query `start` to avoid re-fetching old data.
-        # But `me/time_entries` filter was `start_date`.
-        # Reports API `since` is also start time.
-        # So we should be safe.
-        
-        # Original code logic: 
-        #   time_entries = response.json()
-        #   time_entries.sort...
-        #   for task in time_entries: ... insert ...
-        
-        # We process entry
-        try:
-             # Need to handle missing workspace_id in process_entry? Reports API returns it?
-             # Reports API 'detailed' entries contain 'wid' (workspace id) or similiar?
-             # The 'task' object from reports might have different keys.
-             # Fields: id, pid, tid, uid, description, start, end, updated, dur, user, use_stop, client, project, project_color, project_hex_color, task, billable, is_billable, cur, tags
-             
-             # process_entry checks `task.get("project")` (name) vs `me/time_entries` returning `project_id`.
-             # Original code fetched project details by ID. Reports API returns project NAME.
-             # This saves API calls!
-             
-             parent, properties, icon = process_entry(task, task.get("wid") or task.get("workspace_id"))
-             
-             # Double check duplication?
-             # Notion `query` at start gets the latest date.
-             # If we run script twice, we might re-insert if time matches exactly?
-             # Original code didn't safeguard against duplicates other than date range.
-             # NotionHelper doesn't have "check if ID exists" logic exposed easily here.
-             # We assume date range is sufficient.
-             
-             notion_helper.create_page(parent=parent, properties=properties, icon=icon)
-             
-        except Exception as e:
-            utils.log(f"Error processing task {task.get('id')}: {e}")
-
-
+            current_end = current_start.subtract(days=1)
 
 if __name__ == "__main__":
-    notion_helper = NotionHelper()
-    toggl_token = os.getenv("TOGGL_TOKEN")
-    if not toggl_token:
-        # Fallback to email/password if token not present (though implementation plan says replace, fallback is safer during transition?)
-        # User requested: "脚本的调用都修改为 api token调用" implies replacement.
-        # But previous code used os.getenv('EMAIL')
-        # Let's strictly follow verification plan: use TOGGL_TOKEN.
-        pass
+    if init():
+        insert_to_notion()
 
-    # Basic Auth with token uses token as username and "api_token" as password
-    auth = HTTPBasicAuth(f"{toggl_token}", "api_token")
-    insert_to_notion()
