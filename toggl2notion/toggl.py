@@ -49,13 +49,17 @@ def load_workspace_cache(workspace_id):
     # Load Clients
     response = requests.get(f"https://api.track.toggl.com/api/v9/workspaces/{workspace_id}/clients", auth=auth)
     if response.ok:
-        for c in response.json():
+        clients = response.json()
+        utils.log(f"Loaded {len(clients)} clients for workspace {workspace_id}")
+        for c in clients:
             client_cache[c["id"]] = c["name"]
     
     # Load Projects
     response = requests.get(f"https://api.track.toggl.com/api/v9/workspaces/{workspace_id}/projects", auth=auth)
     if response.ok:
-        for p in response.json():
+        projects = response.json()
+        utils.log(f"Loaded {len(projects)} projects for workspace {workspace_id}")
+        for p in projects:
             project_cache[p["id"]] = {
                 "name": p["name"],
                 "client_id": p.get("client_id")
@@ -97,6 +101,8 @@ def process_entry(task):
     item["时间"] = (start_ts, stop_ts)
     
     pid = task.get("project_id") or task.get("pid")
+    description = task.get("description")
+    
     if pid and pid in project_cache:
         project_info = project_cache[pid]
         project_name = project_info["name"]
@@ -129,9 +135,10 @@ def process_entry(task):
             )
         ]
     else:
-        item["标题"] = task.get("description") or "无描述"
+        if pid:
+             utils.log(f"⚠️ Project ID {pid} not found in cache. Falling back to description.")
+        item["标题"] = description or "无描述"
         
-    description = task.get("description")
     if description:
         item["备注"] = description
         
@@ -171,11 +178,11 @@ def insert_to_notion():
         
         date_prop = properties.get("时间", {}).get("date")
         if date_prop and date_prop.get("end"):
-             start = pendulum.parse(date_prop.get("end")).in_timezone("Asia/Shanghai")
-             utils.log(f"🔍 Found latest entry in Notion: [{title}] (ID: {latest_id}) with end time {start.to_iso8601_string()}")
+             start = pendulum.parse(date_prop.get("end")).in_timezone("Asia/Shanghai").add(seconds=1)
+             utils.log(f"🔍 Found latest entry in Notion: [{title}] (ID: {latest_id}) with end time {date_prop.get('end')}")
         elif date_prop and date_prop.get("start"):
-             start = pendulum.parse(date_prop.get("start")).in_timezone("Asia/Shanghai")
-             utils.log(f"🔍 Found latest entry in Notion (start only): [{title}] (ID: {latest_id}) at {start.to_iso8601_string()}")
+             start = pendulum.parse(date_prop.get("start")).in_timezone("Asia/Shanghai").add(seconds=1)
+             utils.log(f"🔍 Found latest entry in Notion (start only): [{title}] (ID: {latest_id}) at {date_prop.get('start')}")
     
     if not start:
         start = get_created_at().in_timezone("Asia/Shanghai")
@@ -205,6 +212,7 @@ def insert_to_notion():
             for task in entries:
                 if task.get("server_deleted_at"):
                     continue
+                utils.log(f"📝 Syncing: [{task.get('description') or '无描述'}] ({task.get('start')})")
                 try:
                     parent, properties, icon = process_entry(task)
                     notion_helper.create_page(parent=parent, properties=properties, icon=icon)
