@@ -1,4 +1,8 @@
-[2026-02-10] • [23:46:09] 🔍 Found latest entry in Notion: [无描述] (ID: 30386019-c92c-813b-a44b-ec47ed4daa17) with end time 2026-02-09T06:29:00.000+08:00
-[2026-02-10] • [23:46:12] Synchronizing from 2026-02-09T06:29:01+08:00 to 2026-02-10T23:46:08.886181+08:00
-[2026-02-10] • [23:46:12] Failed to fetch time entries (2026-02-09 to 2026-02-10): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 83 seconds. CTA: Go to subscriptions page.
-[2026-02-10] • [23:46:14] No heatmap file found.
+[2026-02-10] • [23:49:33] 🔍 Found latest entry in Notion: [无描述] (ID: 30386019-c92c-813b-a44b-ec47ed4daa17) with end time 2026-02-09T06:29:00.000+08:00
+[2026-02-10] • [23:49:34] Failed to load clients for workspace 5952284: 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2380 seconds. CTA: Go to subscriptions page.
+[2026-02-10] • [23:49:35] Failed to load projects for workspace 5952284: 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2380 seconds. CTA: Go to subscriptions page.
+[2026-02-10] • [23:49:35] Synchronizing from 2026-02-09T06:29:01+08:00 to 2026-02-10T23:49:31.329646+08:00
+[2026-02-10] • [23:49:36] Found 1 entries from 2026-02-09 to 2026-02-10. Processing...
+[2026-02-10] • [23:49:36] 📝 Syncing: [无描述] (2026-02-10T12:18:19+00:00)
+[2026-02-10] • [23:49:36] ⚠️ Project ID 186296615 not found in cache. Falling back to description.
+[2026-02-10] • [23:49:44] No heatmap file found.

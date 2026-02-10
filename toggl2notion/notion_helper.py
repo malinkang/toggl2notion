@@ -193,6 +193,14 @@ class NotionHelper:
         kwargs = {k: v for k, v in kwargs.items() if v}
         return self.client.databases.query(**kwargs)
 
+    def exists_by_toggl_id(self, toggl_id):
+        """Check if an entry with this Toggl ID already exists in Notion."""
+        filter = {"property": "Id", "number": {"equals": int(toggl_id)}}
+        response = self.client.databases.query(
+            database_id=self.time_database_id, filter=filter, page_size=1
+        )
+        return len(response.get("results")) > 0
+
     @retry(stop_max_attempt_number=3, wait_fixed=5000)
     def get_block_children(self, id):
         response = self.client.blocks.children.list(id)

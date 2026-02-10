@@ -194,6 +194,10 @@ def insert_to_notion():
 
     # Track API v9 returns all entries for the user. We only need to load workspace projects once.
     workspaces = get_workspaces()
+    if not workspaces:
+        utils.log("No workspaces found or API error.")
+        return
+
     for ws in workspaces:
         load_workspace_cache(ws["id"])
 
@@ -216,6 +220,13 @@ def insert_to_notion():
             for task in entries:
                 if task.get("server_deleted_at"):
                     continue
+                
+                toggl_id = task.get('id')
+                # check if exists to avoid duplicates
+                if notion_helper.exists_by_toggl_id(toggl_id):
+                    # utils.log(f"⏩ Skipping existing entry: {toggl_id}")
+                    continue
+
                 utils.log(f"📝 Syncing: [{task.get('description') or '无描述'}] ({task.get('start')})")
                 try:
                     parent, properties, icon = process_entry(task)
