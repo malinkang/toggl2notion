@@ -3,11 +3,11 @@ from requests.auth import HTTPBasicAuth
 import pendulum
 from retrying import retry
 import requests
-from notion_helper import NotionHelper
-import utils
+from .notion_helper import NotionHelper
+from . import utils
 
-from config import time_properties_type_dict, TAG_ICON_URL
-from utils import get_icon, split_emoji_from_string
+from .config import time_properties_type_dict, TAG_ICON_URL
+from .utils import get_icon, split_emoji_from_string
 from dotenv import load_dotenv
 load_dotenv()
 

@@ -6,7 +6,7 @@ from notion_client import Client
 from retrying import retry
 from dotenv import load_dotenv
 load_dotenv()
-from utils import (
+from .utils import (
     format_date,
     get_date,
     get_first_and_last_day_of_month,

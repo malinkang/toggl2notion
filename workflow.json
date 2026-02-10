@@ -1,0 +1,49 @@
+{
+    "nodes": [
+        {
+            "parameters": {
+                "httpMethod": "POST",
+                "path": "toggl2notion",
+                "options": {}
+            },
+            "name": "Webhook",
+            "type": "n8n-nodes-base.webhook",
+            "typeVersion": 1,
+            "position": [
+                460,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "command": "python3 -m toggl2notion.toggl"
+            },
+            "name": "Execute Script",
+            "type": "n8n-nodes-base.executeCommand",
+            "typeVersion": 1,
+            "position": [
+                680,
+                300
+            ],
+            "env": {
+                "NOTION_TOKEN": "={{$node[\"Webhook\"].json[\"body\"][\"notion_token\"]}}",
+                "TOGGL_TOKEN": "={{$node[\"Webhook\"].json[\"body\"][\"toggl_token\"]}}",
+                "TIME_DATABASE_NAME": "={{$node[\"Webhook\"].json[\"body\"][\"database_id\"]}}",
+                "ACTIVATION_CODE": "={{$node[\"Webhook\"].json[\"body\"][\"activation_code\"]}}"
+            }
+        }
+    ],
+    "connections": {
+        "Webhook": {
+            "main": [
+                [
+                    {
+                        "node": "Execute Script",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    }
+}
