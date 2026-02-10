@@ -15,6 +15,7 @@ from .utils import (
     get_icon,
     get_relation,
     get_title,
+    log,
 )
 
 TAG_ICON_URL = "https://www.notion.so/icons/tag_gray.svg"
@@ -154,7 +155,12 @@ class NotionHelper:
         if key in self.__cache:
             return self.__cache.get(key)
         filter = {"property": "标题", "title": {"equals": name}}
-        response = self.client.databases.query(database_id=id, filter=filter)
+        try:
+            response = self.client.databases.query(database_id=id, filter=filter)
+        except Exception as e:
+            log(f"Failed to query database {id} for name '{name}': {e}")
+            raise e
+        
         if len(response.get("results")) == 0:
             parent = {"database_id": id, "type": "database_id"}
             properties["标题"] = get_title(name)

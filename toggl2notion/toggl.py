@@ -53,6 +53,8 @@ def load_workspace_cache(workspace_id):
         utils.log(f"Loaded {len(clients)} clients for workspace {workspace_id}")
         for c in clients:
             client_cache[c["id"]] = c["name"]
+    else:
+        utils.log(f"Failed to load clients for workspace {workspace_id}: {response.status_code} {response.text}")
     
     # Load Projects
     response = requests.get(f"https://api.track.toggl.com/api/v9/workspaces/{workspace_id}/projects", auth=auth)
@@ -64,6 +66,8 @@ def load_workspace_cache(workspace_id):
                 "name": p["name"],
                 "client_id": p.get("client_id")
             }
+    else:
+        utils.log(f"Failed to load projects for workspace {workspace_id}: {response.status_code} {response.text}")
 
 def get_time_entries(start_date, end_date):
     """Fetch raw time entries using Track API v9 (Free)"""
