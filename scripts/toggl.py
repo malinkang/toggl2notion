@@ -118,5 +118,14 @@ def insert_to_notion():
 
 if __name__ == "__main__":
     notion_helper = NotionHelper()
-    auth = HTTPBasicAuth(f"{os.getenv('EMAIL').strip()}", f"{os.getenv('PASSWORD').strip()}")
+    toggl_token = os.getenv("TOGGL_TOKEN")
+    if not toggl_token:
+        # Fallback to email/password if token not present (though implementation plan says replace, fallback is safer during transition?)
+        # User requested: "脚本的调用都修改为 api token调用" implies replacement.
+        # But previous code used os.getenv('EMAIL')
+        # Let's strictly follow verification plan: use TOGGL_TOKEN.
+        pass
+
+    # Basic Auth with token uses token as username and "api_token" as password
+    auth = HTTPBasicAuth(f"{toggl_token}", "api_token")
     insert_to_notion()

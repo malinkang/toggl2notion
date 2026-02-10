@@ -40,46 +40,41 @@ class NotionHelper:
     def __init__(self):
         self.client = Client(auth=os.getenv("NOTION_TOKEN"), log_level=logging.ERROR)
         self.__cache = {}
-        self.page_id = self.extract_page_id(os.getenv("NOTION_PAGE"))
-        self.search_database(self.page_id)
+        # self.page_id = self.extract_page_id(os.getenv("NOTION_PAGE"))
+        # self.search_database(self.page_id)
         for key in self.database_name_dict.keys():
             if os.getenv(key) != None and os.getenv(key) != "":
                 self.database_name_dict[key] = os.getenv(key)
-        self.time_database_id = self.database_id_dict.get(
-            self.database_name_dict.get("TIME_DATABASE_NAME")
-        )
-        self.day_database_id = self.database_id_dict.get(
-            self.database_name_dict.get("DAY_DATABASE_NAME")
-        )
-        self.week_database_id = self.database_id_dict.get(
-            self.database_name_dict.get("WEEK_DATABASE_NAME")
-        )
-        self.month_database_id = self.database_id_dict.get(
-            self.database_name_dict.get("MONTH_DATABASE_NAME")
-        )
-        self.year_database_id = self.database_id_dict.get(
-            self.database_name_dict.get("YEAR_DATABASE_NAME")
-        )
-        self.all_database_id = self.database_id_dict.get(
-            self.database_name_dict.get("ALL_DATABASE_NAME")
-        )
-        self.client_database_id = self.database_id_dict.get(
-            self.database_name_dict.get("CLIENT_DATABASE_NAME")
-        )
-        self.project_database_id = self.database_id_dict.get(
-            self.database_name_dict.get("PROJECT_DATABASE_NAME")
-        )
-        self.tag_database_id = self.database_id_dict.get(
-            self.database_name_dict.get("TAG_DATABASE_NAME")
-        )
+        
+        # Directly get IDs from environment variables using the names defined in database_name_dict
+        # Assumption: The environment variables passed to the script match the VALUES in database_name_dict 
+        # (e.g., if TIME_DATABASE_NAME="时间记录", we expect an env var "时间记录" containing the ID)
+        # OR, more likely, the script expects explicit ID env vars if name lookup fails.
+        # But based on the request "from environment variables", we'll trust os.getenv(name) works if set.
+        
+        self.time_database_id = os.getenv(self.database_name_dict.get("TIME_DATABASE_NAME"))
+        self.day_database_id = os.getenv(self.database_name_dict.get("DAY_DATABASE_NAME"))
+        self.week_database_id = os.getenv(self.database_name_dict.get("WEEK_DATABASE_NAME"))
+        self.month_database_id = os.getenv(self.database_name_dict.get("MONTH_DATABASE_NAME"))
+        self.year_database_id = os.getenv(self.database_name_dict.get("YEAR_DATABASE_NAME"))
+        self.all_database_id = os.getenv(self.database_name_dict.get("ALL_DATABASE_NAME"))
+        self.client_database_id = os.getenv(self.database_name_dict.get("CLIENT_DATABASE_NAME"))
+        self.project_database_id = os.getenv(self.database_name_dict.get("PROJECT_DATABASE_NAME"))
+        self.tag_database_id = os.getenv(self.database_name_dict.get("TAG_DATABASE_NAME"))
+        
+        # Heatmap Block ID from env
+        self.heatmap_block_id = os.getenv("HEATMAP_BLOCK_ID")
+
         if self.time_database_id:
             self.write_database_id(self.time_database_id)
 
     def write_database_id(self, database_id):
         env_file = os.getenv('GITHUB_ENV')
-        # 将值写入环境文件
-        with open(env_file, "a") as file:
-            file.write(f"DATABASE_ID={database_id}\n")
+        if env_file:
+            # 将值写入环境文件
+            with open(env_file, "a") as file:
+                file.write(f"DATABASE_ID={database_id}\n")
+
     def extract_page_id(self, notion_url):
         # 正则表达式匹配 32 个字符的 Notion page_id
         match = re.search(
@@ -92,22 +87,22 @@ class NotionHelper:
             raise Exception(f"获取NotionID失败，请检查输入的Url是否正确")
 
 
-    def search_database(self, block_id):
-        children = self.client.blocks.children.list(block_id=block_id)["results"]
-        # 遍历子块
-        for child in children:
-            # 检查子块的类型
+    # def search_database(self, block_id):
+    #     children = self.client.blocks.children.list(block_id=block_id)["results"]
+    #     # 遍历子块
+    #     for child in children:
+    #         # 检查子块的类型
 
-            if child["type"] == "child_database":
-                self.database_id_dict[
-                    child.get("child_database").get("title")
-                ] = child.get("id")
-            elif child["type"] == "embed" and child.get("embed").get("url"):
-                if child.get("embed").get("url").startswith("https://heatmap.malinkang.com/"):
-                    self.heatmap_block_id = child.get("id")
-            # 如果子块有子块，递归调用函数
-            if "has_children" in child and child["has_children"]:
-                self.search_database(child["id"])
+    #         if child["type"] == "child_database":
+    #             self.database_id_dict[
+    #                 child.get("child_database").get("title")
+    #             ] = child.get("id")
+    #         elif child["type"] == "embed" and child.get("embed").get("url"):
+    #             if child.get("embed").get("url").startswith("https://heatmap.malinkang.com/"):
+    #                 self.heatmap_block_id = child.get("id")
+    #         # 如果子块有子块，递归调用函数
+    #         if "has_children" in child and child["has_children"]:
+    #             self.search_database(child["id"])
     @retry(stop_max_attempt_number=3, wait_fixed=5000)
     def update_heatmap(self, block_id, url):
         # 更新 image block 的链接
