@@ -85,6 +85,87 @@ def get_time_entries(start_date, end_date):
         utils.log(f"Failed to fetch time entries ({start_date.to_date_string()} to {end_date.to_date_string()}): {response.status_code} {response.text}")
         return []
 
+def create_toggl_entry(workspace_id, description, start, duration, pid=None):
+    """Create a time entry in Toggl Track."""
+    data = {
+        "workspace_id": int(workspace_id),
+        "description": description,
+        "start": start,
+        "duration": int(duration),
+        "created_with": "toggl2notion",
+    }
+    if pid:
+        data["project_id"] = int(pid)
+    
+    response = requests.post(
+        f"https://api.track.toggl.com/api/v9/workspaces/{workspace_id}/time_entries",
+        auth=auth,
+        json=data
+    )
+    if response.ok:
+        entry = response.json()
+        utils.log(f"✅ Created Toggl entry: [{description}] (ID: {entry['id']})")
+        return entry.get("id")
+    else:
+        utils.log(f"Failed to create Toggl entry: {response.status_code} {response.text}")
+        return None
+
+def reverse_sync_notion_to_toggl():
+    """Find entries in Notion without Toggl IDs and create them in Toggl."""
+    utils.log("🔄 Checking for Notion entries to sync back to Toggl...")
+    missing_entries = notion_helper.query_missing_toggl_id()
+    if not missing_entries:
+        utils.log("No missing Toggl IDs found in Notion.")
+        return
+
+    # Use the first workspace as default for new entries
+    workspaces = get_workspaces()
+    if not workspaces:
+        utils.log("Cannot perform reverse sync: No Toggl workspaces found.")
+        return
+    workspace_id = workspaces[0]["id"]
+
+    for page in missing_entries:
+        props = page.get("properties", {})
+        title_list = props.get("标题", {}).get("title", [])
+        title = title_list[0].get("plain_text") if title_list else "无描述"
+        
+        date_prop = props.get("时间", {}).get("date", {})
+        if not date_prop or not date_prop.get("start"):
+            continue
+            
+        start_time = date_prop.get("start")
+        end_time = date_prop.get("end")
+        
+        # Calculate duration in seconds
+        start_p = pendulum.parse(start_time)
+        if end_time:
+            end_p = pendulum.parse(end_time)
+            duration = (end_p - start_p).total_seconds()
+        else:
+            # Fallback for entries with only start time (set 0 or minimal)
+            duration = 0
+            
+        # Get Project ID from Notion relation
+        pid = None
+        project_relation = props.get("Project", {}).get("relation", [])
+        if project_relation:
+            project_page_id = project_relation[0].get("id")
+            pid = notion_helper.get_remote_id_from_page(project_page_id)
+            if not pid:
+                utils.log(f"⚠️ Project in Notion for '{title}' does not have a Toggl ID. Creating without Project.")
+
+        # Create in Toggl
+        new_toggl_id = create_toggl_entry(workspace_id, title, start_time, duration, pid)
+        
+        # Write ID back to Notion
+        if new_toggl_id:
+            try:
+                notion_helper.update_page(page["id"], {"Id": {"number": int(new_toggl_id)}})
+                utils.log(f"🔗 Linked Notion page {page['id']} with Toggl ID {new_toggl_id}")
+            except Exception as e:
+                utils.log(f"Failed to update Notion with new Toggl ID: {e}")
+
 def process_entry(task):
     item = {}
     tags = task.get("tags")
@@ -244,6 +325,9 @@ def insert_to_notion():
         if current_start <= start:
             break
         current_end = current_start.subtract(seconds=1)
+    
+    # After forward sync, perform reverse sync for entries created in Notion
+    reverse_sync_notion_to_toggl()
 
 if __name__ == "__main__":
     if init():

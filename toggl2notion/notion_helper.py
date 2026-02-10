@@ -233,6 +233,22 @@ class NotionHelper:
         results = response.get("results")
         return results[0].get("id") if results else None
 
+    def query_missing_toggl_id(self):
+        """Query entries in Time database that are missing a Toggl ID."""
+        filter = {"property": "Id", "number": {"is_empty": True}}
+        # Filter out entries without a description or title if necessary
+        return self.query_all_by_book(database_id=self.time_database_id, filter=filter)
+
+    def get_remote_id_from_page(self, page_id):
+        """Retrieve the 'Id' (Toggl ID) from a Notion page (Project/Client)."""
+        try:
+            page = self.client.pages.retrieve(page_id=page_id)
+            props = page.get("properties", {})
+            id_prop = props.get("Id", {})
+            return id_prop.get("number")
+        except Exception:
+            return None
+
     @retry(stop_max_attempt_number=3, wait_fixed=5000)
     def get_block_children(self, id):
         response = self.client.blocks.children.list(id)
