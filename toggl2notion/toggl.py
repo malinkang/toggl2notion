@@ -1,7 +1,6 @@
 import os
 from requests.auth import HTTPBasicAuth
 import pendulum
-from retrying import retry
 import requests
 from .notion_helper import NotionHelper
 from . import utils
@@ -10,31 +9,6 @@ from .config import time_properties_type_dict, TAG_ICON_URL
 from .utils import get_icon, split_emoji_from_string
 from dotenv import load_dotenv
 load_dotenv()
-
-
-
-def get_created_at():
-    response = requests.get("https://api.track.toggl.com/api/v9/me", auth=auth)
-    if response.ok:
-        data = response.json()
-        return pendulum.parse(data.get("created_at"))
-    else:
-        utils.log(f"Failed to get user info: {response.text}")
-        return pendulum.datetime(2010, 1, 1, tz="Asia/Shanghai")
-
-
-auth = None
-notion_helper = None
-
-def init():
-    global auth, notion_helper
-    notion_helper = NotionHelper()
-    toggl_token = os.getenv("TOGGL_TOKEN")
-    if not toggl_token:
-        utils.log("❌ Missing TOGGL_TOKEN environment variable.")
-        return False
-    auth = HTTPBasicAuth(f"{toggl_token}", "api_token")
-    return True
 
 auth = None
 notion_helper = None
@@ -244,4 +218,3 @@ def insert_to_notion():
 if __name__ == "__main__":
     if init():
         insert_to_notion()
-
