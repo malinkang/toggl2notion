@@ -222,15 +222,16 @@ def insert_to_notion():
                     continue
                 
                 toggl_id = task.get('id')
-                # check if exists to avoid duplicates
-                if notion_helper.exists_by_toggl_id(toggl_id):
-                    # utils.log(f"⏩ Skipping existing entry: {toggl_id}")
-                    continue
-
-                utils.log(f"📝 Syncing: [{task.get('description') or '无描述'}] ({task.get('start')})")
+                # Check for existing page to support updates
+                existing_page_id = notion_helper.get_page_by_toggl_id(toggl_id)
+                
+                utils.log(f"📝 {'Updating' if existing_page_id else 'Syncing'}: [{task.get('description') or '无描述'}] ({task.get('start')})")
                 try:
                     parent, properties, icon = process_entry(task)
-                    notion_helper.create_page(parent=parent, properties=properties, icon=icon)
+                    if existing_page_id:
+                        notion_helper.update_page(page_id=existing_page_id, properties=properties, icon=icon)
+                    else:
+                        notion_helper.create_page(parent=parent, properties=properties, icon=icon)
                 except Exception as e:
                     utils.log(f"Error processing task {task.get('id')}: {e}")
         

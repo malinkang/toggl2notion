@@ -179,10 +179,11 @@ class NotionHelper:
         return self.client.pages.update(page_id=page_id, properties=properties)
 
     @retry(stop_max_attempt_number=3, wait_fixed=5000)
-    def update_page(self, page_id, properties):
-        return self.client.pages.update(
-            page_id=page_id, properties=properties
-        )
+    def update_page(self, page_id, properties, icon=None):
+        kwargs = {"page_id": page_id, "properties": properties}
+        if icon:
+            kwargs["icon"] = icon
+        return self.client.pages.update(**kwargs)
 
     @retry(stop_max_attempt_number=3, wait_fixed=5000)
     def create_page(self, parent, properties, icon):
@@ -193,13 +194,14 @@ class NotionHelper:
         kwargs = {k: v for k, v in kwargs.items() if v}
         return self.client.databases.query(**kwargs)
 
-    def exists_by_toggl_id(self, toggl_id):
-        """Check if an entry with this Toggl ID already exists in Notion."""
+    def get_page_by_toggl_id(self, toggl_id):
+        """Find the Notion page ID for a given Toggl ID."""
         filter = {"property": "Id", "number": {"equals": int(toggl_id)}}
         response = self.client.databases.query(
             database_id=self.time_database_id, filter=filter, page_size=1
         )
-        return len(response.get("results")) > 0
+        results = response.get("results")
+        return results[0].get("id") if results else None
 
     @retry(stop_max_attempt_number=3, wait_fixed=5000)
     def get_block_children(self, id):
