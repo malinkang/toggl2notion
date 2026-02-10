@@ -24,17 +24,7 @@ BOOKMARK_ICON_URL = "https://www.notion.so/icons/bookmark_gray.svg"
 
 
 class NotionHelper:
-    database_name_dict = {
-        "TIME_DATABASE_NAME": "时间记录",
-        "DAY_DATABASE_NAME": "日",
-        "WEEK_DATABASE_NAME": "周",
-        "MONTH_DATABASE_NAME": "月",
-        "YEAR_DATABASE_NAME": "年",
-        "ALL_DATABASE_NAME": "全部",
-        "CLIENT_DATABASE_NAME": "Client",
-        "PROJECT_DATABASE_NAME": "Project",
-        "TAG_DATABASE_NAME": "标签",
-    }
+
     database_id_dict = {}
     image_dict = {}
     def __init__(self):
@@ -42,9 +32,7 @@ class NotionHelper:
         self.__cache = {}
         # self.page_id = self.extract_page_id(os.getenv("NOTION_PAGE"))
         # self.search_database(self.page_id)
-        for key in self.database_name_dict.keys():
-            if os.getenv(key) != None and os.getenv(key) != "":
-                self.database_name_dict[key] = os.getenv(key)
+
         
         # Directly get IDs from environment variables using the names defined in database_name_dict
         # Assumption: The environment variables passed to the script match the VALUES in database_name_dict 
