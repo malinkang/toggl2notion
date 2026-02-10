@@ -52,15 +52,15 @@ class NotionHelper:
         # OR, more likely, the script expects explicit ID env vars if name lookup fails.
         # But based on the request "from environment variables", we'll trust os.getenv(name) works if set.
         
-        self.time_database_id = os.getenv(self.database_name_dict.get("TIME_DATABASE_NAME"))
-        self.day_database_id = os.getenv(self.database_name_dict.get("DAY_DATABASE_NAME"))
-        self.week_database_id = os.getenv(self.database_name_dict.get("WEEK_DATABASE_NAME"))
-        self.month_database_id = os.getenv(self.database_name_dict.get("MONTH_DATABASE_NAME"))
-        self.year_database_id = os.getenv(self.database_name_dict.get("YEAR_DATABASE_NAME"))
-        self.all_database_id = os.getenv(self.database_name_dict.get("ALL_DATABASE_NAME"))
-        self.client_database_id = os.getenv(self.database_name_dict.get("CLIENT_DATABASE_NAME"))
-        self.project_database_id = os.getenv(self.database_name_dict.get("PROJECT_DATABASE_NAME"))
-        self.tag_database_id = os.getenv(self.database_name_dict.get("TAG_DATABASE_NAME"))
+        self.time_database_id = os.getenv("TIME_DATABASE_NAME")
+        self.day_database_id = os.getenv("DAY_DATABASE_ID")
+        self.week_database_id = os.getenv("WEEK_DATABASE_ID")
+        self.month_database_id = os.getenv("MONTH_DATABASE_ID")
+        self.year_database_id = os.getenv("YEAR_DATABASE_ID")
+        self.all_database_id = os.getenv("ALL_DATABASE_ID")
+        self.client_database_id = os.getenv("CLIENT_DATABASE_ID")
+        self.project_database_id = os.getenv("PROJECT_DATABASE_ID")
+        self.tag_database_id = os.getenv("TAG_DATABASE_ID")
         
         # Heatmap Block ID from env
         self.heatmap_block_id = os.getenv("HEATMAP_BLOCK_ID")
