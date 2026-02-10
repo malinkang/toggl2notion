@@ -13,6 +13,16 @@ load_dotenv()
 
 
 
+def get_created_at():
+    response = requests.get("https://api.track.toggl.com/api/v9/me", auth=auth)
+    if response.ok:
+        data = response.json()
+        return pendulum.parse(data.get("created_at"))
+    else:
+        utils.log(f"Failed to get user info: {response.text}")
+        return pendulum.datetime(2010, 1, 1, tz="Asia/Shanghai")
+
+
 def get_workspaces():
     response = requests.get(
         "https://api.track.toggl.com/api/v9/me/workspaces", auth=auth
@@ -161,7 +171,7 @@ def insert_to_notion():
     # 暂时由 Notion 最新时间决定。如果没有，默认 2010 年？(Toggl 成立时间附近)
     
     if not notion_latest_end:
-        start = pendulum.datetime(2010, 1, 1, tz="Asia/Shanghai") 
+        start = get_created_at().in_timezone("Asia/Shanghai")
 
     end = now
     
