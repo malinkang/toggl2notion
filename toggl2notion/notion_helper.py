@@ -150,26 +150,56 @@ class NotionHelper:
         )
     
     @retry(stop_max_attempt_number=3, wait_fixed=5000)
-    def get_relation_id(self, name, id, icon, properties={}):
-        key = f"{id}{name}"
-        if key in self.__cache:
-            return self.__cache.get(key)
-        filter = {"property": "标题", "title": {"equals": name}}
-        try:
-            response = self.client.databases.query(database_id=id, filter=filter)
-        except Exception as e:
-            log(f"Failed to query database {id} for name '{name}': {e}")
-            raise e
+    def get_relation_id(self, name, id, icon, properties={}, remote_id=None):
+        fetch_key = f"{id}{remote_id if remote_id else name}"
+        if fetch_key in self.__cache:
+            return self.__cache.get(fetch_key)
         
-        if len(response.get("results")) == 0:
+        page_id = None
+        results = []
+        
+        # 1. Try to find by remote_id if provided
+        if remote_id:
+            filter = {"property": "Id", "number": {"equals": int(remote_id)}}
+            response = self.client.databases.query(database_id=id, filter=filter)
+            results = response.get("results")
+            if results:
+                page_id = results[0].get("id")
+                # Update name if changed
+                existing_name = results[0].get("properties", {}).get("标题", {}).get("title", [])
+                existing_name = existing_name[0].get("plain_text") if existing_name else ""
+                if existing_name != name:
+                    log(f"🔄 Updating name for ID {remote_id}: '{existing_name}' -> '{name}'")
+                    properties["标题"] = get_title(name)
+                    self.update_page(page_id, properties, icon)
+        
+        # 2. Fallback to name-based lookup if not found by ID or ID not provided
+        if not page_id:
+            filter = {"property": "标题", "title": {"equals": name}}
+            try:
+                response = self.client.databases.query(database_id=id, filter=filter)
+                results = response.get("results")
+            except Exception as e:
+                log(f"Failed to query database {id} for name '{name}': {e}")
+                raise e
+            
+            if results:
+                page_id = results[0].get("id")
+                if remote_id: # Link the ID if it was missing in Notion
+                    properties["Id"] = {"number": int(remote_id)}
+                    self.update_page(page_id, properties, icon)
+
+        # 3. Create if still not found
+        if not page_id:
             parent = {"database_id": id, "type": "database_id"}
             properties["标题"] = get_title(name)
+            if remote_id:
+                properties["Id"] = {"number": int(remote_id)}
             page_id = self.client.pages.create(
                 parent=parent, properties=properties, icon=icon
             ).get("id")
-        else:
-            page_id = response.get("results")[0].get("id")
-        self.__cache[key] = page_id
+            
+        self.__cache[fetch_key] = page_id
         return page_id
 
 

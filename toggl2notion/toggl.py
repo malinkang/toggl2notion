@@ -124,6 +124,7 @@ def process_entry(task):
                     client_name,
                     notion_helper.client_database_id,
                     {"type": "emoji", "emoji": client_emoji},
+                    remote_id=client_id
                 )
             ]
             project_properties["Client"] = {
@@ -136,6 +137,7 @@ def process_entry(task):
                 notion_helper.project_database_id,
                 {"type": "emoji", "emoji": emoji},
                 properties=project_properties,
+                remote_id=pid
             )
         ]
     else:
