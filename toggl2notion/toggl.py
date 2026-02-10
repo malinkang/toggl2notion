@@ -275,9 +275,9 @@ def insert_to_notion():
         start = get_created_at().in_timezone("Asia/Shanghai")
         utils.log(f"Notion is empty. Starting from account registration date: {start.to_date_string()}")
     else:
-        # Look back 3 days from the latest entry to detect recent modifications/updates
-        start = start.subtract(days=3)
-        utils.log(f"🔍 Lookback enabled: Syncing from {start.to_date_string()} to detect updates.")
+        # Look back 24 hours from the latest entry to detect recent modifications/updates
+        start = start.subtract(hours=24)
+        utils.log(f"🔍 Lookback enabled: Syncing from {start.to_datetime_string()} to detect updates.")
 
     # Track API v9 returns all entries for the user. We only need to load workspace projects once.
     workspaces = get_workspaces()
