@@ -1,8 +1,11 @@
-[2026-02-10] • [23:49:33] 🔍 Found latest entry in Notion: [无描述] (ID: 30386019-c92c-813b-a44b-ec47ed4daa17) with end time 2026-02-09T06:29:00.000+08:00
-[2026-02-10] • [23:49:34] Failed to load clients for workspace 5952284: 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2380 seconds. CTA: Go to subscriptions page.
-[2026-02-10] • [23:49:35] Failed to load projects for workspace 5952284: 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2380 seconds. CTA: Go to subscriptions page.
-[2026-02-10] • [23:49:35] Synchronizing from 2026-02-09T06:29:01+08:00 to 2026-02-10T23:49:31.329646+08:00
-[2026-02-10] • [23:49:36] Found 1 entries from 2026-02-09 to 2026-02-10. Processing...
-[2026-02-10] • [23:49:36] 📝 Syncing: [无描述] (2026-02-10T12:18:19+00:00)
-[2026-02-10] • [23:49:36] ⚠️ Project ID 186296615 not found in cache. Falling back to description.
-[2026-02-10] • [23:49:44] No heatmap file found.
+[2026-02-11] • [08:01:57] 🔍 Found latest entry in Notion: [无描述] (ID: 30386019-c92c-81d7-a68d-e13576426338) with end time 2026-02-10T20:21:00.000+08:00
+[2026-02-11] • [08:01:57] 🔍 Lookback enabled: Syncing from 2026-02-09 20:21:01 to detect updates.
+[2026-02-11] • [08:01:59] Loaded 7 clients for workspace 5952284
+[2026-02-11] • [08:01:59] Loaded 50 projects for workspace 5952284
+[2026-02-11] • [08:01:59] Synchronizing from 2026-02-09T20:21:01+08:00 to 2026-02-11T08:01:56.512866+08:00
+[2026-02-11] • [08:02:00] Found 1 entries from 2026-02-09 to 2026-02-11. Processing...
+[2026-02-11] • [08:02:04] 📝 Updating: [无描述] (2026-02-10T12:18:19+00:00)
+[2026-02-11] • [08:02:16] Error processing task 4284328622: Could not find property with name or id: Id
+[2026-02-11] • [08:02:16] 🔄 Checking for Notion entries to sync back to Toggl...
+[2026-02-11] • [08:02:17] No missing Toggl IDs found in Notion.
+[2026-02-11] • [08:02:18] No heatmap file found.

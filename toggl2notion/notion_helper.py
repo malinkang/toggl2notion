@@ -161,17 +161,25 @@ class NotionHelper:
         # 1. Try to find by remote_id if provided
         if remote_id:
             filter = {"property": "Id", "number": {"equals": int(remote_id)}}
-            response = self.client.databases.query(database_id=id, filter=filter)
-            results = response.get("results")
-            if results:
-                page_id = results[0].get("id")
-                # Update name if changed
-                existing_name = results[0].get("properties", {}).get("标题", {}).get("title", [])
-                existing_name = existing_name[0].get("plain_text") if existing_name else ""
-                if existing_name != name:
-                    log(f"🔄 Updating name for ID {remote_id}: '{existing_name}' -> '{name}'")
-                    properties["标题"] = get_title(name)
-                    self.update_page(page_id, properties, icon)
+            try:
+                response = self.client.databases.query(database_id=id, filter=filter)
+                results = response.get("results")
+                if results:
+                    page_id = results[0].get("id")
+                    # Update name if changed
+                    existing_name = results[0].get("properties", {}).get("标题", {}).get("title", [])
+                    existing_name = existing_name[0].get("plain_text") if existing_name else ""
+                    if existing_name != name:
+                        log(f"🔄 Updating name for ID {remote_id}: '{existing_name}' -> '{name}'")
+                        properties["标题"] = get_title(name)
+                        self.update_page(page_id, properties, icon)
+            except Exception as e:
+                # If error is about missing property 'Id', log it once and fallback
+                if "Could not find property" in str(e) or "Id" in str(e):
+                    log(f"⚠️ Property 'Id' missing in database {id}. Falling back to name-based lookup for '{name}'.")
+                else:
+                    log(f"Failed to query database {id} by remote_id: {e}")
+                    raise e
         
         # 2. Fallback to name-based lookup if not found by ID or ID not provided
         if not page_id:
@@ -186,8 +194,15 @@ class NotionHelper:
             if results:
                 page_id = results[0].get("id")
                 if remote_id: # Link the ID if it was missing in Notion
-                    properties["Id"] = {"number": int(remote_id)}
-                    self.update_page(page_id, properties, icon)
+                    try:
+                        properties["Id"] = {"number": int(remote_id)}
+                        self.update_page(page_id, properties, icon)
+                    except Exception as e:
+                        if "Could not find property" in str(e):
+                             log(f"⚠️ Could not write 'Id' to database {id}: Property missing.")
+                        else:
+                             log(f"⚠️ Error writing 'Id' to database {id}: {e}")
+                        # Continue even if ID writing fails
 
         # 3. Create if still not found
         if not page_id:
@@ -195,9 +210,20 @@ class NotionHelper:
             properties["标题"] = get_title(name)
             if remote_id:
                 properties["Id"] = {"number": int(remote_id)}
-            page_id = self.client.pages.create(
-                parent=parent, properties=properties, icon=icon
-            ).get("id")
+            
+            try:
+                page_id = self.client.pages.create(
+                    parent=parent, properties=properties, icon=icon
+                ).get("id")
+            except Exception as e:
+                if "Could not find property" in str(e) and remote_id and "Id" in str(properties):
+                    log(f"⚠️ Retrying page creation for '{name}' without 'Id' property...")
+                    del properties["Id"]
+                    page_id = self.client.pages.create(
+                        parent=parent, properties=properties, icon=icon
+                    ).get("id")
+                else:
+                    raise e
             
         self.__cache[fetch_key] = page_id
         return page_id
