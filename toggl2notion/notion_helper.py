@@ -175,7 +175,7 @@ class NotionHelper:
                         self.update_page(page_id, properties, icon)
             except Exception as e:
                 # If error is about missing property 'Id', log it once and fallback
-                if "Could not find property" in str(e) or "Id" in str(e):
+                if "Id" in str(e) and ("property" in str(e) or "exists" in str(e)):
                     log(f"⚠️ Property 'Id' missing in database {id}. Falling back to name-based lookup for '{name}'.")
                 else:
                     log(f"Failed to query database {id} by remote_id: {e}")
@@ -198,7 +198,7 @@ class NotionHelper:
                         properties["Id"] = {"number": int(remote_id)}
                         self.update_page(page_id, properties, icon)
                     except Exception as e:
-                        if "Could not find property" in str(e):
+                        if "Id" in str(e) and ("property" in str(e) or "exists" in str(e)):
                              log(f"⚠️ Could not write 'Id' to database {id}: Property missing.")
                         else:
                              log(f"⚠️ Error writing 'Id' to database {id}: {e}")
@@ -216,11 +216,11 @@ class NotionHelper:
                     parent=parent, properties=properties, icon=icon
                 ).get("id")
             except Exception as e:
-                if "Could not find property" in str(e) and remote_id and "Id" in str(properties):
+                if "Id" in str(e) and ("property" in str(e) or "exists" in str(e)) and "Id" in properties:
                     log(f"⚠️ Retrying page creation for '{name}' without 'Id' property...")
-                    del properties["Id"]
+                    new_props = {k: v for k, v in properties.items() if k != "Id"}
                     page_id = self.client.pages.create(
-                        parent=parent, properties=properties, icon=icon
+                        parent=parent, properties=new_props, icon=icon
                     ).get("id")
                 else:
                     raise e
@@ -239,11 +239,28 @@ class NotionHelper:
         kwargs = {"page_id": page_id, "properties": properties}
         if icon:
             kwargs["icon"] = icon
-        return self.client.pages.update(**kwargs)
+        try:
+            return self.client.pages.update(**kwargs)
+        except Exception as e:
+            if "Id" in str(e) and ("property" in str(e) or "exists" in str(e)) and "Id" in properties:
+                 log(f"⚠️ Property 'Id' missing in database. Updating without 'Id'.")
+                 new_props = {k: v for k, v in properties.items() if k != "Id"}
+                 kwargs["properties"] = new_props
+                 return self.client.pages.update(**kwargs)
+            raise e
 
     @retry(stop_max_attempt_number=3, wait_fixed=5000)
     def create_page(self, parent, properties, icon):
-        return self.client.pages.create(parent=parent, properties=properties, icon=icon)
+        try:
+            return self.client.pages.create(parent=parent, properties=properties, icon=icon)
+        except Exception as e:
+            # If the main database is also missing 'Id' property
+            if "Id" in str(e) and ("property" in str(e) or "exists" in str(e)) and "Id" in properties:
+                log(f"⚠️ Property 'Id' missing in main database. Retrying without 'Id'.")
+                # Remove 'Id' from properties and retry immediately (no need for @retry here)
+                new_props = {k: v for k, v in properties.items() if k != "Id"}
+                return self.client.pages.create(parent=parent, properties=new_props, icon=icon)
+            raise e
 
     @retry(stop_max_attempt_number=3, wait_fixed=5000)
     def query(self, **kwargs):
@@ -253,17 +270,27 @@ class NotionHelper:
     def get_page_by_toggl_id(self, toggl_id):
         """Find the Notion page ID for a given Toggl ID."""
         filter = {"property": "Id", "number": {"equals": int(toggl_id)}}
-        response = self.client.databases.query(
-            database_id=self.time_database_id, filter=filter, page_size=1
-        )
-        results = response.get("results")
-        return results[0].get("id") if results else None
+        try:
+            response = self.client.databases.query(
+                database_id=self.time_database_id, filter=filter, page_size=1
+            )
+            results = response.get("results")
+            return results[0].get("id") if results else None
+        except Exception as e:
+            if "Id" in str(e) and ("property" in str(e) or "exists" in str(e)):
+                # If Id property is missing, we can't search by it
+                return None
+            raise e
 
     def query_missing_toggl_id(self):
         """Query entries in Time database that are missing a Toggl ID."""
         filter = {"property": "Id", "number": {"is_empty": True}}
-        # Filter out entries without a description or title if necessary
-        return self.query_all_by_book(database_id=self.time_database_id, filter=filter)
+        try:
+            return self.query_all_by_book(database_id=self.time_database_id, filter=filter)
+        except Exception as e:
+            if "Id" in str(e) and ("property" in str(e) or "exists" in str(e)):
+                return []
+            raise e
 
     def get_remote_id_from_page(self, page_id):
         """Retrieve the 'Id' (Toggl ID) from a Notion page (Project/Client)."""

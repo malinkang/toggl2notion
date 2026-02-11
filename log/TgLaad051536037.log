@@ -1,11 +1,344 @@
-[2026-02-11] • [08:01:57] 🔍 Found latest entry in Notion: [无描述] (ID: 30386019-c92c-81d7-a68d-e13576426338) with end time 2026-02-10T20:21:00.000+08:00
-[2026-02-11] • [08:01:57] 🔍 Lookback enabled: Syncing from 2026-02-09 20:21:01 to detect updates.
-[2026-02-11] • [08:01:59] Loaded 7 clients for workspace 5952284
-[2026-02-11] • [08:01:59] Loaded 50 projects for workspace 5952284
-[2026-02-11] • [08:01:59] Synchronizing from 2026-02-09T20:21:01+08:00 to 2026-02-11T08:01:56.512866+08:00
-[2026-02-11] • [08:02:00] Found 1 entries from 2026-02-09 to 2026-02-11. Processing...
-[2026-02-11] • [08:02:04] 📝 Updating: [无描述] (2026-02-10T12:18:19+00:00)
-[2026-02-11] • [08:02:16] Error processing task 4284328622: Could not find property with name or id: Id
-[2026-02-11] • [08:02:16] 🔄 Checking for Notion entries to sync back to Toggl...
-[2026-02-11] • [08:02:17] No missing Toggl IDs found in Notion.
-[2026-02-11] • [08:02:18] No heatmap file found.
+[2026-02-11] • [08:31:13] Notion is empty. Starting from account registration date: 2021-12-06
+[2026-02-11] • [08:31:15] Loaded 7 clients for workspace 5952284
+[2026-02-11] • [08:31:15] Loaded 50 projects for workspace 5952284
+[2026-02-11] • [08:31:15] Synchronizing from 2021-12-06T19:32:33.454814+08:00 to 2026-02-11T08:31:11.864396+08:00
+[2026-02-11] • [08:31:16] Found 15 entries from 2026-02-01 to 2026-02-11. Processing...
+[2026-02-11] • [08:31:16] 📝 Syncing: [无描述] (2026-02-10T12:18:19+00:00)
+[2026-02-11] • [08:31:17] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:31:25] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:31:31] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:31:32] Error processing task 4284328622: Id is not a property that exists.
+[2026-02-11] • [08:31:33] 📝 Syncing: [无描述] (2026-02-08T22:29:00+00:00)
+[2026-02-11] • [08:31:34] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:31:42] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:31:49] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:31:52] Error processing task 4281683722: Id is not a property that exists.
+[2026-02-11] • [08:31:52] 📝 Syncing: [自动记录] (2026-02-08T02:30:20+00:00)
+[2026-02-11] • [08:31:55] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:32:01] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:32:08] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:32:09] Error processing task 4281312944: Id is not a property that exists.
+[2026-02-11] • [08:32:11] 📝 Syncing: [跑步自动记录] (2026-02-08T02:00:18+00:00)
+[2026-02-11] • [08:32:11] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:32:20] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:32:27] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:32:28] Error processing task 4281306783: Id is not a property that exists.
+[2026-02-11] • [08:32:28] 📝 Syncing: [无描述] (2026-02-07T14:08:53+00:00)
+[2026-02-11] • [08:32:29] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:32:35] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:32:44] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:32:44] Error processing task 4281107753: Id is not a property that exists.
+[2026-02-11] • [08:32:45] 📝 Syncing: [无描述] (2026-02-07T13:50:59+00:00)
+[2026-02-11] • [08:32:45] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:32:52] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:32:59] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:33:01] Error processing task 4281101719: Id is not a property that exists.
+[2026-02-11] • [08:33:01] 📝 Syncing: [无描述] (2026-02-06T15:34:56+00:00)
+[2026-02-11] • [08:33:02] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:33:08] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:33:15] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:33:15] Error processing task 4280300628: Id is not a property that exists.
+[2026-02-11] • [08:33:17] 📝 Syncing: [无描述] (2026-02-06T15:33:17+00:00)
+[2026-02-11] • [08:33:18] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:33:26] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:33:32] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:33:33] Error processing task 4280297965: Id is not a property that exists.
+[2026-02-11] • [08:33:35] 📝 Syncing: [无描述] (2026-02-06T15:26:35+00:00)
+[2026-02-11] • [08:33:35] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:33:41] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:33:48] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:33:49] Error processing task 4280285233: Id is not a property that exists.
+[2026-02-11] • [08:33:49] 📝 Syncing: [无描述] (2026-02-06T15:14:33+00:00)
+[2026-02-11] • [08:33:49] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:33:56] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:34:03] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:34:04] Error processing task 4280264056: Id is not a property that exists.
+[2026-02-11] • [08:34:05] 📝 Syncing: [无描述] (2026-02-04T05:45:24+00:00)
+[2026-02-11] • [08:34:07] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:34:13] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:34:20] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:34:21] Error processing task 4275960807: Id is not a property that exists.
+[2026-02-11] • [08:34:21] 📝 Syncing: [无描述] (2026-02-04T05:43:32+00:00)
+[2026-02-11] • [08:34:22] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:34:28] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:34:36] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:34:36] Error processing task 4275959762: Id is not a property that exists.
+[2026-02-11] • [08:34:37] 📝 Syncing: [无描述] (2026-02-01T15:52:36+00:00)
+[2026-02-11] • [08:34:37] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:34:48] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:34:55] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:34:56] Error processing task 4271639625: Id is not a property that exists.
+[2026-02-11] • [08:34:56] 📝 Syncing: [无描述] (2026-02-01T02:47:27+00:00)
+[2026-02-11] • [08:34:57] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:35:03] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:35:10] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:35:13] Error processing task 4271408638: Id is not a property that exists.
+[2026-02-11] • [08:35:14] 📝 Syncing: [无描述] (2026-02-01T02:28:46+00:00)
+[2026-02-11] • [08:35:14] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:35:21] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:35:30] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:35:31] Error processing task 4271404888: Id is not a property that exists.
+[2026-02-11] • [08:35:32] Found 12 entries from 2026-01-22 to 2026-02-01. Processing...
+[2026-02-11] • [08:35:32] 📝 Syncing: [无描述] (2026-01-30T15:47:18+00:00)
+[2026-02-11] • [08:35:32] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:35:39] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:35:49] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:35:50] Error processing task 4270344273: Id is not a property that exists.
+[2026-02-11] • [08:35:50] 📝 Syncing: [无描述] (2026-01-29T14:53:44+00:00)
+[2026-02-11] • [08:35:51] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:35:57] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:36:04] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:36:05] Error processing task 4268513662: Id is not a property that exists.
+[2026-02-11] • [08:36:05] 📝 Syncing: [无描述] (2026-01-27T15:30:13+00:00)
+[2026-02-11] • [08:36:05] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:36:14] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:36:22] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:36:23] Error processing task 4265007134: Id is not a property that exists.
+[2026-02-11] • [08:36:23] 📝 Syncing: [无描述] (2026-01-27T15:25:58+00:00)
+[2026-02-11] • [08:36:24] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:36:30] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:36:37] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:36:38] Error processing task 4264997711: Id is not a property that exists.
+[2026-02-11] • [08:36:39] 📝 Syncing: [无描述] (2026-01-27T03:02:41+00:00)
+[2026-02-11] • [08:36:39] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:36:47] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:36:53] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:36:54] Error processing task 4264029464: Id is not a property that exists.
+[2026-02-11] • [08:36:54] 📝 Syncing: [自动记录] (2026-01-26T22:44:33+00:00)
+[2026-02-11] • [08:36:55] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:37:01] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:37:08] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:37:09] Error processing task 4263833246: Id is not a property that exists.
+[2026-02-11] • [08:37:09] 📝 Syncing: [跑步自动记录] (2026-01-26T22:25:26+00:00)
+[2026-02-11] • [08:37:09] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:37:19] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:37:26] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:37:26] Error processing task 4263813360: Id is not a property that exists.
+[2026-02-11] • [08:37:28] 📝 Syncing: [无描述] (2026-01-26T15:22:57+00:00)
+[2026-02-11] • [08:37:28] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:37:35] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:37:44] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:37:45] Error processing task 4263154597: Id is not a property that exists.
+[2026-02-11] • [08:37:45] 📝 Syncing: [自动记录] (2026-01-25T02:03:57+00:00)
+[2026-02-11] • [08:37:45] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:37:53] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:37:59] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:38:00] Error processing task 4261493749: Id is not a property that exists.
+[2026-02-11] • [08:38:00] 📝 Syncing: [跑步自动记录] (2026-01-25T01:30:34+00:00)
+[2026-02-11] • [08:38:01] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:38:07] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:38:14] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:38:15] Error processing task 4261487511: Id is not a property that exists.
+[2026-02-11] • [08:38:15] 📝 Syncing: [无描述] (2026-01-25T01:18:38+00:00)
+[2026-02-11] • [08:38:16] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:38:24] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:38:30] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:38:32] Error processing task 4261486524: Id is not a property that exists.
+[2026-02-11] • [08:38:33] 📝 Syncing: [无描述] (2026-01-23T15:57:01+00:00)
+[2026-02-11] • [08:38:34] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:38:42] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:38:48] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:38:49] Error processing task 4260545018: Id is not a property that exists.
+[2026-02-11] • [08:38:50] Found 23 entries from 2026-01-12 to 2026-01-22. Processing...
+[2026-02-11] • [08:38:50] 📝 Syncing: [自动记录] (2026-01-21T22:57:29+00:00)
+[2026-02-11] • [08:38:51] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:38:59] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:39:06] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:39:07] Error processing task 4257564405: Id is not a property that exists.
+[2026-02-11] • [08:39:08] 📝 Syncing: [跑步自动记录] (2026-01-21T22:24:33+00:00)
+[2026-02-11] • [08:39:08] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:39:17] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:39:25] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:39:26] Error processing task 4257533359: Id is not a property that exists.
+[2026-02-11] • [08:39:26] 📝 Syncing: [无描述] (2026-01-21T01:33:11+00:00)
+[2026-02-11] • [08:39:27] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:39:35] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:39:41] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:39:42] Error processing task 4255927199: Id is not a property that exists.
+[2026-02-11] • [08:39:42] 📝 Syncing: [跑步自动记录] (2026-01-20T22:14:52+00:00)
+[2026-02-11] • [08:39:43] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:39:51] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:39:58] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:39:59] Error processing task 4255765360: Id is not a property that exists.
+[2026-02-11] • [08:39:59] 📝 Syncing: [无描述] (2026-01-20T01:00:25+00:00)
+[2026-02-11] • [08:39:59] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:40:06] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:40:13] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:40:14] Error processing task 4254097712: Id is not a property that exists.
+[2026-02-11] • [08:40:14] 📝 Syncing: [无描述] (2026-01-20T00:45:26+00:00)
+[2026-02-11] • [08:40:17] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:40:24] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:40:32] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:40:33] Error processing task 4254087874: Id is not a property that exists.
+[2026-02-11] • [08:40:37] 📝 Syncing: [无描述] (2026-01-20T00:45:09+00:00)
+[2026-02-11] • [08:40:37] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:40:43] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:40:50] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:40:50] Error processing task 4254087671: Id is not a property that exists.
+[2026-02-11] • [08:40:51] 📝 Syncing: [自动记录] (2026-01-19T22:50:59+00:00)
+[2026-02-11] • [08:40:51] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:40:58] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:41:06] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:41:08] Error processing task 4254011088: Id is not a property that exists.
+[2026-02-11] • [08:41:08] 📝 Syncing: [跑步自动记录] (2026-01-19T22:19:32+00:00)
+[2026-02-11] • [08:41:08] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:41:20] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:41:27] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:41:27] Error processing task 4253986903: Id is not a property that exists.
+[2026-02-11] • [08:41:28] 📝 Syncing: [无描述] (2026-01-19T22:09:18+00:00)
+[2026-02-11] • [08:41:28] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:41:35] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:41:41] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:41:42] Error processing task 4253974449: Id is not a property that exists.
+[2026-02-11] • [08:41:45] 📝 Syncing: [无描述] (2026-01-19T07:12:50+00:00)
+[2026-02-11] • [08:41:46] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:41:52] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:41:59] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:42:00] Error processing task 4252670999: Id is not a property that exists.
+[2026-02-11] • [08:42:00] 📝 Syncing: [自动记录] (2026-01-19T00:41:06+00:00)
+[2026-02-11] • [08:42:01] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:42:09] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:42:16] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:42:17] Error processing task 4252670996: Id is not a property that exists.
+[2026-02-11] • [08:42:18] 📝 Syncing: [跑步自动记录] (2026-01-19T00:11:14+00:00)
+[2026-02-11] • [08:42:18] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:42:25] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:42:31] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:42:32] Error processing task 4252420042: Id is not a property that exists.
+[2026-02-11] • [08:42:32] 📝 Syncing: [无描述] (2026-01-18T00:14:18+00:00)
+[2026-02-11] • [08:42:33] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:42:39] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:42:46] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:42:47] Error processing task 4251991763: Id is not a property that exists.
+[2026-02-11] • [08:42:51] 📝 Syncing: [自动记录] (2026-01-16T04:37:10+00:00)
+[2026-02-11] • [08:42:51] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:42:58] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:43:04] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:43:05] Error processing task 4250212350: Id is not a property that exists.
+[2026-02-11] • [08:43:07] 📝 Syncing: [跑步自动记录] (2026-01-16T04:06:19+00:00)
+[2026-02-11] • [08:43:07] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:43:18] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:43:26] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:43:27] Error processing task 4250197576: Id is not a property that exists.
+[2026-02-11] • [08:43:27] 📝 Syncing: [无描述] (2026-01-15T15:57:41+00:00)
+[2026-02-11] • [08:43:28] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:43:34] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:43:42] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:43:45] Error processing task 4249435820: Id is not a property that exists.
+[2026-02-11] • [08:43:47] 📝 Syncing: [无描述] (2026-01-15T15:55:47+00:00)
+[2026-02-11] • [08:43:47] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:43:54] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:44:00] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:44:01] Error processing task 4249432082: Id is not a property that exists.
+[2026-02-11] • [08:44:01] 📝 Syncing: [自动记录] (2026-01-15T00:57:58+00:00)
+[2026-02-11] • [08:44:01] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:44:11] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:44:17] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:44:20] Error processing task 4248365112: Id is not a property that exists.
+[2026-02-11] • [08:44:21] 📝 Syncing: [跑步自动记录] (2026-01-15T00:27:26+00:00)
+[2026-02-11] • [08:44:21] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:44:28] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:44:35] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:44:38] Error processing task 4248340951: Id is not a property that exists.
+[2026-02-11] • [08:44:38] 📝 Syncing: [自动记录] (2026-01-14T01:10:16+00:00)
+[2026-02-11] • [08:44:39] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:44:45] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:44:52] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:44:53] Error processing task 4246559067: Id is not a property that exists.
+[2026-02-11] • [08:44:53] 📝 Syncing: [跑步自动记录] (2026-01-14T00:40:23+00:00)
+[2026-02-11] • [08:44:53] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:45:01] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:45:07] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:45:08] Error processing task 4246559003: Id is not a property that exists.
+[2026-02-11] • [08:45:08] 📝 Syncing: [自动记录] (2026-01-12T04:54:48+00:00)
+[2026-02-11] • [08:45:08] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:45:19] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:45:25] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:45:26] Error processing task 4243047028: Id is not a property that exists.
+[2026-02-11] • [08:45:27] Found 20 entries from 2026-01-02 to 2026-01-12. Processing...
+[2026-02-11] • [08:45:28] 📝 Syncing: [无描述] (2026-01-11T15:05:42+00:00)
+[2026-02-11] • [08:45:28] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:45:35] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:45:42] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:45:43] Error processing task 4242723674: Id is not a property that exists.
+[2026-02-11] • [08:45:45] 📝 Syncing: [无描述] (2026-01-11T15:05:28+00:00)
+[2026-02-11] • [08:45:45] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:45:53] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:46:00] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:46:01] Error processing task 4242723590: Id is not a property that exists.
+[2026-02-11] • [08:46:01] 📝 Syncing: [无描述] (2026-01-10T15:52:03+00:00)
+[2026-02-11] • [08:46:02] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:46:09] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:46:16] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:46:18] Error processing task 4242362254: Id is not a property that exists.
+[2026-02-11] • [08:46:18] 📝 Syncing: [无描述] (2026-01-09T15:59:41+00:00)
+[2026-02-11] • [08:46:18] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:46:25] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:46:33] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:46:34] Error processing task 4241598268: Id is not a property that exists.
+[2026-02-11] • [08:46:34] 📝 Syncing: [自动记录] (2026-01-08T11:22:21+00:00)
+[2026-02-11] • [08:46:35] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:46:41] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:46:50] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:46:51] Error processing task 4239594003: Id is not a property that exists.
+[2026-02-11] • [08:46:51] 📝 Syncing: [跑步自动记录] (2026-01-08T11:13:36+00:00)
+[2026-02-11] • [08:46:52] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:46:58] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:47:04] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:47:05] Error processing task 4239583053: Id is not a property that exists.
+[2026-02-11] • [08:47:05] 📝 Syncing: [自动记录] (2026-01-08T11:04:03+00:00)
+[2026-02-11] • [08:47:07] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:47:14] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:47:22] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:47:25] Error processing task 4239570494: Id is not a property that exists.
+[2026-02-11] • [08:47:27] 📝 Syncing: [跑步自动记录] (2026-01-08T10:53:27+00:00)
+[2026-02-11] • [08:47:27] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:47:35] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:47:41] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:47:42] Error processing task 4239555032: Id is not a property that exists.
+[2026-02-11] • [08:47:43] 📝 Syncing: [自动记录] (2026-01-07T00:50:35+00:00)
+[2026-02-11] • [08:47:43] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:47:50] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:47:59] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:48:00] Error processing task 4237413049: Id is not a property that exists.
+[2026-02-11] • [08:48:01] 📝 Syncing: [跑步自动记录] (2026-01-07T00:20:12+00:00)
+[2026-02-11] • [08:48:01] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:48:09] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:48:15] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:48:16] Error processing task 4237392615: Id is not a property that exists.
+[2026-02-11] • [08:48:18] 📝 Syncing: [无描述] (2026-01-05T15:08:44+00:00)
+[2026-02-11] • [08:48:18] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:48:25] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:48:32] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:48:33] Error processing task 4235099544: Id is not a property that exists.
+[2026-02-11] • [08:48:33] 📝 Syncing: [无描述] (2026-01-05T14:29:14+00:00)
+[2026-02-11] • [08:48:33] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:48:41] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:48:50] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:48:50] Error processing task 4235022260: Id is not a property that exists.
+[2026-02-11] • [08:48:52] 📝 Syncing: [无描述] (2026-01-05T14:20:14+00:00)
+[2026-02-11] • [08:48:52] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:48:58] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:49:05] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:49:06] Error processing task 4235004664: Id is not a property that exists.
+[2026-02-11] • [08:49:06] 📝 Syncing: [自动记录] (2026-01-05T01:01:57+00:00)
+[2026-02-11] • [08:49:08] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:49:15] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:49:22] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:49:23] Error processing task 4234218691: Id is not a property that exists.
+[2026-02-11] • [08:49:27] 📝 Syncing: [跑步自动记录] (2026-01-05T00:30:52+00:00)
+[2026-02-11] • [08:49:27] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:49:35] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:49:42] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:49:44] Error processing task 4234203255: Id is not a property that exists.
+[2026-02-11] • [08:49:45] 📝 Syncing: [自动记录] (2026-01-03T07:42:26+00:00)
+[2026-02-11] • [08:49:46] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:49:53] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:50:00] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:50:00] Error processing task 4233529244: Id is not a property that exists.
+[2026-02-11] • [08:50:01] 📝 Syncing: [跑步自动记录] (2026-01-03T07:02:37+00:00)
+[2026-02-11] • [08:50:02] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:50:09] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:50:16] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:50:17] Error processing task 4233521473: Id is not a property that exists.
+[2026-02-11] • [08:50:20] 📝 Syncing: [无描述] (2026-01-02T06:39:41+00:00)
