@@ -25,6 +25,7 @@ def init():
     auth = HTTPBasicAuth(f"{toggl_token}", "api_token")
     return True
 
+
 def get_created_at():
     response = requests.get("https://api.track.toggl.com/api/v9/me", auth=auth)
     if response.ok:
@@ -80,10 +81,10 @@ def get_time_entries(start_date, end_date):
     }
     response = requests.get(url, params=params, auth=auth)
     if response.ok:
-        return response.json()
+        return response.json(), 200
     else:
         utils.log(f"Failed to fetch time entries ({start_date.to_date_string()} to {end_date.to_date_string()}): {response.status_code} {response.text}")
-        return []
+        return None, response.status_code
 
 def create_toggl_entry(workspace_id, description, start, duration, pid=None):
     """Create a time entry in Toggl Track."""
@@ -300,8 +301,15 @@ def insert_to_notion():
         if current_start < start:
             current_start = start
         
-        entries = get_time_entries(current_start, current_end)
+        entries, status_code = get_time_entries(current_start, current_end)
         
+        if status_code == 400:
+            utils.log(f"🛑 Reached Toggl historical data limit (Free plan limit is ~90 days). Stopping historical sync.")
+            break
+        elif status_code == 402:
+            utils.log(f"🛑 Hit Toggl API limit or Payment Required (402). Stopping to avoid further errors.")
+            break
+            
         if entries:
             utils.log(f"Found {len(entries)} entries from {current_start.to_date_string()} to {current_end.to_date_string()}. Processing...")
             # Sort newest first

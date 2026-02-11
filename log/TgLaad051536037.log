@@ -342,3 +342,656 @@
 [2026-02-11] • [08:50:16] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
 [2026-02-11] • [08:50:17] Error processing task 4233521473: Id is not a property that exists.
 [2026-02-11] • [08:50:20] 📝 Syncing: [无描述] (2026-01-02T06:39:41+00:00)
+[2026-02-11] • [08:50:33] Error processing task 4232780617: Id is not a property that exists.
+[2026-02-11] • [08:50:35] 📝 Syncing: [自动记录] (2026-01-02T06:09:22+00:00)
+[2026-02-11] • [08:50:36] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:50:44] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:50:51] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:50:53] Error processing task 4232772086: Id is not a property that exists.
+[2026-02-11] • [08:50:53] 📝 Syncing: [跑步自动记录] (2026-01-02T05:09:03+00:00)
+[2026-02-11] • [08:50:55] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:51:02] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:51:09] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:51:09] Error processing task 4232757101: Id is not a property that exists.
+[2026-02-11] • [08:51:10] Found 17 entries from 2025-12-23 to 2026-01-02. Processing...
+[2026-02-11] • [08:51:10] 📝 Syncing: [无描述] (2026-01-01T11:31:29+00:00)
+[2026-02-11] • [08:51:11] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:51:21] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:51:27] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:51:28] Error processing task 4232493340: Id is not a property that exists.
+[2026-02-11] • [08:51:29] 📝 Syncing: [无描述] (2026-01-01T11:01:00+00:00)
+[2026-02-11] • [08:51:29] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:51:35] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:51:42] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:51:44] Error processing task 4232493315: Id is not a property that exists.
+[2026-02-11] • [08:51:45] 📝 Syncing: [自动记录] (2026-01-01T10:31:19+00:00)
+[2026-02-11] • [08:51:46] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:51:53] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:52:00] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:52:00] Error processing task 4232475704: Id is not a property that exists.
+[2026-02-11] • [08:52:01] 📝 Syncing: [跑步自动记录] (2026-01-01T10:00:37+00:00)
+[2026-02-11] • [08:52:03] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:52:13] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:52:21] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:52:21] Error processing task 4232468690: Id is not a property that exists.
+[2026-02-11] • [08:52:22] 📝 Syncing: [无描述] (2026-01-01T09:40:00+00:00)
+[2026-02-11] • [08:52:36] Error processing task 4232478391: Id is not a property that exists.
+[2026-02-11] • [08:52:37] 📝 Syncing: [无描述] (2025-12-30T01:18:54+00:00)
+[2026-02-11] • [08:52:37] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [08:52:46] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [08:52:55] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [08:52:55] Error processing task 4230964441: Id is not a property that exists.
+[2026-02-11] • [08:52:56] 📝 Syncing: [无描述] (2025-12-30T00:58:00+00:00)
+[2026-02-11] • [08:52:57] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:53:03] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:53:09] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:53:11] Error processing task 4230955742: Id is not a property that exists.
+[2026-02-11] • [08:53:12] 📝 Syncing: [无描述] (2025-12-29T15:18:41+00:00)
+[2026-02-11] • [08:53:12] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:53:22] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:53:29] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:53:30] Error processing task 4230549089: Id is not a property that exists.
+[2026-02-11] • [08:53:30] 📝 Syncing: [自动记录] (2025-12-28T02:02:31+00:00)
+[2026-02-11] • [08:53:31] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:53:39] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:53:45] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:53:46] Error processing task 4229750559: Id is not a property that exists.
+[2026-02-11] • [08:53:46] 📝 Syncing: [跑步自动记录] (2025-12-28T01:28:27+00:00)
+[2026-02-11] • [08:53:47] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:53:55] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:54:02] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:54:02] Error processing task 4229745453: Id is not a property that exists.
+[2026-02-11] • [08:54:03] 📝 Syncing: [无描述] (2025-12-28T01:14:04+00:00)
+[2026-02-11] • [08:54:03] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:54:10] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:54:19] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:54:20] Error processing task 4229743268: Id is not a property that exists.
+[2026-02-11] • [08:54:21] 📝 Syncing: [无描述] (2025-12-28T01:11:04+00:00)
+[2026-02-11] • [08:54:21] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:54:30] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:54:37] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:54:38] Error processing task 4229742838: Id is not a property that exists.
+[2026-02-11] • [08:54:38] 📝 Syncing: [无描述] (2025-12-25T15:40:00+00:00)
+[2026-02-11] • [08:54:40] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:54:47] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:54:53] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:54:54] Error processing task 4228812374: Id is not a property that exists.
+[2026-02-11] • [08:54:54] 📝 Syncing: [自动记录] (2025-12-25T00:48:58+00:00)
+[2026-02-11] • [08:54:55] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:55:01] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:55:10] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:55:11] Error processing task 4228567145: Id is not a property that exists.
+[2026-02-11] • [08:55:17] 📝 Syncing: [跑步自动记录] (2025-12-25T00:19:55+00:00)
+[2026-02-11] • [08:55:17] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:55:24] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:55:30] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:55:32] Error processing task 4228557611: Id is not a property that exists.
+[2026-02-11] • [08:55:32] 📝 Syncing: [自动记录] (2025-12-24T01:06:09+00:00)
+[2026-02-11] • [08:55:32] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:55:39] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:55:47] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:55:49] Error processing task 4227987792: Id is not a property that exists.
+[2026-02-11] • [08:55:49] 📝 Syncing: [自动记录] (2025-12-23T00:34:42+00:00)
+[2026-02-11] • [08:55:49] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:55:56] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:56:03] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:56:03] Error processing task 4226908569: Id is not a property that exists.
+[2026-02-11] • [08:56:04] Found 28 entries from 2025-12-13 to 2025-12-23. Processing...
+[2026-02-11] • [08:56:05] 📝 Syncing: [跑步自动记录] (2025-12-23T00:03:57+00:00)
+[2026-02-11] • [08:56:05] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:56:13] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:56:33] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:56:35] Error processing task 4226891877: Id is not a property that exists.
+[2026-02-11] • [08:56:35] 📝 Syncing: [自动记录] (2025-12-22T01:00:58+00:00)
+[2026-02-11] • [08:56:36] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:56:44] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:56:53] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:56:54] Error processing task 4225611438: Id is not a property that exists.
+[2026-02-11] • [08:56:55] 📝 Syncing: [跑步自动记录] (2025-12-22T00:31:57+00:00)
+[2026-02-11] • [08:56:55] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:57:01] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:57:08] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:57:08] Error processing task 4225598951: Id is not a property that exists.
+[2026-02-11] • [08:57:09] 📝 Syncing: [无描述] (2025-12-21T14:07:11+00:00)
+[2026-02-11] • [08:57:09] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:57:16] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:57:23] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [08:57:24] Error processing task 4225409571: Id is not a property that exists.
+[2026-02-11] • [08:57:24] 📝 Syncing: [无描述] (2025-12-19T01:20:18+00:00)
+[2026-02-11] • [08:57:24] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [08:57:31] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [08:57:38] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [08:57:39] Error processing task 4223594466: Id is not a property that exists.
+[2026-02-11] • [08:57:39] 📝 Syncing: [自动记录] (2025-12-19T00:58:29+00:00)
+[2026-02-11] • [08:57:40] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:57:47] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:57:54] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:57:55] Error processing task 4223578051: Id is not a property that exists.
+[2026-02-11] • [08:57:55] 📝 Syncing: [跑步自动记录] (2025-12-19T00:28:47+00:00)
+[2026-02-11] • [08:57:56] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:58:03] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:58:09] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:58:10] Error processing task 4223560049: Id is not a property that exists.
+[2026-02-11] • [08:58:10] 📝 Syncing: [无描述] (2025-12-18T01:28:17+00:00)
+[2026-02-11] • [08:58:11] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [08:58:19] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [08:58:26] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [08:58:27] Error processing task 4222034894: Id is not a property that exists.
+[2026-02-11] • [08:58:27] 📝 Syncing: [自动记录] (2025-12-18T00:59:03+00:00)
+[2026-02-11] • [08:58:27] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:59:03] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:59:10] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:59:11] Error processing task 4222016605: Id is not a property that exists.
+[2026-02-11] • [08:59:11] 📝 Syncing: [跑步自动记录] (2025-12-18T00:27:06+00:00)
+[2026-02-11] • [08:59:12] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:59:18] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:59:25] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [08:59:26] Error processing task 4221995687: Id is not a property that exists.
+[2026-02-11] • [08:59:27] 📝 Syncing: [无描述] (2025-12-17T10:51:23+00:00)
+[2026-02-11] • [08:59:27] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:59:35] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:59:44] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:59:44] Error processing task 4220908708: Id is not a property that exists.
+[2026-02-11] • [08:59:45] 📝 Syncing: [接孩子] (2025-12-17T10:25:24+00:00)
+[2026-02-11] • [08:59:45] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [08:59:53] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:00:02] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:00:03] Error processing task 4220873852: Id is not a property that exists.
+[2026-02-11] • [09:00:04] 📝 Syncing: [无描述] (2025-12-17T10:00:00+00:00)
+[2026-02-11] • [09:00:04] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:00:11] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:00:20] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:00:20] Error processing task 4220873848: Id is not a property that exists.
+[2026-02-11] • [09:00:20] 📝 Syncing: [无描述] (2025-12-17T01:07:13+00:00)
+[2026-02-11] • [09:00:21] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:00:29] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:00:36] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:00:37] Error processing task 4220393074: Id is not a property that exists.
+[2026-02-11] • [09:00:38] 📝 Syncing: [自动记录] (2025-12-17T00:35:38+00:00)
+[2026-02-11] • [09:00:38] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:00:44] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:00:51] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:00:52] Error processing task 4220371430: Id is not a property that exists.
+[2026-02-11] • [09:00:52] 📝 Syncing: [跑步自动记录] (2025-12-17T00:05:56+00:00)
+[2026-02-11] • [09:00:56] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [09:01:07] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [09:01:14] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [09:01:15] Error processing task 4220350921: Id is not a property that exists.
+[2026-02-11] • [09:01:16] 📝 Syncing: [无描述] (2025-12-16T23:39:00+00:00)
+[2026-02-11] • [09:01:30] Error processing task 4220377409: Id is not a property that exists.
+[2026-02-11] • [09:01:30] 📝 Syncing: [无描述] (2025-12-16T15:30:00+00:00)
+[2026-02-11] • [09:01:31] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:01:37] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:01:44] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:01:45] Error processing task 4220378243: Id is not a property that exists.
+[2026-02-11] • [09:01:46] 📝 Syncing: [无描述] (2025-12-16T10:48:40+00:00)
+[2026-02-11] • [09:01:48] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:01:55] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:02:02] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:02:08] Error processing task 4219227177: Id is not a property that exists.
+[2026-02-11] • [09:02:09] 📝 Syncing: [无描述] (2025-12-16T01:13:02+00:00)
+[2026-02-11] • [09:02:11] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:02:20] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:02:26] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:02:29] Error processing task 4218714197: Id is not a property that exists.
+[2026-02-11] • [09:02:35] 📝 Syncing: [自动记录] (2025-12-16T00:41:45+00:00)
+[2026-02-11] • [09:02:35] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:02:42] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:02:52] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:02:53] Error processing task 4218689448: Id is not a property that exists.
+[2026-02-11] • [09:02:53] 📝 Syncing: [跑步自动记录] (2025-12-16T00:11:23+00:00)
+[2026-02-11] • [09:02:54] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [09:03:01] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [09:03:07] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [09:03:09] Error processing task 4218666991: Id is not a property that exists.
+[2026-02-11] • [09:03:09] 📝 Syncing: [无描述] (2025-12-15T23:45:31+00:00)
+[2026-02-11] • [09:03:24] Error processing task 4218660331: Id is not a property that exists.
+[2026-02-11] • [09:03:24] 📝 Syncing: [无描述] (2025-12-15T14:23:38+00:00)
+[2026-02-11] • [09:03:25] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:03:31] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:03:38] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:03:39] Error processing task 4217822488: Id is not a property that exists.
+[2026-02-11] • [09:03:39] 📝 Syncing: [无描述] (2025-12-14T09:45:00+00:00)
+[2026-02-11] • [09:03:53] Error processing task 4216583430: Id is not a property that exists.
+[2026-02-11] • [09:03:53] 📝 Syncing: [无描述] (2025-12-14T09:31:06+00:00)
+[2026-02-11] • [09:04:07] Error processing task 4216583316: Id is not a property that exists.
+[2026-02-11] • [09:04:07] 📝 Syncing: [无描述] (2025-12-14T08:33:00+00:00)
+[2026-02-11] • [09:04:07] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [09:04:14] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [09:04:21] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [09:04:22] Error processing task 4216583278: Id is not a property that exists.
+[2026-02-11] • [09:04:23] 📝 Syncing: [无描述] (2025-12-13T06:57:11+00:00)
+[2026-02-11] • [09:04:24] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:04:31] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:04:37] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:04:39] Error processing task 4216216354: Id is not a property that exists.
+[2026-02-11] • [09:04:39] Found 60 entries from 2025-12-03 to 2025-12-13. Processing...
+[2026-02-11] • [09:04:40] 📝 Syncing: [无描述] (2025-12-12T04:15:33+00:00)
+[2026-02-11] • [09:04:41] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:04:49] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:04:56] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:04:57] Error processing task 4214810565: Id is not a property that exists.
+[2026-02-11] • [09:04:57] 📝 Syncing: [无描述] (2025-12-12T03:53:50+00:00)
+[2026-02-11] • [09:04:57] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:05:06] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:05:13] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:05:15] Error processing task 4214799827: Id is not a property that exists.
+[2026-02-11] • [09:05:16] 📝 Syncing: [跑步自动记录] (2025-12-12T00:11:04+00:00)
+[2026-02-11] • [09:05:17] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [09:05:27] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [09:05:34] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [09:05:35] Error processing task 4214676168: Id is not a property that exists.
+[2026-02-11] • [09:05:35] 📝 Syncing: [无描述] (2025-12-11T14:04:59+00:00)
+[2026-02-11] • [09:05:36] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:05:43] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:05:52] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:05:53] Error processing task 4213880369: Id is not a property that exists.
+[2026-02-11] • [09:05:53] 📝 Syncing: [多邻国学习音乐] (2025-12-11T04:24:07+00:00)
+[2026-02-11] • [09:05:53] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:06:00] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:06:07] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:06:07] Error processing task 4213181259: Id is not a property that exists.
+[2026-02-11] • [09:06:08] 📝 Syncing: [9.9点了一根油条，一个鸡蛋，两个包子和一碗豆浆。] (2025-12-11T01:46:23+00:00)
+[2026-02-11] • [09:06:08] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:06:16] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:06:22] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:06:23] Error processing task 4213098288: Id is not a property that exists.
+[2026-02-11] • [09:06:24] 📝 Syncing: [无描述] (2025-12-11T01:17:17+00:00)
+[2026-02-11] • [09:06:25] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:06:32] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:06:38] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:06:39] Error processing task 4213080890: Id is not a property that exists.
+[2026-02-11] • [09:06:39] 📝 Syncing: [无描述] (2025-12-10T23:31:00+00:00)
+[2026-02-11] • [09:06:39] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:06:46] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:06:52] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:06:53] Error processing task 4213132425: Id is not a property that exists.
+[2026-02-11] • [09:06:53] 📝 Syncing: [给孩子穿衣服] (2025-12-10T23:24:00+00:00)
+[2026-02-11] • [09:06:55] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:07:03] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:07:10] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:07:10] Error processing task 4213106702: Id is not a property that exists.
+[2026-02-11] • [09:07:11] 📝 Syncing: [晾衣服] (2025-12-10T23:08:00+00:00)
+[2026-02-11] • [09:07:11] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:07:18] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:07:25] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:07:25] Error processing task 4213106069: Id is not a property that exists.
+[2026-02-11] • [09:07:26] 📝 Syncing: [无描述] (2025-12-10T22:59:00+00:00)
+[2026-02-11] • [09:07:26] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:07:33] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:07:40] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:07:41] Error processing task 4213105595: Id is not a property that exists.
+[2026-02-11] • [09:07:42] 📝 Syncing: [无描述] (2025-12-10T22:42:00+00:00)
+[2026-02-11] • [09:07:42] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:07:49] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:07:56] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:07:57] Error processing task 4213105214: Id is not a property that exists.
+[2026-02-11] • [09:08:08] 📝 Syncing: [无描述] (2025-12-10T13:31:45+00:00)
+[2026-02-11] • [09:08:09] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:08:16] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:08:29] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:08:30] Error processing task 4213097333: Id is not a property that exists.
+[2026-02-11] • [09:08:31] 📝 Syncing: [无描述] (2025-12-10T04:13:38+00:00)
+[2026-02-11] • [09:08:31] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:08:38] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:08:44] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:08:46] Error processing task 4211124585: Id is not a property that exists.
+[2026-02-11] • [09:08:46] 📝 Syncing: [无描述] (2025-12-10T01:20:57+00:00)
+[2026-02-11] • [09:08:47] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:08:53] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:09:02] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:09:03] Error processing task 4211028366: Id is not a property that exists.
+[2026-02-11] • [09:09:03] 📝 Syncing: [无描述] (2025-12-10T00:58:15+00:00)
+[2026-02-11] • [09:09:03] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:09:11] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:09:18] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:09:23] Error processing task 4211009867: Id is not a property that exists.
+[2026-02-11] • [09:09:24] 📝 Syncing: [跑步自动记录] (2025-12-09T23:58:56+00:00)
+[2026-02-11] • [09:09:24] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [09:09:31] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [09:09:39] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [09:09:40] Error processing task 4210966665: Id is not a property that exists.
+[2026-02-11] • [09:09:40] 📝 Syncing: [无描述] (2025-12-09T14:42:14+00:00)
+[2026-02-11] • [09:09:40] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:09:47] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:09:53] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:09:56] Error processing task 4210190341: Id is not a property that exists.
+[2026-02-11] • [09:09:56] 📝 Syncing: [无描述] (2025-12-09T14:38:50+00:00)
+[2026-02-11] • [09:09:56] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:10:03] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:10:10] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:10:11] Error processing task 4210183614: Id is not a property that exists.
+[2026-02-11] • [09:10:11] 📝 Syncing: [无描述] (2025-12-09T01:12:23+00:00)
+[2026-02-11] • [09:10:12] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:10:19] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:10:26] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:10:27] Error processing task 4209251688: Id is not a property that exists.
+[2026-02-11] • [09:10:27] 📝 Syncing: [自动记录] (2025-12-09T00:39:00+00:00)
+[2026-02-11] • [09:10:28] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:10:34] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:10:41] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:10:42] Error processing task 4209227169: Id is not a property that exists.
+[2026-02-11] • [09:10:42] 📝 Syncing: [跑步自动记录] (2025-12-09T00:07:28+00:00)
+[2026-02-11] • [09:10:42] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [09:10:50] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [09:10:56] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [09:10:59] Error processing task 4209204290: Id is not a property that exists.
+[2026-02-11] • [09:11:00] 📝 Syncing: [无描述] (2025-12-08T14:27:57+00:00)
+[2026-02-11] • [09:11:02] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:11:09] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:11:15] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:11:16] Error processing task 4208374885: Id is not a property that exists.
+[2026-02-11] • [09:11:16] 📝 Syncing: [无描述] (2025-12-07T11:19:56+00:00)
+[2026-02-11] • [09:11:16] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:11:23] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:11:29] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:11:30] Error processing task 4207177152: Id is not a property that exists.
+[2026-02-11] • [09:11:31] 📝 Syncing: [无描述] (2025-12-07T11:17:49+00:00)
+[2026-02-11] • [09:11:31] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:11:39] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:11:46] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:11:47] Error processing task 4207176531: Id is not a property that exists.
+[2026-02-11] • [09:11:49] 📝 Syncing: [无描述] (2025-12-07T10:46:59+00:00)
+[2026-02-11] • [09:11:49] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:11:55] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:12:02] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:12:02] Error processing task 4207167538: Id is not a property that exists.
+[2026-02-11] • [09:12:03] 📝 Syncing: [自动记录] (2025-12-07T10:46:48+00:00)
+[2026-02-11] • [09:12:05] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:12:11] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:12:21] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '️生活'.
+[2026-02-11] • [09:12:22] Error processing task 4207167482: Id is not a property that exists.
+[2026-02-11] • [09:12:22] 📝 Syncing: [无描述] (2025-12-07T10:46:46+00:00)
+[2026-02-11] • [09:12:23] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:12:29] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:12:39] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:12:40] Error processing task 4207167470: Id is not a property that exists.
+[2026-02-11] • [09:12:45] 📝 Syncing: [跑步自动记录] (2025-12-07T10:15:40+00:00)
+[2026-02-11] • [09:12:45] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [09:12:51] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [09:12:58] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '健康'.
+[2026-02-11] • [09:12:59] Error processing task 4207158912: Id is not a property that exists.
+[2026-02-11] • [09:12:59] 📝 Syncing: [无描述] (2025-12-07T01:57:28+00:00)
+[2026-02-11] • [09:13:00] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:13:07] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:13:15] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:13:16] Error processing task 4207059296: Id is not a property that exists.
+[2026-02-11] • [09:13:17] 📝 Syncing: [无描述] (2025-12-06T16:33:09+00:00)
+[2026-02-11] • [09:13:17] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:13:25] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:13:32] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:13:32] Error processing task 4206923960: Id is not a property that exists.
+[2026-02-11] • [09:13:33] 📝 Syncing: [无描述] (2025-12-06T16:31:14+00:00)
+[2026-02-11] • [09:13:34] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:13:41] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:13:48] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:13:49] Error processing task 4206923382: Id is not a property that exists.
+[2026-02-11] • [09:13:49] 📝 Syncing: [无描述] (2025-12-06T16:28:12+00:00)
+[2026-02-11] • [09:13:51] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:13:57] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:14:05] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:14:05] Error processing task 4206922388: Id is not a property that exists.
+[2026-02-11] • [09:14:05] 📝 Syncing: [无描述] (2025-12-06T15:45:59+00:00)
+[2026-02-11] • [09:14:07] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:14:13] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:14:20] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:14:21] Error processing task 4206908950: Id is not a property that exists.
+[2026-02-11] • [09:14:22] 📝 Syncing: [无描述] (2025-12-06T15:45:59+00:00)
+[2026-02-11] • [09:14:22] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:14:29] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:14:37] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:14:39] Error processing task 4206908953: Id is not a property that exists.
+[2026-02-11] • [09:14:42] 📝 Syncing: [无描述] (2025-12-06T15:42:50+00:00)
+[2026-02-11] • [09:14:42] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:14:49] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:14:56] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:14:56] Error processing task 4206907994: Id is not a property that exists.
+[2026-02-11] • [09:14:57] 📝 Syncing: [无描述] (2025-12-05T15:39:10+00:00)
+[2026-02-11] • [09:14:57] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:15:06] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:15:13] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:15:13] Error processing task 4206133849: Id is not a property that exists.
+[2026-02-11] • [09:15:15] 📝 Syncing: [无描述] (2025-12-05T15:15:10+00:00)
+[2026-02-11] • [09:15:15] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:15:22] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:15:30] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:15:31] Error processing task 4206094298: Id is not a property that exists.
+[2026-02-11] • [09:15:31] 📝 Syncing: [无描述] (2025-12-05T01:04:47+00:00)
+[2026-02-11] • [09:15:34] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:15:41] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:15:48] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:15:49] Error processing task 4205218770: Id is not a property that exists.
+[2026-02-11] • [09:15:49] 📝 Syncing: [无描述] (2025-12-05T01:03:14+00:00)
+[2026-02-11] • [09:15:49] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:15:56] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:16:02] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:16:03] Error processing task 4205217802: Id is not a property that exists.
+[2026-02-11] • [09:16:04] 📝 Syncing: [无描述] (2025-12-05T01:03:14+00:00)
+[2026-02-11] • [09:16:04] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:16:14] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:16:23] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:16:24] Error processing task 4205217800: Id is not a property that exists.
+[2026-02-11] • [09:16:24] 📝 Syncing: [无描述] (2025-12-05T00:46:59+00:00)
+[2026-02-11] • [09:16:25] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:16:32] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:16:39] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:16:41] Error processing task 4205206334: Id is not a property that exists.
+[2026-02-11] • [09:16:41] 📝 Syncing: [无描述] (2025-12-05T00:46:51+00:00)
+[2026-02-11] • [09:16:41] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:16:48] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:16:56] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:16:56] Error processing task 4205206244: Id is not a property that exists.
+[2026-02-11] • [09:16:57] 📝 Syncing: [无描述] (2025-12-05T00:01:53+00:00)
+[2026-02-11] • [09:16:57] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:17:04] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:17:13] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '工作'.
+[2026-02-11] • [09:17:17] Error processing task 4205174748: Id is not a property that exists.
+[2026-02-11] • [09:17:17] 📝 Syncing: [无描述] (2025-12-04T04:11:13+00:00)
+[2026-02-11] • [09:17:17] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:17:24] ⚠️ Property 'Id' missing in database 30386019-c92c-81ed-835f-da86afd6ddb4. Falling back to name-based lookup for '个人'.
+[2026-02-11] • [09:18:00] 📝 Syncing: [无描述] (2025-12-03T01:16:03+00:00)
+[2026-02-11] • [09:18:12] 📝 Syncing: [无描述] (2025-12-03T01:13:07+00:00)
+[2026-02-11] • [09:18:14] 📝 Syncing: [无描述] (2025-12-03T00:51:58+00:00)
+[2026-02-11] • [09:18:15] 📝 Syncing: [无描述] (2025-12-03T00:49:42+00:00)
+[2026-02-11] • [09:18:22] 📝 Syncing: [无描述] (2025-12-03T00:48:12+00:00)
+[2026-02-11] • [09:18:22] 📝 Syncing: [无描述] (2025-12-03T00:47:56+00:00)
+[2026-02-11] • [09:18:23] 📝 Syncing: [无描述] (2025-12-03T00:47:47+00:00)
+[2026-02-11] • [09:18:25] 📝 Syncing: [无描述] (2025-12-03T00:44:47+00:00)
+[2026-02-11] • [09:18:32] 📝 Syncing: [无描述] (2025-12-03T00:43:16+00:00)
+[2026-02-11] • [09:18:33] 📝 Syncing: [无描述] (2025-12-03T00:42:47+00:00)
+[2026-02-11] • [09:18:34] 📝 Syncing: [无描述] (2025-12-03T00:42:37+00:00)
+[2026-02-11] • [09:18:36] 📝 Syncing: [无描述] (2025-12-03T00:41:41+00:00)
+[2026-02-11] • [09:18:37] 📝 Syncing: [自动记录] (2025-12-03T00:41:02+00:00)
+[2026-02-11] • [09:18:40] 📝 Syncing: [自动记录] (2025-12-03T00:41:02+00:00)
+[2026-02-11] • [09:18:43] 📝 Syncing: [无描述] (2025-12-03T00:40:21+00:00)
+[2026-02-11] • [09:18:44] Found 22 entries from 2025-11-23 to 2025-12-03. Processing...
+[2026-02-11] • [09:18:46] 📝 Syncing: [跑步自动记录] (2025-12-03T00:07:46+00:00)
+[2026-02-11] • [09:18:50] 📝 Syncing: [无描述] (2025-12-03T00:05:11+00:00)
+[2026-02-11] • [09:18:51] 📝 Syncing: [无描述] (2025-12-03T00:01:28+00:00)
+[2026-02-11] • [09:19:01] 📝 Syncing: [无描述] (2025-12-01T01:15:36+00:00)
+[2026-02-11] • [09:19:04] 📝 Syncing: [无描述] (2025-12-01T00:46:06+00:00)
+[2026-02-11] • [09:19:06] 📝 Syncing: [自动记录] (2025-12-01T00:45:12+00:00)
+[2026-02-11] • [09:19:07] 📝 Syncing: [跑步自动记录] (2025-12-01T00:13:08+00:00)
+[2026-02-11] • [09:19:12] 📝 Syncing: [无描述] (2025-11-30T11:32:59+00:00)
+[2026-02-11] • [09:19:13] 📝 Syncing: [无描述] (2025-11-30T11:06:54+00:00)
+[2026-02-11] • [09:19:23] 📝 Syncing: [跑步自动记录] (2025-11-30T10:35:54+00:00)
+[2026-02-11] • [09:19:27] 📝 Syncing: [无描述] (2025-11-30T10:18:46+00:00)
+[2026-02-11] • [09:19:33] 📝 Syncing: [无描述] (2025-11-26T01:40:42+00:00)
+[2026-02-11] • [09:19:36] 📝 Syncing: [自动记录] (2025-11-26T01:19:48+00:00)
+[2026-02-11] • [09:19:37] 📝 Syncing: [跑步自动记录] (2025-11-26T00:26:25+00:00)
+[2026-02-11] • [09:19:38] 📝 Syncing: [无描述] (2025-11-25T03:59:10+00:00)
+[2026-02-11] • [09:19:43] 📝 Syncing: [无描述] (2025-11-25T01:30:25+00:00)
+[2026-02-11] • [09:19:45] 📝 Syncing: [自动记录] (2025-11-25T01:10:27+00:00)
+[2026-02-11] • [09:19:46] 📝 Syncing: [跑步自动记录] (2025-11-25T00:37:12+00:00)
+[2026-02-11] • [09:19:47] 📝 Syncing: [无描述] (2025-11-24T13:34:43+00:00)
+[2026-02-11] • [09:19:50] 📝 Syncing: [无描述] (2025-11-23T15:26:11+00:00)
+[2026-02-11] • [09:19:55] 📝 Syncing: [无描述] (2025-11-23T15:22:54+00:00)
+[2026-02-11] • [09:20:06] 📝 Syncing: [无描述] (2025-11-23T01:11:37+00:00)
+[2026-02-11] • [09:20:08] Found 20 entries from 2025-11-13 to 2025-11-23. Processing...
+[2026-02-11] • [09:20:09] 📝 Syncing: [无描述] (2025-11-22T14:43:44+00:00)
+[2026-02-11] • [09:20:11] 📝 Syncing: [无描述] (2025-11-22T07:52:06+00:00)
+[2026-02-11] • [09:20:13] 📝 Syncing: [自动记录] (2025-11-22T07:19:29+00:00)
+[2026-02-11] • [09:20:14] 📝 Syncing: [无描述] (2025-11-22T07:18:22+00:00)
+[2026-02-11] • [09:20:23] 📝 Syncing: [跑步自动记录] (2025-11-22T06:24:56+00:00)
+[2026-02-11] • [09:20:24] 📝 Syncing: [无描述] (2025-11-22T02:46:28+00:00)
+[2026-02-11] • [09:20:25] 📝 Syncing: [无描述] (2025-11-21T03:59:24+00:00)
+[2026-02-11] • [09:20:27] 📝 Syncing: [无描述] (2025-11-21T01:44:48+00:00)
+[2026-02-11] • [09:20:33] 📝 Syncing: [无描述] (2025-11-21T01:14:35+00:00)
+[2026-02-11] • [09:20:34] 📝 Syncing: [无描述] (2025-11-20T01:20:53+00:00)
+[2026-02-11] • [09:20:38] 📝 Syncing: [自动记录] (2025-11-20T00:57:19+00:00)
+[2026-02-11] • [09:20:41] 📝 Syncing: [跑步自动记录] (2025-11-20T00:24:48+00:00)
+[2026-02-11] • [09:20:42] 📝 Syncing: [无描述] (2025-11-19T23:32:00+00:00)
+[2026-02-11] • [09:20:44] 📝 Syncing: [无描述] (2025-11-19T23:12:00+00:00)
+[2026-02-11] • [09:20:51] 📝 Syncing: [无描述] (2025-11-19T23:03:00+00:00)
+[2026-02-11] • [09:20:56] 📝 Syncing: [无描述] (2025-11-19T22:45:00+00:00)
+[2026-02-11] • [09:21:04] 📝 Syncing: [无描述] (2025-11-19T14:17:00+00:00)
+[2026-02-11] • [09:21:07] 📝 Syncing: [无描述] (2025-11-18T10:26:17+00:00)
+[2026-02-11] • [09:21:13] 📝 Syncing: [无描述] (2025-11-18T10:00:00+00:00)
+[2026-02-11] • [09:21:16] 📝 Syncing: [无描述] (2025-11-13T14:20:33+00:00)
+[2026-02-11] • [09:21:26] Failed to fetch time entries (2025-11-03 to 2025-11-13): 400 "start_date must not be earlier than 2025-11-11"
+[2026-02-11] • [09:21:27] Failed to fetch time entries (2025-10-24 to 2025-11-03): 400 "start_date must not be earlier than 2025-11-11"
+[2026-02-11] • [09:21:27] Failed to fetch time entries (2025-10-14 to 2025-10-24): 400 "start_date must not be earlier than 2025-11-11"
+[2026-02-11] • [09:21:28] Failed to fetch time entries (2025-10-04 to 2025-10-14): 400 "start_date must not be earlier than 2025-11-11"
+[2026-02-11] • [09:21:29] Failed to fetch time entries (2025-09-24 to 2025-10-04): 400 "start_date must not be earlier than 2025-11-11"
+[2026-02-11] • [09:21:30] Failed to fetch time entries (2025-09-14 to 2025-09-24): 400 "start_date must not be earlier than 2025-11-11"
+[2026-02-11] • [09:21:30] Failed to fetch time entries (2025-09-04 to 2025-09-14): 400 "start_date must not be earlier than 2025-11-11"
+[2026-02-11] • [09:21:31] Failed to fetch time entries (2025-08-25 to 2025-09-04): 400 "start_date must not be earlier than 2025-11-11"
+[2026-02-11] • [09:21:32] Failed to fetch time entries (2025-08-15 to 2025-08-25): 400 "start_date must not be earlier than 2025-11-11"
+[2026-02-11] • [09:21:33] Failed to fetch time entries (2025-08-05 to 2025-08-15): 400 "start_date must not be earlier than 2025-11-11"
+[2026-02-11] • [09:21:33] Failed to fetch time entries (2025-07-26 to 2025-08-05): 400 "start_date must not be earlier than 2025-11-11"
+[2026-02-11] • [09:21:34] Failed to fetch time entries (2025-07-16 to 2025-07-26): 400 "start_date must not be earlier than 2025-11-11"
+[2026-02-11] • [09:21:35] Failed to fetch time entries (2025-07-06 to 2025-07-16): 400 "start_date must not be earlier than 2025-11-11"
+[2026-02-11] • [09:21:36] Failed to fetch time entries (2025-06-26 to 2025-07-06): 400 "start_date must not be earlier than 2025-11-11"
+[2026-02-11] • [09:21:36] Failed to fetch time entries (2025-06-16 to 2025-06-26): 400 "start_date must not be earlier than 2025-11-11"
+[2026-02-11] • [09:21:37] Failed to fetch time entries (2025-06-06 to 2025-06-16): 400 "start_date must not be earlier than 2025-11-11"
+[2026-02-11] • [09:21:38] Failed to fetch time entries (2025-05-27 to 2025-06-06): 400 "start_date must not be earlier than 2025-11-11"
+[2026-02-11] • [09:21:38] Failed to fetch time entries (2025-05-17 to 2025-05-27): 400 "start_date must not be earlier than 2025-11-11"
+[2026-02-11] • [09:21:39] Failed to fetch time entries (2025-05-07 to 2025-05-17): 400 "start_date must not be earlier than 2025-11-11"
+[2026-02-11] • [09:21:40] Failed to fetch time entries (2025-04-27 to 2025-05-07): 400 "start_date must not be earlier than 2025-11-11"
+[2026-02-11] • [09:21:41] Failed to fetch time entries (2025-04-17 to 2025-04-27): 400 "start_date must not be earlier than 2025-11-11"
+[2026-02-11] • [09:21:41] Failed to fetch time entries (2025-04-07 to 2025-04-17): 400 "start_date must not be earlier than 2025-11-11"
+[2026-02-11] • [09:21:42] Failed to fetch time entries (2025-03-28 to 2025-04-07): 400 "start_date must not be earlier than 2025-11-11"
+[2026-02-11] • [09:21:43] Failed to fetch time entries (2025-03-18 to 2025-03-28): 400 "start_date must not be earlier than 2025-11-11"
+[2026-02-11] • [09:21:44] Failed to fetch time entries (2025-03-08 to 2025-03-18): 400 "start_date must not be earlier than 2025-11-11"
+[2026-02-11] • [09:21:44] Failed to fetch time entries (2025-02-26 to 2025-03-08): 400 "start_date must not be earlier than 2025-11-11"
+[2026-02-11] • [09:21:45] Failed to fetch time entries (2025-02-16 to 2025-02-26): 400 "start_date must not be earlier than 2025-11-11"
+[2026-02-11] • [09:21:46] Failed to fetch time entries (2025-02-06 to 2025-02-16): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2573 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:21:47] Failed to fetch time entries (2025-01-27 to 2025-02-06): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2573 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:21:47] Failed to fetch time entries (2025-01-17 to 2025-01-27): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2572 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:21:48] Failed to fetch time entries (2025-01-07 to 2025-01-17): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2571 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:21:49] Failed to fetch time entries (2024-12-28 to 2025-01-07): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2570 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:21:50] Failed to fetch time entries (2024-12-18 to 2024-12-28): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2570 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:21:50] Failed to fetch time entries (2024-12-08 to 2024-12-18): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2569 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:21:51] Failed to fetch time entries (2024-11-28 to 2024-12-08): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2568 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:21:52] Failed to fetch time entries (2024-11-18 to 2024-11-28): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2568 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:21:53] Failed to fetch time entries (2024-11-08 to 2024-11-18): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2567 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:21:53] Failed to fetch time entries (2024-10-29 to 2024-11-08): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2566 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:21:54] Failed to fetch time entries (2024-10-19 to 2024-10-29): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2565 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:21:55] Failed to fetch time entries (2024-10-09 to 2024-10-19): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2565 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:21:56] Failed to fetch time entries (2024-09-29 to 2024-10-09): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2564 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:21:56] Failed to fetch time entries (2024-09-19 to 2024-09-29): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2563 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:21:57] Failed to fetch time entries (2024-09-09 to 2024-09-19): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2562 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:21:58] Failed to fetch time entries (2024-08-30 to 2024-09-09): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2562 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:21:59] Failed to fetch time entries (2024-08-20 to 2024-08-30): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2561 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:21:59] Failed to fetch time entries (2024-08-10 to 2024-08-20): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2560 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:00] Failed to fetch time entries (2024-07-31 to 2024-08-10): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2559 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:01] Failed to fetch time entries (2024-07-21 to 2024-07-31): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2559 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:02] Failed to fetch time entries (2024-07-11 to 2024-07-21): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2558 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:02] Failed to fetch time entries (2024-07-01 to 2024-07-11): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2557 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:03] Failed to fetch time entries (2024-06-21 to 2024-07-01): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2556 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:04] Failed to fetch time entries (2024-06-11 to 2024-06-21): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2556 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:04] Failed to fetch time entries (2024-06-01 to 2024-06-11): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2555 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:05] Failed to fetch time entries (2024-05-22 to 2024-06-01): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2554 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:06] Failed to fetch time entries (2024-05-12 to 2024-05-22): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2553 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:07] Failed to fetch time entries (2024-05-02 to 2024-05-12): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2553 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:07] Failed to fetch time entries (2024-04-22 to 2024-05-02): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2552 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:08] Failed to fetch time entries (2024-04-12 to 2024-04-22): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2551 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:09] Failed to fetch time entries (2024-04-02 to 2024-04-12): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2550 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:10] Failed to fetch time entries (2024-03-23 to 2024-04-02): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2550 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:10] Failed to fetch time entries (2024-03-13 to 2024-03-23): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2549 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:11] Failed to fetch time entries (2024-03-03 to 2024-03-13): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2548 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:12] Failed to fetch time entries (2024-02-22 to 2024-03-03): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2548 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:13] Failed to fetch time entries (2024-02-12 to 2024-02-22): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2547 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:13] Failed to fetch time entries (2024-02-02 to 2024-02-12): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2546 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:14] Failed to fetch time entries (2024-01-23 to 2024-02-02): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2545 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:15] Failed to fetch time entries (2024-01-13 to 2024-01-23): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2545 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:16] Failed to fetch time entries (2024-01-03 to 2024-01-13): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2544 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:16] Failed to fetch time entries (2023-12-24 to 2024-01-03): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2543 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:17] Failed to fetch time entries (2023-12-14 to 2023-12-24): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2542 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:18] Failed to fetch time entries (2023-12-04 to 2023-12-14): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2542 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:19] Failed to fetch time entries (2023-11-24 to 2023-12-04): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2541 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:19] Failed to fetch time entries (2023-11-14 to 2023-11-24): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2540 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:20] Failed to fetch time entries (2023-11-04 to 2023-11-14): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2539 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:21] Failed to fetch time entries (2023-10-25 to 2023-11-04): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2539 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:21] Failed to fetch time entries (2023-10-15 to 2023-10-25): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2538 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:22] Failed to fetch time entries (2023-10-05 to 2023-10-15): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2537 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:23] Failed to fetch time entries (2023-09-25 to 2023-10-05): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2536 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:24] Failed to fetch time entries (2023-09-15 to 2023-09-25): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2536 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:24] Failed to fetch time entries (2023-09-05 to 2023-09-15): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2535 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:25] Failed to fetch time entries (2023-08-26 to 2023-09-05): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2534 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:26] Failed to fetch time entries (2023-08-16 to 2023-08-26): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2534 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:27] Failed to fetch time entries (2023-08-06 to 2023-08-16): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2533 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:27] Failed to fetch time entries (2023-07-27 to 2023-08-06): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2532 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:28] Failed to fetch time entries (2023-07-17 to 2023-07-27): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2531 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:29] Failed to fetch time entries (2023-07-07 to 2023-07-17): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2531 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:30] Failed to fetch time entries (2023-06-27 to 2023-07-07): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2530 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:30] Failed to fetch time entries (2023-06-17 to 2023-06-27): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2529 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:31] Failed to fetch time entries (2023-06-07 to 2023-06-17): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2528 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:32] Failed to fetch time entries (2023-05-28 to 2023-06-07): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2528 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:33] Failed to fetch time entries (2023-05-18 to 2023-05-28): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2527 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:33] Failed to fetch time entries (2023-05-08 to 2023-05-18): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2526 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:34] Failed to fetch time entries (2023-04-28 to 2023-05-08): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2525 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:35] Failed to fetch time entries (2023-04-18 to 2023-04-28): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2525 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:36] Failed to fetch time entries (2023-04-08 to 2023-04-18): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2524 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:36] Failed to fetch time entries (2023-03-29 to 2023-04-08): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2523 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:37] Failed to fetch time entries (2023-03-19 to 2023-03-29): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2522 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:38] Failed to fetch time entries (2023-03-09 to 2023-03-19): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2522 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:39] Failed to fetch time entries (2023-02-27 to 2023-03-09): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2521 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:39] Failed to fetch time entries (2023-02-17 to 2023-02-27): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2520 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:40] Failed to fetch time entries (2023-02-07 to 2023-02-17): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2519 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:41] Failed to fetch time entries (2023-01-28 to 2023-02-07): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2519 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:41] Failed to fetch time entries (2023-01-18 to 2023-01-28): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2518 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:42] Failed to fetch time entries (2023-01-08 to 2023-01-18): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2517 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:43] Failed to fetch time entries (2022-12-29 to 2023-01-08): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2517 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:44] Failed to fetch time entries (2022-12-19 to 2022-12-29): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2516 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:44] Failed to fetch time entries (2022-12-09 to 2022-12-19): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2515 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:45] Failed to fetch time entries (2022-11-29 to 2022-12-09): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2514 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:46] Failed to fetch time entries (2022-11-19 to 2022-11-29): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2514 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:47] Failed to fetch time entries (2022-11-09 to 2022-11-19): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2513 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:47] Failed to fetch time entries (2022-10-30 to 2022-11-09): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2512 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:48] Failed to fetch time entries (2022-10-20 to 2022-10-30): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2511 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:49] Failed to fetch time entries (2022-10-10 to 2022-10-20): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2511 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:50] Failed to fetch time entries (2022-09-30 to 2022-10-10): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2510 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:50] Failed to fetch time entries (2022-09-20 to 2022-09-30): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2509 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:51] Failed to fetch time entries (2022-09-10 to 2022-09-20): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2508 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:52] Failed to fetch time entries (2022-08-31 to 2022-09-10): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2508 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:53] Failed to fetch time entries (2022-08-21 to 2022-08-31): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2507 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:53] Failed to fetch time entries (2022-08-11 to 2022-08-21): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2506 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:54] Failed to fetch time entries (2022-08-01 to 2022-08-11): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2505 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:55] Failed to fetch time entries (2022-07-22 to 2022-08-01): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2505 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:56] Failed to fetch time entries (2022-07-12 to 2022-07-22): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2504 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:56] Failed to fetch time entries (2022-07-02 to 2022-07-12): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2503 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:57] Failed to fetch time entries (2022-06-22 to 2022-07-02): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2502 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:58] Failed to fetch time entries (2022-06-12 to 2022-06-22): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2502 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:59] Failed to fetch time entries (2022-06-02 to 2022-06-12): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2501 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:22:59] Failed to fetch time entries (2022-05-23 to 2022-06-02): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2500 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:23:00] Failed to fetch time entries (2022-05-13 to 2022-05-23): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2499 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:23:01] Failed to fetch time entries (2022-05-03 to 2022-05-13): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2499 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:23:02] Failed to fetch time entries (2022-04-23 to 2022-05-03): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2498 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:23:02] Failed to fetch time entries (2022-04-13 to 2022-04-23): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2497 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:23:03] Failed to fetch time entries (2022-04-03 to 2022-04-13): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2496 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:23:04] Failed to fetch time entries (2022-03-24 to 2022-04-03): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2496 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:23:05] Failed to fetch time entries (2022-03-14 to 2022-03-24): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2495 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:23:05] Failed to fetch time entries (2022-03-04 to 2022-03-14): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2494 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:23:06] Failed to fetch time entries (2022-02-22 to 2022-03-04): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2493 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:23:07] Failed to fetch time entries (2022-02-12 to 2022-02-22): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2493 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:23:07] Failed to fetch time entries (2022-02-02 to 2022-02-12): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2492 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:23:08] Failed to fetch time entries (2022-01-23 to 2022-02-02): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2491 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:23:09] Failed to fetch time entries (2022-01-13 to 2022-01-23): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2490 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:23:10] Failed to fetch time entries (2022-01-03 to 2022-01-13): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2490 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:23:10] Failed to fetch time entries (2021-12-24 to 2022-01-03): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2489 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:23:11] Failed to fetch time entries (2021-12-14 to 2021-12-24): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2488 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:23:12] Failed to fetch time entries (2021-12-06 to 2021-12-14): 402 You have hit your hourly limit for API calls. Please upgrade to a paid plan for increased access. Your quota will reset in 2488 seconds. CTA: Go to subscriptions page.
+[2026-02-11] • [09:23:12] 🔄 Checking for Notion entries to sync back to Toggl...
+[2026-02-11] • [09:23:13] No missing Toggl IDs found in Notion.
+[2026-02-11] • [09:23:16] No heatmap file found.

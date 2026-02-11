@@ -175,7 +175,8 @@ class NotionHelper:
                         self.update_page(page_id, properties, icon)
             except Exception as e:
                 # If error is about missing property 'Id', log it once and fallback
-                if "Id" in str(e) and ("property" in str(e) or "exists" in str(e)):
+                error_str = str(e).lower()
+                if "id" in error_str and ("property" in error_str or "exists" in error_str):
                     log(f"⚠️ Property 'Id' missing in database {id}. Falling back to name-based lookup for '{name}'.")
                 else:
                     log(f"Failed to query database {id} by remote_id: {e}")
@@ -198,7 +199,8 @@ class NotionHelper:
                         properties["Id"] = {"number": int(remote_id)}
                         self.update_page(page_id, properties, icon)
                     except Exception as e:
-                        if "Id" in str(e) and ("property" in str(e) or "exists" in str(e)):
+                        error_str = str(e).lower()
+                        if "id" in error_str and ("property" in error_str or "exists" in error_str):
                              log(f"⚠️ Could not write 'Id' to database {id}: Property missing.")
                         else:
                              log(f"⚠️ Error writing 'Id' to database {id}: {e}")
@@ -216,7 +218,8 @@ class NotionHelper:
                     parent=parent, properties=properties, icon=icon
                 ).get("id")
             except Exception as e:
-                if "Id" in str(e) and ("property" in str(e) or "exists" in str(e)) and "Id" in properties:
+                error_str = str(e).lower()
+                if "id" in error_str and ("property" in error_str or "exists" in error_str) and "Id" in properties:
                     log(f"⚠️ Retrying page creation for '{name}' without 'Id' property...")
                     new_props = {k: v for k, v in properties.items() if k != "Id"}
                     page_id = self.client.pages.create(
@@ -242,7 +245,8 @@ class NotionHelper:
         try:
             return self.client.pages.update(**kwargs)
         except Exception as e:
-            if "Id" in str(e) and ("property" in str(e) or "exists" in str(e)) and "Id" in properties:
+            error_str = str(e).lower()
+            if "id" in error_str and ("property" in error_str or "exists" in error_str) and "Id" in properties:
                  log(f"⚠️ Property 'Id' missing in database. Updating without 'Id'.")
                  new_props = {k: v for k, v in properties.items() if k != "Id"}
                  kwargs["properties"] = new_props
@@ -255,7 +259,8 @@ class NotionHelper:
             return self.client.pages.create(parent=parent, properties=properties, icon=icon)
         except Exception as e:
             # If the main database is also missing 'Id' property
-            if "Id" in str(e) and ("property" in str(e) or "exists" in str(e)) and "Id" in properties:
+            error_str = str(e).lower()
+            if "id" in error_str and ("property" in error_str or "exists" in error_str) and "Id" in properties:
                 log(f"⚠️ Property 'Id' missing in main database. Retrying without 'Id'.")
                 # Remove 'Id' from properties and retry immediately (no need for @retry here)
                 new_props = {k: v for k, v in properties.items() if k != "Id"}
@@ -277,7 +282,8 @@ class NotionHelper:
             results = response.get("results")
             return results[0].get("id") if results else None
         except Exception as e:
-            if "Id" in str(e) and ("property" in str(e) or "exists" in str(e)):
+            error_str = str(e).lower()
+            if "id" in error_str and ("property" in error_str or "exists" in error_str):
                 # If Id property is missing, we can't search by it
                 return None
             raise e
@@ -288,7 +294,8 @@ class NotionHelper:
         try:
             return self.query_all_by_book(database_id=self.time_database_id, filter=filter)
         except Exception as e:
-            if "Id" in str(e) and ("property" in str(e) or "exists" in str(e)):
+            error_str = str(e).lower()
+            if "id" in error_str and ("property" in error_str or "exists" in error_str):
                 return []
             raise e
 
