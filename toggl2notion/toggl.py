@@ -249,19 +249,96 @@ def process_entry(task):
     return parent, properties, icon
 
 
+import time
+
+def get_detailed_report(workspace_id, start_date, end_date):
+    """Fetch detailed report from Toggl Reports API (supports >90 days)."""
+    url = "https://api.track.toggl.com/reports/api/v2/details"
+    headers = {"Content-Type": "application/json"}
+    
+    # Reports API requires a user_agent
+    params = {
+        "workspace_id": workspace_id,
+        "since": start_date.to_date_string(),
+        "until": end_date.to_date_string(),
+        "user_agent": "toggl2notion",
+        "page": 1
+    }
+    
+    all_entries = []
+    while True:
+        try:
+            response = requests.get(url, params=params, auth=auth, headers=headers)
+            if response.status_code == 429:
+                utils.log("⚠️ Reports API rate limit hit. Sleeping for 2 seconds...")
+                time.sleep(2)
+                continue
+                
+            if not response.ok:
+                utils.log(f"Failed to fetch detailed report: {response.status_code} {response.text}")
+                return None, response.status_code
+            
+            data = response.json()
+            entries = data.get("data", [])
+            all_entries.extend(entries)
+            
+            utils.log(f"Fetched page {params['page']} ({len(entries)} entries)...")
+            
+            if len(entries) < data.get("per_page", 50):
+                break
+                
+            params["page"] += 1
+            time.sleep(1.1)  # Rate limiting (conservative)
+            
+        except Exception as e:
+            utils.log(f"Exception during report fetch: {e}")
+            return None, 500
+            
+    # Transform to match Time Entries API format
+    transformed_entries = []
+    for entry in all_entries:
+        # Map Reports API fields to Time Entries API fields
+        transformed = {
+            "id": entry.get("id"),
+            "description": entry.get("description"),
+            "start": entry.get("start"),
+            "stop": entry.get("end"), # Report API uses 'end'
+            "duration": entry.get("dur") / 1000, # Report API uses milliseconds
+            "tags": entry.get("tags", []),
+            "pid": entry.get("pid"), # Project ID
+            "project_id": entry.get("pid"), # Keep consistency
+            "project": entry.get("project"), # Project Name (Bonus: Reports API gives name!)
+            "client": entry.get("client"),   # Client Name (Bonus!)
+            # 'project_hex_color': entry.get('project_hex_color')
+        }
+        
+        # Populate cache with names from report if available (Optimization)
+        if entry.get("pid"):
+            parsed_project_name = entry.get("project")
+            # If names are avail, update cache to avoid lookups
+            if parsed_project_name:
+                 # Note: project_cache structure is {"name": ..., "client_id": ...}
+                 # We might miss client_id here if not careful, but name is key
+                 if entry.get("pid") not in project_cache:
+                      project_cache[entry.get("pid")] = {"name": parsed_project_name}
+        
+        transformed_entries.append(transformed)
+        
+    return transformed_entries, 200
+
 def insert_to_notion():
     now = pendulum.now("Asia/Shanghai")
     start = None
     
-    # Check latest entry in Notion
-    sorts = [{"property": "时间", "direction": "descending"}]
+    # 1. Check latest entry in Notion (Forward Sync Anchor)
+    sorts_desc = [{"property": "时间", "direction": "descending"}]
     response = notion_helper.query(
-        database_id=notion_helper.time_database_id, sorts=sorts, page_size=1
+        database_id=notion_helper.time_database_id, sorts=sorts_desc, page_size=1
     )
     
+    latest_end = None
     if len(response.get("results")) > 0:
         latest_page = response.get("results")[0]
-        latest_id = latest_page.get("id")
         # Try to get title for logging
         properties = latest_page.get("properties", {})
         title_list = properties.get("标题", {}).get("title", [])
@@ -269,25 +346,57 @@ def insert_to_notion():
         
         date_prop = properties.get("时间", {}).get("date")
         if date_prop and date_prop.get("end"):
-             start = pendulum.parse(date_prop.get("end")).in_timezone("Asia/Shanghai").add(seconds=1)
-             utils.log(f"🔍 Found latest entry in Notion: [{title}] (ID: {latest_id}) with end time {date_prop.get('end')}")
+             latest_end = pendulum.parse(date_prop.get("end")).in_timezone("Asia/Shanghai")
+             utils.log(f"🔍 Found latest entry in Notion: [{title}] at {date_prop.get('end')}")
         elif date_prop and date_prop.get("start"):
-             start = pendulum.parse(date_prop.get("start")).in_timezone("Asia/Shanghai").add(seconds=1)
-             utils.log(f"🔍 Found latest entry in Notion (start only): [{title}] (ID: {latest_id}) at {date_prop.get('start')}")
+             latest_end = pendulum.parse(date_prop.get("start")).in_timezone("Asia/Shanghai")
+             utils.log(f"🔍 Found latest entry in Notion (start only): [{title}] at {date_prop.get('start')}")
+
+    # 2. Check earliest entry in Notion (Backward Gap Check)
+    sorts_asc = [{"property": "时间", "direction": "ascending"}]
+    response_asc = notion_helper.query(
+        database_id=notion_helper.time_database_id, sorts=sorts_asc, page_size=1
+    )
     
-    if not start:
-        start = get_created_at().in_timezone("Asia/Shanghai")
-        utils.log(f"Notion is empty. Starting from account registration date: {start.to_date_string()}")
+    earliest_start = None
+    if len(response_asc.get("results")) > 0:
+        earliest_page = response_asc.get("results")[0]
+        props_early = earliest_page.get("properties", {})
+        date_prop_early = props_early.get("时间", {}).get("date")
+        if date_prop_early and date_prop_early.get("start"):
+            earliest_start = pendulum.parse(date_prop_early.get("start")).in_timezone("Asia/Shanghai")
+            utils.log(f"🔍 Found earliest entry in Notion: {date_prop_early.get('start')}")
+
+    # 3. Determine Sync Start Date
+    account_created_at = get_created_at().in_timezone("Asia/Shanghai")
+    
+    # Strategy:
+    # If Notion is empty -> Full Sync from Account Creation
+    # If Notion has data but earliest entry is > 7 days after account creation -> Gap detected -> Full Backfill
+    # Otherwise -> Incremental Sync from latest entry - 24h
+    
+    gap_threshold_days = 7
+    
+    if not latest_end:
+        start = account_created_at
+        utils.log(f"🚀 Notion is empty. Starting full import from registration date: {start.to_date_string()}")
+    elif earliest_start and (earliest_start - account_created_at).days > gap_threshold_days:
+        start = account_created_at
+        utils.log(f"⚠️ Missing history detected! Earliest entry ({earliest_start.to_date_string()}) is far from registration ({account_created_at.to_date_string()}).")
+        utils.log(f"🚀 Triggering FULL BACKFILL to fill the gap. This may take a while...")
     else:
-        # Look back 24 hours from the latest entry to detect recent modifications/updates
-        start = start.subtract(hours=24)
-        utils.log(f"🔍 Lookback enabled: Syncing from {start.to_datetime_string()} to detect updates.")
+        # Normal incremental sync
+        start = latest_end.subtract(hours=24)
+        utils.log(f"✅ History seems check. Syncing incrementally from {start.to_datetime_string()} to detect updates.")
 
     # Track API v9 returns all entries for the user. We only need to load workspace projects once.
     workspaces = get_workspaces()
     if not workspaces:
         utils.log("No workspaces found or API error.")
         return
+    
+    # Default to first workspace for Reports API (Limitation: Script assumes single workspace focus or iterates all if refined)
+    default_workspace_id = workspaces[0]["id"]
 
     for ws in workspaces:
         load_workspace_cache(ws["id"])
@@ -298,32 +407,66 @@ def insert_to_notion():
 
     while current_end > start:
         current_start = current_end.subtract(days=10)
+        # If we hit the absolute start, clamp it
         if current_start < start:
+            # Important: Ensure we don't undershoot if start is very old logic-wise, 
+            # but here start is the boundary.
             current_start = start
         
-        entries, status_code = get_time_entries(current_start, current_end)
+        # Logic: Try standard API first. If it fails with 400 (Historical Limit), switch to Reports API strategy.
+        entries = None
+        status_code = 200
         
-        if status_code == 400:
-            utils.log(f"🛑 Reached Toggl historical data limit (Free plan limit is ~90 days). Stopping historical sync.")
-            break
-        elif status_code == 402:
-            utils.log(f"🛑 Hit Toggl API limit or Payment Required (402). Stopping to avoid further errors.")
-            break
-            
+        # Check if we are clearly out of 90 days range? 
+        # Toggl Free limit is rolling 90 days.
+        days_diff = (now - current_end).days
+        
+        use_reports_api = False
+        if days_diff > 85: # Safety buffer
+             use_reports_api = True
+             utils.log(f"🕰️ Date range > 85 days ago ({current_start.to_date_string()}). Switching to Reports API.")
+        
+        if not use_reports_api:
+            entries, status_code = get_time_entries(current_start, current_end)
+            if status_code == 400:
+                 utils.log(f"⚠️ Standard API failed with 400 (likely historical limit). Retrying with Reports API...")
+                 use_reports_api = True
+                 status_code = 200 # Reset for retry
+            elif status_code == 402:
+                 utils.log(f"🛑 Hit Toggl API limit (402). Stopping.")
+                 break
+
+        if use_reports_api:
+            # Reports API works best with larger chunks (to map pagination), but 10 days is fine too.
+            # Limitation: Reports API fails if range > 365 days. 10 days is safe.
+            entries, status_code = get_detailed_report(default_workspace_id, current_start, current_end)
+            if status_code != 200:
+                utils.log(f"🛑 Reports API also failed. Stopping sync for this chunk.")
+                # If even Reports API fails, we loop? or break? 
+                # Mostly break to avoid loop hell.
+                break
+
         if entries:
             utils.log(f"Found {len(entries)} entries from {current_start.to_date_string()} to {current_end.to_date_string()}. Processing...")
             # Sort newest first
-            entries.sort(key=lambda x: x['start'], reverse=True)
+            entries.sort(key=lambda x: pendulum.parse(x['start']), reverse=True)
             
             for task in entries:
+                # Reports API doesn't return 'server_deleted_at', so we skip that check for reports
                 if task.get("server_deleted_at"):
                     continue
                 
                 toggl_id = task.get('id')
-                # Check for existing page to support updates
+                # Check for existing page
                 existing_page_id = notion_helper.get_page_by_toggl_id(toggl_id)
                 
-                utils.log(f"📝 {'Updating' if existing_page_id else 'Syncing'}: [{task.get('description') or '无描述'}] ({task.get('start')})")
+                # Check if modification is needed (Optional optimization, currently just updates)
+                description_display = task.get('description') or '无描述'
+                action = "Updating" if existing_page_id else "Syncing"
+                
+                # Silent log for bulk history? No, user wants to see progress.
+                utils.log(f"📝 {action}: [{description_display}] ({task.get('start')})")
+                
                 try:
                     parent, properties, icon = process_entry(task)
                     if existing_page_id:
@@ -335,6 +478,8 @@ def insert_to_notion():
         
         if current_start <= start:
             break
+        
+        # Prepare for next iteration
         current_end = current_start.subtract(seconds=1)
     
     # After forward sync, perform reverse sync for entries created in Notion
