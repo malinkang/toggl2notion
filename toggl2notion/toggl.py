@@ -187,12 +187,15 @@ def process_entry(task):
     
     pid = task.get("project_id") or task.get("pid")
     description = task.get("description")
-    
+    emoji = None
+
     if pid and pid in project_cache:
         project_info = project_cache[pid]
-        project_name = project_info["name"]
-        emoji, project_name = split_emoji_from_string(project_name)
-        item["标题"] = project_name
+        raw_project_name = project_info["name"]
+        emoji, project_display_name = split_emoji_from_string(raw_project_name)
+        
+        # 标注展示规则：有描述显描述，没描述显项目名
+        item["标题"] = description if description else project_display_name
         
         client_id = project_info.get("client_id")
         project_properties = {"金币":{"number": 1}}
@@ -214,9 +217,9 @@ def process_entry(task):
             
         item["Project"] = [
             notion_helper.get_relation_id(
-                project_name,
+                project_display_name,
                 notion_helper.project_database_id,
-                {"type": "emoji", "emoji": emoji},
+                {"type": "emoji", "emoji": emoji} if emoji else None,
                 properties=project_properties,
                 remote_id=pid
             )
@@ -239,7 +242,7 @@ def process_entry(task):
     )
     
     icon = None
-    if 'emoji' in locals() and emoji:
+    if emoji:
          icon = {"type": "emoji", "emoji": emoji}
          
     return parent, properties, icon
