@@ -326,9 +326,84 @@ def get_detailed_report(workspace_id, start_date, end_date):
         
     return transformed_entries, 200
 
+
+def sync_data_range(start_date, end_date, workspace_id, force_reports_api=False):
+    """Sync data for a specific date range."""
+    utils.log(f"Synchronizing from {start_date.to_iso8601_string()} to {end_date.to_iso8601_string()}")
+    
+    current_end = end_date
+    while current_end > start_date:
+        current_start = current_end.subtract(days=10)
+        if current_start < start_date:
+            current_start = start_date
+            
+        entries = None
+        status_code = 200
+        
+        # Check if we are clearly out of 90 days range? 
+        days_diff = (pendulum.now("Asia/Shanghai") - current_end).days
+        use_reports_api = force_reports_api or (days_diff > 85)
+        
+        if not use_reports_api:
+            entries, status_code = get_time_entries(current_start, current_end)
+            if status_code == 400:
+                 utils.log(f"⚠️ Standard API failed with 400 (likely historical limit). Retrying with Reports API...")
+                 use_reports_api = True
+                 status_code = 200 # Reset for retry
+            elif status_code == 402:
+                 utils.log(f"🛑 Hit Toggl API limit (402). Stopping.")
+                 return False # Stop sync
+
+        if use_reports_api:
+            entries, status_code = get_detailed_report(workspace_id, current_start, current_end)
+            
+            if status_code == 402:
+                # Special handling for Free Tier limit on historical reports
+                utils.log(f"🛑 Payment Required (402) for range {current_start.to_date_string()} - {current_end.to_date_string()}.")
+                utils.log(f"⚠️ Likely reached the limit of historical data access for Free Plan (approx 1 year).")
+                utils.log(f"🛑 Stoping backfill to avoid further errors.")
+                return False # Stop sync completely for deeper history
+            
+            if status_code != 200:
+                utils.log(f"🛑 Reports API failed with {status_code}. Stopping sync for this chunk.")
+                return False
+
+        if entries:
+            utils.log(f"Found {len(entries)} entries from {current_start.to_date_string()} to {current_end.to_date_string()}. Processing...")
+            # Sort newest first
+            entries.sort(key=lambda x: pendulum.parse(x['start']), reverse=True)
+            
+            for task in entries:
+                if task.get("server_deleted_at"):
+                    continue
+                
+                toggl_id = task.get('id')
+                existing_page_id = notion_helper.get_page_by_toggl_id(toggl_id)
+                
+                description_display = task.get('description') or '无描述'
+                action = "Updating" if existing_page_id else "Syncing"
+                
+                utils.log(f"📝 {action}: [{description_display}] ({task.get('start')})")
+                
+                try:
+                    parent, properties, icon = process_entry(task)
+                    if existing_page_id:
+                        notion_helper.update_page(page_id=existing_page_id, properties=properties, icon=icon)
+                    else:
+                        notion_helper.create_page(parent=parent, properties=properties, icon=icon)
+                except Exception as e:
+                    utils.log(f"Error processing task {task.get('id')}: {e}")
+        
+        if current_start <= start_date:
+            break
+        
+        # Prepare for next iteration
+        current_end = current_start.subtract(seconds=1)
+        
+    return True
+
 def insert_to_notion():
     now = pendulum.now("Asia/Shanghai")
-    start = None
     
     # 1. Check latest entry in Notion (Forward Sync Anchor)
     sorts_desc = [{"property": "时间", "direction": "descending"}]
@@ -339,18 +414,12 @@ def insert_to_notion():
     latest_end = None
     if len(response.get("results")) > 0:
         latest_page = response.get("results")[0]
-        # Try to get title for logging
         properties = latest_page.get("properties", {})
-        title_list = properties.get("标题", {}).get("title", [])
-        title = title_list[0].get("text", {}).get("content", "Untitled") if title_list else "Untitled"
-        
         date_prop = properties.get("时间", {}).get("date")
         if date_prop and date_prop.get("end"):
              latest_end = pendulum.parse(date_prop.get("end")).in_timezone("Asia/Shanghai")
-             utils.log(f"🔍 Found latest entry in Notion: [{title}] at {date_prop.get('end')}")
         elif date_prop and date_prop.get("start"):
              latest_end = pendulum.parse(date_prop.get("start")).in_timezone("Asia/Shanghai")
-             utils.log(f"🔍 Found latest entry in Notion (start only): [{title}] at {date_prop.get('start')}")
 
     # 2. Check earliest entry in Notion (Backward Gap Check)
     sorts_asc = [{"property": "时间", "direction": "ascending"}]
@@ -367,122 +436,49 @@ def insert_to_notion():
             earliest_start = pendulum.parse(date_prop_early.get("start")).in_timezone("Asia/Shanghai")
             utils.log(f"🔍 Found earliest entry in Notion: {date_prop_early.get('start')}")
 
-    # 3. Determine Sync Start Date
-    account_created_at = get_created_at().in_timezone("Asia/Shanghai")
-    
-    # Strategy:
-    # If Notion is empty -> Full Sync from Account Creation
-    # If Notion has data but earliest entry is > 7 days after account creation -> Gap detected -> Full Backfill
-    # Otherwise -> Incremental Sync from latest entry - 24h
-    
-    gap_threshold_days = 7
-    
-    if not latest_end:
-        start = account_created_at
-        utils.log(f"🚀 Notion is empty. Starting full import from registration date: {start.to_date_string()}")
-    elif earliest_start and (earliest_start - account_created_at).days > gap_threshold_days:
-        start = account_created_at
-        utils.log(f"⚠️ Missing history detected! Earliest entry ({earliest_start.to_date_string()}) is far from registration ({account_created_at.to_date_string()}).")
-        utils.log(f"🚀 Triggering FULL BACKFILL to fill the gap. This may take a while...")
-    else:
-        # Normal incremental sync
-        start = latest_end.subtract(hours=24)
-        utils.log(f"✅ History seems check. Syncing incrementally from {start.to_datetime_string()} to detect updates.")
-
-    # Track API v9 returns all entries for the user. We only need to load workspace projects once.
+    # Track API v9 returns all entries for the user
     workspaces = get_workspaces()
     if not workspaces:
         utils.log("No workspaces found or API error.")
         return
-    
-    # Default to first workspace for Reports API (Limitation: Script assumes single workspace focus or iterates all if refined)
     default_workspace_id = workspaces[0]["id"]
-
     for ws in workspaces:
         load_workspace_cache(ws["id"])
 
-    # Loop backward from now to start in smaller chunks (e.g., 10 days) to avoid API limits and provide feedback
-    current_end = now
-    utils.log(f"Synchronizing from {start.to_iso8601_string()} to {current_end.to_iso8601_string()}")
+    # 3. Strategy Execution
+    account_created_at = get_created_at().in_timezone("Asia/Shanghai")
+    gap_threshold_days = 7
+    
+    # Phase A: Incremental Forward Sync (Latest -> Now)
+    # Ensure we cover at least the last 24h even if latest_end is very recent
+    if latest_end:
+        incremental_start = latest_end.subtract(days=1) 
+        utils.log(f"🔄 Starting Incremental Sync from: {incremental_start.to_datetime_string()}")
+        sync_data_range(incremental_start, now, default_workspace_id)
+    else:
+        # Notion is empty, full sync will handle it
+        incremental_start = account_created_at
+        utils.log(f"🚀 Notion is empty. Starting initial full import.")
+        sync_data_range(incremental_start, now, default_workspace_id)
+        return # Initial sync done
 
-    while current_end > start:
-        current_start = current_end.subtract(days=10)
-        # If we hit the absolute start, clamp it
-        if current_start < start:
-            # Important: Ensure we don't undershoot if start is very old logic-wise, 
-            # but here start is the boundary.
-            current_start = start
+    # Phase B: Historical Backfill (Gap Fill: Account Created -> Earliest Entry)
+    if earliest_start and (earliest_start - account_created_at).days > gap_threshold_days:
+        utils.log(f"⚠️ Missing history detected! Gap between registration ({account_created_at.to_date_string()}) and earliest entry ({earliest_start.to_date_string()}).")
+        utils.log(f"🚀 Triggering GAP BACKFILL (Reports API).")
         
-        # Logic: Try standard API first. If it fails with 400 (Historical Limit), switch to Reports API strategy.
-        entries = None
-        status_code = 200
+        # Sync from Created At -> Earliest Start
+        # We stop at earliest_start because we assume data from there onwards exists
+        sync_success = sync_data_range(account_created_at, earliest_start.subtract(seconds=1), default_workspace_id, force_reports_api=True)
         
-        # Check if we are clearly out of 90 days range? 
-        # Toggl Free limit is rolling 90 days.
-        days_diff = (now - current_end).days
-        
-        use_reports_api = False
-        if days_diff > 85: # Safety buffer
-             use_reports_api = True
-             utils.log(f"🕰️ Date range > 85 days ago ({current_start.to_date_string()}). Switching to Reports API.")
-        
-        if not use_reports_api:
-            entries, status_code = get_time_entries(current_start, current_end)
-            if status_code == 400:
-                 utils.log(f"⚠️ Standard API failed with 400 (likely historical limit). Retrying with Reports API...")
-                 use_reports_api = True
-                 status_code = 200 # Reset for retry
-            elif status_code == 402:
-                 utils.log(f"🛑 Hit Toggl API limit (402). Stopping.")
-                 break
-
-        if use_reports_api:
-            # Reports API works best with larger chunks (to map pagination), but 10 days is fine too.
-            # Limitation: Reports API fails if range > 365 days. 10 days is safe.
-            entries, status_code = get_detailed_report(default_workspace_id, current_start, current_end)
-            if status_code != 200:
-                utils.log(f"🛑 Reports API also failed. Stopping sync for this chunk.")
-                # If even Reports API fails, we loop? or break? 
-                # Mostly break to avoid loop hell.
-                break
-
-        if entries:
-            utils.log(f"Found {len(entries)} entries from {current_start.to_date_string()} to {current_end.to_date_string()}. Processing...")
-            # Sort newest first
-            entries.sort(key=lambda x: pendulum.parse(x['start']), reverse=True)
+        if not sync_success:
+            utils.log("⚠️ Backfill stopped early due to API limit or error.")
             
-            for task in entries:
-                # Reports API doesn't return 'server_deleted_at', so we skip that check for reports
-                if task.get("server_deleted_at"):
-                    continue
-                
-                toggl_id = task.get('id')
-                # Check for existing page
-                existing_page_id = notion_helper.get_page_by_toggl_id(toggl_id)
-                
-                # Check if modification is needed (Optional optimization, currently just updates)
-                description_display = task.get('description') or '无描述'
-                action = "Updating" if existing_page_id else "Syncing"
-                
-                # Silent log for bulk history? No, user wants to see progress.
-                utils.log(f"📝 {action}: [{description_display}] ({task.get('start')})")
-                
-                try:
-                    parent, properties, icon = process_entry(task)
-                    if existing_page_id:
-                        notion_helper.update_page(page_id=existing_page_id, properties=properties, icon=icon)
-                    else:
-                        notion_helper.create_page(parent=parent, properties=properties, icon=icon)
-                except Exception as e:
-                    utils.log(f"Error processing task {task.get('id')}: {e}")
-        
-        if current_start <= start:
-            break
-        
-        # Prepare for next iteration
-        current_end = current_start.subtract(seconds=1)
+    else:
+        utils.log(f"✅ History continuity checked. No significant gaps found.")
     
     # After forward sync, perform reverse sync for entries created in Notion
+    # Note: Reverse sync is relatively cheap (queries Notion for missing IDs)
     reverse_sync_notion_to_toggl()
 
 if __name__ == "__main__":

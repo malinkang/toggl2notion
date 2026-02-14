@@ -13,27 +13,27 @@ This update enables the synchronization of Toggl time entries older than 90 days
     - Implements rate limiting (1.1s delay between requests).
     - Transforms report data structure to match the existing Time Entry format.
 
-### 2. Smart Backfill Logic (`insert_to_notion`)
-- **Gap Detection**:
-    - Compares the `earliest` entry in Notion with the Toggl account's `created_at` date.
-    - If a gap of > 7 days is detected, the script automatically triggers a **Full Backfill** mode.
-- **Workflow**:
-    - **Standard Mode**: Syncs incrementally from the latest Notion entry (minus 24h).
-    - **Backfill Mode**: Syncs from `created_at` date up to `now`.
-    - **Hybrid API Usage**:
-        - Recent data (< 90 days) uses the fast `Time Entries API`.
-        - Historical data (> 90 days) automatically switches to `Reports API`.
+### 2. Optimized Sync Strategy (`insert_to_notion`)
+The sync process is now split into two intelligent phases to maximize performance and minimize API usage:
+
+#### Phase A: Incremental Forward Sync (Standard)
+- **Range**: `Latest Entry in Notion (minus 24h)` -> `Now`
+- **Purpose**: Captures new tasks and modifications to recent tasks.
+- **Frequency**: Runs every time.
+
+#### Phase B: Historical Backfill (Gap Fill)
+- **Trigger**: Only runs if a significant gap (> 7 days) is detected between your **Notion Earliest Entry** and **Toggl Account Creation Date**.
+- **Range**: `Account Creation Date` -> `Notion Earliest Entry`
+- **Optimization**: **Does NOT re-sync** the data you already have in the middle. It specifically targets the missing historical chunk.
+- **API Handling**: Automatically switches to Reports API and handles Free Tier limits (approx 1 year history) gracefully by stopping if a 402 error is encountered.
 
 ## How to Verify
 1.  **Deployment**: Push the latest code to the repository.
-2.  **Trigger**: Run the n8n workflow or wait for the scheduled trigger.
+2.  **Trigger**: Run the n8n workflow.
 3.  **Observation**:
-    - Check the execution logs.
-    - If your Notion database was incomplete, you should see:
-      `⚠️ Missing history detected! ... Triggering FULL BACKFILL`
-    - You will see logs indicating "Switching to Reports API" for older dates.
-    - Verify that entries from previous years (e.g., 2021, 2022) are appearing in Notion.
+    - **Incremental**: You should see `🔄 Starting Incremental Sync from: ...`
+    - **Backfill**: If you have missing history, you will see `🚀 Triggering GAP BACKFILL`.
+    - **Efficiency**: The script will NOT waste time updating thousands of existing records in the middle of your timeline.
 
 ## Notes
-- **Performance**: A full backfill might take time (e.g., 10-20 minutes for 5 years of data) due to API rate limits. This only happens once.
-- **Safety**: The logic checks for existing pages in Notion before creating new ones, preventing duplicates.
+- **Free Tier Limit**: Toggl's Reports API restricts free users to approximately 1 year of historical data. The script uses a "best effort" approach: it will sync as far back as allowed and stop gracefully if blocked by Toggl (Log: `🛑 Payment Required`).
