@@ -173,7 +173,7 @@ def process_entry(task):
     if tags:
         item["标签"] = [
             notion_helper.get_relation_id(
-                tag, notion_helper.tag_database_id, get_icon(TAG_ICON_URL)
+                tag, notion_helper.tag_data_source_id, get_icon(TAG_ICON_URL)
             )
             for tag in tags
         ]
@@ -207,7 +207,7 @@ def process_entry(task):
             item["Client"] = [
                 notion_helper.get_relation_id(
                     client_name,
-                    notion_helper.client_database_id,
+                    notion_helper.client_data_source_id,
                     {"type": "emoji", "emoji": client_emoji},
                     remote_id=client_id
                 )
@@ -219,7 +219,7 @@ def process_entry(task):
         item["Project"] = [
             notion_helper.get_relation_id(
                 project_display_name,
-                notion_helper.project_database_id,
+                notion_helper.project_data_source_id,
                 {"type": "emoji", "emoji": emoji} if emoji else None,
                 properties=project_properties,
                 remote_id=pid
@@ -235,8 +235,8 @@ def process_entry(task):
         
     properties = utils.get_properties(item, time_properties_type_dict)
     parent = {
-        "database_id": notion_helper.time_database_id,
-        "type": "database_id",
+        "data_source_id": notion_helper.time_data_source_id,
+        "type": "data_source_id",
     }
     notion_helper.get_date_relation(
         properties, pendulum.from_timestamp(stop_ts, tz="Asia/Shanghai")
@@ -408,7 +408,7 @@ def insert_to_notion():
     # 1. Check latest entry in Notion (Forward Sync Anchor)
     sorts_desc = [{"property": "时间", "direction": "descending"}]
     response = notion_helper.query(
-        database_id=notion_helper.time_database_id, sorts=sorts_desc, page_size=1
+        database_id=notion_helper.time_data_source_id, sorts=sorts_desc, page_size=1
     )
     
     latest_end = None
@@ -424,7 +424,7 @@ def insert_to_notion():
     # 2. Check earliest entry in Notion (Backward Gap Check)
     sorts_asc = [{"property": "时间", "direction": "ascending"}]
     response_asc = notion_helper.query(
-        database_id=notion_helper.time_database_id, sorts=sorts_asc, page_size=1
+        database_id=notion_helper.time_data_source_id, sorts=sorts_asc, page_size=1
     )
     
     earliest_start = None

@@ -12,19 +12,19 @@ class NotionHelper(NotionHelperBase):
     def __init__(self):
         super().__init__()
 
-        self.time_database_id = os.getenv("TIME_DATABASE_NAME")
-        self.day_database_id = os.getenv("DAY_DATABASE_ID")
-        self.week_database_id = os.getenv("WEEK_DATABASE_ID")
-        self.month_database_id = os.getenv("MONTH_DATABASE_ID")
-        self.year_database_id = os.getenv("YEAR_DATABASE_ID")
-        self.all_database_id = os.getenv("ALL_DATABASE_ID")
-        self.client_database_id = os.getenv("CLIENT_DATABASE_ID")
-        self.project_database_id = os.getenv("PROJECT_DATABASE_ID")
-        self.tag_database_id = os.getenv("TAG_DATABASE_ID")
+        self.time_data_source_id = os.getenv("TIME_DATABASE_NAME")
+        self.day_data_source_id = os.getenv("DAY_DATABASE_ID")
+        self.week_data_source_id = os.getenv("WEEK_DATABASE_ID")
+        self.month_data_source_id = os.getenv("MONTH_DATABASE_ID")
+        self.year_data_source_id = os.getenv("YEAR_DATABASE_ID")
+        self.all_data_source_id = os.getenv("ALL_DATABASE_ID")
+        self.client_data_source_id = os.getenv("CLIENT_DATABASE_ID")
+        self.project_data_source_id = os.getenv("PROJECT_DATABASE_ID")
+        self.tag_data_source_id = os.getenv("TAG_DATABASE_ID")
         self.heatmap_block_id = os.getenv("HEATMAP_BLOCK_ID")
 
-        if self.time_database_id:
-            self.write_database_id(self.time_database_id)
+        if self.time_data_source_id:
+            self.write_data_source_id(self.time_data_source_id)
 
     # --- Unique methods ---
 
@@ -39,7 +39,7 @@ class NotionHelper(NotionHelperBase):
         filter = {"property": "Id", "number": {"equals": int(toggl_id)}}
         try:
             response = self.query(
-                database_id=self.time_database_id, filter=filter, page_size=1
+                database_id=self.time_data_source_id, filter=filter, page_size=1
             )
             results = response.get("results")
             return results[0].get("id") if results else None
@@ -53,7 +53,7 @@ class NotionHelper(NotionHelperBase):
         """Query entries in Time database that are missing a Toggl ID."""
         filter = {"property": "Id", "number": {"is_empty": True}}
         try:
-            return self.query_all_by_filter(database_id=self.time_database_id, filter=filter)
+            return self.query_all_by_filter(database_id=self.time_data_source_id, filter=filter)
         except Exception as e:
             error_str = str(e).lower()
             if "id" in error_str and ("property" in error_str or "exists" in error_str):
@@ -85,7 +85,7 @@ class NotionHelper(NotionHelperBase):
         if remote_id:
             filter = {"property": "Id", "number": {"equals": int(remote_id)}}
             try:
-                response = self.query(database_id=id, filter=filter)
+                response = self.query(data_source_id=id, filter=filter)
                 results = response.get("results")
                 if results:
                     page_id = results[0].get("id")
@@ -107,7 +107,7 @@ class NotionHelper(NotionHelperBase):
         if not page_id:
             filter = {"property": "标题", "title": {"equals": name}}
             try:
-                response = self.query(database_id=id, filter=filter)
+                response = self.query(data_source_id=id, filter=filter)
                 results = response.get("results")
             except Exception as e:
                 log(f"Failed to query database {id} for name '{name}': {e}")
@@ -128,7 +128,7 @@ class NotionHelper(NotionHelperBase):
 
         # 3. Create if still not found
         if not page_id:
-            parent = {"database_id": id, "type": "database_id"}
+            parent = {"database_id": id, "type": "data_source_id"}
             properties["标题"] = get_title(name)
             if remote_id:
                 properties["Id"] = {"number": int(remote_id)}
@@ -162,7 +162,7 @@ class NotionHelper(NotionHelperBase):
         properties["月"] = get_relation([self.get_month_relation_id(new_date)])
         properties["周"] = get_relation([self.get_week_relation_id(new_date)])
         return self.get_relation_id(
-            day, self.day_database_id, get_icon(TARGET_ICON_URL), properties
+            day, self.day_data_source_id, get_icon(TARGET_ICON_URL), properties
         )
 
     # Override date relation methods to use get_icon(TARGET_ICON_URL) instead of date icon
@@ -174,7 +174,7 @@ class NotionHelper(NotionHelperBase):
         start, end = get_first_and_last_day_of_week(date)
         properties = {"日期": get_date(format_date(start), format_date(end))}
         return self.get_relation_id(
-            week, self.week_database_id, get_icon(TARGET_ICON_URL), properties
+            week, self.week_data_source_id, get_icon(TARGET_ICON_URL), properties
         )
 
     def get_month_relation_id(self, date):
@@ -183,7 +183,7 @@ class NotionHelper(NotionHelperBase):
         start, end = get_first_and_last_day_of_month(date)
         properties = {"日期": get_date(format_date(start), format_date(end))}
         return self.get_relation_id(
-            month, self.month_database_id, get_icon(TARGET_ICON_URL), properties
+            month, self.month_data_source_id, get_icon(TARGET_ICON_URL), properties
         )
 
     def get_year_relation_id(self, date):
@@ -192,7 +192,7 @@ class NotionHelper(NotionHelperBase):
         start, end = get_first_and_last_day_of_year(date)
         properties = {"日期": get_date(format_date(start), format_date(end))}
         return self.get_relation_id(
-            year, self.year_database_id, get_icon(TARGET_ICON_URL), properties
+            year, self.year_data_source_id, get_icon(TARGET_ICON_URL), properties
         )
 
     # Override get_date_relation to include 全部
@@ -202,7 +202,7 @@ class NotionHelper(NotionHelperBase):
         properties["周"] = get_relation([self.get_week_relation_id(date)])
         properties["日"] = get_relation([self.get_day_relation_id(date)])
         properties["全部"] = get_relation(
-            [self.get_relation_id("全部", id=self.all_database_id, icon=get_icon(TARGET_ICON_URL))]
+            [self.get_relation_id("全部", id=self.all_data_source_id, icon=get_icon(TARGET_ICON_URL))]
         )
 
     # Override update_page to support icon parameter
