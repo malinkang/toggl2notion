@@ -1,0 +1,7 @@
+requests
+notion-client==2.5.0
+github-heatmap
+retrying
+pendulum
+emoji
+python-dotenv
