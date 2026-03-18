@@ -22,24 +22,28 @@ class NotionHelper(NotionHelperBase):
         self.project_data_source_id = os.getenv("PROJECT_DATABASE_ID")
         self.tag_data_source_id = os.getenv("TAG_DATABASE_ID")
         self.heatmap_block_id = os.getenv("HEATMAP_BLOCK_ID")
+        self.time_props, self.time_title = (
+            self.get_property_type(self.time_data_source_id)
+            if self.time_data_source_id else ({}, None)
+        )
 
         if self.time_data_source_id:
             self.write_data_source_id(self.time_data_source_id)
 
     # --- Unique methods ---
 
-    def write_database_id(self, database_id):
+    def write_data_source_id(self, data_source_id):
         env_file = os.getenv('GITHUB_ENV')
         if env_file:
             with open(env_file, "a") as file:
-                file.write(f"DATABASE_ID={database_id}\n")
+                file.write(f"DATABASE_ID={data_source_id}\n")
 
     def get_page_by_toggl_id(self, toggl_id):
         """Find the Notion page ID for a given Toggl ID."""
         filter = {"property": "Id", "number": {"equals": int(toggl_id)}}
         try:
             response = self.query(
-                database_id=self.time_data_source_id, filter=filter, page_size=1
+                data_source_id=self.time_data_source_id, filter=filter, page_size=1
             )
             results = response.get("results")
             return results[0].get("id") if results else None
@@ -53,7 +57,7 @@ class NotionHelper(NotionHelperBase):
         """Query entries in Time database that are missing a Toggl ID."""
         filter = {"property": "Id", "number": {"is_empty": True}}
         try:
-            return self.query_all_by_filter(database_id=self.time_data_source_id, filter=filter)
+            return self.query_all_by_filter(data_source_id=self.time_data_source_id, filter=filter)
         except Exception as e:
             error_str = str(e).lower()
             if "id" in error_str and ("property" in error_str or "exists" in error_str):
@@ -128,7 +132,7 @@ class NotionHelper(NotionHelperBase):
 
         # 3. Create if still not found
         if not page_id:
-            parent = {"database_id": id, "type": "data_source_id"}
+            parent = {"data_source_id": id, "type": "data_source_id"}
             properties["标题"] = get_title(name)
             if remote_id:
                 properties["Id"] = {"number": int(remote_id)}
@@ -234,5 +238,5 @@ class NotionHelper(NotionHelperBase):
                 return self.client.pages.create(parent=parent, properties=new_props, icon=icon)
             raise e
 
-    def query_all_by_book(self, database_id, filter):
-        return self.query_all_by_filter(database_id, filter)
+    def query_all_by_book(self, data_source_id, filter):
+        return self.query_all_by_filter(data_source_id, filter)
