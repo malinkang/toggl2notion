@@ -451,7 +451,7 @@ def insert_to_notion():
     # 1. Check latest entry in Notion (Forward Sync Anchor)
     sorts_desc = [{"property": "时间", "direction": "descending"}]
     response = notion_helper.query(
-        database_id=notion_helper.time_data_source_id, sorts=sorts_desc, page_size=1
+        data_source_id=notion_helper.time_data_source_id, sorts=sorts_desc, page_size=1
     )
     
     latest_end = None
@@ -467,7 +467,7 @@ def insert_to_notion():
     # 2. Check earliest entry in Notion (Backward Gap Check)
     sorts_asc = [{"property": "时间", "direction": "ascending"}]
     response_asc = notion_helper.query(
-        database_id=notion_helper.time_data_source_id, sorts=sorts_asc, page_size=1
+        data_source_id=notion_helper.time_data_source_id, sorts=sorts_asc, page_size=1
     )
     
     earliest_start = None
