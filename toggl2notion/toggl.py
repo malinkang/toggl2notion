@@ -276,11 +276,17 @@ def get_detailed_report(workspace_id, start_date, end_date):
     }
     
     all_entries = []
+    rate_limit_retries = 0
+    max_rate_limit_retries = 10
     while True:
         try:
             response = requests.get(url, params=params, auth=auth, headers=headers, timeout=15)
             if response.status_code == 429:
-                utils.log("⚠️ Reports API rate limit hit. Sleeping for 2 seconds...")
+                rate_limit_retries += 1
+                if rate_limit_retries > max_rate_limit_retries:
+                    utils.log(f"⚠️ Reports API rate limit 连续 {max_rate_limit_retries} 次，放弃重试")
+                    return None, 429
+                utils.log(f"⚠️ Reports API rate limit hit ({rate_limit_retries}/{max_rate_limit_retries}). Sleeping for 2 seconds...")
                 time.sleep(2)
                 continue
                 
