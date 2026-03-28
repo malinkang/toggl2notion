@@ -27,7 +27,7 @@ def init():
 
 
 def get_created_at():
-    response = requests.get("https://api.track.toggl.com/api/v9/me", auth=auth)
+    response = requests.get("https://api.track.toggl.com/api/v9/me", auth=auth, timeout=15)
     if response.ok:
         data = response.json()
         return pendulum.parse(data.get("created_at"))
@@ -37,7 +37,7 @@ def get_created_at():
 
 def get_workspaces():
     response = requests.get(
-        "https://api.track.toggl.com/api/v9/me/workspaces", auth=auth
+        "https://api.track.toggl.com/api/v9/me/workspaces", auth=auth, timeout=15
     )
     if response.ok:
         return response.json()
@@ -48,7 +48,7 @@ def get_workspaces():
 def load_workspace_cache(workspace_id):
     global project_cache, client_cache
     # Load Clients
-    response = requests.get(f"https://api.track.toggl.com/api/v9/workspaces/{workspace_id}/clients", auth=auth)
+    response = requests.get(f"https://api.track.toggl.com/api/v9/workspaces/{workspace_id}/clients", auth=auth, timeout=15)
     if response.ok:
         clients = response.json()
         utils.log(f"Loaded {len(clients)} clients for workspace {workspace_id}")
@@ -58,14 +58,15 @@ def load_workspace_cache(workspace_id):
         utils.log(f"Failed to load clients for workspace {workspace_id}: {response.status_code} {response.text}")
     
     # Load Projects
-    response = requests.get(f"https://api.track.toggl.com/api/v9/workspaces/{workspace_id}/projects", auth=auth)
+    response = requests.get(f"https://api.track.toggl.com/api/v9/workspaces/{workspace_id}/projects", auth=auth, timeout=15)
     if response.ok:
         projects = response.json()
         utils.log(f"Loaded {len(projects)} projects for workspace {workspace_id}")
         for p in projects:
             project_cache[p["id"]] = {
                 "name": p["name"],
-                "client_id": p.get("client_id")
+                "client_id": p.get("client_id"),
+                "workspace_id": workspace_id,
             }
     else:
         utils.log(f"Failed to load projects for workspace {workspace_id}: {response.status_code} {response.text}")
@@ -79,7 +80,7 @@ def get_time_entries(start_date, end_date):
         "start_date": start_date.format("YYYY-MM-DDTHH:mm:ssZ"),
         "end_date": end_date.format("YYYY-MM-DDTHH:mm:ssZ"),
     }
-    response = requests.get(url, params=params, auth=auth)
+    response = requests.get(url, params=params, auth=auth, timeout=15)
     if response.ok:
         return response.json(), 200
     else:
@@ -101,7 +102,8 @@ def create_toggl_entry(workspace_id, description, start, duration, pid=None):
     response = requests.post(
         f"https://api.track.toggl.com/api/v9/workspaces/{workspace_id}/time_entries",
         auth=auth,
-        json=data
+        json=data,
+        timeout=15
     )
     if response.ok:
         entry = response.json()
@@ -114,6 +116,7 @@ def create_toggl_entry(workspace_id, description, start, duration, pid=None):
 def reverse_sync_notion_to_toggl():
     """Find entries in Notion without Toggl IDs and create them in Toggl."""
     utils.log("🔄 Checking for Notion entries to sync back to Toggl...")
+    notion_helper.ensure_time_id_property()
     missing_entries = notion_helper.query_missing_toggl_id()
     if not missing_entries:
         utils.log("No missing Toggl IDs found in Notion.")
@@ -124,7 +127,7 @@ def reverse_sync_notion_to_toggl():
     if not workspaces:
         utils.log("Cannot perform reverse sync: No Toggl workspaces found.")
         return
-    workspace_id = workspaces[0]["id"]
+    fallback_workspace_id = workspaces[0]["id"]
 
     for page in missing_entries:
         props = page.get("properties", {})
@@ -149,12 +152,19 @@ def reverse_sync_notion_to_toggl():
             
         # Get Project ID from Notion relation
         pid = None
+        workspace_id = fallback_workspace_id
         project_relation = props.get("Project", {}).get("relation", [])
         if project_relation:
             project_page_id = project_relation[0].get("id")
             pid = notion_helper.get_remote_id_from_page(project_page_id)
             if not pid:
                 utils.log(f"⚠️ Project in Notion for '{title}' does not have a Toggl ID. Creating without Project.")
+            elif pid in project_cache:
+                workspace_id = project_cache[pid].get("workspace_id", fallback_workspace_id)
+            else:
+                utils.log(
+                    f"⚠️ Project ID {pid} not found in cache. Falling back to workspace {fallback_workspace_id}."
+                )
 
         # Create in Toggl
         new_toggl_id = create_toggl_entry(workspace_id, title, start_time, duration, pid)
@@ -268,7 +278,7 @@ def get_detailed_report(workspace_id, start_date, end_date):
     all_entries = []
     while True:
         try:
-            response = requests.get(url, params=params, auth=auth, headers=headers)
+            response = requests.get(url, params=params, auth=auth, headers=headers, timeout=15)
             if response.status_code == 429:
                 utils.log("⚠️ Reports API rate limit hit. Sleeping for 2 seconds...")
                 time.sleep(2)
@@ -327,8 +337,35 @@ def get_detailed_report(workspace_id, start_date, end_date):
     return transformed_entries, 200
 
 
-def sync_data_range(start_date, end_date, workspace_id, force_reports_api=False):
+def get_historical_entries(workspace_ids, start_date, end_date):
+    """Fetch historical entries across all workspaces via Reports API."""
+    all_entries = []
+    seen_ids = set()
+
+    for workspace_id in workspace_ids:
+        utils.log(f"Fetching historical entries for workspace {workspace_id}...")
+        entries, status_code = get_detailed_report(workspace_id, start_date, end_date)
+        if status_code != 200:
+            return None, status_code
+
+        for entry in entries or []:
+            entry_id = entry.get("id")
+            dedupe_key = entry_id if entry_id is not None else (
+                workspace_id,
+                entry.get("start"),
+                entry.get("description"),
+            )
+            if dedupe_key in seen_ids:
+                continue
+            seen_ids.add(dedupe_key)
+            all_entries.append(entry)
+
+    return all_entries, 200
+
+
+def sync_data_range(start_date, end_date, workspace_ids, force_reports_api=False):
     """Sync data for a specific date range."""
+    notion_helper.ensure_time_id_property()
     utils.log(f"Synchronizing from {start_date.to_iso8601_string()} to {end_date.to_iso8601_string()}")
     
     current_end = end_date
@@ -355,7 +392,7 @@ def sync_data_range(start_date, end_date, workspace_id, force_reports_api=False)
                  return False # Stop sync
 
         if use_reports_api:
-            entries, status_code = get_detailed_report(workspace_id, current_start, current_end)
+            entries, status_code = get_historical_entries(workspace_ids, current_start, current_end)
             
             if status_code == 402:
                 # Special handling for Free Tier limit on historical reports
@@ -441,7 +478,7 @@ def insert_to_notion():
     if not workspaces:
         utils.log("No workspaces found or API error.")
         return
-    default_workspace_id = workspaces[0]["id"]
+    workspace_ids = [ws["id"] for ws in workspaces if ws.get("id") is not None]
     for ws in workspaces:
         load_workspace_cache(ws["id"])
 
@@ -454,12 +491,12 @@ def insert_to_notion():
     if latest_end:
         incremental_start = latest_end.subtract(days=1) 
         utils.log(f"🔄 Starting Incremental Sync from: {incremental_start.to_datetime_string()}")
-        sync_data_range(incremental_start, now, default_workspace_id)
+        sync_data_range(incremental_start, now, workspace_ids)
     else:
         # Notion is empty, full sync will handle it
         incremental_start = account_created_at
         utils.log(f"🚀 Notion is empty. Starting initial full import.")
-        sync_data_range(incremental_start, now, default_workspace_id)
+        sync_data_range(incremental_start, now, workspace_ids)
         return # Initial sync done
 
     # Phase B: Historical Backfill (Gap Fill: Account Created -> Earliest Entry)
@@ -469,7 +506,12 @@ def insert_to_notion():
         
         # Sync from Created At -> Earliest Start
         # We stop at earliest_start because we assume data from there onwards exists
-        sync_success = sync_data_range(account_created_at, earliest_start.subtract(seconds=1), default_workspace_id, force_reports_api=True)
+        sync_success = sync_data_range(
+            account_created_at,
+            earliest_start.subtract(seconds=1),
+            workspace_ids,
+            force_reports_api=True,
+        )
         
         if not sync_success:
             utils.log("⚠️ Backfill stopped early due to API limit or error.")

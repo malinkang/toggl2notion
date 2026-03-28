@@ -63,10 +63,11 @@ def split_emoji_from_string(s):
 upload_url = "https://toggl.notionhub.app/upload-svg"
 
 
-def upload_image(activation_code, svg_filename):
-    with open(svg_filename, "rb") as file:
+def upload_image(activation_code, file_path, upload_name=None):
+    upload_name = upload_name or os.path.basename(file_path)
+    with open(file_path, "rb") as file:
         files = {
-            "svgFile": (svg_filename, file, "image/svg+xml")
+            "svgFile": (upload_name, file, "image/svg+xml")
         }
         data = {
             "activationCode": activation_code
@@ -74,7 +75,7 @@ def upload_image(activation_code, svg_filename):
         headers = {
             "Accept": "application/json"
         }
-        response = requests.post(upload_url, files=files, data=data, headers=headers)
+        response = requests.post(upload_url, files=files, data=data, headers=headers, timeout=30)
     if response.status_code == 200:
         log(f"File uploaded successfully. {response.text}")
         return response.json().get("svgUrl")
@@ -85,4 +86,4 @@ def upload_image(activation_code, svg_filename):
 
 def upload_cover(url):
     cover_file = download_image(url)
-    return upload_image("cover", f"{cover_file.split('/')[-1]}", cover_file)
+    return upload_image("cover", cover_file)
