@@ -8,12 +8,15 @@ from . import utils
 from .config import TAG_ICON_URL
 from .utils import get_icon, split_emoji_from_string
 from dotenv import load_dotenv
+from notionhub.log import sync_notification
 load_dotenv()
 
 auth = None
 notion_helper = None
 project_cache = {}
 client_cache = {}
+project_name_cache = {}
+client_name_cache = {}
 
 def init():
     global auth, notion_helper
@@ -45,8 +48,12 @@ def get_workspaces():
         utils.log(f"Failed to get workspaces: {response.text}")
         return []
 
+def normalize_cache_name(name):
+    return (name or "").strip().lower()
+
+
 def load_workspace_cache(workspace_id):
-    global project_cache, client_cache
+    global project_cache, client_cache, project_name_cache, client_name_cache
     # Load Clients
     response = requests.get(f"https://api.track.toggl.com/api/v9/workspaces/{workspace_id}/clients", auth=auth, timeout=15)
     if response.ok:
@@ -54,6 +61,7 @@ def load_workspace_cache(workspace_id):
         utils.log(f"Loaded {len(clients)} clients for workspace {workspace_id}")
         for c in clients:
             client_cache[c["id"]] = c["name"]
+            client_name_cache[(workspace_id, normalize_cache_name(c.get("name")))] = c["id"]
     else:
         utils.log(f"Failed to load clients for workspace {workspace_id}: {response.status_code} {response.text}")
     
@@ -68,6 +76,12 @@ def load_workspace_cache(workspace_id):
                 "client_id": p.get("client_id"),
                 "workspace_id": workspace_id,
             }
+            project_name_cache[
+                (workspace_id, normalize_cache_name(p.get("name")), p.get("client_id"))
+            ] = p["id"]
+            project_name_cache[
+                (workspace_id, normalize_cache_name(p.get("name")), None)
+            ] = p["id"]
     else:
         utils.log(f"Failed to load projects for workspace {workspace_id}: {response.status_code} {response.text}")
 
@@ -113,6 +127,123 @@ def create_toggl_entry(workspace_id, description, start, duration, pid=None):
         utils.log(f"Failed to create Toggl entry: {response.status_code} {response.text}")
         return None
 
+
+def create_toggl_client(workspace_id, name):
+    """Create a Toggl client and update local caches."""
+    clean_name = (name or "").strip()
+    if not clean_name:
+        return None
+    cache_key = (workspace_id, normalize_cache_name(clean_name))
+    if cache_key in client_name_cache:
+        return client_name_cache[cache_key]
+
+    response = requests.post(
+        f"https://api.track.toggl.com/api/v9/workspaces/{workspace_id}/clients",
+        auth=auth,
+        json={"name": clean_name},
+        timeout=15,
+    )
+    if not response.ok:
+        utils.log(f"Failed to create Toggl client '{clean_name}': {response.status_code} {response.text}")
+        return None
+    client = response.json()
+    client_id = client.get("id")
+    if client_id:
+        client_cache[client_id] = client.get("name") or clean_name
+        client_name_cache[cache_key] = client_id
+        utils.log(f"✅ Created Toggl client: [{clean_name}] (ID: {client_id})")
+    return client_id
+
+
+def create_toggl_project(workspace_id, name, client_id=None):
+    """Create a Toggl project and update local caches."""
+    clean_name = (name or "").strip()
+    if not clean_name:
+        return None
+    cache_key = (workspace_id, normalize_cache_name(clean_name), client_id)
+    fallback_key = (workspace_id, normalize_cache_name(clean_name), None)
+    if cache_key in project_name_cache:
+        return project_name_cache[cache_key]
+    if fallback_key in project_name_cache:
+        project_id = project_name_cache[fallback_key]
+        cached_project = project_cache.get(project_id, {})
+        if not client_id or cached_project.get("client_id") in (None, client_id):
+            return project_id
+
+    payload = {
+        "name": clean_name,
+        "workspace_id": int(workspace_id),
+        "active": True,
+        "is_private": False,
+    }
+    if client_id:
+        payload["client_id"] = int(client_id)
+    response = requests.post(
+        f"https://api.track.toggl.com/api/v9/workspaces/{workspace_id}/projects",
+        auth=auth,
+        json=payload,
+        timeout=15,
+    )
+    if not response.ok:
+        utils.log(f"Failed to create Toggl project '{clean_name}': {response.status_code} {response.text}")
+        return None
+    project = response.json()
+    project_id = project.get("id")
+    if project_id:
+        project_cache[project_id] = {
+            "name": project.get("name") or clean_name,
+            "client_id": project.get("client_id") or client_id,
+            "workspace_id": workspace_id,
+        }
+        project_name_cache[(workspace_id, normalize_cache_name(clean_name), project_cache[project_id].get("client_id"))] = project_id
+        project_name_cache[fallback_key] = project_id
+        utils.log(f"✅ Created Toggl project: [{clean_name}] (ID: {project_id})")
+    return project_id
+
+
+def ensure_remote_client(client_page_id, workspace_id):
+    if not client_page_id:
+        return None
+    remote_id = notion_helper.get_remote_id_from_page(client_page_id)
+    if remote_id:
+        return int(remote_id)
+
+    client_name, _ = notion_helper.get_page_title(client_page_id)
+    if not client_name:
+        utils.log(f"⚠️ Client page {client_page_id} has no title. Skipping client sync.")
+        return None
+
+    client_id = create_toggl_client(workspace_id, client_name)
+    if client_id:
+        notion_helper.update_page(client_page_id, {"Id": {"number": int(client_id)}})
+        utils.log(f"🔗 Linked Notion client '{client_name}' with Toggl ID {client_id}")
+    return client_id
+
+
+def ensure_remote_project(project_page_id, workspace_id, client_page_id_override=None):
+    if not project_page_id:
+        return None
+    remote_id = notion_helper.get_remote_id_from_page(project_page_id)
+    if remote_id:
+        return int(remote_id)
+
+    project_name, project_page = notion_helper.get_page_title(project_page_id)
+    if not project_name:
+        utils.log(f"⚠️ Project page {project_page_id} has no title. Skipping project sync.")
+        return None
+
+    client_page_id = (
+        notion_helper.get_relation_page(project_page, ["Client", "客户", "客户端"])
+        or client_page_id_override
+    )
+    client_id = ensure_remote_client(client_page_id, workspace_id)
+    project_id = create_toggl_project(workspace_id, project_name, client_id)
+    if project_id:
+        notion_helper.update_page(project_page_id, {"Id": {"number": int(project_id)}})
+        utils.log(f"🔗 Linked Notion project '{project_name}' with Toggl ID {project_id}")
+    return project_id
+
+
 def reverse_sync_notion_to_toggl():
     """Find entries in Notion without Toggl IDs and create them in Toggl."""
     utils.log("🔄 Checking for Notion entries to sync back to Toggl...")
@@ -131,11 +262,11 @@ def reverse_sync_notion_to_toggl():
 
     for page in missing_entries:
         props = page.get("properties", {})
-        title_list = props.get("标题", {}).get("title", [])
-        title = title_list[0].get("plain_text") if title_list else "无描述"
+        title = notion_helper.get_title_from_page(page) or "无描述"
         
         date_prop = props.get("时间", {}).get("date", {})
         if not date_prop or not date_prop.get("start"):
+            utils.log(f"⚠️ Skipping Notion page {page.get('id')}: missing start time.")
             continue
             
         start_time = date_prop.get("start")
@@ -147,24 +278,34 @@ def reverse_sync_notion_to_toggl():
             end_p = pendulum.parse(end_time)
             duration = (end_p - start_p).total_seconds()
         else:
-            # Fallback for entries with only start time (set 0 or minimal)
-            duration = 0
+            utils.log(f"⚠️ Skipping Notion page {page.get('id')}: missing end time.")
+            continue
+        if duration <= 0:
+            utils.log(f"⚠️ Skipping Notion page {page.get('id')}: duration must be positive.")
+            continue
             
         # Get Project ID from Notion relation
         pid = None
         workspace_id = fallback_workspace_id
-        project_relation = props.get("Project", {}).get("relation", [])
-        if project_relation:
-            project_page_id = project_relation[0].get("id")
-            pid = notion_helper.get_remote_id_from_page(project_page_id)
+        client_page_id = notion_helper.get_relation_page(page, ["Client", "客户", "客户端"])
+        if client_page_id:
+            ensure_remote_client(client_page_id, workspace_id)
+
+        project_page_id = notion_helper.get_relation_page(page, ["Project", "项目"])
+        if project_page_id:
+            pid = ensure_remote_project(project_page_id, workspace_id, client_page_id_override=client_page_id)
             if not pid:
                 utils.log(f"⚠️ Project in Notion for '{title}' does not have a Toggl ID. Creating without Project.")
             elif pid in project_cache:
                 workspace_id = project_cache[pid].get("workspace_id", fallback_workspace_id)
             else:
                 utils.log(
-                    f"⚠️ Project ID {pid} not found in cache. Falling back to workspace {fallback_workspace_id}."
+                    f"⚠️ Project ID {pid} not found in Toggl cache. Creating '{title}' without Project."
                 )
+                pid = None
+        else:
+            if client_page_id:
+                utils.log(f"⚠️ '{title}' has Client but no Project; Toggl time entries can only attach Client through a Project.")
 
         # Create in Toggl
         new_toggl_id = create_toggl_entry(workspace_id, title, start_time, duration, pid)
@@ -529,6 +670,12 @@ def insert_to_notion():
     # Note: Reverse sync is relatively cheap (queries Notion for missing IDs)
     reverse_sync_notion_to_toggl()
 
+def main():
+    with sync_notification("Toggl") as notification:
+        if init():
+            insert_to_notion()
+            notification.set_summary("Toggl 数据同步完成")
+
+
 if __name__ == "__main__":
-    if init():
-        insert_to_notion()
+    main()

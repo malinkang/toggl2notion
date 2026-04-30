@@ -1,7 +1,7 @@
 import os
 
 from notionhub.client import NotionHelperBase, TARGET_ICON_URL, TAG_ICON_URL, USER_ICON_URL, BOOKMARK_ICON_URL
-from notionhub.utils import get_icon, get_relation, get_title, get_date, format_date
+from notionhub.utils import get_icon, get_property_value, get_relation, get_title, get_date, format_date
 from notionhub.log import log
 
 
@@ -12,15 +12,16 @@ class NotionHelper(NotionHelperBase):
     def __init__(self):
         super().__init__()
 
-        self.time_data_source_id = os.getenv("TIME_DATABASE_NAME")
-        self.day_data_source_id = os.getenv("DAY_DATABASE_ID")
-        self.week_data_source_id = os.getenv("WEEK_DATABASE_ID")
-        self.month_data_source_id = os.getenv("MONTH_DATABASE_ID")
-        self.year_data_source_id = os.getenv("YEAR_DATABASE_ID")
-        self.all_data_source_id = os.getenv("ALL_DATABASE_ID")
-        self.client_data_source_id = os.getenv("CLIENT_DATABASE_ID")
-        self.project_data_source_id = os.getenv("PROJECT_DATABASE_ID")
-        self.tag_data_source_id = os.getenv("TAG_DATABASE_ID")
+        _, self.time_data_source_id = self.get_database_and_data_source_ids("TIME")
+        self.time_data_source_id = self.time_data_source_id or self.resolve_legacy_time_data_source_id()
+        _, self.day_data_source_id = self.get_database_and_data_source_ids("DAY")
+        _, self.week_data_source_id = self.get_database_and_data_source_ids("WEEK")
+        _, self.month_data_source_id = self.get_database_and_data_source_ids("MONTH")
+        _, self.year_data_source_id = self.get_database_and_data_source_ids("YEAR")
+        _, self.all_data_source_id = self.get_database_and_data_source_ids("ALL")
+        _, self.client_data_source_id = self.get_database_and_data_source_ids("CLIENT")
+        _, self.project_data_source_id = self.get_database_and_data_source_ids("PROJECT")
+        _, self.tag_data_source_id = self.get_database_and_data_source_ids("TAG")
         self.heatmap_block_id = os.getenv("HEATMAP_BLOCK_ID")
         self.time_props, self.time_title = (
             self.get_property_type(self.time_data_source_id)
@@ -31,6 +32,48 @@ class NotionHelper(NotionHelperBase):
             self.write_data_source_id(self.time_data_source_id)
 
     # --- Unique methods ---
+
+    def resolve_legacy_time_data_source_id(self):
+        raw_id = self.get_optional_env_value("TIME_DATABASE_NAME")
+        if not raw_id:
+            return None
+        try:
+            return self.resolve_data_source_id(raw_id)
+        except Exception:
+            return raw_id
+
+    def ensure_time_id_property(self):
+        if not self.time_data_source_id:
+            raise ValueError("缺少 TIME_DATABASE_NAME / TIME data source id")
+        if "Id" not in self.time_props:
+            raise ValueError(
+                "Time 数据源缺少必需的 'Id' number 字段，已停止同步以避免产生重复数据。"
+            )
+
+    def get_page_title(self, page_id):
+        try:
+            page = self.client.pages.retrieve(page_id=page_id)
+            return self.get_title_from_page(page), page
+        except Exception:
+            return None, None
+
+    def get_title_from_page(self, page):
+        props = page.get("properties", {}) if page else {}
+        for prop in props.values():
+            if prop.get("type") == "title":
+                return get_property_value(prop)
+        return None
+
+    def get_relation_page(self, page, property_names):
+        props = page.get("properties", {}) if page else {}
+        for name in property_names:
+            prop = props.get(name)
+            if not prop or prop.get("type") != "relation":
+                continue
+            relation = prop.get("relation") or []
+            if relation:
+                return relation[0].get("id")
+        return None
 
     def write_data_source_id(self, data_source_id):
         env_file = os.getenv('GITHUB_ENV')
