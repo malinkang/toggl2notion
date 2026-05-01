@@ -510,7 +510,7 @@ def get_historical_entries(workspace_ids, start_date, end_date):
     return all_entries, 200
 
 
-def sync_data_range(start_date, end_date, workspace_ids, force_reports_api=False):
+def sync_data_range(start_date, end_date, workspace_ids, force_reports_api=False, progress=None):
     """Sync data for a specific date range."""
     notion_helper.ensure_time_id_property()
     utils.log(f"Synchronizing from {start_date.to_iso8601_string()} to {end_date.to_iso8601_string()}")
@@ -573,8 +573,13 @@ def sync_data_range(start_date, end_date, workspace_ids, force_reports_api=False
                     parent, properties, icon = process_entry(task)
                     if existing_page_id:
                         notion_helper.update_page(page_id=existing_page_id, properties=properties, icon=icon)
+                        page_id = existing_page_id
                     else:
-                        notion_helper.create_page(parent=parent, properties=properties, icon=icon)
+                        page = notion_helper.create_page(parent=parent, properties=properties, icon=icon)
+                        page_id = page.get("id")
+                    if progress:
+                        status = "已更新" if existing_page_id else "已新增"
+                        progress.add(description_display, page_id=page_id, status=status)
                 except Exception as e:
                     utils.log(f"Error processing task {task.get('id')}: {e}")
         
@@ -586,7 +591,7 @@ def sync_data_range(start_date, end_date, workspace_ids, force_reports_api=False
         
     return True
 
-def insert_to_notion():
+def insert_to_notion(progress=None):
     now = pendulum.now("Asia/Shanghai")
     
     # 1. Check latest entry in Notion (Forward Sync Anchor)
@@ -638,12 +643,12 @@ def insert_to_notion():
     if latest_end:
         incremental_start = latest_end.subtract(days=1) 
         utils.log(f"🔄 Starting Incremental Sync from: {incremental_start.to_datetime_string()}")
-        sync_data_range(incremental_start, now, workspace_ids)
+        sync_data_range(incremental_start, now, workspace_ids, progress=progress)
     else:
         # Notion is empty, full sync will handle it
         incremental_start = account_created_at
         utils.log(f"🚀 Notion is empty. Starting initial full import.")
-        sync_data_range(incremental_start, now, workspace_ids)
+        sync_data_range(incremental_start, now, workspace_ids, progress=progress)
         return # Initial sync done
 
     # Phase B: Historical Backfill (Gap Fill: Account Created -> Earliest Entry)
@@ -658,6 +663,7 @@ def insert_to_notion():
             earliest_start.subtract(seconds=1),
             workspace_ids,
             force_reports_api=True,
+            progress=progress,
         )
         
         if not sync_success:
@@ -673,7 +679,9 @@ def insert_to_notion():
 def main():
     with sync_notification("Toggl") as notification:
         if init():
-            insert_to_notion()
+            progress = notification.progress("同步", batch_size=10)
+            insert_to_notion(progress=progress)
+            progress.flush()
             notification.set_summary("Toggl 数据同步完成")
 
 
