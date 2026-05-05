@@ -23,6 +23,9 @@ class NotionHelper(NotionHelperBase):
         _, self.project_data_source_id = self.get_database_and_data_source_ids("PROJECT")
         _, self.tag_data_source_id = self.get_database_and_data_source_ids("TAG")
         self.heatmap_block_id = os.getenv("HEATMAP_BLOCK_ID")
+        notion_page = os.getenv("NOTION_PAGE")
+        if notion_page and not self.heatmap_block_id:
+            self.search_database(self.extract_page_id(notion_page))
         self.time_props, self.time_title = (
             self.get_property_type(self.time_data_source_id)
             if self.time_data_source_id else ({}, None)
@@ -41,6 +44,29 @@ class NotionHelper(NotionHelperBase):
             return self.resolve_data_source_id(raw_id)
         except Exception:
             return raw_id
+
+    def is_heatmap_url(self, url):
+        if not url:
+            return False
+        return url.startswith("https://heatmap.malinkang.com/") or any(
+            path in url
+            for path in (
+                "/toggl/heatmap",
+                "/time/heatmap",
+            )
+        )
+
+    def search_database(self, block_id):
+        try:
+            children = self.client.blocks.children.list(block_id=block_id)["results"]
+            for child in children:
+                if child["type"] == "embed" and child.get("embed", {}).get("url", ""):
+                    if self.is_heatmap_url(child["embed"]["url"]):
+                        self.heatmap_block_id = child.get("id")
+                if child.get("has_children"):
+                    self.search_database(child["id"])
+        except Exception as e:
+            log(f"搜索 Toggl 热力图时发生异常: {e}")
 
     def ensure_time_id_property(self):
         if not self.time_data_source_id:

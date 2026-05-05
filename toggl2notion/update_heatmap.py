@@ -1,54 +1,42 @@
-import argparse
 import os
-from .utils import get_embed, log, upload_image
+import time
+from urllib.parse import urlencode
+
 from .notion_helper import NotionHelper
+from .utils import log
 
-def get_file():
-    activation_code = os.getenv("ACTIVATION_CODE")
-    if not activation_code:
-        activation_code = "default"
-        
-    # 设置文件夹路径
-    folder_path = f'./heatmap/{activation_code}'
 
-    # 检查文件夹是否存在
-    if os.path.exists(folder_path) and os.path.isdir(folder_path):
-        entries = [f for f in os.listdir(folder_path) if f.endswith(".svg")]
-        
-        file_name = entries[0] if entries else None
-        return file_name
-    else:
-        log(f"{folder_path} does not exist.")
+def normalize_optional_value(value):
+    normalized = str(value or "").strip()
+    if normalized in {"", "undefined", "[undefined]", "null", "[null]", "None"}:
         return None
-    
+    return normalized
+
+
+def get_heatmap_base_url():
+    return os.getenv("TOGGL_HEATMAP_BASE_URL", "https://togglapi.notionhub.app").rstrip("/")
+
+
+def build_heatmap_url():
+    query = {"v": str(int(time.time()))}
+    activation_code = normalize_optional_value(os.getenv("ACTIVATION_CODE"))
+    user_id = normalize_optional_value(os.getenv("USER_ID"))
+    if activation_code:
+        query["activationCode"] = activation_code
+    elif user_id:
+        query["userId"] = user_id
+    return f"{get_heatmap_base_url()}/toggl/heatmap?{urlencode(query)}"
+
+
 def main():
     notion_helper = NotionHelper()
-    image_file = get_file()
-    if image_file:
-        activation_code = os.getenv("ACTIVATION_CODE")
-        if not activation_code:
-            activation_code = "default"
-            
-        svg_path = f"./heatmap/{activation_code}/{image_file}"
-        # 使用 upload_image 上传
-        image_url = upload_image(activation_code, svg_path)
-        
-        if image_url:
-            heatmap_url = f"https://heatmap.malinkang.com/?image={image_url}"
-            if notion_helper.heatmap_block_id:
-                response = notion_helper.update_heatmap(
-                    block_id=notion_helper.heatmap_block_id, url=heatmap_url
-                )
-                log(f"Synced heatmap to Notion. URL: {heatmap_url}")
-            else:
-                response = notion_helper.append_blocks(
-                    block_id=notion_helper.page_id, children=[get_embed(heatmap_url)]
-                )
-                log(f"Appended heatmap to Notion page. URL: {heatmap_url}")
-        else:
-            log("Failed to upload heatmap image.")
-    else:
-        log("No heatmap file found.")
+    url = build_heatmap_url()
+    if not notion_helper.heatmap_block_id:
+        log("跳过 Toggl 热力图更新: 未找到 heatmap block id")
+        return
+    notion_helper.update_heatmap(block_id=notion_helper.heatmap_block_id, url=url)
+    log(f"更新 Toggl 热力图成功，热力图链接：{url}")
+
 
 if __name__ == "__main__":
     main()
