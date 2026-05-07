@@ -384,7 +384,7 @@ def process_entry(task):
     if description:
         item["备注"] = description
         
-    properties = utils.get_properties(item, notion_helper.time_props)
+    properties = notion_helper.build_properties(notion_helper.time_data_source_id, item, mandatory_properties=["标题", "Id"])
     parent = {
         "data_source_id": notion_helper.time_data_source_id,
         "type": "data_source_id",
