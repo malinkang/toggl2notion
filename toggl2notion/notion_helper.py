@@ -153,6 +153,7 @@ class NotionHelper(NotionHelperBase):
 
         page_id = None
         results = []
+        title_prop = self.get_title_property_name(id)
 
         # 1. Try to find by remote_id if provided
         if remote_id:
@@ -162,11 +163,11 @@ class NotionHelper(NotionHelperBase):
                 results = response.get("results")
                 if results:
                     page_id = results[0].get("id")
-                    existing_name = results[0].get("properties", {}).get("标题", {}).get("title", [])
+                    existing_name = results[0].get("properties", {}).get(title_prop, {}).get("title", [])
                     existing_name = existing_name[0].get("plain_text") if existing_name else ""
                     if existing_name != name:
                         log(f"Updating name for ID {remote_id}: '{existing_name}' -> '{name}'")
-                        properties["标题"] = get_title(name)
+                        properties[title_prop] = get_title(name)
                         self.update_page(page_id, properties, icon)
             except Exception as e:
                 error_str = str(e).lower()
@@ -178,7 +179,7 @@ class NotionHelper(NotionHelperBase):
 
         # 2. Fallback to name-based lookup if not found by ID or ID not provided
         if not page_id:
-            filter = {"property": "标题", "title": {"equals": name}}
+            filter = {"property": title_prop, "title": {"equals": name}}
             try:
                 response = self.query(data_source_id=id, filter=filter)
                 results = response.get("results")
@@ -202,7 +203,7 @@ class NotionHelper(NotionHelperBase):
         # 3. Create if still not found
         if not page_id:
             parent = {"data_source_id": id, "type": "data_source_id"}
-            properties["标题"] = get_title(name)
+            properties[title_prop] = get_title(name)
             if remote_id:
                 properties["Id"] = {"number": int(remote_id)}
 
