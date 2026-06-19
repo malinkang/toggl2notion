@@ -1,664 +1,978 @@
-[2026-05-01] • [20:00:11] 开始发送企业微信通知: 开始同步Toggl
-[2026-05-01] • [20:00:12] 企业微信通知发送成功
-[2026-05-01] • [20:00:18] 🔍 Found earliest entry in Notion: 2021-12-07T20:08:00.000+08:00
-[2026-05-01] • [20:00:21] Loaded 7 clients for workspace 5952284
-[2026-05-01] • [20:00:22] Loaded 50 projects for workspace 5952284
-[2026-05-01] • [20:00:23] 🔄 Starting Incremental Sync from: 2026-03-10 13:34:00
-[2026-05-01] • [20:00:23] Synchronizing from 2026-03-10T13:34:00+08:00 to 2026-05-01T20:00:16.407184+08:00
-[2026-05-01] • [20:00:24] Found 71 entries from 2026-04-21 to 2026-05-01. Processing...
-[2026-05-01] • [20:00:25] 📝 Syncing: [自动记录] (2026-05-01T09:15:33+00:00)
-[2026-05-01] • [20:00:30] Error processing task 4391054803: argument must be int or float, not tuple
-[2026-05-01] • [20:00:30] 📝 Syncing: [自动同步] (2026-05-01T08:03:48+00:00)
-[2026-05-01] • [20:00:34] Error processing task 4390940151: argument must be int or float, not tuple
-[2026-05-01] • [20:00:34] 📝 Syncing: [自动同步] (2026-05-01T07:30:53+00:00)
-[2026-05-01] • [20:00:34] Error processing task 4390917626: argument must be int or float, not tuple
-[2026-05-01] • [20:00:36] 📝 Syncing: [自动同步] (2026-05-01T07:26:31+00:00)
-[2026-05-01] • [20:00:36] Error processing task 4390914632: argument must be int or float, not tuple
-[2026-05-01] • [20:00:37] 📝 Syncing: [自动同步] (2026-05-01T07:24:23+00:00)
-[2026-05-01] • [20:00:37] Error processing task 4390913249: argument must be int or float, not tuple
-[2026-05-01] • [20:00:38] 📝 Syncing: [自动同步] (2026-05-01T07:23:56+00:00)
-[2026-05-01] • [20:00:38] Error processing task 4390912947: argument must be int or float, not tuple
-[2026-05-01] • [20:00:38] 📝 Syncing: [自动同步] (2026-05-01T07:09:49+00:00)
-[2026-05-01] • [20:00:38] Error processing task 4390904051: argument must be int or float, not tuple
-[2026-05-01] • [20:00:39] 📝 Syncing: [自动同步] (2026-05-01T06:43:19+00:00)
-[2026-05-01] • [20:00:39] Error processing task 4390887465: argument must be int or float, not tuple
-[2026-05-01] • [20:00:39] 📝 Syncing: [自动同步] (2026-05-01T06:20:57+00:00)
-[2026-05-01] • [20:00:39] Error processing task 4390875182: argument must be int or float, not tuple
-[2026-05-01] • [20:00:40] 📝 Syncing: [无描述] (2026-05-01T06:05:37+00:00)
-[2026-05-01] • [20:00:42] Error processing task 4390865381: argument must be int or float, not tuple
-[2026-05-01] • [20:00:43] 📝 Syncing: [自动同步] (2026-05-01T04:59:54+00:00)
-[2026-05-01] • [20:00:43] Error processing task 4390834001: argument must be int or float, not tuple
-[2026-05-01] • [20:00:43] 📝 Syncing: [自动同步] (2026-05-01T04:58:46+00:00)
-[2026-05-01] • [20:00:43] Error processing task 4390833494: argument must be int or float, not tuple
-[2026-05-01] • [20:00:44] 📝 Syncing: [自动同步] (2026-05-01T04:50:01+00:00)
-[2026-05-01] • [20:00:44] Error processing task 4390829544: argument must be int or float, not tuple
-[2026-05-01] • [20:00:44] 📝 Syncing: [无描述] (2026-04-30T14:14:17+00:00)
-[2026-05-01] • [20:00:44] Error processing task 4389946332: argument must be int or float, not tuple
-[2026-05-01] • [20:00:46] 📝 Syncing: [自动同步] (2026-04-30T07:00:04+00:00)
-[2026-05-01] • [20:00:46] Error processing task 4389260970: argument must be int or float, not tuple
-[2026-05-01] • [20:00:47] 📝 Syncing: [自动同步] (2026-04-30T06:59:52+00:00)
-[2026-05-01] • [20:00:47] Error processing task 4389260620: argument must be int or float, not tuple
-[2026-05-01] • [20:00:47] 📝 Syncing: [自动同步] (2026-04-30T06:53:53+00:00)
-[2026-05-01] • [20:00:47] Error processing task 4389252492: argument must be int or float, not tuple
-[2026-05-01] • [20:00:48] 📝 Syncing: [自动同步] (2026-04-30T03:57:20+00:00)
-[2026-05-01] • [20:00:48] Error processing task 4389112989: argument must be int or float, not tuple
-[2026-05-01] • [20:00:48] 📝 Syncing: [自动同步] (2026-04-30T03:56:53+00:00)
-[2026-05-01] • [20:00:48] Error processing task 4389112772: argument must be int or float, not tuple
-[2026-05-01] • [20:00:49] 📝 Syncing: [自动同步] (2026-04-30T03:41:46+00:00)
-[2026-05-01] • [20:00:49] Error processing task 4389105685: argument must be int or float, not tuple
-[2026-05-01] • [20:00:52] 📝 Syncing: [自动同步] (2026-04-30T03:20:06+00:00)
-[2026-05-01] • [20:00:52] Error processing task 4389095281: argument must be int or float, not tuple
-[2026-05-01] • [20:00:52] 📝 Syncing: [自动记录] (2026-04-30T00:15:04+00:00)
-[2026-05-01] • [20:00:52] Error processing task 4388993940: argument must be int or float, not tuple
-[2026-05-01] • [20:00:53] 📝 Syncing: [无描述] (2026-04-29T13:34:30+00:00)
-[2026-05-01] • [20:00:53] Error processing task 4388163189: argument must be int or float, not tuple
-[2026-05-01] • [20:00:54] 📝 Syncing: [自动同步] (2026-04-29T11:46:05+00:00)
-[2026-05-01] • [20:00:54] Error processing task 4387969737: argument must be int or float, not tuple
-[2026-05-01] • [20:00:54] 📝 Syncing: [自动同步] (2026-04-29T11:41:10+00:00)
-[2026-05-01] • [20:00:54] Error processing task 4387962986: argument must be int or float, not tuple
-[2026-05-01] • [20:00:55] 📝 Syncing: [自动同步] (2026-04-29T11:39:43+00:00)
-[2026-05-01] • [20:00:55] Error processing task 4387960885: argument must be int or float, not tuple
-[2026-05-01] • [20:00:55] 📝 Syncing: [自动同步] (2026-04-29T11:37:52+00:00)
-[2026-05-01] • [20:00:55] Error processing task 4387960755: argument must be int or float, not tuple
-[2026-05-01] • [20:00:56] 📝 Syncing: [无描述] (2026-04-28T15:57:01+00:00)
-[2026-05-01] • [20:00:56] Error processing task 4386765291: argument must be int or float, not tuple
-[2026-05-01] • [20:00:57] 📝 Syncing: [自动同步] (2026-04-28T15:53:13+00:00)
-[2026-05-01] • [20:00:57] Error processing task 4386758721: argument must be int or float, not tuple
-[2026-05-01] • [20:00:57] 📝 Syncing: [自动同步] (2026-04-28T00:14:03+00:00)
-[2026-05-01] • [20:00:57] Error processing task 4386758718: argument must be int or float, not tuple
-[2026-05-01] • [20:00:58] 📝 Syncing: [无描述] (2026-04-27T23:08:38+00:00)
-[2026-05-01] • [20:00:58] Error processing task 4385527598: argument must be int or float, not tuple
-[2026-05-01] • [20:00:58] 📝 Syncing: [无描述] (2026-04-27T23:03:12+00:00)
-[2026-05-01] • [20:00:58] Error processing task 4385523929: argument must be int or float, not tuple
-[2026-05-01] • [20:00:59] 📝 Syncing: [无描述] (2026-04-27T15:58:24+00:00)
-[2026-05-01] • [20:00:59] Error processing task 4384998461: argument must be int or float, not tuple
-[2026-05-01] • [20:01:00] 📝 Syncing: [自动同步] (2026-04-27T06:44:05+00:00)
-[2026-05-01] • [20:01:00] Error processing task 4384050496: argument must be int or float, not tuple
-[2026-05-01] • [20:01:00] 📝 Syncing: [无描述] (2026-04-27T06:39:20+00:00)
-[2026-05-01] • [20:01:00] Error processing task 4384044865: argument must be int or float, not tuple
-[2026-05-01] • [20:01:01] 📝 Syncing: [无描述] (2026-04-25T15:43:58+00:00)
-[2026-05-01] • [20:01:01] Error processing task 4383276731: argument must be int or float, not tuple
-[2026-05-01] • [20:01:01] 📝 Syncing: [无描述] (2026-04-25T15:40:47+00:00)
-[2026-05-01] • [20:01:01] Error processing task 4383275742: argument must be int or float, not tuple
-[2026-05-01] • [20:01:02] 📝 Syncing: [无描述] (2026-04-25T15:40:00+00:00)
-[2026-05-01] • [20:01:02] Error processing task 4383275515: argument must be int or float, not tuple
-[2026-05-01] • [20:01:02] 📝 Syncing: [无描述] (2026-04-25T15:36:29+00:00)
-[2026-05-01] • [20:01:02] Error processing task 4383274447: argument must be int or float, not tuple
-[2026-05-01] • [20:01:02] 📝 Syncing: [无描述] (2026-04-25T15:26:43+00:00)
-[2026-05-01] • [20:01:02] Error processing task 4383271619: argument must be int or float, not tuple
-[2026-05-01] • [20:01:03] 📝 Syncing: [自动同步] (2026-04-25T15:22:17+00:00)
-[2026-05-01] • [20:01:03] Error processing task 4383270184: argument must be int or float, not tuple
-[2026-05-01] • [20:01:04] 📝 Syncing: [自动同步] (2026-04-25T08:51:21+00:00)
-[2026-05-01] • [20:01:04] Error processing task 4383157189: argument must be int or float, not tuple
-[2026-05-01] • [20:01:04] 📝 Syncing: [自动同步] (2026-04-25T08:47:54+00:00)
-[2026-05-01] • [20:01:04] Error processing task 4383156322: argument must be int or float, not tuple
-[2026-05-01] • [20:01:05] 📝 Syncing: [自动同步] (2026-04-25T08:02:46+00:00)
-[2026-05-01] • [20:01:05] Error processing task 4383144412: argument must be int or float, not tuple
-[2026-05-01] • [20:01:05] 📝 Syncing: [自动同步] (2026-04-25T07:17:36+00:00)
-[2026-05-01] • [20:01:05] Error processing task 4383132709: argument must be int or float, not tuple
-[2026-05-01] • [20:01:06] 📝 Syncing: [自动同步] (2026-04-25T07:17:10+00:00)
-[2026-05-01] • [20:01:06] Error processing task 4383132596: argument must be int or float, not tuple
-[2026-05-01] • [20:01:06] 📝 Syncing: [自动同步] (2026-04-25T07:15:55+00:00)
-[2026-05-01] • [20:01:06] Error processing task 4383132295: argument must be int or float, not tuple
-[2026-05-01] • [20:01:08] 📝 Syncing: [自动同步] (2026-04-25T07:14:38+00:00)
-[2026-05-01] • [20:01:08] Error processing task 4383131989: argument must be int or float, not tuple
-[2026-05-01] • [20:01:09] 📝 Syncing: [自动记录] (2026-04-25T03:38:31+00:00)
-[2026-05-01] • [20:01:09] Error processing task 4383086923: argument must be int or float, not tuple
-[2026-05-01] • [20:01:09] 📝 Syncing: [跑步自动记录] (2026-04-25T03:22:02+00:00)
-[2026-05-01] • [20:01:12] Error processing task 4383083815: argument must be int or float, not tuple
-[2026-05-01] • [20:01:12] 📝 Syncing: [自动同步] (2026-04-25T03:07:42+00:00)
-[2026-05-01] • [20:01:12] Error processing task 4383081184: argument must be int or float, not tuple
-[2026-05-01] • [20:01:14] 📝 Syncing: [自动同步] (2026-04-25T02:55:13+00:00)
-[2026-05-01] • [20:01:14] Error processing task 4383078711: argument must be int or float, not tuple
-[2026-05-01] • [20:01:14] 📝 Syncing: [自动记录] (2026-04-24T00:56:42+00:00)
-[2026-05-01] • [20:01:14] Error processing task 4381605582: argument must be int or float, not tuple
-[2026-05-01] • [20:01:15] 📝 Syncing: [跑步自动记录] (2026-04-24T00:15:56+00:00)
-[2026-05-01] • [20:01:15] Error processing task 4381582839: argument must be int or float, not tuple
-[2026-05-01] • [20:01:15] 📝 Syncing: [自动同步] (2026-04-23T15:51:05+00:00)
-[2026-05-01] • [20:01:15] Error processing task 4381042879: argument must be int or float, not tuple
-[2026-05-01] • [20:01:19] 📝 Syncing: [自动同步] (2026-04-23T13:36:06+00:00)
-[2026-05-01] • [20:01:19] Error processing task 4380794306: argument must be int or float, not tuple
-[2026-05-01] • [20:01:20] 📝 Syncing: [无描述] (2026-04-23T06:11:47+00:00)
-[2026-05-01] • [20:01:20] Error processing task 4380141679: argument must be int or float, not tuple
-[2026-05-01] • [20:01:20] 📝 Syncing: [无描述] (2026-04-23T03:58:27+00:00)
-[2026-05-01] • [20:01:20] Error processing task 4380050874: argument must be int or float, not tuple
-[2026-05-01] • [20:01:21] 📝 Syncing: [自动同步] (2026-04-23T03:16:09+00:00)
-[2026-05-01] • [20:01:21] Error processing task 4380032200: argument must be int or float, not tuple
-[2026-05-01] • [20:01:21] 📝 Syncing: [自动同步] (2026-04-23T02:42:35+00:00)
-[2026-05-01] • [20:01:21] Error processing task 4380014050: argument must be int or float, not tuple
-[2026-05-01] • [20:01:22] 📝 Syncing: [自动同步] (2026-04-23T02:40:17+00:00)
-[2026-05-01] • [20:01:22] Error processing task 4380012873: argument must be int or float, not tuple
-[2026-05-01] • [20:01:22] 📝 Syncing: [自动同步] (2026-04-23T02:19:26+00:00)
-[2026-05-01] • [20:01:22] Error processing task 4380001762: argument must be int or float, not tuple
-[2026-05-01] • [20:01:23] 📝 Syncing: [自动同步] (2026-04-22T15:14:34+00:00)
-[2026-05-01] • [20:01:23] Error processing task 4380001761: argument must be int or float, not tuple
-[2026-05-01] • [20:01:24] 📝 Syncing: [自动同步] (2026-04-22T12:58:28+00:00)
-[2026-05-01] • [20:01:24] Error processing task 4379010200: argument must be int or float, not tuple
-[2026-05-01] • [20:01:24] 📝 Syncing: [无描述] (2026-04-22T04:07:38+00:00)
-[2026-05-01] • [20:01:24] Error processing task 4378327264: argument must be int or float, not tuple
-[2026-05-01] • [20:01:25] 📝 Syncing: [无描述] (2026-04-22T04:02:22+00:00)
-[2026-05-01] • [20:01:25] Error processing task 4378326971: argument must be int or float, not tuple
-[2026-05-01] • [20:01:25] 📝 Syncing: [无描述] (2026-04-22T03:57:21+00:00)
-[2026-05-01] • [20:01:25] Error processing task 4378326970: argument must be int or float, not tuple
-[2026-05-01] • [20:01:27] 📝 Syncing: [自动同步] (2026-04-21T23:53:34+00:00)
-[2026-05-01] • [20:01:27] Error processing task 4378182737: argument must be int or float, not tuple
-[2026-05-01] • [20:01:27] 📝 Syncing: [自动同步] (2026-04-21T15:17:00+00:00)
-[2026-05-01] • [20:01:27] Error processing task 4377574236: argument must be int or float, not tuple
-[2026-05-01] • [20:01:28] 📝 Syncing: [自动同步] (2026-04-21T15:17:00+00:00)
-[2026-05-01] • [20:01:28] Error processing task 4377574231: argument must be int or float, not tuple
-[2026-05-01] • [20:01:29] 📝 Syncing: [无描述] (2026-04-21T15:10:00+00:00)
-[2026-05-01] • [20:01:29] Error processing task 4377561201: argument must be int or float, not tuple
-[2026-05-01] • [20:01:31] Found 62 entries from 2026-04-11 to 2026-04-21. Processing...
-[2026-05-01] • [20:01:34] 📝 Syncing: [无描述] (2026-04-21T00:06:28+00:00)
-[2026-05-01] • [20:01:34] Error processing task 4377561198: argument must be int or float, not tuple
-[2026-05-01] • [20:01:34] 📝 Syncing: [自动同步] (2026-04-20T07:00:17+00:00)
-[2026-05-01] • [20:01:34] Error processing task 4374886173: argument must be int or float, not tuple
-[2026-05-01] • [20:01:35] 📝 Syncing: [自动同步] (2026-04-20T06:51:25+00:00)
-[2026-05-01] • [20:01:35] Error processing task 4374872243: argument must be int or float, not tuple
-[2026-05-01] • [20:01:36] 📝 Syncing: [无描述] (2026-04-20T04:51:29+00:00)
-[2026-05-01] • [20:01:36] Error processing task 4374755197: argument must be int or float, not tuple
-[2026-05-01] • [20:01:36] 📝 Syncing: [无描述] (2026-04-20T04:50:25+00:00)
-[2026-05-01] • [20:01:36] Error processing task 4374750222: argument must be int or float, not tuple
-[2026-05-01] • [20:01:37] 📝 Syncing: [无描述] (2026-04-20T03:59:48+00:00)
-[2026-05-01] • [20:01:37] Error processing task 4374721775: argument must be int or float, not tuple
-[2026-05-01] • [20:01:38] 📝 Syncing: [无描述] (2026-04-19T16:02:58+00:00)
-[2026-05-01] • [20:01:38] Error processing task 4374431227: argument must be int or float, not tuple
-[2026-05-01] • [20:01:38] 📝 Syncing: [无描述] (2026-04-19T15:56:46+00:00)
-[2026-05-01] • [20:01:38] Error processing task 4374428923: argument must be int or float, not tuple
-[2026-05-01] • [20:01:39] 📝 Syncing: [自动同步] (2026-04-19T15:55:47+00:00)
-[2026-05-01] • [20:01:39] Error processing task 4374428489: argument must be int or float, not tuple
-[2026-05-01] • [20:01:39] 📝 Syncing: [自动同步] (2026-04-19T15:51:55+00:00)
-[2026-05-01] • [20:01:39] Error processing task 4374427099: argument must be int or float, not tuple
-[2026-05-01] • [20:01:40] 📝 Syncing: [自动同步] (2026-04-19T08:32:32+00:00)
-[2026-05-01] • [20:01:40] Error processing task 4374288545: argument must be int or float, not tuple
-[2026-05-01] • [20:01:40] 📝 Syncing: [自动同步] (2026-04-19T08:29:55+00:00)
-[2026-05-01] • [20:01:40] Error processing task 4374287884: argument must be int or float, not tuple
-[2026-05-01] • [20:01:42] 📝 Syncing: [自动记录] (2026-04-19T02:30:44+00:00)
-[2026-05-01] • [20:01:42] Error processing task 4374217263: argument must be int or float, not tuple
-[2026-05-01] • [20:01:43] 📝 Syncing: [跑步自动记录] (2026-04-19T01:49:07+00:00)
-[2026-05-01] • [20:01:43] Error processing task 4374209983: argument must be int or float, not tuple
-[2026-05-01] • [20:01:43] 📝 Syncing: [自动同步] (2026-04-19T01:36:13+00:00)
-[2026-05-01] • [20:01:43] Error processing task 4374207753: argument must be int or float, not tuple
-[2026-05-01] • [20:01:44] 📝 Syncing: [自动同步] (2026-04-19T01:35:35+00:00)
-[2026-05-01] • [20:01:44] Error processing task 4374207657: argument must be int or float, not tuple
-[2026-05-01] • [20:01:44] 📝 Syncing: [无描述] (2026-04-18T15:59:12+00:00)
-[2026-05-01] • [20:01:44] Error processing task 4374075401: argument must be int or float, not tuple
-[2026-05-01] • [20:01:45] 📝 Syncing: [自动同步] (2026-04-18T15:59:00+00:00)
-[2026-05-01] • [20:01:45] Error processing task 4374075323: argument must be int or float, not tuple
-[2026-05-01] • [20:01:45] 📝 Syncing: [无描述] (2026-04-18T15:05:46+00:00)
-[2026-05-01] • [20:01:45] Error processing task 4374058451: argument must be int or float, not tuple
-[2026-05-01] • [20:01:46] 📝 Syncing: [自动同步] (2026-04-18T04:55:36+00:00)
-[2026-05-01] • [20:01:46] Error processing task 4373899062: argument must be int or float, not tuple
-[2026-05-01] • [20:01:46] 📝 Syncing: [自动同步] (2026-04-18T04:54:24+00:00)
-[2026-05-01] • [20:01:46] Error processing task 4373898829: argument must be int or float, not tuple
-[2026-05-01] • [20:01:46] 📝 Syncing: [自动同步] (2026-04-18T04:43:49+00:00)
-[2026-05-01] • [20:01:46] Error processing task 4373896818: argument must be int or float, not tuple
-[2026-05-01] • [20:01:47] 📝 Syncing: [无描述] (2026-04-17T14:20:44+00:00)
-[2026-05-01] • [20:01:47] Error processing task 4373230150: argument must be int or float, not tuple
-[2026-05-01] • [20:01:47] 📝 Syncing: [无描述] (2026-04-16T15:56:57+00:00)
-[2026-05-01] • [20:01:47] Error processing task 4371801237: argument must be int or float, not tuple
-[2026-05-01] • [20:01:48] 📝 Syncing: [自动同步] (2026-04-16T15:52:09+00:00)
-[2026-05-01] • [20:01:48] Error processing task 4371793446: argument must be int or float, not tuple
-[2026-05-01] • [20:01:48] 📝 Syncing: [无描述] (2026-04-16T15:48:52+00:00)
-[2026-05-01] • [20:01:48] Error processing task 4371788192: argument must be int or float, not tuple
-[2026-05-01] • [20:01:49] 📝 Syncing: [自动同步] (2026-04-16T04:12:58+00:00)
-[2026-05-01] • [20:01:49] Error processing task 4370738736: argument must be int or float, not tuple
-[2026-05-01] • [20:01:49] 📝 Syncing: [自动同步] (2026-04-16T04:10:21+00:00)
-[2026-05-01] • [20:01:49] Error processing task 4370737378: argument must be int or float, not tuple
-[2026-05-01] • [20:01:50] 📝 Syncing: [自动同步] (2026-04-16T03:55:52+00:00)
-[2026-05-01] • [20:01:50] Error processing task 4370729238: argument must be int or float, not tuple
-[2026-05-01] • [20:01:51] 📝 Syncing: [自动同步] (2026-04-16T03:53:34+00:00)
-[2026-05-01] • [20:01:51] Error processing task 4370728057: argument must be int or float, not tuple
-[2026-05-01] • [20:01:51] 📝 Syncing: [自动同步] (2026-04-16T03:52:47+00:00)
-[2026-05-01] • [20:01:51] Error processing task 4370727692: argument must be int or float, not tuple
-[2026-05-01] • [20:01:52] 📝 Syncing: [自动同步] (2026-04-15T15:50:06+00:00)
-[2026-05-01] • [20:01:52] Error processing task 4370033979: argument must be int or float, not tuple
-[2026-05-01] • [20:01:52] 📝 Syncing: [自动同步] (2026-04-15T15:49:37+00:00)
-[2026-05-01] • [20:01:52] Error processing task 4370033136: argument must be int or float, not tuple
-[2026-05-01] • [20:01:53] 📝 Syncing: [自动同步] (2026-04-15T15:44:47+00:00)
-[2026-05-01] • [20:01:53] Error processing task 4370023468: argument must be int or float, not tuple
-[2026-05-01] • [20:01:53] 📝 Syncing: [无描述] (2026-04-15T14:32:48+00:00)
-[2026-05-01] • [20:01:53] Error processing task 4369886405: argument must be int or float, not tuple
-[2026-05-01] • [20:01:54] 📝 Syncing: [无描述] (2026-04-15T06:35:05+00:00)
-[2026-05-01] • [20:01:54] Error processing task 4369122964: argument must be int or float, not tuple
-[2026-05-01] • [20:01:54] 📝 Syncing: [无描述] (2026-04-14T15:12:31+00:00)
-[2026-05-01] • [20:01:54] Error processing task 4368213429: argument must be int or float, not tuple
-[2026-05-01] • [20:01:55] 📝 Syncing: [自动同步] (2026-04-14T14:58:46+00:00)
-[2026-05-01] • [20:01:55] Error processing task 4368184028: argument must be int or float, not tuple
-[2026-05-01] • [20:01:55] 📝 Syncing: [自动同步] (2026-04-14T04:48:59+00:00)
-[2026-05-01] • [20:01:55] Error processing task 4367253416: argument must be int or float, not tuple
-[2026-05-01] • [20:01:56] 📝 Syncing: [自动同步] (2026-04-14T04:21:31+00:00)
-[2026-05-01] • [20:01:56] Error processing task 4367238345: argument must be int or float, not tuple
-[2026-05-01] • [20:01:56] 📝 Syncing: [自动同步] (2026-04-14T04:20:47+00:00)
-[2026-05-01] • [20:01:56] Error processing task 4367237979: argument must be int or float, not tuple
-[2026-05-01] • [20:01:57] 📝 Syncing: [无描述] (2026-04-13T13:00:42+00:00)
-[2026-05-01] • [20:01:57] Error processing task 4366133860: argument must be int or float, not tuple
-[2026-05-01] • [20:01:57] 📝 Syncing: [无描述] (2026-04-13T12:59:13+00:00)
-[2026-05-01] • [20:01:57] Error processing task 4366129906: argument must be int or float, not tuple
-[2026-05-01] • [20:01:58] 📝 Syncing: [无描述] (2026-04-13T12:55:54+00:00)
-[2026-05-01] • [20:01:58] Error processing task 4366122503: argument must be int or float, not tuple
-[2026-05-01] • [20:01:58] 📝 Syncing: [无描述] (2026-04-13T12:53:20+00:00)
-[2026-05-01] • [20:01:58] Error processing task 4366117514: argument must be int or float, not tuple
-[2026-05-01] • [20:01:59] 📝 Syncing: [无描述] (2026-04-13T12:50:11+00:00)
-[2026-05-01] • [20:01:59] Error processing task 4366111506: argument must be int or float, not tuple
-[2026-05-01] • [20:01:59] 📝 Syncing: [无描述] (2026-04-13T12:50:02+00:00)
-[2026-05-01] • [20:01:59] Error processing task 4366111325: argument must be int or float, not tuple
-[2026-05-01] • [20:01:59] 📝 Syncing: [无描述] (2026-04-13T12:48:13+00:00)
-[2026-05-01] • [20:01:59] Error processing task 4366111323: argument must be int or float, not tuple
-[2026-05-01] • [20:02:00] 📝 Syncing: [自动同步] (2026-04-12T23:22:42+00:00)
-[2026-05-01] • [20:02:00] Error processing task 4365262937: argument must be int or float, not tuple
-[2026-05-01] • [20:02:00] 📝 Syncing: [自动同步] (2026-04-12T23:22:42+00:00)
-[2026-05-01] • [20:02:00] Error processing task 4365262941: argument must be int or float, not tuple
-[2026-05-01] • [20:02:01] 📝 Syncing: [自动同步] (2026-04-12T23:17:22+00:00)
-[2026-05-01] • [20:02:01] Error processing task 4365260769: argument must be int or float, not tuple
-[2026-05-01] • [20:02:01] 📝 Syncing: [自动同步] (2026-04-12T11:14:16+00:00)
-[2026-05-01] • [20:02:01] Error processing task 4365011579: argument must be int or float, not tuple
-[2026-05-01] • [20:02:02] 📝 Syncing: [自动同步] (2026-04-12T11:13:58+00:00)
-[2026-05-01] • [20:02:02] Error processing task 4365011500: argument must be int or float, not tuple
-[2026-05-01] • [20:02:02] 📝 Syncing: [自动记录] (2026-04-12T10:32:37+00:00)
-[2026-05-01] • [20:02:02] Error processing task 4365000029: argument must be int or float, not tuple
-[2026-05-01] • [20:02:03] 📝 Syncing: [自动同步] (2026-04-12T09:55:59+00:00)
-[2026-05-01] • [20:02:03] Error processing task 4364990203: argument must be int or float, not tuple
-[2026-05-01] • [20:02:05] 📝 Syncing: [自动同步] (2026-04-12T09:55:20+00:00)
-[2026-05-01] • [20:02:05] Error processing task 4364989986: argument must be int or float, not tuple
-[2026-05-01] • [20:02:06] 📝 Syncing: [跑步自动记录] (2026-04-12T09:52:08+00:00)
-[2026-05-01] • [20:02:06] Error processing task 4364989103: argument must be int or float, not tuple
-[2026-05-01] • [20:02:07] 📝 Syncing: [自动同步] (2026-04-12T01:32:53+00:00)
-[2026-05-01] • [20:02:07] Error processing task 4364885656: argument must be int or float, not tuple
-[2026-05-01] • [20:02:07] 📝 Syncing: [自动同步] (2026-04-12T00:25:24+00:00)
-[2026-05-01] • [20:02:07] Error processing task 4364873421: argument must be int or float, not tuple
-[2026-05-01] • [20:02:08] 📝 Syncing: [自动同步] (2026-04-12T00:20:11+00:00)
-[2026-05-01] • [20:02:08] Error processing task 4364872500: argument must be int or float, not tuple
-[2026-05-01] • [20:02:08] 📝 Syncing: [自动同步] (2026-04-12T00:06:20+00:00)
-[2026-05-01] • [20:02:08] Error processing task 4364869998: argument must be int or float, not tuple
-[2026-05-01] • [20:02:09] 📝 Syncing: [自动同步] (2026-04-11T14:43:55+00:00)
-[2026-05-01] • [20:02:09] Error processing task 4364718701: argument must be int or float, not tuple
-[2026-05-01] • [20:02:10] Found 64 entries from 2026-04-01 to 2026-04-11. Processing...
-[2026-05-01] • [20:02:10] 📝 Syncing: [自动记录] (2026-04-11T10:40:36+00:00)
-[2026-05-01] • [20:02:10] Error processing task 4364646803: argument must be int or float, not tuple
-[2026-05-01] • [20:02:11] 📝 Syncing: [跑步自动记录] (2026-04-11T09:58:36+00:00)
-[2026-05-01] • [20:02:11] Error processing task 4364636135: argument must be int or float, not tuple
-[2026-05-01] • [20:02:11] 📝 Syncing: [无描述] (2026-04-11T02:49:15+00:00)
-[2026-05-01] • [20:02:11] Error processing task 4364542352: argument must be int or float, not tuple
-[2026-05-01] • [20:02:12] 📝 Syncing: [无描述] (2026-04-11T02:41:14+00:00)
-[2026-05-01] • [20:02:12] Error processing task 4364540716: argument must be int or float, not tuple
-[2026-05-01] • [20:02:12] 📝 Syncing: [自动同步] (2026-04-11T02:41:11+00:00)
-[2026-05-01] • [20:02:12] Error processing task 4364540709: argument must be int or float, not tuple
-[2026-05-01] • [20:02:13] 📝 Syncing: [自动同步] (2026-04-11T02:39:14+00:00)
-[2026-05-01] • [20:02:13] Error processing task 4364540257: argument must be int or float, not tuple
-[2026-05-01] • [20:02:14] 📝 Syncing: [无描述] (2026-04-10T15:44:33+00:00)
-[2026-05-01] • [20:02:14] Error processing task 4364026115: argument must be int or float, not tuple
-[2026-05-01] • [20:02:14] 📝 Syncing: [无描述] (2026-04-10T15:03:01+00:00)
-[2026-05-01] • [20:02:14] Error processing task 4363960997: argument must be int or float, not tuple
-[2026-05-01] • [20:02:15] 📝 Syncing: [无描述] (2026-04-10T14:14:33+00:00)
-[2026-05-01] • [20:02:15] Error processing task 4363879561: argument must be int or float, not tuple
-[2026-05-01] • [20:02:16] 📝 Syncing: [自动同步] (2026-04-10T11:13:39+00:00)
-[2026-05-01] • [20:02:16] Error processing task 4363598813: argument must be int or float, not tuple
-[2026-05-01] • [20:02:16] 📝 Syncing: [自动同步] (2026-04-10T10:40:58+00:00)
-[2026-05-01] • [20:02:16] Error processing task 4363558762: argument must be int or float, not tuple
-[2026-05-01] • [20:02:17] 📝 Syncing: [自动同步] (2026-04-10T02:55:11+00:00)
-[2026-05-01] • [20:02:17] Error processing task 4363107899: argument must be int or float, not tuple
-[2026-05-01] • [20:02:18] 📝 Syncing: [自动同步] (2026-04-10T01:09:22+00:00)
-[2026-05-01] • [20:02:18] Error processing task 4363052951: argument must be int or float, not tuple
-[2026-05-01] • [20:02:19] 📝 Syncing: [自动同步] (2026-04-09T23:56:44+00:00)
-[2026-05-01] • [20:02:19] Error processing task 4363010476: argument must be int or float, not tuple
-[2026-05-01] • [20:02:19] 📝 Syncing: [自动同步] (2026-04-09T16:43:25+00:00)
-[2026-05-01] • [20:02:19] Error processing task 4362559010: argument must be int or float, not tuple
-[2026-05-01] • [20:02:20] 📝 Syncing: [自动同步] (2026-04-09T15:50:44+00:00)
-[2026-05-01] • [20:02:20] Error processing task 4362476763: argument must be int or float, not tuple
-[2026-05-01] • [20:02:20] 📝 Syncing: [无描述] (2026-04-09T15:03:56+00:00)
-[2026-05-01] • [20:02:20] Error processing task 4362395120: argument must be int or float, not tuple
-[2026-05-01] • [20:02:21] 📝 Syncing: [自动同步] (2026-04-09T13:33:36+00:00)
-[2026-05-01] • [20:02:21] Error processing task 4362219345: argument must be int or float, not tuple
-[2026-05-01] • [20:02:21] 📝 Syncing: [自动同步] (2026-04-09T13:17:33+00:00)
-[2026-05-01] • [20:02:21] Error processing task 4362188204: argument must be int or float, not tuple
-[2026-05-01] • [20:02:22] 📝 Syncing: [自动同步] (2026-04-09T07:42:42+00:00)
-[2026-05-01] • [20:02:22] Error processing task 4361694922: argument must be int or float, not tuple
-[2026-05-01] • [20:02:22] 📝 Syncing: [自动同步] (2026-04-09T07:36:38+00:00)
-[2026-05-01] • [20:02:22] Error processing task 4361686451: argument must be int or float, not tuple
-[2026-05-01] • [20:02:23] 📝 Syncing: [自动同步] (2026-04-09T07:36:38+00:00)
-[2026-05-01] • [20:02:23] Error processing task 4361686466: argument must be int or float, not tuple
-[2026-05-01] • [20:02:23] 📝 Syncing: [自动同步] (2026-04-09T07:09:32+00:00)
-[2026-05-01] • [20:02:23] Error processing task 4361647853: argument must be int or float, not tuple
-[2026-05-01] • [20:02:24] 📝 Syncing: [自动同步] (2026-04-09T04:18:58+00:00)
-[2026-05-01] • [20:02:24] Error processing task 4361497799: argument must be int or float, not tuple
-[2026-05-01] • [20:02:24] 📝 Syncing: [自动同步] (2026-04-08T23:51:56+00:00)
-[2026-05-01] • [20:02:24] Error processing task 4361350658: argument must be int or float, not tuple
-[2026-05-01] • [20:02:25] 📝 Syncing: [无描述] (2026-04-08T14:14:17+00:00)
-[2026-05-01] • [20:02:25] Error processing task 4360621942: argument must be int or float, not tuple
-[2026-05-01] • [20:02:25] 📝 Syncing: [无描述] (2026-04-08T13:51:59+00:00)
-[2026-05-01] • [20:02:25] Error processing task 4360575252: argument must be int or float, not tuple
-[2026-05-01] • [20:02:26] 📝 Syncing: [无描述] (2026-04-08T13:23:16+00:00)
-[2026-05-01] • [20:02:26] Error processing task 4360519845: argument must be int or float, not tuple
-[2026-05-01] • [20:02:26] 📝 Syncing: [无描述] (2026-04-08T10:35:28+00:00)
-[2026-05-01] • [20:02:30] Error processing task 4360257773: argument must be int or float, not tuple
-[2026-05-01] • [20:02:30] 📝 Syncing: [自动同步] (2026-04-08T09:13:44+00:00)
-[2026-05-01] • [20:02:30] Error processing task 4360148456: argument must be int or float, not tuple
-[2026-05-01] • [20:02:31] 📝 Syncing: [自动同步] (2026-04-08T09:08:36+00:00)
-[2026-05-01] • [20:02:31] Error processing task 4360141142: argument must be int or float, not tuple
-[2026-05-01] • [20:02:31] 📝 Syncing: [自动同步] (2026-04-08T03:08:57+00:00)
-[2026-05-01] • [20:02:31] Error processing task 4359774752: argument must be int or float, not tuple
-[2026-05-01] • [20:02:31] 📝 Syncing: [自动同步] (2026-04-08T02:09:24+00:00)
-[2026-05-01] • [20:02:31] Error processing task 4359743154: argument must be int or float, not tuple
-[2026-05-01] • [20:02:32] 📝 Syncing: [自动同步] (2026-04-07T15:46:31+00:00)
-[2026-05-01] • [20:02:32] Error processing task 4359088019: argument must be int or float, not tuple
-[2026-05-01] • [20:02:32] 📝 Syncing: [无描述] (2026-04-06T15:45:47+00:00)
-[2026-05-01] • [20:02:32] Error processing task 4357342991: argument must be int or float, not tuple
-[2026-05-01] • [20:02:33] 📝 Syncing: [无描述] (2026-04-06T15:41:35+00:00)
-[2026-05-01] • [20:02:33] Error processing task 4357337316: argument must be int or float, not tuple
-[2026-05-01] • [20:02:34] 📝 Syncing: [无描述] (2026-04-06T15:38:10+00:00)
-[2026-05-01] • [20:02:34] Error processing task 4357332389: argument must be int or float, not tuple
-[2026-05-01] • [20:02:34] 📝 Syncing: [无描述] (2026-04-06T15:35:14+00:00)
-[2026-05-01] • [20:02:34] Error processing task 4357328503: argument must be int or float, not tuple
-[2026-05-01] • [20:02:35] 📝 Syncing: [自动同步] (2026-04-06T15:33:48+00:00)
-[2026-05-01] • [20:02:35] Error processing task 4357326527: argument must be int or float, not tuple
-[2026-05-01] • [20:02:35] 📝 Syncing: [自动同步] (2026-04-06T05:50:29+00:00)
-[2026-05-01] • [20:02:35] Error processing task 4356800057: argument must be int or float, not tuple
-[2026-05-01] • [20:02:36] 📝 Syncing: [自动同步] (2026-04-06T04:42:06+00:00)
-[2026-05-01] • [20:02:36] Error processing task 4356770512: argument must be int or float, not tuple
-[2026-05-01] • [20:02:36] 📝 Syncing: [自动同步] (2026-04-05T14:59:03+00:00)
-[2026-05-01] • [20:02:36] Error processing task 4356517482: argument must be int or float, not tuple
-[2026-05-01] • [20:02:36] 📝 Syncing: [无描述] (2026-04-05T11:16:21+00:00)
-[2026-05-01] • [20:02:36] Error processing task 4356456075: argument must be int or float, not tuple
-[2026-05-01] • [20:02:37] 📝 Syncing: [无描述] (2026-04-05T11:10:03+00:00)
-[2026-05-01] • [20:02:37] Error processing task 4356454577: argument must be int or float, not tuple
-[2026-05-01] • [20:02:37] 📝 Syncing: [无描述] (2026-04-04T18:23:11+00:00)
-[2026-05-01] • [20:02:37] Error processing task 4356252370: argument must be int or float, not tuple
-[2026-05-01] • [20:02:38] 📝 Syncing: [自动同步] (2026-04-04T15:50:57+00:00)
-[2026-05-01] • [20:02:38] Error processing task 4356208637: argument must be int or float, not tuple
-[2026-05-01] • [20:02:39] 📝 Syncing: [自动同步] (2026-04-04T15:50:57+00:00)
-[2026-05-01] • [20:02:39] Error processing task 4356208639: argument must be int or float, not tuple
-[2026-05-01] • [20:02:40] 📝 Syncing: [自动同步] (2026-04-04T15:38:59+00:00)
-[2026-05-01] • [20:02:40] Error processing task 4356205092: argument must be int or float, not tuple
-[2026-05-01] • [20:02:40] 📝 Syncing: [自动同步] (2026-04-04T10:57:52+00:00)
-[2026-05-01] • [20:02:40] Error processing task 4356123068: argument must be int or float, not tuple
-[2026-05-01] • [20:02:41] 📝 Syncing: [自动同步] (2026-04-03T15:04:59+00:00)
-[2026-05-01] • [20:02:41] Error processing task 4355582385: argument must be int or float, not tuple
-[2026-05-01] • [20:02:41] 📝 Syncing: [无描述] (2026-04-03T01:18:37+00:00)
-[2026-05-01] • [20:02:41] Error processing task 4355026429: argument must be int or float, not tuple
-[2026-05-01] • [20:02:42] 📝 Syncing: [无描述] (2026-04-03T01:17:41+00:00)
-[2026-05-01] • [20:02:42] Error processing task 4355025998: argument must be int or float, not tuple
-[2026-05-01] • [20:02:42] 📝 Syncing: [无描述] (2026-04-03T01:16:41+00:00)
-[2026-05-01] • [20:02:42] Error processing task 4355025572: argument must be int or float, not tuple
-[2026-05-01] • [20:02:43] 📝 Syncing: [无描述] (2026-04-03T01:16:28+00:00)
-[2026-05-01] • [20:02:43] Error processing task 4355025479: argument must be int or float, not tuple
-[2026-05-01] • [20:02:43] 📝 Syncing: [无描述] (2026-04-03T01:13:47+00:00)
-[2026-05-01] • [20:02:43] Error processing task 4355024245: argument must be int or float, not tuple
-[2026-05-01] • [20:02:44] 📝 Syncing: [无描述] (2026-04-03T01:09:57+00:00)
-[2026-05-01] • [20:02:44] Error processing task 4355022410: argument must be int or float, not tuple
-[2026-05-01] • [20:02:44] 📝 Syncing: [自动同步] (2026-04-02T14:49:32+00:00)
-[2026-05-01] • [20:02:44] Error processing task 4354374344: argument must be int or float, not tuple
-[2026-05-01] • [20:02:45] 📝 Syncing: [自动同步] (2026-04-02T14:49:12+00:00)
-[2026-05-01] • [20:02:45] Error processing task 4354373787: argument must be int or float, not tuple
-[2026-05-01] • [20:02:45] 📝 Syncing: [无描述] (2026-04-02T14:27:39+00:00)
-[2026-05-01] • [20:02:45] Error processing task 4354334282: argument must be int or float, not tuple
-[2026-05-01] • [20:02:46] 📝 Syncing: [无描述] (2026-04-02T12:47:18+00:00)
-[2026-05-01] • [20:02:46] Error processing task 4354152462: argument must be int or float, not tuple
-[2026-05-01] • [20:02:46] 📝 Syncing: [无描述] (2026-04-01T12:50:13+00:00)
-[2026-05-01] • [20:02:46] Error processing task 4352474961: argument must be int or float, not tuple
-[2026-05-01] • [20:02:47] 📝 Syncing: [无描述] (2026-04-01T12:49:31+00:00)
-[2026-05-01] • [20:02:47] Error processing task 4352473722: argument must be int or float, not tuple
-[2026-05-01] • [20:02:47] 📝 Syncing: [无描述] (2026-04-01T12:41:53+00:00)
-[2026-05-01] • [20:02:47] Error processing task 4352460678: argument must be int or float, not tuple
-[2026-05-01] • [20:02:48] 📝 Syncing: [无描述] (2026-04-01T12:40:38+00:00)
-[2026-05-01] • [20:02:48] Error processing task 4352458648: argument must be int or float, not tuple
-[2026-05-01] • [20:02:49] Found 46 entries from 2026-03-22 to 2026-04-01. Processing...
-[2026-05-01] • [20:02:49] 📝 Syncing: [无描述] (2026-04-01T08:03:52+00:00)
-[2026-05-01] • [20:02:49] Error processing task 4352039712: argument must be int or float, not tuple
-[2026-05-01] • [20:02:50] 📝 Syncing: [自动同步] (2026-04-01T05:34:11+00:00)
-[2026-05-01] • [20:02:50] Error processing task 4351848934: argument must be int or float, not tuple
-[2026-05-01] • [20:02:50] 📝 Syncing: [自动同步] (2026-04-01T05:32:31+00:00)
-[2026-05-01] • [20:02:50] Error processing task 4351847701: argument must be int or float, not tuple
-[2026-05-01] • [20:02:50] 📝 Syncing: [自动记录] (2026-04-01T00:53:00+00:00)
-[2026-05-01] • [20:02:50] Error processing task 4351669595: argument must be int or float, not tuple
-[2026-05-01] • [20:02:52] 📝 Syncing: [跑步自动记录] (2026-04-01T00:12:32+00:00)
-[2026-05-01] • [20:02:52] Error processing task 4351641560: argument must be int or float, not tuple
-[2026-05-01] • [20:02:52] 📝 Syncing: [自动同步] (2026-03-31T14:29:55+00:00)
-[2026-05-01] • [20:02:52] Error processing task 4350836307: argument must be int or float, not tuple
-[2026-05-01] • [20:02:53] 📝 Syncing: [无描述] (2026-03-31T04:14:08+00:00)
-[2026-05-01] • [20:02:53] Error processing task 4349926705: argument must be int or float, not tuple
-[2026-05-01] • [20:02:53] 📝 Syncing: [自动同步] (2026-03-31T00:19:39+00:00)
-[2026-05-01] • [20:02:53] Error processing task 4349777378: argument must be int or float, not tuple
-[2026-05-01] • [20:02:54] 📝 Syncing: [自动同步] (2026-03-31T00:17:42+00:00)
-[2026-05-01] • [20:02:54] Error processing task 4349776125: argument must be int or float, not tuple
-[2026-05-01] • [20:02:54] 📝 Syncing: [自动同步] (2026-03-30T23:22:38+00:00)
-[2026-05-01] • [20:02:54] Error processing task 4349738570: argument must be int or float, not tuple
-[2026-05-01] • [20:02:55] 📝 Syncing: [自动同步] (2026-03-30T08:36:56+00:00)
-[2026-05-01] • [20:02:55] Error processing task 4348353365: argument must be int or float, not tuple
-[2026-05-01] • [20:02:55] 📝 Syncing: [无描述] (2026-03-30T08:33:03+00:00)
-[2026-05-01] • [20:02:55] Error processing task 4348346963: argument must be int or float, not tuple
-[2026-05-01] • [20:02:55] 📝 Syncing: [自动同步] (2026-03-30T08:32:08+00:00)
-[2026-05-01] • [20:02:55] Error processing task 4348345484: argument must be int or float, not tuple
-[2026-05-01] • [20:02:57] 📝 Syncing: [自动同步] (2026-03-29T15:58:58+00:00)
-[2026-05-01] • [20:02:57] Error processing task 4347730080: argument must be int or float, not tuple
-[2026-05-01] • [20:02:57] 📝 Syncing: [无描述] (2026-03-29T15:54:38+00:00)
-[2026-05-01] • [20:02:57] Error processing task 4347728322: argument must be int or float, not tuple
-[2026-05-01] • [20:02:58] 📝 Syncing: [自动同步] (2026-03-29T15:53:17+00:00)
-[2026-05-01] • [20:02:58] Error processing task 4347727670: argument must be int or float, not tuple
-[2026-05-01] • [20:02:58] 📝 Syncing: [无描述] (2026-03-29T15:53:15+00:00)
-[2026-05-01] • [20:02:58] Error processing task 4347727668: argument must be int or float, not tuple
-[2026-05-01] • [20:02:59] 📝 Syncing: [自动记录] (2026-03-29T07:58:55+00:00)
-[2026-05-01] • [20:02:59] Error processing task 4347578452: argument must be int or float, not tuple
-[2026-05-01] • [20:02:59] 📝 Syncing: [跑步自动记录] (2026-03-29T07:16:07+00:00)
-[2026-05-01] • [20:02:59] Error processing task 4347568610: argument must be int or float, not tuple
-[2026-05-01] • [20:03:00] 📝 Syncing: [无描述] (2026-03-28T15:55:42+00:00)
-[2026-05-01] • [20:03:00] Error processing task 4347361065: argument must be int or float, not tuple
-[2026-05-01] • [20:03:00] 📝 Syncing: [自动同步] (2026-03-28T15:50:06+00:00)
-[2026-05-01] • [20:03:00] Error processing task 4347359038: argument must be int or float, not tuple
-[2026-05-01] • [20:03:01] 📝 Syncing: [无描述] (2026-03-28T15:41:21+00:00)
-[2026-05-01] • [20:03:01] Error processing task 4347356044: argument must be int or float, not tuple
-[2026-05-01] • [20:03:02] 📝 Syncing: [自动同步] (2026-03-27T15:55:32+00:00)
-[2026-05-01] • [20:03:02] Error processing task 4346624322: argument must be int or float, not tuple
-[2026-05-01] • [20:03:02] 📝 Syncing: [无描述] (2026-03-27T15:07:49+00:00)
-[2026-05-01] • [20:03:02] Error processing task 4346541318: argument must be int or float, not tuple
-[2026-05-01] • [20:03:03] 📝 Syncing: [自动记录] (2026-03-27T00:24:34+00:00)
-[2026-05-01] • [20:03:03] Error processing task 4345612019: argument must be int or float, not tuple
-[2026-05-01] • [20:03:03] 📝 Syncing: [跑步自动记录] (2026-03-26T23:44:04+00:00)
-[2026-05-01] • [20:03:03] Error processing task 4345586507: argument must be int or float, not tuple
-[2026-05-01] • [20:03:04] 📝 Syncing: [自动同步] (2026-03-26T14:49:01+00:00)
-[2026-05-01] • [20:03:04] Error processing task 4344884957: argument must be int or float, not tuple
-[2026-05-01] • [20:03:04] 📝 Syncing: [无描述] (2026-03-26T13:49:24+00:00)
-[2026-05-01] • [20:03:04] Error processing task 4344761519: argument must be int or float, not tuple
-[2026-05-01] • [20:03:05] 📝 Syncing: [无描述] (2026-03-26T13:47:58+00:00)
-[2026-05-01] • [20:03:05] Error processing task 4344758819: argument must be int or float, not tuple
-[2026-05-01] • [20:03:05] 📝 Syncing: [无描述] (2026-03-26T13:47:11+00:00)
-[2026-05-01] • [20:03:05] Error processing task 4344757329: argument must be int or float, not tuple
-[2026-05-01] • [20:03:06] 📝 Syncing: [自动同步] (2026-03-26T06:08:37+00:00)
-[2026-05-01] • [20:03:06] Error processing task 4344100793: argument must be int or float, not tuple
-[2026-05-01] • [20:03:06] 📝 Syncing: [自动同步] (2026-03-26T05:30:56+00:00)
-[2026-05-01] • [20:03:06] Error processing task 4344077898: argument must be int or float, not tuple
-[2026-05-01] • [20:03:07] 📝 Syncing: [自动同步] (2026-03-26T00:07:14+00:00)
-[2026-05-01] • [20:03:07] Error processing task 4343901843: argument must be int or float, not tuple
-[2026-05-01] • [20:03:08] 📝 Syncing: [自动记录] (2026-03-26T00:03:11+00:00)
-[2026-05-01] • [20:03:08] Error processing task 4343899151: argument must be int or float, not tuple
-[2026-05-01] • [20:03:08] 📝 Syncing: [跑步自动记录] (2026-03-25T23:19:20+00:00)
-[2026-05-01] • [20:03:08] Error processing task 4343870155: argument must be int or float, not tuple
-[2026-05-01] • [20:03:11] 📝 Syncing: [无描述] (2026-03-25T14:29:14+00:00)
-[2026-05-01] • [20:03:11] Error processing task 4343128026: argument must be int or float, not tuple
-[2026-05-01] • [20:03:11] 📝 Syncing: [自动同步] (2026-03-25T05:22:33+00:00)
-[2026-05-01] • [20:03:11] Error processing task 4342349101: argument must be int or float, not tuple
-[2026-05-01] • [20:03:12] 📝 Syncing: [自动同步] (2026-03-25T04:26:39+00:00)
-[2026-05-01] • [20:03:12] Error processing task 4342320753: argument must be int or float, not tuple
-[2026-05-01] • [20:03:12] 📝 Syncing: [自动同步] (2026-03-24T15:24:04+00:00)
-[2026-05-01] • [20:03:12] Error processing task 4341498095: argument must be int or float, not tuple
-[2026-05-01] • [20:03:13] 📝 Syncing: [自动同步] (2026-03-24T15:23:56+00:00)
-[2026-05-01] • [20:03:13] Error processing task 4341497842: argument must be int or float, not tuple
-[2026-05-01] • [20:03:14] 📝 Syncing: [自动同步] (2026-03-24T14:44:48+00:00)
-[2026-05-01] • [20:03:14] Error processing task 4341412563: argument must be int or float, not tuple
-[2026-05-01] • [20:03:14] 📝 Syncing: [无描述] (2026-03-24T14:32:21+00:00)
-[2026-05-01] • [20:03:14] Error processing task 4341386838: argument must be int or float, not tuple
-[2026-05-01] • [20:03:15] 📝 Syncing: [自动同步] (2026-03-23T15:53:05+00:00)
-[2026-05-01] • [20:03:15] Error processing task 4339754771: argument must be int or float, not tuple
-[2026-05-01] • [20:03:15] 📝 Syncing: [无描述] (2026-03-23T15:47:58+00:00)
-[2026-05-01] • [20:03:15] Error processing task 4339744289: argument must be int or float, not tuple
-[2026-05-01] • [20:03:17] 📝 Syncing: [自动记录] (2026-03-23T04:21:50+00:00)
-[2026-05-01] • [20:03:17] Error processing task 4338679180: argument must be int or float, not tuple
-[2026-05-01] • [20:03:18] 📝 Syncing: [跑步自动记录] (2026-03-23T03:36:39+00:00)
-[2026-05-01] • [20:03:18] Error processing task 4338657519: argument must be int or float, not tuple
-[2026-05-01] • [20:03:20] Found 69 entries from 2026-03-12 to 2026-03-22. Processing...
-[2026-05-01] • [20:03:21] 📝 Syncing: [自动同步] (2026-03-21T18:58:34+00:00)
-[2026-05-01] • [20:03:21] Error processing task 4338061614: argument must be int or float, not tuple
-[2026-05-01] • [20:03:22] 📝 Syncing: [自动同步] (2026-03-21T15:42:57+00:00)
-[2026-05-01] • [20:03:22] Error processing task 4338002341: argument must be int or float, not tuple
-[2026-05-01] • [20:03:23] 📝 Syncing: [无描述] (2026-03-21T15:42:18+00:00)
-[2026-05-01] • [20:03:23] Error processing task 4338002145: argument must be int or float, not tuple
-[2026-05-01] • [20:03:23] 📝 Syncing: [无描述] (2026-03-20T15:34:07+00:00)
-[2026-05-01] • [20:03:23] Error processing task 4337262908: argument must be int or float, not tuple
-[2026-05-01] • [20:03:23] 📝 Syncing: [自动同步] (2026-03-20T00:59:45+00:00)
-[2026-05-01] • [20:03:23] Error processing task 4336385694: argument must be int or float, not tuple
-[2026-05-01] • [20:03:24] 📝 Syncing: [自动记录] (2026-03-20T00:32:38+00:00)
-[2026-05-01] • [20:03:24] Error processing task 4336372367: argument must be int or float, not tuple
-[2026-05-01] • [20:03:24] 📝 Syncing: [跑步自动记录] (2026-03-19T23:52:42+00:00)
-[2026-05-01] • [20:03:24] Error processing task 4336351119: argument must be int or float, not tuple
-[2026-05-01] • [20:03:25] 📝 Syncing: [自动同步] (2026-03-19T14:36:34+00:00)
-[2026-05-01] • [20:03:25] Error processing task 4335642113: argument must be int or float, not tuple
-[2026-05-01] • [20:03:25] 📝 Syncing: [无描述] (2026-03-19T14:36:16+00:00)
-[2026-05-01] • [20:03:25] Error processing task 4335641609: argument must be int or float, not tuple
-[2026-05-01] • [20:03:26] 📝 Syncing: [无描述] (2026-03-19T13:33:35+00:00)
-[2026-05-01] • [20:03:26] Error processing task 4335516700: argument must be int or float, not tuple
-[2026-05-01] • [20:03:26] 📝 Syncing: [自动同步] (2026-03-19T10:37:57+00:00)
-[2026-05-01] • [20:03:26] Error processing task 4335236659: argument must be int or float, not tuple
-[2026-05-01] • [20:03:27] 📝 Syncing: [无描述] (2026-03-19T10:37:42+00:00)
-[2026-05-01] • [20:03:27] Error processing task 4335236309: argument must be int or float, not tuple
-[2026-05-01] • [20:03:28] 📝 Syncing: [无描述] (2026-03-19T10:36:05+00:00)
-[2026-05-01] • [20:03:28] Error processing task 4335234099: argument must be int or float, not tuple
-[2026-05-01] • [20:03:28] 📝 Syncing: [自动同步] (2026-03-19T07:13:49+00:00)
-[2026-05-01] • [20:03:28] Error processing task 4334953561: argument must be int or float, not tuple
-[2026-05-01] • [20:03:29] 📝 Syncing: [自动同步] (2026-03-19T06:29:32+00:00)
-[2026-05-01] • [20:03:29] Error processing task 4334914700: argument must be int or float, not tuple
-[2026-05-01] • [20:03:30] 📝 Syncing: [自动同步] (2026-03-19T05:32:09+00:00)
-[2026-05-01] • [20:03:30] Error processing task 4334878964: argument must be int or float, not tuple
-[2026-05-01] • [20:03:30] 📝 Syncing: [自动同步] (2026-03-19T01:02:43+00:00)
-[2026-05-01] • [20:03:30] Error processing task 4334738049: argument must be int or float, not tuple
-[2026-05-01] • [20:03:31] 📝 Syncing: [自动同步] (2026-03-19T00:53:21+00:00)
-[2026-05-01] • [20:03:31] Error processing task 4334731670: argument must be int or float, not tuple
-[2026-05-01] • [20:03:31] 📝 Syncing: [自动同步] (2026-03-19T00:49:48+00:00)
-[2026-05-01] • [20:03:31] Error processing task 4334729494: argument must be int or float, not tuple
-[2026-05-01] • [20:03:32] 📝 Syncing: [自动同步] (2026-03-19T00:48:36+00:00)
-[2026-05-01] • [20:03:32] Error processing task 4334728805: argument must be int or float, not tuple
-[2026-05-01] • [20:03:32] 📝 Syncing: [自动记录] (2026-03-19T00:36:23+00:00)
-[2026-05-01] • [20:03:32] Error processing task 4334721404: argument must be int or float, not tuple
-[2026-05-01] • [20:03:33] 📝 Syncing: [跑步自动记录] (2026-03-18T23:53:22+00:00)
-[2026-05-01] • [20:03:33] Error processing task 4334692961: argument must be int or float, not tuple
-[2026-05-01] • [20:03:33] 📝 Syncing: [无描述] (2026-03-18T01:19:24+00:00)
-[2026-05-01] • [20:03:33] Error processing task 4333087505: argument must be int or float, not tuple
-[2026-05-01] • [20:03:34] 📝 Syncing: [无描述] (2026-03-18T00:58:00+00:00)
-[2026-05-01] • [20:03:34] Error processing task 4333087503: argument must be int or float, not tuple
-[2026-05-01] • [20:03:35] 📝 Syncing: [跑步自动记录] (2026-03-18T00:15:05+00:00)
-[2026-05-01] • [20:03:35] Error processing task 4332985540: argument must be int or float, not tuple
-[2026-05-01] • [20:03:35] 📝 Syncing: [跑步自动记录] (2026-03-18T00:15:05+00:00)
-[2026-05-01] • [20:03:35] Error processing task 4332985822: argument must be int or float, not tuple
-[2026-05-01] • [20:03:36] 📝 Syncing: [自动同步] (2026-03-17T15:08:14+00:00)
-[2026-05-01] • [20:03:36] Error processing task 4332269100: argument must be int or float, not tuple
-[2026-05-01] • [20:03:36] 📝 Syncing: [无描述] (2026-03-17T14:41:22+00:00)
-[2026-05-01] • [20:03:36] Error processing task 4332209069: argument must be int or float, not tuple
-[2026-05-01] • [20:03:37] 📝 Syncing: [自动同步] (2026-03-16T23:55:10+00:00)
-[2026-05-01] • [20:03:37] Error processing task 4332208492: argument must be int or float, not tuple
-[2026-05-01] • [20:03:37] 📝 Syncing: [自动同步] (2026-03-16T13:53:18+00:00)
-[2026-05-01] • [20:03:37] Error processing task 4330270389: argument must be int or float, not tuple
-[2026-05-01] • [20:03:38] 📝 Syncing: [自动同步] (2026-03-16T06:36:18+00:00)
-[2026-05-01] • [20:03:38] Error processing task 4329525428: argument must be int or float, not tuple
-[2026-05-01] • [20:03:38] 📝 Syncing: [自动同步] (2026-03-16T05:38:19+00:00)
-[2026-05-01] • [20:03:38] Error processing task 4329482534: argument must be int or float, not tuple
-[2026-05-01] • [20:03:39] 📝 Syncing: [自动同步] (2026-03-16T05:02:21+00:00)
-[2026-05-01] • [20:03:39] Error processing task 4329461845: argument must be int or float, not tuple
-[2026-05-01] • [20:03:40] 📝 Syncing: [自动同步] (2026-03-16T04:57:46+00:00)
-[2026-05-01] • [20:03:40] Error processing task 4329459121: argument must be int or float, not tuple
-[2026-05-01] • [20:03:41] 📝 Syncing: [自动同步] (2026-03-16T04:57:13+00:00)
-[2026-05-01] • [20:03:41] Error processing task 4329458769: argument must be int or float, not tuple
-[2026-05-01] • [20:03:41] 📝 Syncing: [自动同步] (2026-03-16T04:55:38+00:00)
-[2026-05-01] • [20:03:41] Error processing task 4329457743: argument must be int or float, not tuple
-[2026-05-01] • [20:03:42] 📝 Syncing: [自动同步] (2026-03-16T04:55:27+00:00)
-[2026-05-01] • [20:03:42] Error processing task 4329457635: argument must be int or float, not tuple
-[2026-05-01] • [20:03:42] 📝 Syncing: [自动同步] (2026-03-16T04:26:46+00:00)
-[2026-05-01] • [20:03:42] Error processing task 4329443670: argument must be int or float, not tuple
-[2026-05-01] • [20:03:42] 📝 Syncing: [自动同步] (2026-03-16T02:14:29+00:00)
-[2026-05-01] • [20:03:42] Error processing task 4329376705: argument must be int or float, not tuple
-[2026-05-01] • [20:03:43] 📝 Syncing: [自动同步] (2026-03-15T17:29:52+00:00)
-[2026-05-01] • [20:03:43] Error processing task 4329142462: argument must be int or float, not tuple
-[2026-05-01] • [20:03:44] 📝 Syncing: [自动同步] (2026-03-15T17:07:46+00:00)
-[2026-05-01] • [20:03:44] Error processing task 4329134252: argument must be int or float, not tuple
-[2026-05-01] • [20:03:44] 📝 Syncing: [自动同步] (2026-03-15T17:03:38+00:00)
-[2026-05-01] • [20:03:44] Error processing task 4329132719: argument must be int or float, not tuple
-[2026-05-01] • [20:03:45] 📝 Syncing: [自动同步] (2026-03-15T17:03:34+00:00)
-[2026-05-01] • [20:03:45] Error processing task 4329132704: argument must be int or float, not tuple
-[2026-05-01] • [20:03:45] 📝 Syncing: [自动同步] (2026-03-15T16:16:07+00:00)
-[2026-05-01] • [20:03:45] Error processing task 4329115278: argument must be int or float, not tuple
-[2026-05-01] • [20:03:46] 📝 Syncing: [无描述] (2026-03-15T16:01:41+00:00)
-[2026-05-01] • [20:03:46] Error processing task 4329110272: argument must be int or float, not tuple
-[2026-05-01] • [20:03:46] 📝 Syncing: [无描述] (2026-03-15T15:45:29+00:00)
-[2026-05-01] • [20:03:46] Error processing task 4329104167: argument must be int or float, not tuple
-[2026-05-01] • [20:03:47] 📝 Syncing: [自动同步] (2026-03-15T14:37:01+00:00)
-[2026-05-01] • [20:03:47] Error processing task 4329077275: argument must be int or float, not tuple
-[2026-05-01] • [20:03:47] 📝 Syncing: [自动同步] (2026-03-15T14:29:30+00:00)
-[2026-05-01] • [20:03:47] Error processing task 4329072895: argument must be int or float, not tuple
-[2026-05-01] • [20:03:49] 📝 Syncing: [自动同步] (2026-03-15T13:59:58+00:00)
-[2026-05-01] • [20:03:49] Error processing task 4329062164: argument must be int or float, not tuple
-[2026-05-01] • [20:03:49] 📝 Syncing: [自动同步] (2026-03-15T12:19:45+00:00)
-[2026-05-01] • [20:03:49] Error processing task 4329028681: argument must be int or float, not tuple
-[2026-05-01] • [20:03:50] 📝 Syncing: [自动同步] (2026-03-15T11:55:16+00:00)
-[2026-05-01] • [20:03:50] Error processing task 4329020897: argument must be int or float, not tuple
-[2026-05-01] • [20:03:50] 📝 Syncing: [自动同步] (2026-03-15T11:42:21+00:00)
-[2026-05-01] • [20:03:50] Error processing task 4329017011: argument must be int or float, not tuple
-[2026-05-01] • [20:03:50] 📝 Syncing: [自动同步] (2026-03-15T11:20:13+00:00)
-[2026-05-01] • [20:03:50] Error processing task 4329010401: argument must be int or float, not tuple
-[2026-05-01] • [20:03:51] 📝 Syncing: [自动同步] (2026-03-15T11:17:42+00:00)
-[2026-05-01] • [20:03:51] Error processing task 4329009714: argument must be int or float, not tuple
-[2026-05-01] • [20:03:51] 📝 Syncing: [自动同步] (2026-03-15T11:06:03+00:00)
-[2026-05-01] • [20:03:51] Error processing task 4329006445: argument must be int or float, not tuple
-[2026-05-01] • [20:03:52] 📝 Syncing: [自动同步] (2026-03-15T11:05:03+00:00)
-[2026-05-01] • [20:03:52] Error processing task 4329006183: argument must be int or float, not tuple
-[2026-05-01] • [20:03:52] 📝 Syncing: [自动同步] (2026-03-15T11:01:11+00:00)
-[2026-05-01] • [20:03:52] Error processing task 4329004989: argument must be int or float, not tuple
-[2026-05-01] • [20:03:53] 📝 Syncing: [自动同步] (2026-03-15T08:22:23+00:00)
-[2026-05-01] • [20:03:53] Error processing task 4328961485: argument must be int or float, not tuple
-[2026-05-01] • [20:03:53] 📝 Syncing: [自动同步] (2026-03-15T06:09:43+00:00)
-[2026-05-01] • [20:03:53] Error processing task 4328933886: argument must be int or float, not tuple
-[2026-05-01] • [20:03:54] 📝 Syncing: [自动同步] (2026-03-14T08:13:18+00:00)
-[2026-05-01] • [20:03:54] Error processing task 4328604090: argument must be int or float, not tuple
-[2026-05-01] • [20:03:54] 📝 Syncing: [自动同步] (2026-03-14T07:42:51+00:00)
-[2026-05-01] • [20:03:54] Error processing task 4328597141: argument must be int or float, not tuple
-[2026-05-01] • [20:03:55] 📝 Syncing: [自动同步] (2026-03-13T18:50:30+00:00)
-[2026-05-01] • [20:03:55] Error processing task 4328239353: argument must be int or float, not tuple
-[2026-05-01] • [20:03:55] 📝 Syncing: [无描述] (2026-03-13T15:43:57+00:00)
-[2026-05-01] • [20:03:55] Error processing task 4327968564: argument must be int or float, not tuple
-[2026-05-01] • [20:03:56] 📝 Syncing: [自动同步] (2026-03-13T10:42:27+00:00)
-[2026-05-01] • [20:03:56] Error processing task 4327472535: argument must be int or float, not tuple
-[2026-05-01] • [20:03:56] 📝 Syncing: [自动同步] (2026-03-13T02:33:20+00:00)
-[2026-05-01] • [20:03:56] Error processing task 4327036710: argument must be int or float, not tuple
-[2026-05-01] • [20:03:57] 📝 Syncing: [自动同步] (2026-03-13T02:10:05+00:00)
-[2026-05-01] • [20:03:57] Error processing task 4327023531: argument must be int or float, not tuple
-[2026-05-01] • [20:03:58] 📝 Syncing: [自动同步] (2026-03-12T14:34:12+00:00)
-[2026-05-01] • [20:03:58] Error processing task 4326188830: argument must be int or float, not tuple
-[2026-05-01] • [20:03:58] 📝 Syncing: [无描述] (2026-03-12T14:16:53+00:00)
-[2026-05-01] • [20:03:58] Error processing task 4326152538: argument must be int or float, not tuple
-[2026-05-01] • [20:04:00] 📝 Syncing: [无描述] (2026-03-12T14:13:36+00:00)
-[2026-05-01] • [20:04:00] Error processing task 4326145905: argument must be int or float, not tuple
-[2026-05-01] • [20:04:01] Found 11 entries from 2026-03-10 to 2026-03-12. Processing...
-[2026-05-01] • [20:04:02] 📝 Syncing: [自动同步] (2026-03-12T10:40:05+00:00)
-[2026-05-01] • [20:04:02] Error processing task 4325774886: argument must be int or float, not tuple
-[2026-05-01] • [20:04:02] 📝 Syncing: [无描述] (2026-03-11T15:23:49+00:00)
-[2026-05-01] • [20:04:02] Error processing task 4324543455: argument must be int or float, not tuple
-[2026-05-01] • [20:04:04] 📝 Syncing: [无描述] (2026-03-11T15:13:25+00:00)
-[2026-05-01] • [20:04:04] Error processing task 4324523370: argument must be int or float, not tuple
-[2026-05-01] • [20:04:05] 📝 Syncing: [无描述] (2026-03-11T15:11:14+00:00)
-[2026-05-01] • [20:04:05] Error processing task 4324519310: argument must be int or float, not tuple
-[2026-05-01] • [20:04:05] 📝 Updating: [自动同步] (2026-03-11T05:34:01+00:00)
-[2026-05-01] • [20:04:05] Error processing task 4323648424: argument must be int or float, not tuple
-[2026-05-01] • [20:04:06] 📝 Updating: [自动记录] (2026-03-11T00:36:00+00:00)
-[2026-05-01] • [20:04:06] Error processing task 4323481406: argument must be int or float, not tuple
-[2026-05-01] • [20:04:07] 📝 Updating: [跑步自动记录] (2026-03-10T23:55:27+00:00)
-[2026-05-01] • [20:04:07] Error processing task 4323452260: argument must be int or float, not tuple
-[2026-05-01] • [20:04:08] 📝 Updating: [自动同步] (2026-03-10T15:21:47+00:00)
-[2026-05-01] • [20:04:08] Error processing task 4322764778: argument must be int or float, not tuple
-[2026-05-01] • [20:04:09] 📝 Updating: [无描述] (2026-03-10T15:21:00+00:00)
-[2026-05-01] • [20:04:09] Error processing task 4322763221: argument must be int or float, not tuple
-[2026-05-01] • [20:04:10] 📝 Updating: [自动同步] (2026-03-10T14:51:18+00:00)
-[2026-05-01] • [20:04:10] Error processing task 4322698074: argument must be int or float, not tuple
-[2026-05-01] • [20:04:11] 📝 Updating: [自动同步] (2026-03-10T06:15:17+00:00)
-[2026-05-01] • [20:04:11] Error processing task 4321862600: argument must be int or float, not tuple
-[2026-05-01] • [20:04:11] ✅ History continuity checked. No significant gaps found.
-[2026-05-01] • [20:04:11] 🔄 Checking for Notion entries to sync back to Toggl...
-[2026-05-01] • [20:04:13] No missing Toggl IDs found in Notion.
-[2026-05-01] • [20:04:13] 开始发送企业微信通知: 完成Toggl同步 | Toggl 数据同步完成
-[2026-05-01] • [20:04:13] 企业微信通知发送成功
+[2026-05-30] • [16:00:17] 开始发送企业微信通知: 🚀 开始同步Toggl
+[2026-05-30] • [16:00:18] 企业微信通知发送成功
+[2026-05-30] • [16:00:23] 🔍 Found earliest entry in Notion: 2021-12-07T20:08:00.000+08:00
+[2026-05-30] • [16:00:24] Loaded 7 clients for workspace 5952284
+[2026-05-30] • [16:00:25] Loaded 50 projects for workspace 5952284
+[2026-05-30] • [16:00:25] 🔄 Starting Incremental Sync from: 2026-03-10 13:34:00
+[2026-05-30] • [16:00:25] Synchronizing from 2026-03-10T13:34:00+08:00 to 2026-05-30T16:00:20.351348+08:00
+[2026-05-30] • [16:00:26] Found 65 entries from 2026-05-20 to 2026-05-30. Processing...
+[2026-05-30] • [16:00:27] 📝 Syncing: [自动同步] (2026-05-30T03:22:03+00:00)
+[2026-05-30] • [16:00:40] Error processing task 4427004991: argument must be int or float, not tuple
+[2026-05-30] • [16:00:43] 📝 Syncing: [自动同步] (2026-05-30T03:19:54+00:00)
+[2026-05-30] • [16:00:44] Error processing task 4427004601: argument must be int or float, not tuple
+[2026-05-30] • [16:00:48] 📝 Syncing: [自动同步] (2026-05-30T03:05:05+00:00)
+[2026-05-30] • [16:00:48] Error processing task 4427001528: argument must be int or float, not tuple
+[2026-05-30] • [16:00:49] 📝 Syncing: [无描述] (2026-05-29T23:38:40+00:00)
+[2026-05-30] • [16:00:53] Error processing task 4426945626: argument must be int or float, not tuple
+[2026-05-30] • [16:00:54] 📝 Syncing: [自动同步] (2026-05-29T09:56:46+00:00)
+[2026-05-30] • [16:00:55] Error processing task 4426945625: argument must be int or float, not tuple
+[2026-05-30] • [16:00:58] 📝 Syncing: [自动同步] (2026-05-29T03:16:14+00:00)
+[2026-05-30] • [16:00:58] Error processing task 4425557655: argument must be int or float, not tuple
+[2026-05-30] • [16:01:00] 📝 Syncing: [自动同步] (2026-05-29T03:11:49+00:00)
+[2026-05-30] • [16:01:00] Error processing task 4425555694: argument must be int or float, not tuple
+[2026-05-30] • [16:01:01] 📝 Syncing: [自动同步] (2026-05-29T03:01:34+00:00)
+[2026-05-30] • [16:01:02] Error processing task 4425551011: argument must be int or float, not tuple
+[2026-05-30] • [16:01:03] 📝 Syncing: [自动同步] (2026-05-29T02:20:19+00:00)
+[2026-05-30] • [16:01:03] Error processing task 4425531245: argument must be int or float, not tuple
+[2026-05-30] • [16:01:04] 📝 Syncing: [无描述] (2026-05-28T17:29:24+00:00)
+[2026-05-30] • [16:01:04] Error processing task 4425069353: argument must be int or float, not tuple
+[2026-05-30] • [16:01:05] 📝 Syncing: [自动同步] (2026-05-28T11:19:36+00:00)
+[2026-05-30] • [16:01:06] Error processing task 4424455172: argument must be int or float, not tuple
+[2026-05-30] • [16:01:07] 📝 Syncing: [自动同步] (2026-05-28T04:46:31+00:00)
+[2026-05-30] • [16:01:08] Error processing task 4423956856: argument must be int or float, not tuple
+[2026-05-30] • [16:01:09] 📝 Syncing: [无描述] (2026-05-28T01:44:52+00:00)
+[2026-05-30] • [16:01:09] Error processing task 4423863637: argument must be int or float, not tuple
+[2026-05-30] • [16:01:10] 📝 Syncing: [无描述] (2026-05-28T01:41:19+00:00)
+[2026-05-30] • [16:01:11] Error processing task 4423861829: argument must be int or float, not tuple
+[2026-05-30] • [16:01:11] 📝 Syncing: [自动记录] (2026-05-28T01:40:44+00:00)
+[2026-05-30] • [16:01:19] Error processing task 4423861494: argument must be int or float, not tuple
+[2026-05-30] • [16:01:20] 📝 Syncing: [跑步自动记录] (2026-05-28T01:02:29+00:00)
+[2026-05-30] • [16:01:26] Error processing task 4423840138: argument must be int or float, not tuple
+[2026-05-30] • [16:01:27] 📝 Syncing: [无描述] (2026-05-26T16:19:45+00:00)
+[2026-05-30] • [16:01:28] Error processing task 4421652381: argument must be int or float, not tuple
+[2026-05-30] • [16:01:32] 📝 Syncing: [自动同步] (2026-05-26T15:47:10+00:00)
+[2026-05-30] • [16:01:32] Error processing task 4421595786: argument must be int or float, not tuple
+[2026-05-30] • [16:01:34] 📝 Syncing: [自动同步] (2026-05-26T15:40:22+00:00)
+[2026-05-30] • [16:01:34] Error processing task 4421584245: argument must be int or float, not tuple
+[2026-05-30] • [16:01:35] 📝 Syncing: [无描述] (2026-05-26T00:37:08+00:00)
+[2026-05-30] • [16:01:36] Error processing task 4420448845: argument must be int or float, not tuple
+[2026-05-30] • [16:01:37] 📝 Syncing: [自动记录] (2026-05-26T00:34:20+00:00)
+[2026-05-30] • [16:01:38] Error processing task 4420447472: argument must be int or float, not tuple
+[2026-05-30] • [16:01:39] 📝 Syncing: [跑步自动记录] (2026-05-25T23:50:29+00:00)
+[2026-05-30] • [16:01:40] Error processing task 4420425031: argument must be int or float, not tuple
+[2026-05-30] • [16:01:41] 📝 Syncing: [自动同步] (2026-05-25T14:45:25+00:00)
+[2026-05-30] • [16:01:41] Error processing task 4420078909: argument must be int or float, not tuple
+[2026-05-30] • [16:01:42] 📝 Syncing: [无描述] (2026-05-25T13:46:02+00:00)
+[2026-05-30] • [16:01:42] Error processing task 4420016223: argument must be int or float, not tuple
+[2026-05-30] • [16:01:43] 📝 Syncing: [自动同步] (2026-05-24T16:02:37+00:00)
+[2026-05-30] • [16:01:44] Error processing task 4419165851: argument must be int or float, not tuple
+[2026-05-30] • [16:01:45] 📝 Syncing: [自动同步] (2026-05-24T15:59:50+00:00)
+[2026-05-30] • [16:01:46] Error processing task 4419164987: argument must be int or float, not tuple
+[2026-05-30] • [16:01:47] 📝 Syncing: [无描述] (2026-05-24T15:58:12+00:00)
+[2026-05-30] • [16:01:47] Error processing task 4419164514: argument must be int or float, not tuple
+[2026-05-30] • [16:01:48] 📝 Syncing: [自动同步] (2026-05-24T15:56:37+00:00)
+[2026-05-30] • [16:01:49] Error processing task 4419164052: argument must be int or float, not tuple
+[2026-05-30] • [16:01:51] 📝 Syncing: [无描述] (2026-05-24T13:28:28+00:00)
+[2026-05-30] • [16:01:55] Error processing task 4419115844: argument must be int or float, not tuple
+[2026-05-30] • [16:01:56] 📝 Syncing: [无描述] (2026-05-23T15:52:26+00:00)
+[2026-05-30] • [16:01:57] Error processing task 4418833302: argument must be int or float, not tuple
+[2026-05-30] • [16:01:58] 📝 Syncing: [自动同步] (2026-05-23T15:51:41+00:00)
+[2026-05-30] • [16:01:59] Error processing task 4418833087: argument must be int or float, not tuple
+[2026-05-30] • [16:02:00] 📝 Syncing: [自动同步] (2026-05-23T05:01:41+00:00)
+[2026-05-30] • [16:02:00] Error processing task 4418663691: argument must be int or float, not tuple
+[2026-05-30] • [16:02:02] 📝 Syncing: [自动同步] (2026-05-23T02:28:08+00:00)
+[2026-05-30] • [16:02:03] Error processing task 4418635778: argument must be int or float, not tuple
+[2026-05-30] • [16:02:04] 📝 Syncing: [自动同步] (2026-05-23T02:26:15+00:00)
+[2026-05-30] • [16:02:04] Error processing task 4418635403: argument must be int or float, not tuple
+[2026-05-30] • [16:02:05] 📝 Syncing: [自动同步] (2026-05-23T02:24:46+00:00)
+[2026-05-30] • [16:02:06] Error processing task 4418635081: argument must be int or float, not tuple
+[2026-05-30] • [16:02:08] 📝 Syncing: [自动同步] (2026-05-23T02:18:53+00:00)
+[2026-05-30] • [16:02:09] Error processing task 4418633780: argument must be int or float, not tuple
+[2026-05-30] • [16:02:10] 📝 Syncing: [无描述] (2026-05-23T02:18:44+00:00)
+[2026-05-30] • [16:02:10] Error processing task 4418633747: argument must be int or float, not tuple
+[2026-05-30] • [16:02:11] 📝 Syncing: [自动同步] (2026-05-23T02:18:17+00:00)
+[2026-05-30] • [16:02:11] Error processing task 4418633653: argument must be int or float, not tuple
+[2026-05-30] • [16:02:12] 📝 Syncing: [无描述] (2026-05-23T02:13:19+00:00)
+[2026-05-30] • [16:02:13] Error processing task 4418632594: argument must be int or float, not tuple
+[2026-05-30] • [16:02:14] 📝 Syncing: [无描述] (2026-05-23T01:57:55+00:00)
+[2026-05-30] • [16:02:14] Error processing task 4418629244: argument must be int or float, not tuple
+[2026-05-30] • [16:02:15] 📝 Syncing: [无描述] (2026-05-22T15:45:23+00:00)
+[2026-05-30] • [16:02:16] Error processing task 4418186912: argument must be int or float, not tuple
+[2026-05-30] • [16:02:18] 📝 Syncing: [自动同步] (2026-05-22T15:17:35+00:00)
+[2026-05-30] • [16:02:18] Error processing task 4418136145: argument must be int or float, not tuple
+[2026-05-30] • [16:02:19] 📝 Syncing: [自动同步] (2026-05-22T09:46:07+00:00)
+[2026-05-30] • [16:02:20] Error processing task 4417672387: argument must be int or float, not tuple
+[2026-05-30] • [16:02:21] 📝 Syncing: [自动同步] (2026-05-22T09:38:02+00:00)
+[2026-05-30] • [16:02:21] Error processing task 4417663015: argument must be int or float, not tuple
+[2026-05-30] • [16:02:23] 📝 Syncing: [自动同步] (2026-05-22T09:35:47+00:00)
+[2026-05-30] • [16:02:24] Error processing task 4417660222: argument must be int or float, not tuple
+[2026-05-30] • [16:02:24] 📝 Syncing: [自动同步] (2026-05-22T09:33:37+00:00)
+[2026-05-30] • [16:02:25] Error processing task 4417657538: argument must be int or float, not tuple
+[2026-05-30] • [16:02:26] 📝 Syncing: [自动同步] (2026-05-22T09:31:02+00:00)
+[2026-05-30] • [16:02:26] Error processing task 4417654180: argument must be int or float, not tuple
+[2026-05-30] • [16:02:27] 📝 Syncing: [自动同步] (2026-05-22T09:30:30+00:00)
+[2026-05-30] • [16:02:28] Error processing task 4417653426: argument must be int or float, not tuple
+[2026-05-30] • [16:02:29] 📝 Syncing: [自动同步] (2026-05-22T09:28:52+00:00)
+[2026-05-30] • [16:02:29] Error processing task 4417651303: argument must be int or float, not tuple
+[2026-05-30] • [16:02:31] 📝 Syncing: [自动同步] (2026-05-22T09:06:06+00:00)
+[2026-05-30] • [16:02:32] Error processing task 4417623100: argument must be int or float, not tuple
+[2026-05-30] • [16:02:33] 📝 Syncing: [自动同步] (2026-05-22T08:47:13+00:00)
+[2026-05-30] • [16:02:33] Error processing task 4417597770: argument must be int or float, not tuple
+[2026-05-30] • [16:02:34] 📝 Syncing: [自动同步] (2026-05-22T04:02:58+00:00)
+[2026-05-30] • [16:02:34] Error processing task 4417327414: argument must be int or float, not tuple
+[2026-05-30] • [16:02:35] 📝 Syncing: [自动同步] (2026-05-22T03:59:22+00:00)
+[2026-05-30] • [16:02:36] Error processing task 4417325375: argument must be int or float, not tuple
+[2026-05-30] • [16:02:37] 📝 Syncing: [自动同步] (2026-05-22T00:11:49+00:00)
+[2026-05-30] • [16:02:37] Error processing task 4417212126: argument must be int or float, not tuple
+[2026-05-30] • [16:02:38] 📝 Syncing: [自动同步] (2026-05-22T00:04:59+00:00)
+[2026-05-30] • [16:02:39] Error processing task 4417208829: argument must be int or float, not tuple
+[2026-05-30] • [16:02:40] 📝 Syncing: [自动同步] (2026-05-21T15:44:19+00:00)
+[2026-05-30] • [16:02:41] Error processing task 4416635659: argument must be int or float, not tuple
+[2026-05-30] • [16:02:42] 📝 Syncing: [无描述] (2026-05-21T12:07:37+00:00)
+[2026-05-30] • [16:02:42] Error processing task 4416213422: argument must be int or float, not tuple
+[2026-05-30] • [16:02:44] 📝 Syncing: [无描述] (2026-05-21T12:04:34+00:00)
+[2026-05-30] • [16:02:44] Error processing task 4416208800: argument must be int or float, not tuple
+[2026-05-30] • [16:02:47] 📝 Syncing: [无描述] (2026-05-21T11:39:40+00:00)
+[2026-05-30] • [16:02:47] Error processing task 4416171646: argument must be int or float, not tuple
+[2026-05-30] • [16:02:48] 📝 Syncing: [无描述] (2026-05-21T11:38:08+00:00)
+[2026-05-30] • [16:02:49] Error processing task 4416169644: argument must be int or float, not tuple
+[2026-05-30] • [16:02:50] 📝 Syncing: [自动记录] (2026-05-20T23:38:34+00:00)
+[2026-05-30] • [16:02:51] Error processing task 4415487175: argument must be int or float, not tuple
+[2026-05-30] • [16:02:52] 📝 Syncing: [跑步自动记录] (2026-05-20T22:57:49+00:00)
+[2026-05-30] • [16:02:52] Error processing task 4415457791: argument must be int or float, not tuple
+[2026-05-30] • [16:02:53] 📝 Syncing: [无描述] (2026-05-20T14:34:57+00:00)
+[2026-05-30] • [16:02:54] Error processing task 4414831505: argument must be int or float, not tuple
+[2026-05-30] • [16:02:55] 📝 Syncing: [自动同步] (2026-05-20T14:17:43+00:00)
+[2026-05-30] • [16:02:56] Error processing task 4414798188: argument must be int or float, not tuple
+[2026-05-30] • [16:02:57] 📝 Syncing: [自动同步] (2026-05-20T14:16:23+00:00)
+[2026-05-30] • [16:02:57] Error processing task 4414795707: argument must be int or float, not tuple
+[2026-05-30] • [16:02:58] Found 49 entries from 2026-05-10 to 2026-05-20. Processing...
+[2026-05-30] • [16:02:59] 📝 Syncing: [跑步自动记录] (2026-05-19T22:31:42+00:00)
+[2026-05-30] • [16:03:00] Error processing task 4413758997: argument must be int or float, not tuple
+[2026-05-30] • [16:03:01] 📝 Syncing: [无描述] (2026-05-19T14:44:46+00:00)
+[2026-05-30] • [16:03:02] Error processing task 4413140824: argument must be int or float, not tuple
+[2026-05-30] • [16:03:03] 📝 Syncing: [无描述] (2026-05-19T13:25:41+00:00)
+[2026-05-30] • [16:03:04] Error processing task 4412980394: argument must be int or float, not tuple
+[2026-05-30] • [16:03:05] 📝 Syncing: [无描述] (2026-05-19T12:16:51+00:00)
+[2026-05-30] • [16:03:06] Error processing task 4412855685: argument must be int or float, not tuple
+[2026-05-30] • [16:03:07] 📝 Syncing: [自动同步] (2026-05-19T11:46:07+00:00)
+[2026-05-30] • [16:03:07] Error processing task 4412805935: argument must be int or float, not tuple
+[2026-05-30] • [16:03:09] 📝 Syncing: [自动同步] (2026-05-19T11:17:06+00:00)
+[2026-05-30] • [16:03:09] Error processing task 4412763113: argument must be int or float, not tuple
+[2026-05-30] • [16:03:10] 📝 Syncing: [自动同步] (2026-05-19T02:10:33+00:00)
+[2026-05-30] • [16:03:11] Error processing task 4412159695: argument must be int or float, not tuple
+[2026-05-30] • [16:03:12] 📝 Syncing: [自动同步] (2026-05-19T02:04:07+00:00)
+[2026-05-30] • [16:03:12] Error processing task 4412156127: argument must be int or float, not tuple
+[2026-05-30] • [16:03:13] 📝 Syncing: [自动同步] (2026-05-18T10:27:24+00:00)
+[2026-05-30] • [16:03:14] Error processing task 4410942359: argument must be int or float, not tuple
+[2026-05-30] • [16:03:15] 📝 Syncing: [自动同步] (2026-05-18T09:55:20+00:00)
+[2026-05-30] • [16:03:15] Error processing task 4410891947: argument must be int or float, not tuple
+[2026-05-30] • [16:03:17] 📝 Syncing: [自动同步] (2026-05-17T16:18:15+00:00)
+[2026-05-30] • [16:03:18] Error processing task 4410179212: argument must be int or float, not tuple
+[2026-05-30] • [16:03:19] 📝 Syncing: [自动同步] (2026-05-17T16:11:11+00:00)
+[2026-05-30] • [16:03:19] Error processing task 4410176896: argument must be int or float, not tuple
+[2026-05-30] • [16:03:21] 📝 Syncing: [自动同步] (2026-05-17T15:53:35+00:00)
+[2026-05-30] • [16:03:21] Error processing task 4410170843: argument must be int or float, not tuple
+[2026-05-30] • [16:03:22] 📝 Syncing: [无描述] (2026-05-17T15:40:33+00:00)
+[2026-05-30] • [16:03:22] Error processing task 4410166464: argument must be int or float, not tuple
+[2026-05-30] • [16:03:23] 📝 Syncing: [自动同步] (2026-05-16T16:07:35+00:00)
+[2026-05-30] • [16:03:24] Error processing task 4409831404: argument must be int or float, not tuple
+[2026-05-30] • [16:03:25] 📝 Syncing: [自动同步] (2026-05-16T16:07:30+00:00)
+[2026-05-30] • [16:03:25] Error processing task 4409831379: argument must be int or float, not tuple
+[2026-05-30] • [16:03:26] 📝 Syncing: [自动同步] (2026-05-16T16:06:08+00:00)
+[2026-05-30] • [16:03:27] Error processing task 4409831006: argument must be int or float, not tuple
+[2026-05-30] • [16:03:28] 📝 Syncing: [自动同步] (2026-05-16T16:05:40+00:00)
+[2026-05-30] • [16:03:28] Error processing task 4409830883: argument must be int or float, not tuple
+[2026-05-30] • [16:03:30] 📝 Syncing: [自动同步] (2026-05-16T15:59:06+00:00)
+[2026-05-30] • [16:03:30] Error processing task 4409828877: argument must be int or float, not tuple
+[2026-05-30] • [16:03:32] 📝 Syncing: [自动同步] (2026-05-16T10:03:59+00:00)
+[2026-05-30] • [16:03:32] Error processing task 4409725291: argument must be int or float, not tuple
+[2026-05-30] • [16:03:33] 📝 Syncing: [自动同步] (2026-05-15T13:50:26+00:00)
+[2026-05-30] • [16:03:33] Error processing task 4408962268: argument must be int or float, not tuple
+[2026-05-30] • [16:03:35] 📝 Syncing: [无描述] (2026-05-15T13:27:39+00:00)
+[2026-05-30] • [16:03:36] Error processing task 4408924547: argument must be int or float, not tuple
+[2026-05-30] • [16:03:37] 📝 Syncing: [无描述] (2026-05-15T13:25:00+00:00)
+[2026-05-30] • [16:03:37] Error processing task 4408920011: argument must be int or float, not tuple
+[2026-05-30] • [16:03:38] 📝 Syncing: [自动同步] (2026-05-15T09:16:22+00:00)
+[2026-05-30] • [16:03:38] Error processing task 4408606120: argument must be int or float, not tuple
+[2026-05-30] • [16:03:39] 📝 Syncing: [自动同步] (2026-05-15T09:01:46+00:00)
+[2026-05-30] • [16:03:40] Error processing task 4408589617: argument must be int or float, not tuple
+[2026-05-30] • [16:03:41] 📝 Syncing: [自动同步] (2026-05-15T08:59:57+00:00)
+[2026-05-30] • [16:03:42] Error processing task 4408586877: argument must be int or float, not tuple
+[2026-05-30] • [16:03:43] 📝 Syncing: [自动同步] (2026-05-14T07:19:01+00:00)
+[2026-05-30] • [16:03:43] Error processing task 4407029884: argument must be int or float, not tuple
+[2026-05-30] • [16:03:45] 📝 Syncing: [自动同步] (2026-05-14T07:19:01+00:00)
+[2026-05-30] • [16:03:45] Error processing task 4407029889: argument must be int or float, not tuple
+[2026-05-30] • [16:03:46] 📝 Syncing: [自动同步] (2026-05-14T07:17:49+00:00)
+[2026-05-30] • [16:03:47] Error processing task 4407028747: argument must be int or float, not tuple
+[2026-05-30] • [16:03:48] 📝 Syncing: [自动同步] (2026-05-13T15:56:53+00:00)
+[2026-05-30] • [16:03:48] Error processing task 4406212860: argument must be int or float, not tuple
+[2026-05-30] • [16:03:49] 📝 Syncing: [自动同步] (2026-05-13T15:25:53+00:00)
+[2026-05-30] • [16:03:50] Error processing task 4406159397: argument must be int or float, not tuple
+[2026-05-30] • [16:03:51] 📝 Syncing: [无描述] (2026-05-13T15:24:14+00:00)
+[2026-05-30] • [16:03:52] Error processing task 4406156419: argument must be int or float, not tuple
+[2026-05-30] • [16:03:53] 📝 Syncing: [无描述] (2026-05-13T15:21:29+00:00)
+[2026-05-30] • [16:03:54] Error processing task 4406151951: argument must be int or float, not tuple
+[2026-05-30] • [16:03:55] 📝 Syncing: [自动同步] (2026-05-12T14:58:38+00:00)
+[2026-05-30] • [16:03:55] Error processing task 4404395572: argument must be int or float, not tuple
+[2026-05-30] • [16:03:57] 📝 Syncing: [无描述] (2026-05-12T14:09:51+00:00)
+[2026-05-30] • [16:03:59] Error processing task 4404299378: argument must be int or float, not tuple
+[2026-05-30] • [16:04:00] 📝 Syncing: [无描述] (2026-05-12T10:25:10+00:00)
+[2026-05-30] • [16:04:00] Error processing task 4403910712: argument must be int or float, not tuple
+[2026-05-30] • [16:04:01] 📝 Syncing: [无描述] (2026-05-12T10:24:59+00:00)
+[2026-05-30] • [16:04:02] Error processing task 4403910431: argument must be int or float, not tuple
+[2026-05-30] • [16:04:03] 📝 Syncing: [无描述] (2026-05-12T10:24:01+00:00)
+[2026-05-30] • [16:04:03] Error processing task 4403909104: argument must be int or float, not tuple
+[2026-05-30] • [16:04:05] 📝 Syncing: [无描述] (2026-05-12T10:23:38+00:00)
+[2026-05-30] • [16:04:06] Error processing task 4403908541: argument must be int or float, not tuple
+[2026-05-30] • [16:04:06] 📝 Syncing: [无描述] (2026-05-12T10:22:22+00:00)
+[2026-05-30] • [16:04:07] Error processing task 4403906943: argument must be int or float, not tuple
+[2026-05-30] • [16:04:09] 📝 Syncing: [自动记录] (2026-05-11T23:26:04+00:00)
+[2026-05-30] • [16:04:09] Error processing task 4403283563: argument must be int or float, not tuple
+[2026-05-30] • [16:04:10] 📝 Syncing: [跑步自动记录] (2026-05-11T22:47:34+00:00)
+[2026-05-30] • [16:04:11] Error processing task 4403256573: argument must be int or float, not tuple
+[2026-05-30] • [16:04:12] 📝 Syncing: [自动同步] (2026-05-11T08:32:40+00:00)
+[2026-05-30] • [16:04:13] Error processing task 4401932018: argument must be int or float, not tuple
+[2026-05-30] • [16:04:14] 📝 Syncing: [自动同步] (2026-05-11T08:25:40+00:00)
+[2026-05-30] • [16:04:15] Error processing task 4401919560: argument must be int or float, not tuple
+[2026-05-30] • [16:04:16] 📝 Syncing: [自动同步] (2026-05-10T12:57:11+00:00)
+[2026-05-30] • [16:04:16] Error processing task 4401285473: argument must be int or float, not tuple
+[2026-05-30] • [16:04:18] 📝 Syncing: [自动同步] (2026-05-10T12:00:25+00:00)
+[2026-05-30] • [16:04:19] Error processing task 4401267937: argument must be int or float, not tuple
+[2026-05-30] • [16:04:19] 📝 Syncing: [自动同步] (2026-05-10T11:36:23+00:00)
+[2026-05-30] • [16:04:20] Error processing task 4401260645: argument must be int or float, not tuple
+[2026-05-30] • [16:04:21] 📝 Syncing: [自动记录] (2026-05-10T10:32:59+00:00)
+[2026-05-30] • [16:04:22] Error processing task 4401242914: argument must be int or float, not tuple
+[2026-05-30] • [16:04:23] 📝 Syncing: [跑步自动记录] (2026-05-10T09:52:52+00:00)
+[2026-05-30] • [16:04:23] Error processing task 4401231997: argument must be int or float, not tuple
+[2026-05-30] • [16:04:24] Found 55 entries from 2026-04-30 to 2026-05-10. Processing...
+[2026-05-30] • [16:04:25] 📝 Syncing: [自动同步] (2026-05-10T07:09:04+00:00)
+[2026-05-30] • [16:04:25] Error processing task 4401190018: argument must be int or float, not tuple
+[2026-05-30] • [16:04:26] 📝 Syncing: [自动同步] (2026-05-09T04:58:07+00:00)
+[2026-05-30] • [16:04:27] Error processing task 4400824936: argument must be int or float, not tuple
+[2026-05-30] • [16:04:28] 📝 Syncing: [自动同步] (2026-05-09T04:56:30+00:00)
+[2026-05-30] • [16:04:28] Error processing task 4400824602: argument must be int or float, not tuple
+[2026-05-30] • [16:04:29] 📝 Syncing: [自动同步] (2026-05-09T04:55:07+00:00)
+[2026-05-30] • [16:04:29] Error processing task 4400824194: argument must be int or float, not tuple
+[2026-05-30] • [16:04:31] 📝 Syncing: [自动同步] (2026-05-09T04:54:29+00:00)
+[2026-05-30] • [16:04:32] Error processing task 4400824062: argument must be int or float, not tuple
+[2026-05-30] • [16:04:33] 📝 Syncing: [自动同步] (2026-05-09T04:54:13+00:00)
+[2026-05-30] • [16:04:35] Error processing task 4400823998: argument must be int or float, not tuple
+[2026-05-30] • [16:04:37] 📝 Syncing: [自动同步] (2026-05-09T04:54:11+00:00)
+[2026-05-30] • [16:04:38] Error processing task 4400823997: argument must be int or float, not tuple
+[2026-05-30] • [16:04:40] 📝 Syncing: [无描述] (2026-05-08T15:57:29+00:00)
+[2026-05-30] • [16:04:41] Error processing task 4400320982: argument must be int or float, not tuple
+[2026-05-30] • [16:04:42] 📝 Syncing: [自动同步] (2026-05-08T15:11:44+00:00)
+[2026-05-30] • [16:04:42] Error processing task 4400254266: argument must be int or float, not tuple
+[2026-05-30] • [16:04:43] 📝 Syncing: [自动同步] (2026-05-08T12:31:09+00:00)
+[2026-05-30] • [16:04:44] Error processing task 4400000711: argument must be int or float, not tuple
+[2026-05-30] • [16:04:45] 📝 Syncing: [自动同步] (2026-05-08T11:52:51+00:00)
+[2026-05-30] • [16:04:45] Error processing task 4399949216: argument must be int or float, not tuple
+[2026-05-30] • [16:04:46] 📝 Syncing: [自动同步] (2026-05-08T11:52:23+00:00)
+[2026-05-30] • [16:04:47] Error processing task 4399948650: argument must be int or float, not tuple
+[2026-05-30] • [16:04:49] 📝 Syncing: [自动同步] (2026-05-08T11:51:35+00:00)
+[2026-05-30] • [16:04:50] Error processing task 4399947738: argument must be int or float, not tuple
+[2026-05-30] • [16:04:51] 📝 Syncing: [自动记录] (2026-05-08T00:56:48+00:00)
+[2026-05-30] • [16:04:51] Error processing task 4399373046: argument must be int or float, not tuple
+[2026-05-30] • [16:04:52] 📝 Syncing: [跑步自动记录] (2026-05-08T00:13:41+00:00)
+[2026-05-30] • [16:04:53] Error processing task 4399349291: argument must be int or float, not tuple
+[2026-05-30] • [16:04:54] 📝 Syncing: [自动同步] (2026-05-07T15:31:02+00:00)
+[2026-05-30] • [16:04:55] Error processing task 4398776268: argument must be int or float, not tuple
+[2026-05-30] • [16:04:57] 📝 Syncing: [自动同步] (2026-05-07T15:22:04+00:00)
+[2026-05-30] • [16:04:57] Error processing task 4398759951: argument must be int or float, not tuple
+[2026-05-30] • [16:05:00] 📝 Syncing: [无描述] (2026-05-07T14:57:41+00:00)
+[2026-05-30] • [16:05:00] Error processing task 4398713910: argument must be int or float, not tuple
+[2026-05-30] • [16:05:02] 📝 Syncing: [无描述] (2026-05-07T14:52:18+00:00)
+[2026-05-30] • [16:05:03] Error processing task 4398703424: argument must be int or float, not tuple
+[2026-05-30] • [16:05:05] 📝 Syncing: [自动同步] (2026-05-07T00:45:35+00:00)
+[2026-05-30] • [16:05:05] Error processing task 4397706566: argument must be int or float, not tuple
+[2026-05-30] • [16:05:06] 📝 Syncing: [自动记录] (2026-05-07T00:29:51+00:00)
+[2026-05-30] • [16:05:07] Error processing task 4397696893: argument must be int or float, not tuple
+[2026-05-30] • [16:05:08] 📝 Syncing: [跑步自动记录] (2026-05-06T23:49:23+00:00)
+[2026-05-30] • [16:05:08] Error processing task 4397671583: argument must be int or float, not tuple
+[2026-05-30] • [16:05:09] 📝 Syncing: [自动同步] (2026-05-06T13:03:19+00:00)
+[2026-05-30] • [16:05:11] Error processing task 4396804196: argument must be int or float, not tuple
+[2026-05-30] • [16:05:13] 📝 Syncing: [无描述] (2026-05-06T12:54:33+00:00)
+[2026-05-30] • [16:05:14] Error processing task 4396785640: argument must be int or float, not tuple
+[2026-05-30] • [16:05:15] 📝 Syncing: [无描述] (2026-05-06T12:53:39+00:00)
+[2026-05-30] • [16:05:16] Error processing task 4396784121: argument must be int or float, not tuple
+[2026-05-30] • [16:05:17] 📝 Syncing: [自动同步] (2026-05-06T07:46:18+00:00)
+[2026-05-30] • [16:05:20] Error processing task 4396334685: argument must be int or float, not tuple
+[2026-05-30] • [16:05:22] 📝 Syncing: [自动同步] (2026-05-06T07:46:10+00:00)
+[2026-05-30] • [16:05:23] Error processing task 4396334545: argument must be int or float, not tuple
+[2026-05-30] • [16:05:24] 📝 Syncing: [自动同步] (2026-05-06T03:39:16+00:00)
+[2026-05-30] • [16:05:24] Error processing task 4396126543: argument must be int or float, not tuple
+[2026-05-30] • [16:05:26] 📝 Syncing: [无描述] (2026-05-05T15:38:24+00:00)
+[2026-05-30] • [16:05:26] Error processing task 4395438780: argument must be int or float, not tuple
+[2026-05-30] • [16:05:27] 📝 Syncing: [无描述] (2026-05-05T14:08:46+00:00)
+[2026-05-30] • [16:05:28] Error processing task 4395261073: argument must be int or float, not tuple
+[2026-05-30] • [16:05:29] 📝 Syncing: [自动同步] (2026-05-05T13:23:03+00:00)
+[2026-05-30] • [16:05:30] Error processing task 4395164683: argument must be int or float, not tuple
+[2026-05-30] • [16:05:31] 📝 Syncing: [无描述] (2026-05-04T06:09:23+00:00)
+[2026-05-30] • [16:05:32] Error processing task 4392789408: argument must be int or float, not tuple
+[2026-05-30] • [16:05:32] 📝 Syncing: [无描述] (2026-05-04T06:03:03+00:00)
+[2026-05-30] • [16:05:33] Error processing task 4392783015: argument must be int or float, not tuple
+[2026-05-30] • [16:05:34] 📝 Syncing: [无描述] (2026-05-04T05:58:33+00:00)
+[2026-05-30] • [16:05:34] Error processing task 4392778375: argument must be int or float, not tuple
+[2026-05-30] • [16:05:36] 📝 Syncing: [自动同步] (2026-05-03T15:38:55+00:00)
+[2026-05-30] • [16:05:36] Error processing task 4392436091: argument must be int or float, not tuple
+[2026-05-30] • [16:05:38] 📝 Syncing: [无描述] (2026-05-03T15:17:26+00:00)
+[2026-05-30] • [16:05:39] Error processing task 4392427955: argument must be int or float, not tuple
+[2026-05-30] • [16:05:40] 📝 Syncing: [自动同步] (2026-05-03T12:41:11+00:00)
+[2026-05-30] • [16:05:40] Error processing task 4392372889: argument must be int or float, not tuple
+[2026-05-30] • [16:05:41] 📝 Syncing: [自动同步] (2026-05-02T15:59:31+00:00)
+[2026-05-30] • [16:05:42] Error processing task 4392089770: argument must be int or float, not tuple
+[2026-05-30] • [16:05:43] 📝 Syncing: [自动同步] (2026-05-02T13:52:53+00:00)
+[2026-05-30] • [16:05:43] Error processing task 4392048430: argument must be int or float, not tuple
+[2026-05-30] • [16:05:44] 📝 Syncing: [无描述] (2026-05-02T13:51:24+00:00)
+[2026-05-30] • [16:05:44] Error processing task 4392047970: argument must be int or float, not tuple
+[2026-05-30] • [16:05:45] 📝 Syncing: [无描述] (2026-05-02T13:49:40+00:00)
+[2026-05-30] • [16:05:46] Error processing task 4392047486: argument must be int or float, not tuple
+[2026-05-30] • [16:05:47] 📝 Syncing: [自动记录] (2026-05-01T09:15:33+00:00)
+[2026-05-30] • [16:05:48] Error processing task 4391054803: argument must be int or float, not tuple
+[2026-05-30] • [16:05:49] 📝 Syncing: [自动同步] (2026-05-01T08:03:48+00:00)
+[2026-05-30] • [16:05:49] Error processing task 4390940151: argument must be int or float, not tuple
+[2026-05-30] • [16:05:51] 📝 Syncing: [自动同步] (2026-05-01T07:30:53+00:00)
+[2026-05-30] • [16:05:52] Error processing task 4390917626: argument must be int or float, not tuple
+[2026-05-30] • [16:05:53] 📝 Syncing: [自动同步] (2026-05-01T07:26:31+00:00)
+[2026-05-30] • [16:05:53] Error processing task 4390914632: argument must be int or float, not tuple
+[2026-05-30] • [16:05:55] 📝 Syncing: [自动同步] (2026-05-01T07:24:23+00:00)
+[2026-05-30] • [16:05:55] Error processing task 4390913249: argument must be int or float, not tuple
+[2026-05-30] • [16:05:56] 📝 Syncing: [自动同步] (2026-05-01T07:23:56+00:00)
+[2026-05-30] • [16:05:57] Error processing task 4390912947: argument must be int or float, not tuple
+[2026-05-30] • [16:05:58] 📝 Syncing: [自动同步] (2026-05-01T07:09:49+00:00)
+[2026-05-30] • [16:05:59] Error processing task 4390904051: argument must be int or float, not tuple
+[2026-05-30] • [16:05:59] 📝 Syncing: [自动同步] (2026-05-01T06:43:19+00:00)
+[2026-05-30] • [16:06:00] Error processing task 4390887465: argument must be int or float, not tuple
+[2026-05-30] • [16:06:01] 📝 Syncing: [自动同步] (2026-05-01T06:20:57+00:00)
+[2026-05-30] • [16:06:01] Error processing task 4390875182: argument must be int or float, not tuple
+[2026-05-30] • [16:06:03] 📝 Syncing: [无描述] (2026-05-01T06:05:37+00:00)
+[2026-05-30] • [16:06:04] Error processing task 4390865381: argument must be int or float, not tuple
+[2026-05-30] • [16:06:05] 📝 Syncing: [自动同步] (2026-05-01T04:59:54+00:00)
+[2026-05-30] • [16:06:06] Error processing task 4390834001: argument must be int or float, not tuple
+[2026-05-30] • [16:06:07] 📝 Syncing: [自动同步] (2026-05-01T04:58:46+00:00)
+[2026-05-30] • [16:06:07] Error processing task 4390833494: argument must be int or float, not tuple
+[2026-05-30] • [16:06:08] 📝 Syncing: [自动同步] (2026-05-01T04:50:01+00:00)
+[2026-05-30] • [16:06:08] Error processing task 4390829544: argument must be int or float, not tuple
+[2026-05-30] • [16:06:09] 📝 Syncing: [无描述] (2026-04-30T14:14:17+00:00)
+[2026-05-30] • [16:06:10] Error processing task 4389946332: argument must be int or float, not tuple
+[2026-05-30] • [16:06:10] Found 58 entries from 2026-04-20 to 2026-04-30. Processing...
+[2026-05-30] • [16:06:12] 📝 Syncing: [自动同步] (2026-04-30T07:00:04+00:00)
+[2026-05-30] • [16:06:14] Error processing task 4389260970: argument must be int or float, not tuple
+[2026-05-30] • [16:06:14] 📝 Syncing: [自动同步] (2026-04-30T06:59:52+00:00)
+[2026-05-30] • [16:06:15] Error processing task 4389260620: argument must be int or float, not tuple
+[2026-05-30] • [16:06:16] 📝 Syncing: [自动同步] (2026-04-30T06:53:53+00:00)
+[2026-05-30] • [16:06:17] Error processing task 4389252492: argument must be int or float, not tuple
+[2026-05-30] • [16:06:18] 📝 Syncing: [自动同步] (2026-04-30T03:57:20+00:00)
+[2026-05-30] • [16:06:18] Error processing task 4389112989: argument must be int or float, not tuple
+[2026-05-30] • [16:06:19] 📝 Syncing: [自动同步] (2026-04-30T03:56:53+00:00)
+[2026-05-30] • [16:06:19] Error processing task 4389112772: argument must be int or float, not tuple
+[2026-05-30] • [16:06:21] 📝 Syncing: [自动同步] (2026-04-30T03:41:46+00:00)
+[2026-05-30] • [16:06:22] Error processing task 4389105685: argument must be int or float, not tuple
+[2026-05-30] • [16:06:23] 📝 Syncing: [自动同步] (2026-04-30T03:20:06+00:00)
+[2026-05-30] • [16:06:24] Error processing task 4389095281: argument must be int or float, not tuple
+[2026-05-30] • [16:06:25] 📝 Syncing: [自动记录] (2026-04-30T00:15:04+00:00)
+[2026-05-30] • [16:06:25] Error processing task 4388993940: argument must be int or float, not tuple
+[2026-05-30] • [16:06:26] 📝 Syncing: [无描述] (2026-04-29T13:34:30+00:00)
+[2026-05-30] • [16:06:27] Error processing task 4388163189: argument must be int or float, not tuple
+[2026-05-30] • [16:06:28] 📝 Syncing: [自动同步] (2026-04-29T11:46:05+00:00)
+[2026-05-30] • [16:06:29] Error processing task 4387969737: argument must be int or float, not tuple
+[2026-05-30] • [16:06:30] 📝 Syncing: [自动同步] (2026-04-29T11:41:10+00:00)
+[2026-05-30] • [16:06:30] Error processing task 4387962986: argument must be int or float, not tuple
+[2026-05-30] • [16:06:31] 📝 Syncing: [自动同步] (2026-04-29T11:39:43+00:00)
+[2026-05-30] • [16:06:32] Error processing task 4387960885: argument must be int or float, not tuple
+[2026-05-30] • [16:06:33] 📝 Syncing: [自动同步] (2026-04-29T11:37:52+00:00)
+[2026-05-30] • [16:06:33] Error processing task 4387960755: argument must be int or float, not tuple
+[2026-05-30] • [16:06:35] 📝 Syncing: [无描述] (2026-04-28T15:57:01+00:00)
+[2026-05-30] • [16:06:36] Error processing task 4386765291: argument must be int or float, not tuple
+[2026-05-30] • [16:06:38] 📝 Syncing: [自动同步] (2026-04-28T15:53:13+00:00)
+[2026-05-30] • [16:06:38] Error processing task 4386758721: argument must be int or float, not tuple
+[2026-05-30] • [16:06:40] 📝 Syncing: [自动同步] (2026-04-28T00:14:03+00:00)
+[2026-05-30] • [16:06:40] Error processing task 4386758718: argument must be int or float, not tuple
+[2026-05-30] • [16:06:43] 📝 Syncing: [无描述] (2026-04-27T23:08:38+00:00)
+[2026-05-30] • [16:06:43] Error processing task 4385527598: argument must be int or float, not tuple
+[2026-05-30] • [16:06:44] 📝 Syncing: [无描述] (2026-04-27T23:03:12+00:00)
+[2026-05-30] • [16:06:45] Error processing task 4385523929: argument must be int or float, not tuple
+[2026-05-30] • [16:06:46] 📝 Syncing: [无描述] (2026-04-27T15:58:24+00:00)
+[2026-05-30] • [16:06:47] Error processing task 4384998461: argument must be int or float, not tuple
+[2026-05-30] • [16:06:47] 📝 Syncing: [自动同步] (2026-04-27T06:44:05+00:00)
+[2026-05-30] • [16:06:48] Error processing task 4384050496: argument must be int or float, not tuple
+[2026-05-30] • [16:06:49] 📝 Syncing: [无描述] (2026-04-27T06:39:20+00:00)
+[2026-05-30] • [16:06:50] Error processing task 4384044865: argument must be int or float, not tuple
+[2026-05-30] • [16:06:50] 📝 Syncing: [无描述] (2026-04-25T15:43:58+00:00)
+[2026-05-30] • [16:06:51] Error processing task 4383276731: argument must be int or float, not tuple
+[2026-05-30] • [16:06:52] 📝 Syncing: [无描述] (2026-04-25T15:40:47+00:00)
+[2026-05-30] • [16:06:53] Error processing task 4383275742: argument must be int or float, not tuple
+[2026-05-30] • [16:06:55] 📝 Syncing: [无描述] (2026-04-25T15:40:00+00:00)
+[2026-05-30] • [16:06:56] Error processing task 4383275515: argument must be int or float, not tuple
+[2026-05-30] • [16:06:56] 📝 Syncing: [无描述] (2026-04-25T15:36:29+00:00)
+[2026-05-30] • [16:06:57] Error processing task 4383274447: argument must be int or float, not tuple
+[2026-05-30] • [16:06:58] 📝 Syncing: [无描述] (2026-04-25T15:26:43+00:00)
+[2026-05-30] • [16:06:59] Error processing task 4383271619: argument must be int or float, not tuple
+[2026-05-30] • [16:07:00] 📝 Syncing: [自动同步] (2026-04-25T15:22:17+00:00)
+[2026-05-30] • [16:07:01] Error processing task 4383270184: argument must be int or float, not tuple
+[2026-05-30] • [16:07:02] 📝 Syncing: [自动同步] (2026-04-25T08:51:21+00:00)
+[2026-05-30] • [16:07:02] Error processing task 4383157189: argument must be int or float, not tuple
+[2026-05-30] • [16:07:05] 📝 Syncing: [自动同步] (2026-04-25T08:47:54+00:00)
+[2026-05-30] • [16:07:05] Error processing task 4383156322: argument must be int or float, not tuple
+[2026-05-30] • [16:07:06] 📝 Syncing: [自动同步] (2026-04-25T08:02:46+00:00)
+[2026-05-30] • [16:07:06] Error processing task 4383144412: argument must be int or float, not tuple
+[2026-05-30] • [16:07:07] 📝 Syncing: [自动同步] (2026-04-25T07:17:36+00:00)
+[2026-05-30] • [16:07:08] Error processing task 4383132709: argument must be int or float, not tuple
+[2026-05-30] • [16:07:09] 📝 Syncing: [自动同步] (2026-04-25T07:17:10+00:00)
+[2026-05-30] • [16:07:09] Error processing task 4383132596: argument must be int or float, not tuple
+[2026-05-30] • [16:07:10] 📝 Syncing: [自动同步] (2026-04-25T07:15:55+00:00)
+[2026-05-30] • [16:07:11] Error processing task 4383132295: argument must be int or float, not tuple
+[2026-05-30] • [16:07:12] 📝 Syncing: [自动同步] (2026-04-25T07:14:38+00:00)
+[2026-05-30] • [16:07:13] Error processing task 4383131989: argument must be int or float, not tuple
+[2026-05-30] • [16:07:14] 📝 Syncing: [自动记录] (2026-04-25T03:38:31+00:00)
+[2026-05-30] • [16:07:14] Error processing task 4383086923: argument must be int or float, not tuple
+[2026-05-30] • [16:07:15] 📝 Syncing: [跑步自动记录] (2026-04-25T03:22:02+00:00)
+[2026-05-30] • [16:07:16] Error processing task 4383083815: argument must be int or float, not tuple
+[2026-05-30] • [16:07:17] 📝 Syncing: [自动同步] (2026-04-25T03:07:42+00:00)
+[2026-05-30] • [16:07:17] Error processing task 4383081184: argument must be int or float, not tuple
+[2026-05-30] • [16:07:19] 📝 Syncing: [自动同步] (2026-04-25T02:55:13+00:00)
+[2026-05-30] • [16:07:19] Error processing task 4383078711: argument must be int or float, not tuple
+[2026-05-30] • [16:07:20] 📝 Syncing: [自动记录] (2026-04-24T00:56:42+00:00)
+[2026-05-30] • [16:07:22] Error processing task 4381605582: argument must be int or float, not tuple
+[2026-05-30] • [16:07:23] 📝 Syncing: [跑步自动记录] (2026-04-24T00:15:56+00:00)
+[2026-05-30] • [16:07:24] Error processing task 4381582839: argument must be int or float, not tuple
+[2026-05-30] • [16:07:24] 📝 Syncing: [自动同步] (2026-04-23T15:51:05+00:00)
+[2026-05-30] • [16:07:25] Error processing task 4381042879: argument must be int or float, not tuple
+[2026-05-30] • [16:07:26] 📝 Syncing: [自动同步] (2026-04-23T13:36:06+00:00)
+[2026-05-30] • [16:07:26] Error processing task 4380794306: argument must be int or float, not tuple
+[2026-05-30] • [16:07:28] 📝 Syncing: [无描述] (2026-04-23T06:11:47+00:00)
+[2026-05-30] • [16:07:28] Error processing task 4380141679: argument must be int or float, not tuple
+[2026-05-30] • [16:07:29] 📝 Syncing: [无描述] (2026-04-23T03:58:27+00:00)
+[2026-05-30] • [16:07:29] Error processing task 4380050874: argument must be int or float, not tuple
+[2026-05-30] • [16:07:30] 📝 Syncing: [自动同步] (2026-04-23T03:16:09+00:00)
+[2026-05-30] • [16:07:31] Error processing task 4380032200: argument must be int or float, not tuple
+[2026-05-30] • [16:07:32] 📝 Syncing: [自动同步] (2026-04-23T02:42:35+00:00)
+[2026-05-30] • [16:07:33] Error processing task 4380014050: argument must be int or float, not tuple
+[2026-05-30] • [16:07:36] 📝 Syncing: [自动同步] (2026-04-23T02:40:17+00:00)
+[2026-05-30] • [16:07:36] Error processing task 4380012873: argument must be int or float, not tuple
+[2026-05-30] • [16:07:37] 📝 Syncing: [自动同步] (2026-04-23T02:19:26+00:00)
+[2026-05-30] • [16:07:38] Error processing task 4380001762: argument must be int or float, not tuple
+[2026-05-30] • [16:07:39] 📝 Syncing: [自动同步] (2026-04-22T15:14:34+00:00)
+[2026-05-30] • [16:07:39] Error processing task 4380001761: argument must be int or float, not tuple
+[2026-05-30] • [16:07:41] 📝 Syncing: [自动同步] (2026-04-22T12:58:28+00:00)
+[2026-05-30] • [16:07:41] Error processing task 4379010200: argument must be int or float, not tuple
+[2026-05-30] • [16:07:43] 📝 Syncing: [无描述] (2026-04-22T04:07:38+00:00)
+[2026-05-30] • [16:07:43] Error processing task 4378327264: argument must be int or float, not tuple
+[2026-05-30] • [16:07:45] 📝 Syncing: [无描述] (2026-04-22T04:02:22+00:00)
+[2026-05-30] • [16:07:45] Error processing task 4378326971: argument must be int or float, not tuple
+[2026-05-30] • [16:07:46] 📝 Syncing: [无描述] (2026-04-22T03:57:21+00:00)
+[2026-05-30] • [16:07:47] Error processing task 4378326970: argument must be int or float, not tuple
+[2026-05-30] • [16:07:48] 📝 Syncing: [自动同步] (2026-04-21T23:53:34+00:00)
+[2026-05-30] • [16:07:49] Error processing task 4378182737: argument must be int or float, not tuple
+[2026-05-30] • [16:07:50] 📝 Syncing: [自动同步] (2026-04-21T15:17:00+00:00)
+[2026-05-30] • [16:07:50] Error processing task 4377574236: argument must be int or float, not tuple
+[2026-05-30] • [16:07:51] 📝 Syncing: [自动同步] (2026-04-21T15:17:00+00:00)
+[2026-05-30] • [16:07:52] Error processing task 4377574231: argument must be int or float, not tuple
+[2026-05-30] • [16:07:53] 📝 Syncing: [无描述] (2026-04-21T15:10:00+00:00)
+[2026-05-30] • [16:07:53] Error processing task 4377561201: argument must be int or float, not tuple
+[2026-05-30] • [16:07:55] 📝 Syncing: [无描述] (2026-04-21T00:06:28+00:00)
+[2026-05-30] • [16:07:55] Error processing task 4377561198: argument must be int or float, not tuple
+[2026-05-30] • [16:07:56] Found 72 entries from 2026-04-10 to 2026-04-20. Processing...
+[2026-05-30] • [16:07:57] 📝 Syncing: [自动同步] (2026-04-20T07:00:17+00:00)
+[2026-05-30] • [16:07:57] Error processing task 4374886173: argument must be int or float, not tuple
+[2026-05-30] • [16:08:00] 📝 Syncing: [自动同步] (2026-04-20T06:51:25+00:00)
+[2026-05-30] • [16:08:00] Error processing task 4374872243: argument must be int or float, not tuple
+[2026-05-30] • [16:08:01] 📝 Syncing: [无描述] (2026-04-20T04:51:29+00:00)
+[2026-05-30] • [16:08:02] Error processing task 4374755197: argument must be int or float, not tuple
+[2026-05-30] • [16:08:03] 📝 Syncing: [无描述] (2026-04-20T04:50:25+00:00)
+[2026-05-30] • [16:08:03] Error processing task 4374750222: argument must be int or float, not tuple
+[2026-05-30] • [16:08:04] 📝 Syncing: [无描述] (2026-04-20T03:59:48+00:00)
+[2026-05-30] • [16:08:05] Error processing task 4374721775: argument must be int or float, not tuple
+[2026-05-30] • [16:08:05] 📝 Syncing: [无描述] (2026-04-19T16:02:58+00:00)
+[2026-05-30] • [16:08:07] Error processing task 4374431227: argument must be int or float, not tuple
+[2026-05-30] • [16:08:09] 📝 Syncing: [无描述] (2026-04-19T15:56:46+00:00)
+[2026-05-30] • [16:08:10] Error processing task 4374428923: argument must be int or float, not tuple
+[2026-05-30] • [16:08:11] 📝 Syncing: [自动同步] (2026-04-19T15:55:47+00:00)
+[2026-05-30] • [16:08:11] Error processing task 4374428489: argument must be int or float, not tuple
+[2026-05-30] • [16:08:12] 📝 Syncing: [自动同步] (2026-04-19T15:51:55+00:00)
+[2026-05-30] • [16:08:13] Error processing task 4374427099: argument must be int or float, not tuple
+[2026-05-30] • [16:08:14] 📝 Syncing: [自动同步] (2026-04-19T08:32:32+00:00)
+[2026-05-30] • [16:08:14] Error processing task 4374288545: argument must be int or float, not tuple
+[2026-05-30] • [16:08:16] 📝 Syncing: [自动同步] (2026-04-19T08:29:55+00:00)
+[2026-05-30] • [16:08:17] Error processing task 4374287884: argument must be int or float, not tuple
+[2026-05-30] • [16:08:18] 📝 Syncing: [自动记录] (2026-04-19T02:30:44+00:00)
+[2026-05-30] • [16:08:19] Error processing task 4374217263: argument must be int or float, not tuple
+[2026-05-30] • [16:08:20] 📝 Syncing: [跑步自动记录] (2026-04-19T01:49:07+00:00)
+[2026-05-30] • [16:08:21] Error processing task 4374209983: argument must be int or float, not tuple
+[2026-05-30] • [16:08:22] 📝 Syncing: [自动同步] (2026-04-19T01:36:13+00:00)
+[2026-05-30] • [16:08:23] Error processing task 4374207753: argument must be int or float, not tuple
+[2026-05-30] • [16:08:24] 📝 Syncing: [自动同步] (2026-04-19T01:35:35+00:00)
+[2026-05-30] • [16:08:24] Error processing task 4374207657: argument must be int or float, not tuple
+[2026-05-30] • [16:08:25] 📝 Syncing: [无描述] (2026-04-18T15:59:12+00:00)
+[2026-05-30] • [16:08:26] Error processing task 4374075401: argument must be int or float, not tuple
+[2026-05-30] • [16:08:27] 📝 Syncing: [自动同步] (2026-04-18T15:59:00+00:00)
+[2026-05-30] • [16:08:27] Error processing task 4374075323: argument must be int or float, not tuple
+[2026-05-30] • [16:08:29] 📝 Syncing: [无描述] (2026-04-18T15:05:46+00:00)
+[2026-05-30] • [16:08:29] Error processing task 4374058451: argument must be int or float, not tuple
+[2026-05-30] • [16:08:30] 📝 Syncing: [自动同步] (2026-04-18T04:55:36+00:00)
+[2026-05-30] • [16:08:31] Error processing task 4373899062: argument must be int or float, not tuple
+[2026-05-30] • [16:08:32] 📝 Syncing: [自动同步] (2026-04-18T04:54:24+00:00)
+[2026-05-30] • [16:08:32] Error processing task 4373898829: argument must be int or float, not tuple
+[2026-05-30] • [16:08:33] 📝 Syncing: [自动同步] (2026-04-18T04:43:49+00:00)
+[2026-05-30] • [16:08:33] Error processing task 4373896818: argument must be int or float, not tuple
+[2026-05-30] • [16:08:35] 📝 Syncing: [无描述] (2026-04-17T14:20:44+00:00)
+[2026-05-30] • [16:08:36] Error processing task 4373230150: argument must be int or float, not tuple
+[2026-05-30] • [16:08:38] 📝 Syncing: [无描述] (2026-04-16T15:56:57+00:00)
+[2026-05-30] • [16:08:40] Error processing task 4371801237: argument must be int or float, not tuple
+[2026-05-30] • [16:08:41] 📝 Syncing: [自动同步] (2026-04-16T15:52:09+00:00)
+[2026-05-30] • [16:08:41] Error processing task 4371793446: argument must be int or float, not tuple
+[2026-05-30] • [16:08:43] 📝 Syncing: [无描述] (2026-04-16T15:48:52+00:00)
+[2026-05-30] • [16:08:44] Error processing task 4371788192: argument must be int or float, not tuple
+[2026-05-30] • [16:08:45] 📝 Syncing: [自动同步] (2026-04-16T04:12:58+00:00)
+[2026-05-30] • [16:08:45] Error processing task 4370738736: argument must be int or float, not tuple
+[2026-05-30] • [16:08:47] 📝 Syncing: [自动同步] (2026-04-16T04:10:21+00:00)
+[2026-05-30] • [16:08:48] Error processing task 4370737378: argument must be int or float, not tuple
+[2026-05-30] • [16:08:49] 📝 Syncing: [自动同步] (2026-04-16T03:55:52+00:00)
+[2026-05-30] • [16:08:50] Error processing task 4370729238: argument must be int or float, not tuple
+[2026-05-30] • [16:08:51] 📝 Syncing: [自动同步] (2026-04-16T03:53:34+00:00)
+[2026-05-30] • [16:08:51] Error processing task 4370728057: argument must be int or float, not tuple
+[2026-05-30] • [16:08:52] 📝 Syncing: [自动同步] (2026-04-16T03:52:47+00:00)
+[2026-05-30] • [16:08:53] Error processing task 4370727692: argument must be int or float, not tuple
+[2026-05-30] • [16:08:54] 📝 Syncing: [自动同步] (2026-04-15T15:50:06+00:00)
+[2026-05-30] • [16:08:55] Error processing task 4370033979: argument must be int or float, not tuple
+[2026-05-30] • [16:08:56] 📝 Syncing: [自动同步] (2026-04-15T15:49:37+00:00)
+[2026-05-30] • [16:08:57] Error processing task 4370033136: argument must be int or float, not tuple
+[2026-05-30] • [16:08:58] 📝 Syncing: [自动同步] (2026-04-15T15:44:47+00:00)
+[2026-05-30] • [16:08:59] Error processing task 4370023468: argument must be int or float, not tuple
+[2026-05-30] • [16:09:00] 📝 Syncing: [无描述] (2026-04-15T14:32:48+00:00)
+[2026-05-30] • [16:09:01] Error processing task 4369886405: argument must be int or float, not tuple
+[2026-05-30] • [16:09:02] 📝 Syncing: [无描述] (2026-04-15T06:35:05+00:00)
+[2026-05-30] • [16:09:03] Error processing task 4369122964: argument must be int or float, not tuple
+[2026-05-30] • [16:09:04] 📝 Syncing: [无描述] (2026-04-14T15:12:31+00:00)
+[2026-05-30] • [16:09:04] Error processing task 4368213429: argument must be int or float, not tuple
+[2026-05-30] • [16:09:06] 📝 Syncing: [自动同步] (2026-04-14T14:58:46+00:00)
+[2026-05-30] • [16:09:07] Error processing task 4368184028: argument must be int or float, not tuple
+[2026-05-30] • [16:09:08] 📝 Syncing: [自动同步] (2026-04-14T04:48:59+00:00)
+[2026-05-30] • [16:09:09] Error processing task 4367253416: argument must be int or float, not tuple
+[2026-05-30] • [16:09:10] 📝 Syncing: [自动同步] (2026-04-14T04:21:31+00:00)
+[2026-05-30] • [16:09:11] Error processing task 4367238345: argument must be int or float, not tuple
+[2026-05-30] • [16:09:13] 📝 Syncing: [自动同步] (2026-04-14T04:20:47+00:00)
+[2026-05-30] • [16:09:13] Error processing task 4367237979: argument must be int or float, not tuple
+[2026-05-30] • [16:09:14] 📝 Syncing: [无描述] (2026-04-13T13:00:42+00:00)
+[2026-05-30] • [16:09:14] Error processing task 4366133860: argument must be int or float, not tuple
+[2026-05-30] • [16:09:15] 📝 Syncing: [无描述] (2026-04-13T12:59:13+00:00)
+[2026-05-30] • [16:09:16] Error processing task 4366129906: argument must be int or float, not tuple
+[2026-05-30] • [16:09:17] 📝 Syncing: [无描述] (2026-04-13T12:55:54+00:00)
+[2026-05-30] • [16:09:18] Error processing task 4366122503: argument must be int or float, not tuple
+[2026-05-30] • [16:09:19] 📝 Syncing: [无描述] (2026-04-13T12:53:20+00:00)
+[2026-05-30] • [16:09:19] Error processing task 4366117514: argument must be int or float, not tuple
+[2026-05-30] • [16:09:20] 📝 Syncing: [无描述] (2026-04-13T12:50:11+00:00)
+[2026-05-30] • [16:09:21] Error processing task 4366111506: argument must be int or float, not tuple
+[2026-05-30] • [16:09:22] 📝 Syncing: [无描述] (2026-04-13T12:50:02+00:00)
+[2026-05-30] • [16:09:23] Error processing task 4366111325: argument must be int or float, not tuple
+[2026-05-30] • [16:09:24] 📝 Syncing: [无描述] (2026-04-13T12:48:13+00:00)
+[2026-05-30] • [16:09:25] Error processing task 4366111323: argument must be int or float, not tuple
+[2026-05-30] • [16:09:27] 📝 Syncing: [自动同步] (2026-04-12T23:22:42+00:00)
+[2026-05-30] • [16:09:27] Error processing task 4365262937: argument must be int or float, not tuple
+[2026-05-30] • [16:09:28] 📝 Syncing: [自动同步] (2026-04-12T23:22:42+00:00)
+[2026-05-30] • [16:09:29] Error processing task 4365262941: argument must be int or float, not tuple
+[2026-05-30] • [16:09:30] 📝 Syncing: [自动同步] (2026-04-12T23:17:22+00:00)
+[2026-05-30] • [16:09:31] Error processing task 4365260769: argument must be int or float, not tuple
+[2026-05-30] • [16:09:32] 📝 Syncing: [自动同步] (2026-04-12T11:14:16+00:00)
+[2026-05-30] • [16:09:32] Error processing task 4365011579: argument must be int or float, not tuple
+[2026-05-30] • [16:09:33] 📝 Syncing: [自动同步] (2026-04-12T11:13:58+00:00)
+[2026-05-30] • [16:09:34] Error processing task 4365011500: argument must be int or float, not tuple
+[2026-05-30] • [16:09:35] 📝 Syncing: [自动记录] (2026-04-12T10:32:37+00:00)
+[2026-05-30] • [16:09:35] Error processing task 4365000029: argument must be int or float, not tuple
+[2026-05-30] • [16:09:36] 📝 Syncing: [自动同步] (2026-04-12T09:55:59+00:00)
+[2026-05-30] • [16:09:37] Error processing task 4364990203: argument must be int or float, not tuple
+[2026-05-30] • [16:09:38] 📝 Syncing: [自动同步] (2026-04-12T09:55:20+00:00)
+[2026-05-30] • [16:09:38] Error processing task 4364989986: argument must be int or float, not tuple
+[2026-05-30] • [16:09:39] 📝 Syncing: [跑步自动记录] (2026-04-12T09:52:08+00:00)
+[2026-05-30] • [16:09:40] Error processing task 4364989103: argument must be int or float, not tuple
+[2026-05-30] • [16:09:41] 📝 Syncing: [自动同步] (2026-04-12T01:32:53+00:00)
+[2026-05-30] • [16:09:41] Error processing task 4364885656: argument must be int or float, not tuple
+[2026-05-30] • [16:09:42] 📝 Syncing: [自动同步] (2026-04-12T00:25:24+00:00)
+[2026-05-30] • [16:09:43] Error processing task 4364873421: argument must be int or float, not tuple
+[2026-05-30] • [16:09:43] 📝 Syncing: [自动同步] (2026-04-12T00:20:11+00:00)
+[2026-05-30] • [16:09:44] Error processing task 4364872500: argument must be int or float, not tuple
+[2026-05-30] • [16:09:45] 📝 Syncing: [自动同步] (2026-04-12T00:06:20+00:00)
+[2026-05-30] • [16:09:46] Error processing task 4364869998: argument must be int or float, not tuple
+[2026-05-30] • [16:09:47] 📝 Syncing: [自动同步] (2026-04-11T14:43:55+00:00)
+[2026-05-30] • [16:09:47] Error processing task 4364718701: argument must be int or float, not tuple
+[2026-05-30] • [16:09:48] 📝 Syncing: [自动记录] (2026-04-11T10:40:36+00:00)
+[2026-05-30] • [16:09:49] Error processing task 4364646803: argument must be int or float, not tuple
+[2026-05-30] • [16:09:50] 📝 Syncing: [跑步自动记录] (2026-04-11T09:58:36+00:00)
+[2026-05-30] • [16:09:50] Error processing task 4364636135: argument must be int or float, not tuple
+[2026-05-30] • [16:09:51] 📝 Syncing: [无描述] (2026-04-11T02:49:15+00:00)
+[2026-05-30] • [16:09:52] Error processing task 4364542352: argument must be int or float, not tuple
+[2026-05-30] • [16:09:53] 📝 Syncing: [无描述] (2026-04-11T02:41:14+00:00)
+[2026-05-30] • [16:09:53] Error processing task 4364540716: argument must be int or float, not tuple
+[2026-05-30] • [16:09:54] 📝 Syncing: [自动同步] (2026-04-11T02:41:11+00:00)
+[2026-05-30] • [16:09:55] Error processing task 4364540709: argument must be int or float, not tuple
+[2026-05-30] • [16:09:56] 📝 Syncing: [自动同步] (2026-04-11T02:39:14+00:00)
+[2026-05-30] • [16:09:57] Error processing task 4364540257: argument must be int or float, not tuple
+[2026-05-30] • [16:09:57] 📝 Syncing: [无描述] (2026-04-10T15:44:33+00:00)
+[2026-05-30] • [16:09:58] Error processing task 4364026115: argument must be int or float, not tuple
+[2026-05-30] • [16:09:59] 📝 Syncing: [无描述] (2026-04-10T15:03:01+00:00)
+[2026-05-30] • [16:10:00] Error processing task 4363960997: argument must be int or float, not tuple
+[2026-05-30] • [16:10:01] 📝 Syncing: [无描述] (2026-04-10T14:14:33+00:00)
+[2026-05-30] • [16:10:02] Error processing task 4363879561: argument must be int or float, not tuple
+[2026-05-30] • [16:10:04] 📝 Syncing: [自动同步] (2026-04-10T11:13:39+00:00)
+[2026-05-30] • [16:10:04] Error processing task 4363598813: argument must be int or float, not tuple
+[2026-05-30] • [16:10:06] 📝 Syncing: [自动同步] (2026-04-10T10:40:58+00:00)
+[2026-05-30] • [16:10:06] Error processing task 4363558762: argument must be int or float, not tuple
+[2026-05-30] • [16:10:07] Found 59 entries from 2026-03-31 to 2026-04-10. Processing...
+[2026-05-30] • [16:10:08] 📝 Syncing: [自动同步] (2026-04-10T02:55:11+00:00)
+[2026-05-30] • [16:10:12] Error processing task 4363107899: argument must be int or float, not tuple
+[2026-05-30] • [16:10:12] 📝 Syncing: [自动同步] (2026-04-10T01:09:22+00:00)
+[2026-05-30] • [16:10:13] Error processing task 4363052951: argument must be int or float, not tuple
+[2026-05-30] • [16:10:14] 📝 Syncing: [自动同步] (2026-04-09T23:56:44+00:00)
+[2026-05-30] • [16:10:14] Error processing task 4363010476: argument must be int or float, not tuple
+[2026-05-30] • [16:10:15] 📝 Syncing: [自动同步] (2026-04-09T16:43:25+00:00)
+[2026-05-30] • [16:10:16] Error processing task 4362559010: argument must be int or float, not tuple
+[2026-05-30] • [16:10:16] 📝 Syncing: [自动同步] (2026-04-09T15:50:44+00:00)
+[2026-05-30] • [16:10:17] Error processing task 4362476763: argument must be int or float, not tuple
+[2026-05-30] • [16:10:18] 📝 Syncing: [无描述] (2026-04-09T15:03:56+00:00)
+[2026-05-30] • [16:10:19] Error processing task 4362395120: argument must be int or float, not tuple
+[2026-05-30] • [16:10:20] 📝 Syncing: [自动同步] (2026-04-09T13:33:36+00:00)
+[2026-05-30] • [16:10:21] Error processing task 4362219345: argument must be int or float, not tuple
+[2026-05-30] • [16:10:21] 📝 Syncing: [自动同步] (2026-04-09T13:17:33+00:00)
+[2026-05-30] • [16:10:22] Error processing task 4362188204: argument must be int or float, not tuple
+[2026-05-30] • [16:10:23] 📝 Syncing: [自动同步] (2026-04-09T07:42:42+00:00)
+[2026-05-30] • [16:10:24] Error processing task 4361694922: argument must be int or float, not tuple
+[2026-05-30] • [16:10:25] 📝 Syncing: [自动同步] (2026-04-09T07:36:38+00:00)
+[2026-05-30] • [16:10:26] Error processing task 4361686451: argument must be int or float, not tuple
+[2026-05-30] • [16:10:27] 📝 Syncing: [自动同步] (2026-04-09T07:36:38+00:00)
+[2026-05-30] • [16:10:28] Error processing task 4361686466: argument must be int or float, not tuple
+[2026-05-30] • [16:10:30] 📝 Syncing: [自动同步] (2026-04-09T07:09:32+00:00)
+[2026-05-30] • [16:10:31] Error processing task 4361647853: argument must be int or float, not tuple
+[2026-05-30] • [16:10:31] 📝 Syncing: [自动同步] (2026-04-09T04:18:58+00:00)
+[2026-05-30] • [16:10:32] Error processing task 4361497799: argument must be int or float, not tuple
+[2026-05-30] • [16:10:33] 📝 Syncing: [自动同步] (2026-04-08T23:51:56+00:00)
+[2026-05-30] • [16:10:34] Error processing task 4361350658: argument must be int or float, not tuple
+[2026-05-30] • [16:10:35] 📝 Syncing: [无描述] (2026-04-08T14:14:17+00:00)
+[2026-05-30] • [16:10:35] Error processing task 4360621942: argument must be int or float, not tuple
+[2026-05-30] • [16:10:37] 📝 Syncing: [无描述] (2026-04-08T13:51:59+00:00)
+[2026-05-30] • [16:10:37] Error processing task 4360575252: argument must be int or float, not tuple
+[2026-05-30] • [16:10:39] 📝 Syncing: [无描述] (2026-04-08T13:23:16+00:00)
+[2026-05-30] • [16:10:39] Error processing task 4360519845: argument must be int or float, not tuple
+[2026-05-30] • [16:10:41] 📝 Syncing: [无描述] (2026-04-08T10:35:28+00:00)
+[2026-05-30] • [16:10:47] Error processing task 4360257773: argument must be int or float, not tuple
+[2026-05-30] • [16:10:50] 📝 Syncing: [自动同步] (2026-04-08T09:13:44+00:00)
+[2026-05-30] • [16:10:51] Error processing task 4360148456: argument must be int or float, not tuple
+[2026-05-30] • [16:10:52] 📝 Syncing: [自动同步] (2026-04-08T09:08:36+00:00)
+[2026-05-30] • [16:10:52] Error processing task 4360141142: argument must be int or float, not tuple
+[2026-05-30] • [16:10:53] 📝 Syncing: [自动同步] (2026-04-08T03:08:57+00:00)
+[2026-05-30] • [16:10:54] Error processing task 4359774752: argument must be int or float, not tuple
+[2026-05-30] • [16:10:55] 📝 Syncing: [自动同步] (2026-04-08T02:09:24+00:00)
+[2026-05-30] • [16:10:55] Error processing task 4359743154: argument must be int or float, not tuple
+[2026-05-30] • [16:10:56] 📝 Syncing: [自动同步] (2026-04-07T15:46:31+00:00)
+[2026-05-30] • [16:10:57] Error processing task 4359088019: argument must be int or float, not tuple
+[2026-05-30] • [16:10:58] 📝 Syncing: [无描述] (2026-04-06T15:45:47+00:00)
+[2026-05-30] • [16:11:00] Error processing task 4357342991: argument must be int or float, not tuple
+[2026-05-30] • [16:11:01] 📝 Syncing: [无描述] (2026-04-06T15:41:35+00:00)
+[2026-05-30] • [16:11:02] Error processing task 4357337316: argument must be int or float, not tuple
+[2026-05-30] • [16:11:03] 📝 Syncing: [无描述] (2026-04-06T15:38:10+00:00)
+[2026-05-30] • [16:11:03] Error processing task 4357332389: argument must be int or float, not tuple
+[2026-05-30] • [16:11:06] 📝 Syncing: [无描述] (2026-04-06T15:35:14+00:00)
+[2026-05-30] • [16:11:06] Error processing task 4357328503: argument must be int or float, not tuple
+[2026-05-30] • [16:11:08] 📝 Syncing: [自动同步] (2026-04-06T15:33:48+00:00)
+[2026-05-30] • [16:11:09] Error processing task 4357326527: argument must be int or float, not tuple
+[2026-05-30] • [16:11:10] 📝 Syncing: [自动同步] (2026-04-06T05:50:29+00:00)
+[2026-05-30] • [16:11:10] Error processing task 4356800057: argument must be int or float, not tuple
+[2026-05-30] • [16:11:11] 📝 Syncing: [自动同步] (2026-04-06T04:42:06+00:00)
+[2026-05-30] • [16:11:12] Error processing task 4356770512: argument must be int or float, not tuple
+[2026-05-30] • [16:11:13] 📝 Syncing: [自动同步] (2026-04-05T14:59:03+00:00)
+[2026-05-30] • [16:11:13] Error processing task 4356517482: argument must be int or float, not tuple
+[2026-05-30] • [16:11:14] 📝 Syncing: [无描述] (2026-04-05T11:16:21+00:00)
+[2026-05-30] • [16:11:15] Error processing task 4356456075: argument must be int or float, not tuple
+[2026-05-30] • [16:11:15] 📝 Syncing: [无描述] (2026-04-05T11:10:03+00:00)
+[2026-05-30] • [16:11:16] Error processing task 4356454577: argument must be int or float, not tuple
+[2026-05-30] • [16:11:17] 📝 Syncing: [无描述] (2026-04-04T18:23:11+00:00)
+[2026-05-30] • [16:11:18] Error processing task 4356252370: argument must be int or float, not tuple
+[2026-05-30] • [16:11:19] 📝 Syncing: [自动同步] (2026-04-04T15:50:57+00:00)
+[2026-05-30] • [16:11:19] Error processing task 4356208637: argument must be int or float, not tuple
+[2026-05-30] • [16:11:20] 📝 Syncing: [自动同步] (2026-04-04T15:50:57+00:00)
+[2026-05-30] • [16:11:21] Error processing task 4356208639: argument must be int or float, not tuple
+[2026-05-30] • [16:11:22] 📝 Syncing: [自动同步] (2026-04-04T15:38:59+00:00)
+[2026-05-30] • [16:11:23] Error processing task 4356205092: argument must be int or float, not tuple
+[2026-05-30] • [16:11:24] 📝 Syncing: [自动同步] (2026-04-04T10:57:52+00:00)
+[2026-05-30] • [16:11:24] Error processing task 4356123068: argument must be int or float, not tuple
+[2026-05-30] • [16:11:26] 📝 Syncing: [自动同步] (2026-04-03T15:04:59+00:00)
+[2026-05-30] • [16:11:27] Error processing task 4355582385: argument must be int or float, not tuple
+[2026-05-30] • [16:11:28] 📝 Syncing: [无描述] (2026-04-03T01:18:37+00:00)
+[2026-05-30] • [16:11:28] Error processing task 4355026429: argument must be int or float, not tuple
+[2026-05-30] • [16:11:29] 📝 Syncing: [无描述] (2026-04-03T01:17:41+00:00)
+[2026-05-30] • [16:11:30] Error processing task 4355025998: argument must be int or float, not tuple
+[2026-05-30] • [16:11:31] 📝 Syncing: [无描述] (2026-04-03T01:16:41+00:00)
+[2026-05-30] • [16:11:31] Error processing task 4355025572: argument must be int or float, not tuple
+[2026-05-30] • [16:11:32] 📝 Syncing: [无描述] (2026-04-03T01:16:28+00:00)
+[2026-05-30] • [16:11:33] Error processing task 4355025479: argument must be int or float, not tuple
+[2026-05-30] • [16:11:35] 📝 Syncing: [无描述] (2026-04-03T01:13:47+00:00)
+[2026-05-30] • [16:11:35] Error processing task 4355024245: argument must be int or float, not tuple
+[2026-05-30] • [16:11:36] 📝 Syncing: [无描述] (2026-04-03T01:09:57+00:00)
+[2026-05-30] • [16:11:37] Error processing task 4355022410: argument must be int or float, not tuple
+[2026-05-30] • [16:11:39] 📝 Syncing: [自动同步] (2026-04-02T14:49:32+00:00)
+[2026-05-30] • [16:11:41] Error processing task 4354374344: argument must be int or float, not tuple
+[2026-05-30] • [16:11:42] 📝 Syncing: [自动同步] (2026-04-02T14:49:12+00:00)
+[2026-05-30] • [16:11:43] Error processing task 4354373787: argument must be int or float, not tuple
+[2026-05-30] • [16:11:44] 📝 Syncing: [无描述] (2026-04-02T14:27:39+00:00)
+[2026-05-30] • [16:11:44] Error processing task 4354334282: argument must be int or float, not tuple
+[2026-05-30] • [16:11:45] 📝 Syncing: [无描述] (2026-04-02T12:47:18+00:00)
+[2026-05-30] • [16:11:46] Error processing task 4354152462: argument must be int or float, not tuple
+[2026-05-30] • [16:11:48] 📝 Syncing: [无描述] (2026-04-01T12:50:13+00:00)
+[2026-05-30] • [16:11:49] Error processing task 4352474961: argument must be int or float, not tuple
+[2026-05-30] • [16:11:50] 📝 Syncing: [无描述] (2026-04-01T12:49:31+00:00)
+[2026-05-30] • [16:11:51] Error processing task 4352473722: argument must be int or float, not tuple
+[2026-05-30] • [16:11:52] 📝 Syncing: [无描述] (2026-04-01T12:41:53+00:00)
+[2026-05-30] • [16:11:53] Error processing task 4352460678: argument must be int or float, not tuple
+[2026-05-30] • [16:11:54] 📝 Syncing: [无描述] (2026-04-01T12:40:38+00:00)
+[2026-05-30] • [16:11:54] Error processing task 4352458648: argument must be int or float, not tuple
+[2026-05-30] • [16:11:55] 📝 Syncing: [无描述] (2026-04-01T08:03:52+00:00)
+[2026-05-30] • [16:11:56] Error processing task 4352039712: argument must be int or float, not tuple
+[2026-05-30] • [16:11:59] 📝 Syncing: [自动同步] (2026-04-01T05:34:11+00:00)
+[2026-05-30] • [16:12:00] Error processing task 4351848934: argument must be int or float, not tuple
+[2026-05-30] • [16:12:01] 📝 Syncing: [自动同步] (2026-04-01T05:32:31+00:00)
+[2026-05-30] • [16:12:01] Error processing task 4351847701: argument must be int or float, not tuple
+[2026-05-30] • [16:12:03] 📝 Syncing: [自动记录] (2026-04-01T00:53:00+00:00)
+[2026-05-30] • [16:12:03] Error processing task 4351669595: argument must be int or float, not tuple
+[2026-05-30] • [16:12:05] 📝 Syncing: [跑步自动记录] (2026-04-01T00:12:32+00:00)
+[2026-05-30] • [16:12:05] Error processing task 4351641560: argument must be int or float, not tuple
+[2026-05-30] • [16:12:06] 📝 Syncing: [自动同步] (2026-03-31T14:29:55+00:00)
+[2026-05-30] • [16:12:07] Error processing task 4350836307: argument must be int or float, not tuple
+[2026-05-30] • [16:12:07] Found 43 entries from 2026-03-21 to 2026-03-31. Processing...
+[2026-05-30] • [16:12:09] 📝 Syncing: [无描述] (2026-03-31T04:14:08+00:00)
+[2026-05-30] • [16:12:10] Error processing task 4349926705: argument must be int or float, not tuple
+[2026-05-30] • [16:12:11] 📝 Syncing: [自动同步] (2026-03-31T00:19:39+00:00)
+[2026-05-30] • [16:12:11] Error processing task 4349777378: argument must be int or float, not tuple
+[2026-05-30] • [16:12:13] 📝 Syncing: [自动同步] (2026-03-31T00:17:42+00:00)
+[2026-05-30] • [16:12:13] Error processing task 4349776125: argument must be int or float, not tuple
+[2026-05-30] • [16:12:15] 📝 Syncing: [自动同步] (2026-03-30T23:22:38+00:00)
+[2026-05-30] • [16:12:15] Error processing task 4349738570: argument must be int or float, not tuple
+[2026-05-30] • [16:12:17] 📝 Syncing: [自动同步] (2026-03-30T08:36:56+00:00)
+[2026-05-30] • [16:12:18] Error processing task 4348353365: argument must be int or float, not tuple
+[2026-05-30] • [16:12:18] 📝 Syncing: [无描述] (2026-03-30T08:33:03+00:00)
+[2026-05-30] • [16:12:19] Error processing task 4348346963: argument must be int or float, not tuple
+[2026-05-30] • [16:12:20] 📝 Syncing: [自动同步] (2026-03-30T08:32:08+00:00)
+[2026-05-30] • [16:12:20] Error processing task 4348345484: argument must be int or float, not tuple
+[2026-05-30] • [16:12:22] 📝 Syncing: [自动同步] (2026-03-29T15:58:58+00:00)
+[2026-05-30] • [16:12:22] Error processing task 4347730080: argument must be int or float, not tuple
+[2026-05-30] • [16:12:23] 📝 Syncing: [无描述] (2026-03-29T15:54:38+00:00)
+[2026-05-30] • [16:12:24] Error processing task 4347728322: argument must be int or float, not tuple
+[2026-05-30] • [16:12:25] 📝 Syncing: [自动同步] (2026-03-29T15:53:17+00:00)
+[2026-05-30] • [16:12:26] Error processing task 4347727670: argument must be int or float, not tuple
+[2026-05-30] • [16:12:27] 📝 Syncing: [无描述] (2026-03-29T15:53:15+00:00)
+[2026-05-30] • [16:12:28] Error processing task 4347727668: argument must be int or float, not tuple
+[2026-05-30] • [16:12:30] 📝 Syncing: [自动记录] (2026-03-29T07:58:55+00:00)
+[2026-05-30] • [16:12:31] Error processing task 4347578452: argument must be int or float, not tuple
+[2026-05-30] • [16:12:32] 📝 Syncing: [跑步自动记录] (2026-03-29T07:16:07+00:00)
+[2026-05-30] • [16:12:32] Error processing task 4347568610: argument must be int or float, not tuple
+[2026-05-30] • [16:12:33] 📝 Syncing: [无描述] (2026-03-28T15:55:42+00:00)
+[2026-05-30] • [16:12:34] Error processing task 4347361065: argument must be int or float, not tuple
+[2026-05-30] • [16:12:35] 📝 Syncing: [自动同步] (2026-03-28T15:50:06+00:00)
+[2026-05-30] • [16:12:36] Error processing task 4347359038: argument must be int or float, not tuple
+[2026-05-30] • [16:12:37] 📝 Syncing: [无描述] (2026-03-28T15:41:21+00:00)
+[2026-05-30] • [16:12:38] Error processing task 4347356044: argument must be int or float, not tuple
+[2026-05-30] • [16:12:39] 📝 Syncing: [自动同步] (2026-03-27T15:55:32+00:00)
+[2026-05-30] • [16:12:39] Error processing task 4346624322: argument must be int or float, not tuple
+[2026-05-30] • [16:12:40] 📝 Syncing: [无描述] (2026-03-27T15:07:49+00:00)
+[2026-05-30] • [16:12:40] Error processing task 4346541318: argument must be int or float, not tuple
+[2026-05-30] • [16:12:41] 📝 Syncing: [自动记录] (2026-03-27T00:24:34+00:00)
+[2026-05-30] • [16:12:42] Error processing task 4345612019: argument must be int or float, not tuple
+[2026-05-30] • [16:12:43] 📝 Syncing: [跑步自动记录] (2026-03-26T23:44:04+00:00)
+[2026-05-30] • [16:12:43] Error processing task 4345586507: argument must be int or float, not tuple
+[2026-05-30] • [16:12:44] 📝 Syncing: [自动同步] (2026-03-26T14:49:01+00:00)
+[2026-05-30] • [16:12:44] Error processing task 4344884957: argument must be int or float, not tuple
+[2026-05-30] • [16:12:45] 📝 Syncing: [无描述] (2026-03-26T13:49:24+00:00)
+[2026-05-30] • [16:12:46] Error processing task 4344761519: argument must be int or float, not tuple
+[2026-05-30] • [16:12:47] 📝 Syncing: [无描述] (2026-03-26T13:47:58+00:00)
+[2026-05-30] • [16:12:48] Error processing task 4344758819: argument must be int or float, not tuple
+[2026-05-30] • [16:12:49] 📝 Syncing: [无描述] (2026-03-26T13:47:11+00:00)
+[2026-05-30] • [16:12:49] Error processing task 4344757329: argument must be int or float, not tuple
+[2026-05-30] • [16:12:52] 📝 Syncing: [自动同步] (2026-03-26T06:08:37+00:00)
+[2026-05-30] • [16:12:53] Error processing task 4344100793: argument must be int or float, not tuple
+[2026-05-30] • [16:12:54] 📝 Syncing: [自动同步] (2026-03-26T05:30:56+00:00)
+[2026-05-30] • [16:12:55] Error processing task 4344077898: argument must be int or float, not tuple
+[2026-05-30] • [16:12:56] 📝 Syncing: [自动同步] (2026-03-26T00:07:14+00:00)
+[2026-05-30] • [16:12:57] Error processing task 4343901843: argument must be int or float, not tuple
+[2026-05-30] • [16:12:58] 📝 Syncing: [自动记录] (2026-03-26T00:03:11+00:00)
+[2026-05-30] • [16:12:58] Error processing task 4343899151: argument must be int or float, not tuple
+[2026-05-30] • [16:13:00] 📝 Syncing: [跑步自动记录] (2026-03-25T23:19:20+00:00)
+[2026-05-30] • [16:13:01] Error processing task 4343870155: argument must be int or float, not tuple
+[2026-05-30] • [16:13:02] 📝 Syncing: [无描述] (2026-03-25T14:29:14+00:00)
+[2026-05-30] • [16:13:02] Error processing task 4343128026: argument must be int or float, not tuple
+[2026-05-30] • [16:13:04] 📝 Syncing: [自动同步] (2026-03-25T05:22:33+00:00)
+[2026-05-30] • [16:13:05] Error processing task 4342349101: argument must be int or float, not tuple
+[2026-05-30] • [16:13:06] 📝 Syncing: [自动同步] (2026-03-25T04:26:39+00:00)
+[2026-05-30] • [16:13:06] Error processing task 4342320753: argument must be int or float, not tuple
+[2026-05-30] • [16:13:08] 📝 Syncing: [自动同步] (2026-03-24T15:24:04+00:00)
+[2026-05-30] • [16:13:09] Error processing task 4341498095: argument must be int or float, not tuple
+[2026-05-30] • [16:13:10] 📝 Syncing: [自动同步] (2026-03-24T15:23:56+00:00)
+[2026-05-30] • [16:13:10] Error processing task 4341497842: argument must be int or float, not tuple
+[2026-05-30] • [16:13:11] 📝 Syncing: [自动同步] (2026-03-24T14:44:48+00:00)
+[2026-05-30] • [16:13:12] Error processing task 4341412563: argument must be int or float, not tuple
+[2026-05-30] • [16:13:13] 📝 Syncing: [无描述] (2026-03-24T14:32:21+00:00)
+[2026-05-30] • [16:13:14] Error processing task 4341386838: argument must be int or float, not tuple
+[2026-05-30] • [16:13:17] 📝 Syncing: [自动同步] (2026-03-23T15:53:05+00:00)
+[2026-05-30] • [16:13:17] Error processing task 4339754771: argument must be int or float, not tuple
+[2026-05-30] • [16:13:18] 📝 Syncing: [无描述] (2026-03-23T15:47:58+00:00)
+[2026-05-30] • [16:13:19] Error processing task 4339744289: argument must be int or float, not tuple
+[2026-05-30] • [16:13:20] 📝 Syncing: [自动记录] (2026-03-23T04:21:50+00:00)
+[2026-05-30] • [16:13:20] Error processing task 4338679180: argument must be int or float, not tuple
+[2026-05-30] • [16:13:21] 📝 Syncing: [跑步自动记录] (2026-03-23T03:36:39+00:00)
+[2026-05-30] • [16:13:22] Error processing task 4338657519: argument must be int or float, not tuple
+[2026-05-30] • [16:13:22] 📝 Syncing: [自动同步] (2026-03-21T18:58:34+00:00)
+[2026-05-30] • [16:13:23] Error processing task 4338061614: argument must be int or float, not tuple
+[2026-05-30] • [16:13:24] 📝 Syncing: [自动同步] (2026-03-21T15:42:57+00:00)
+[2026-05-30] • [16:13:24] Error processing task 4338002341: argument must be int or float, not tuple
+[2026-05-30] • [16:13:25] 📝 Syncing: [无描述] (2026-03-21T15:42:18+00:00)
+[2026-05-30] • [16:13:26] Error processing task 4338002145: argument must be int or float, not tuple
+[2026-05-30] • [16:13:26] Found 70 entries from 2026-03-11 to 2026-03-21. Processing...
+[2026-05-30] • [16:13:27] 📝 Syncing: [无描述] (2026-03-20T15:34:07+00:00)
+[2026-05-30] • [16:13:28] Error processing task 4337262908: argument must be int or float, not tuple
+[2026-05-30] • [16:13:28] 📝 Syncing: [自动同步] (2026-03-20T00:59:45+00:00)
+[2026-05-30] • [16:13:29] Error processing task 4336385694: argument must be int or float, not tuple
+[2026-05-30] • [16:13:30] 📝 Syncing: [自动记录] (2026-03-20T00:32:38+00:00)
+[2026-05-30] • [16:13:30] Error processing task 4336372367: argument must be int or float, not tuple
+[2026-05-30] • [16:13:33] 📝 Syncing: [跑步自动记录] (2026-03-19T23:52:42+00:00)
+[2026-05-30] • [16:13:33] Error processing task 4336351119: argument must be int or float, not tuple
+[2026-05-30] • [16:13:34] 📝 Syncing: [自动同步] (2026-03-19T14:36:34+00:00)
+[2026-05-30] • [16:13:34] Error processing task 4335642113: argument must be int or float, not tuple
+[2026-05-30] • [16:13:35] 📝 Syncing: [无描述] (2026-03-19T14:36:16+00:00)
+[2026-05-30] • [16:13:36] Error processing task 4335641609: argument must be int or float, not tuple
+[2026-05-30] • [16:13:37] 📝 Syncing: [无描述] (2026-03-19T13:33:35+00:00)
+[2026-05-30] • [16:13:37] Error processing task 4335516700: argument must be int or float, not tuple
+[2026-05-30] • [16:13:38] 📝 Syncing: [自动同步] (2026-03-19T10:37:57+00:00)
+[2026-05-30] • [16:13:38] Error processing task 4335236659: argument must be int or float, not tuple
+[2026-05-30] • [16:13:39] 📝 Syncing: [无描述] (2026-03-19T10:37:42+00:00)
+[2026-05-30] • [16:13:40] Error processing task 4335236309: argument must be int or float, not tuple
+[2026-05-30] • [16:13:41] 📝 Syncing: [无描述] (2026-03-19T10:36:05+00:00)
+[2026-05-30] • [16:13:41] Error processing task 4335234099: argument must be int or float, not tuple
+[2026-05-30] • [16:13:42] 📝 Syncing: [自动同步] (2026-03-19T07:13:49+00:00)
+[2026-05-30] • [16:13:43] Error processing task 4334953561: argument must be int or float, not tuple
+[2026-05-30] • [16:13:44] 📝 Syncing: [自动同步] (2026-03-19T06:29:32+00:00)
+[2026-05-30] • [16:13:44] Error processing task 4334914700: argument must be int or float, not tuple
+[2026-05-30] • [16:13:45] 📝 Syncing: [自动同步] (2026-03-19T05:32:09+00:00)
+[2026-05-30] • [16:13:45] Error processing task 4334878964: argument must be int or float, not tuple
+[2026-05-30] • [16:13:47] 📝 Syncing: [自动同步] (2026-03-19T01:02:43+00:00)
+[2026-05-30] • [16:13:48] Error processing task 4334738049: argument must be int or float, not tuple
+[2026-05-30] • [16:13:49] 📝 Syncing: [自动同步] (2026-03-19T00:53:21+00:00)
+[2026-05-30] • [16:13:49] Error processing task 4334731670: argument must be int or float, not tuple
+[2026-05-30] • [16:13:50] 📝 Syncing: [自动同步] (2026-03-19T00:49:48+00:00)
+[2026-05-30] • [16:13:52] Error processing task 4334729494: argument must be int or float, not tuple
+[2026-05-30] • [16:13:53] 📝 Syncing: [自动同步] (2026-03-19T00:48:36+00:00)
+[2026-05-30] • [16:13:53] Error processing task 4334728805: argument must be int or float, not tuple
+[2026-05-30] • [16:13:54] 📝 Syncing: [自动记录] (2026-03-19T00:36:23+00:00)
+[2026-05-30] • [16:13:54] Error processing task 4334721404: argument must be int or float, not tuple
+[2026-05-30] • [16:13:55] 📝 Syncing: [跑步自动记录] (2026-03-18T23:53:22+00:00)
+[2026-05-30] • [16:13:56] Error processing task 4334692961: argument must be int or float, not tuple
+[2026-05-30] • [16:13:57] 📝 Syncing: [无描述] (2026-03-18T01:19:24+00:00)
+[2026-05-30] • [16:13:58] Error processing task 4333087505: argument must be int or float, not tuple
+[2026-05-30] • [16:13:59] 📝 Syncing: [无描述] (2026-03-18T00:58:00+00:00)
+[2026-05-30] • [16:14:00] Error processing task 4333087503: argument must be int or float, not tuple
+[2026-05-30] • [16:14:01] 📝 Syncing: [跑步自动记录] (2026-03-18T00:15:05+00:00)
+[2026-05-30] • [16:14:03] Error processing task 4332985540: argument must be int or float, not tuple
+[2026-05-30] • [16:14:05] 📝 Syncing: [跑步自动记录] (2026-03-18T00:15:05+00:00)
+[2026-05-30] • [16:14:06] Error processing task 4332985822: argument must be int or float, not tuple
+[2026-05-30] • [16:14:07] 📝 Syncing: [自动同步] (2026-03-17T15:08:14+00:00)
+[2026-05-30] • [16:14:08] Error processing task 4332269100: argument must be int or float, not tuple
+[2026-05-30] • [16:14:09] 📝 Syncing: [无描述] (2026-03-17T14:41:22+00:00)
+[2026-05-30] • [16:14:09] Error processing task 4332209069: argument must be int or float, not tuple
+[2026-05-30] • [16:14:11] 📝 Syncing: [自动同步] (2026-03-16T23:55:10+00:00)
+[2026-05-30] • [16:14:11] Error processing task 4332208492: argument must be int or float, not tuple
+[2026-05-30] • [16:14:14] 📝 Syncing: [自动同步] (2026-03-16T13:53:18+00:00)
+[2026-05-30] • [16:14:14] Error processing task 4330270389: argument must be int or float, not tuple
+[2026-05-30] • [16:14:15] 📝 Syncing: [自动同步] (2026-03-16T06:36:18+00:00)
+[2026-05-30] • [16:14:16] Error processing task 4329525428: argument must be int or float, not tuple
+[2026-05-30] • [16:14:17] 📝 Syncing: [自动同步] (2026-03-16T05:38:19+00:00)
+[2026-05-30] • [16:14:17] Error processing task 4329482534: argument must be int or float, not tuple
+[2026-05-30] • [16:14:18] 📝 Syncing: [自动同步] (2026-03-16T05:02:21+00:00)
+[2026-05-30] • [16:14:19] Error processing task 4329461845: argument must be int or float, not tuple
+[2026-05-30] • [16:14:20] 📝 Syncing: [自动同步] (2026-03-16T04:57:46+00:00)
+[2026-05-30] • [16:14:20] Error processing task 4329459121: argument must be int or float, not tuple
+[2026-05-30] • [16:14:21] 📝 Syncing: [自动同步] (2026-03-16T04:57:13+00:00)
+[2026-05-30] • [16:14:21] Error processing task 4329458769: argument must be int or float, not tuple
+[2026-05-30] • [16:14:22] 📝 Syncing: [自动同步] (2026-03-16T04:55:38+00:00)
+[2026-05-30] • [16:14:23] Error processing task 4329457743: argument must be int or float, not tuple
+[2026-05-30] • [16:14:23] 📝 Syncing: [自动同步] (2026-03-16T04:55:27+00:00)
+[2026-05-30] • [16:14:24] Error processing task 4329457635: argument must be int or float, not tuple
+[2026-05-30] • [16:14:25] 📝 Syncing: [自动同步] (2026-03-16T04:26:46+00:00)
+[2026-05-30] • [16:14:25] Error processing task 4329443670: argument must be int or float, not tuple
+[2026-05-30] • [16:14:26] 📝 Syncing: [自动同步] (2026-03-16T02:14:29+00:00)
+[2026-05-30] • [16:14:27] Error processing task 4329376705: argument must be int or float, not tuple
+[2026-05-30] • [16:14:28] 📝 Syncing: [自动同步] (2026-03-15T17:29:52+00:00)
+[2026-05-30] • [16:14:28] Error processing task 4329142462: argument must be int or float, not tuple
+[2026-05-30] • [16:14:29] 📝 Syncing: [自动同步] (2026-03-15T17:07:46+00:00)
+[2026-05-30] • [16:14:30] Error processing task 4329134252: argument must be int or float, not tuple
+[2026-05-30] • [16:14:31] 📝 Syncing: [自动同步] (2026-03-15T17:03:38+00:00)
+[2026-05-30] • [16:14:31] Error processing task 4329132719: argument must be int or float, not tuple
+[2026-05-30] • [16:14:33] 📝 Syncing: [自动同步] (2026-03-15T17:03:34+00:00)
+[2026-05-30] • [16:14:33] Error processing task 4329132704: argument must be int or float, not tuple
+[2026-05-30] • [16:14:37] 📝 Syncing: [自动同步] (2026-03-15T16:16:07+00:00)
+[2026-05-30] • [16:14:38] Error processing task 4329115278: argument must be int or float, not tuple
+[2026-05-30] • [16:14:38] 📝 Syncing: [无描述] (2026-03-15T16:01:41+00:00)
+[2026-05-30] • [16:14:39] Error processing task 4329110272: argument must be int or float, not tuple
+[2026-05-30] • [16:14:40] 📝 Syncing: [无描述] (2026-03-15T15:45:29+00:00)
+[2026-05-30] • [16:14:40] Error processing task 4329104167: argument must be int or float, not tuple
+[2026-05-30] • [16:14:41] 📝 Syncing: [自动同步] (2026-03-15T14:37:01+00:00)
+[2026-05-30] • [16:14:42] Error processing task 4329077275: argument must be int or float, not tuple
+[2026-05-30] • [16:14:43] 📝 Syncing: [自动同步] (2026-03-15T14:29:30+00:00)
+[2026-05-30] • [16:14:44] Error processing task 4329072895: argument must be int or float, not tuple
+[2026-05-30] • [16:14:45] 📝 Syncing: [自动同步] (2026-03-15T13:59:58+00:00)
+[2026-05-30] • [16:14:46] Error processing task 4329062164: argument must be int or float, not tuple
+[2026-05-30] • [16:14:47] 📝 Syncing: [自动同步] (2026-03-15T12:19:45+00:00)
+[2026-05-30] • [16:14:47] Error processing task 4329028681: argument must be int or float, not tuple
+[2026-05-30] • [16:14:48] 📝 Syncing: [自动同步] (2026-03-15T11:55:16+00:00)
+[2026-05-30] • [16:14:49] Error processing task 4329020897: argument must be int or float, not tuple
+[2026-05-30] • [16:14:50] 📝 Syncing: [自动同步] (2026-03-15T11:42:21+00:00)
+[2026-05-30] • [16:14:51] Error processing task 4329017011: argument must be int or float, not tuple
+[2026-05-30] • [16:14:52] 📝 Syncing: [自动同步] (2026-03-15T11:20:13+00:00)
+[2026-05-30] • [16:14:52] Error processing task 4329010401: argument must be int or float, not tuple
+[2026-05-30] • [16:14:53] 📝 Syncing: [自动同步] (2026-03-15T11:17:42+00:00)
+[2026-05-30] • [16:14:54] Error processing task 4329009714: argument must be int or float, not tuple
+[2026-05-30] • [16:14:55] 📝 Syncing: [自动同步] (2026-03-15T11:06:03+00:00)
+[2026-05-30] • [16:14:56] Error processing task 4329006445: argument must be int or float, not tuple
+[2026-05-30] • [16:14:58] 📝 Syncing: [自动同步] (2026-03-15T11:05:03+00:00)
+[2026-05-30] • [16:14:58] Error processing task 4329006183: argument must be int or float, not tuple
+[2026-05-30] • [16:14:59] 📝 Syncing: [自动同步] (2026-03-15T11:01:11+00:00)
+[2026-05-30] • [16:15:00] Error processing task 4329004989: argument must be int or float, not tuple
+[2026-05-30] • [16:15:01] 📝 Syncing: [自动同步] (2026-03-15T08:22:23+00:00)
+[2026-05-30] • [16:15:01] Error processing task 4328961485: argument must be int or float, not tuple
+[2026-05-30] • [16:15:02] 📝 Syncing: [自动同步] (2026-03-15T06:09:43+00:00)
+[2026-05-30] • [16:15:02] Error processing task 4328933886: argument must be int or float, not tuple
+[2026-05-30] • [16:15:05] 📝 Syncing: [自动同步] (2026-03-14T08:13:18+00:00)
+[2026-05-30] • [16:15:06] Error processing task 4328604090: argument must be int or float, not tuple
+[2026-05-30] • [16:15:07] 📝 Syncing: [自动同步] (2026-03-14T07:42:51+00:00)
+[2026-05-30] • [16:15:07] Error processing task 4328597141: argument must be int or float, not tuple
+[2026-05-30] • [16:15:10] 📝 Syncing: [自动同步] (2026-03-13T18:50:30+00:00)
+[2026-05-30] • [16:15:10] Error processing task 4328239353: argument must be int or float, not tuple
+[2026-05-30] • [16:15:11] 📝 Syncing: [无描述] (2026-03-13T15:43:57+00:00)
+[2026-05-30] • [16:15:12] Error processing task 4327968564: argument must be int or float, not tuple
+[2026-05-30] • [16:15:13] 📝 Syncing: [自动同步] (2026-03-13T10:42:27+00:00)
+[2026-05-30] • [16:15:13] Error processing task 4327472535: argument must be int or float, not tuple
+[2026-05-30] • [16:15:14] 📝 Syncing: [自动同步] (2026-03-13T02:33:20+00:00)
+[2026-05-30] • [16:15:15] Error processing task 4327036710: argument must be int or float, not tuple
+[2026-05-30] • [16:15:16] 📝 Syncing: [自动同步] (2026-03-13T02:10:05+00:00)
+[2026-05-30] • [16:15:16] Error processing task 4327023531: argument must be int or float, not tuple
+[2026-05-30] • [16:15:18] 📝 Syncing: [自动同步] (2026-03-12T14:34:12+00:00)
+[2026-05-30] • [16:15:19] Error processing task 4326188830: argument must be int or float, not tuple
+[2026-05-30] • [16:15:20] 📝 Syncing: [无描述] (2026-03-12T14:16:53+00:00)
+[2026-05-30] • [16:15:20] Error processing task 4326152538: argument must be int or float, not tuple
+[2026-05-30] • [16:15:23] 📝 Syncing: [无描述] (2026-03-12T14:13:36+00:00)
+[2026-05-30] • [16:15:23] Error processing task 4326145905: argument must be int or float, not tuple
+[2026-05-30] • [16:15:24] 📝 Syncing: [自动同步] (2026-03-12T10:40:05+00:00)
+[2026-05-30] • [16:15:25] Error processing task 4325774886: argument must be int or float, not tuple
+[2026-05-30] • [16:15:26] 📝 Syncing: [无描述] (2026-03-11T15:23:49+00:00)
+[2026-05-30] • [16:15:26] Error processing task 4324543455: argument must be int or float, not tuple
+[2026-05-30] • [16:15:27] 📝 Syncing: [无描述] (2026-03-11T15:13:25+00:00)
+[2026-05-30] • [16:15:28] Error processing task 4324523370: argument must be int or float, not tuple
+[2026-05-30] • [16:15:29] 📝 Syncing: [无描述] (2026-03-11T15:11:14+00:00)
+[2026-05-30] • [16:15:31] Error processing task 4324519310: argument must be int or float, not tuple
+[2026-05-30] • [16:15:31] Found 7 entries from 2026-03-10 to 2026-03-11. Processing...
+[2026-05-30] • [16:15:32] 📝 Updating: [自动同步] (2026-03-11T05:34:01+00:00)
+[2026-05-30] • [16:15:33] Error processing task 4323648424: argument must be int or float, not tuple
+[2026-05-30] • [16:15:34] 📝 Updating: [自动记录] (2026-03-11T00:36:00+00:00)
+[2026-05-30] • [16:15:35] Error processing task 4323481406: argument must be int or float, not tuple
+[2026-05-30] • [16:15:36] 📝 Updating: [跑步自动记录] (2026-03-10T23:55:27+00:00)
+[2026-05-30] • [16:15:36] Error processing task 4323452260: argument must be int or float, not tuple
+[2026-05-30] • [16:15:39] 📝 Updating: [自动同步] (2026-03-10T15:21:47+00:00)
+[2026-05-30] • [16:15:39] Error processing task 4322764778: argument must be int or float, not tuple
+[2026-05-30] • [16:15:42] 📝 Updating: [无描述] (2026-03-10T15:21:00+00:00)
+[2026-05-30] • [16:15:43] Error processing task 4322763221: argument must be int or float, not tuple
+[2026-05-30] • [16:15:44] 📝 Updating: [自动同步] (2026-03-10T14:51:18+00:00)
+[2026-05-30] • [16:15:45] Error processing task 4322698074: argument must be int or float, not tuple
+[2026-05-30] • [16:15:46] 📝 Updating: [自动同步] (2026-03-10T06:15:17+00:00)
+[2026-05-30] • [16:15:46] Error processing task 4321862600: argument must be int or float, not tuple
+[2026-05-30] • [16:15:46] ✅ History continuity checked. No significant gaps found.
+[2026-05-30] • [16:15:46] 🔄 Checking for Notion entries to sync back to Toggl...
+[2026-05-30] • [16:15:47] No missing Toggl IDs found in Notion.
+[2026-05-30] • [16:15:47] 开始发送企业微信通知: ✅ 完成Toggl同步 | Toggl 数据同步完成
+[2026-05-30] • [16:15:48] 企业微信通知发送成功
+[2026-05-30] • [16:15:50] 更新 Toggl 热力图成功，热力图链接：https://togglapi.notionhub.app/toggl/heatmap?v=1780128949&activationCode=TgLaad051536037
