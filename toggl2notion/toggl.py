@@ -335,7 +335,7 @@ def process_entry(task):
     stop = pendulum.parse(task.get("stop") or task.get("end") or pendulum.now().to_iso8601_string())
     start_ts = start.in_timezone("Asia/Shanghai").int_timestamp
     stop_ts = stop.in_timezone("Asia/Shanghai").int_timestamp
-    item["时间"] = (start_ts, stop_ts)
+    item["时间"] = {"start": start_ts, "end": stop_ts}
     
     pid = task.get("project_id") or task.get("pid")
     description = task.get("description")
