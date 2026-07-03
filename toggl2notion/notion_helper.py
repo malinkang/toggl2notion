@@ -71,9 +71,13 @@ class NotionHelper(NotionHelperBase):
     def ensure_time_id_property(self):
         if not self.time_data_source_id:
             raise ValueError("缺少 TIME_DATABASE_NAME / TIME data source id")
-        if "Id" not in self.time_props:
+        if self.time_props.get("Id") != "number":
             raise ValueError(
                 "Time 数据源缺少必需的 'Id' number 字段，已停止同步以避免产生重复数据。"
+            )
+        if self.time_props.get("标题") != "title":
+            raise ValueError(
+                "Time 数据源缺少必需的 '标题' title 字段，已停止同步。"
             )
 
     def get_page_title(self, page_id):
@@ -109,6 +113,8 @@ class NotionHelper(NotionHelperBase):
 
     def get_page_by_toggl_id(self, toggl_id):
         """Find the Notion page ID for a given Toggl ID."""
+        if toggl_id is None:
+            raise ValueError("Toggl entry is missing id; refusing to sync without a stable dedupe key.")
         filter = {"property": "Id", "number": {"equals": int(toggl_id)}}
         try:
             response = self.query(
@@ -132,6 +138,83 @@ class NotionHelper(NotionHelperBase):
             if "id" in error_str and ("property" in error_str or "exists" in error_str):
                 return []
             raise e
+
+    def query_entries_marked_for_toggl_sync(self):
+        """Query Notion-created entries explicitly marked for reverse sync."""
+        if self.time_props.get("同步到 Toggl") != "checkbox":
+            log("Time 数据源缺少可选的 '同步到 Toggl' checkbox 字段，跳过 Notion -> Toggl 反向同步。")
+            return []
+        filter = {
+            "and": [
+                {"property": "Id", "number": {"is_empty": True}},
+                {"property": "同步到 Toggl", "checkbox": {"equals": True}},
+            ]
+        }
+        return self.query_all_by_filter(data_source_id=self.time_data_source_id, filter=filter)
+
+    def toggl_id_present_filter(self):
+        """Filter for records that have already been linked to a Toggl entry."""
+        return {"property": "Id", "number": {"is_not_empty": True}}
+
+    def query_time_entry_boundary(self, direction="descending", toggl_only=True):
+        """Query the first Time entry for a direction, optionally ignoring manual Notion entries."""
+        kwargs = {
+            "data_source_id": self.time_data_source_id,
+            "sorts": [{"property": "时间", "direction": direction}],
+            "page_size": 1,
+        }
+        if toggl_only:
+            kwargs["filter"] = self.toggl_id_present_filter()
+        response = self.query(**kwargs)
+        results = response.get("results") or []
+        return results[0] if results else None
+
+    def query_time_entries_sorted_by_time(self, toggl_only=True):
+        """Query Time entries sorted by start time for gap detection."""
+        results = []
+        has_more = True
+        start_cursor = None
+        while has_more:
+            kwargs = {
+                "data_source_id": self.time_data_source_id,
+                "sorts": [{"property": "时间", "direction": "ascending"}],
+                "page_size": 100,
+            }
+            if toggl_only:
+                kwargs["filter"] = self.toggl_id_present_filter()
+            if start_cursor:
+                kwargs["start_cursor"] = start_cursor
+            response = self.query(**kwargs)
+            start_cursor = response.get("next_cursor")
+            has_more = response.get("has_more")
+            results.extend(response.get("results"))
+        return results
+
+    def query_toggl_entries_by_time_range(self, start_date, end_date):
+        """Query Toggl-linked Time entries in a date range for deletion reconciliation."""
+        filter = {
+            "and": [
+                self.toggl_id_present_filter(),
+                {"property": "时间", "date": {"on_or_after": start_date.to_iso8601_string()}},
+                {"property": "时间", "date": {"on_or_before": end_date.to_iso8601_string()}},
+            ]
+        }
+        return self.query_all_by_filter(
+            data_source_id=self.time_data_source_id,
+            filter=filter,
+            sorts=[{"property": "时间", "direction": "ascending"}],
+        )
+
+    def get_toggl_id_from_time_page(self, page):
+        """Read the Toggl Id number from a Time page."""
+        try:
+            return page.get("properties", {}).get("Id", {}).get("number")
+        except Exception:
+            return None
+
+    def archive_page(self, page_id):
+        """Archive a Notion page instead of permanently deleting it."""
+        return self.client.pages.update(page_id=page_id, archived=True)
 
     def get_remote_id_from_page(self, page_id):
         """Retrieve the 'Id' (Toggl ID) from a Notion page (Project/Client)."""
@@ -225,21 +308,21 @@ class NotionHelper(NotionHelperBase):
         self._NotionHelperBase__cache[fetch_key] = page_id
         return page_id
 
-    # Override get_day_relation_id to include year/month/week in day properties
+    # Override get_day_relation_id to keep Toggl naming while using a dynamic date icon.
     def get_day_relation_id(self, date):
         new_date = date.replace(hour=0, minute=0, second=0, microsecond=0)
         day = new_date.strftime("%Y年%m月%d日")
         properties = {
             "日期": get_date(format_date(date)),
         }
-        properties["年"] = get_relation([self.get_year_relation_id(new_date)])
-        properties["月"] = get_relation([self.get_month_relation_id(new_date)])
-        properties["周"] = get_relation([self.get_week_relation_id(new_date)])
         return self.get_relation_id(
-            day, self.day_data_source_id, get_icon(TARGET_ICON_URL), properties
+            day,
+            self.day_data_source_id,
+            self.get_date_icon_payload_lazy(new_date, "day"),
+            properties,
         )
 
-    # Override date relation methods to use get_icon(TARGET_ICON_URL) instead of date icon
+    # Override date relation methods to keep Toggl naming while using dynamic date icons.
     def get_week_relation_id(self, date):
         from notionhub.utils import get_first_and_last_day_of_week
         year = date.isocalendar().year
@@ -248,7 +331,10 @@ class NotionHelper(NotionHelperBase):
         start, end = get_first_and_last_day_of_week(date)
         properties = {"日期": get_date(format_date(start), format_date(end))}
         return self.get_relation_id(
-            week, self.week_data_source_id, get_icon(TARGET_ICON_URL), properties
+            week,
+            self.week_data_source_id,
+            self.get_date_icon_payload_lazy(date, "week"),
+            properties,
         )
 
     def get_month_relation_id(self, date):
@@ -257,7 +343,10 @@ class NotionHelper(NotionHelperBase):
         start, end = get_first_and_last_day_of_month(date)
         properties = {"日期": get_date(format_date(start), format_date(end))}
         return self.get_relation_id(
-            month, self.month_data_source_id, get_icon(TARGET_ICON_URL), properties
+            month,
+            self.month_data_source_id,
+            self.get_date_icon_payload_lazy(date, "month"),
+            properties,
         )
 
     def get_year_relation_id(self, date):
@@ -266,7 +355,10 @@ class NotionHelper(NotionHelperBase):
         start, end = get_first_and_last_day_of_year(date)
         properties = {"日期": get_date(format_date(start), format_date(end))}
         return self.get_relation_id(
-            year, self.year_data_source_id, get_icon(TARGET_ICON_URL), properties
+            year,
+            self.year_data_source_id,
+            self.get_date_icon_payload_lazy(date, "year"),
+            properties,
         )
 
     # Override get_date_relation to include 全部
@@ -283,7 +375,7 @@ class NotionHelper(NotionHelperBase):
     def update_page(self, page_id, properties, icon=None, cover=None):
         kwargs = {"page_id": page_id, "properties": properties}
         if icon:
-            kwargs["icon"] = icon
+            kwargs["icon"] = self.resolve_media_payload(icon)
         try:
             return self.client.pages.update(**kwargs)
         except Exception as e:
@@ -298,6 +390,8 @@ class NotionHelper(NotionHelperBase):
     # Override create_page to handle Id property errors
     def create_page(self, parent, properties, icon=None, cover=None):
         parent = self.normalize_parent(parent)
+        if icon:
+            icon = self.resolve_media_payload(icon)
         try:
             return self.client.pages.create(parent=parent, properties=properties, icon=icon)
         except Exception as e:

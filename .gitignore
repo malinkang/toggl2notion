@@ -1,3 +1,4 @@
 scripts/.env
 scripts/__pycache__
 log/
+state/
