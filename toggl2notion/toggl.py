@@ -504,7 +504,7 @@ def process_entry(task):
         item["标题"] = description if description else project_display_name
         
         client_id = project_info.get("client_id")
-        project_properties = {"金币":{"number": 1}}
+        project_properties = {"金币":{"number": 0}}
         
         if client_id and client_id in client_cache:
             client_name = client_cache[client_id]

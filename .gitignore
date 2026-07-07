@@ -2,3 +2,5 @@ scripts/.env
 scripts/__pycache__
 log/
 state/
+__pycache__/
+*.py[cod]
