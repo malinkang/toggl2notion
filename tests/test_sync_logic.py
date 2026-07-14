@@ -105,6 +105,38 @@ class FakeResponse:
 
 
 class SyncLogicTest(unittest.TestCase):
+    def test_trial_range_stops_before_fetching_when_quota_is_exhausted(self):
+        class ExhaustedPolicy:
+            is_trial = True
+
+            def remaining(self, _stream):
+                return 0
+
+        original_helper = toggl.notion_helper
+        original_policy = toggl.current_sync_policy
+        original_get_entries = toggl.get_time_entries
+        calls = {"entries": 0}
+        toggl.notion_helper = FakeEnsureHelper()
+        toggl.current_sync_policy = lambda: ExhaustedPolicy()
+
+        def fake_get_entries(_start, _end):
+            calls["entries"] += 1
+            return [], 200
+
+        toggl.get_time_entries = fake_get_entries
+        try:
+            result = toggl.sync_data_range(
+                pendulum.now("Asia/Shanghai").subtract(days=2),
+                pendulum.now("Asia/Shanghai"),
+                ["workspace-1"],
+            )
+            self.assertTrue(result)
+            self.assertEqual(calls["entries"], 0)
+        finally:
+            toggl.notion_helper = original_helper
+            toggl.current_sync_policy = original_policy
+            toggl.get_time_entries = original_get_entries
+
     def test_find_time_gaps_limits_large_middle_gaps(self):
         ranges = [
             (pendulum.datetime(2026, 1, 1, tz="Asia/Shanghai"), pendulum.datetime(2026, 1, 1, 1, tz="Asia/Shanghai")),

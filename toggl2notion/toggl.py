@@ -809,6 +809,9 @@ def sync_data_range(start_date, end_date, workspace_ids, force_reports_api=False
     
     current_end = end_date
     while current_end > start_date:
+        if sync_policy.is_trial and sync_policy.remaining("time_entries") <= 0:
+            utils.log("免费体验时间记录额度已用完，停止继续读取历史数据")
+            return True
         current_start = current_end.subtract(days=10)
         if current_start < start_date:
             current_start = start_date
@@ -863,6 +866,9 @@ def sync_data_range(start_date, end_date, workspace_ids, force_reports_api=False
             entries.sort(key=lambda x: pendulum.parse(x['start']), reverse=True)
             
             for task in entries:
+                if sync_policy.is_trial and sync_policy.remaining("time_entries") <= 0:
+                    utils.log("免费体验时间记录额度已用完，停止继续读取历史数据")
+                    return True
                 if task.get("server_deleted_at"):
                     continue
                 
@@ -934,9 +940,16 @@ def insert_to_notion(progress=None):
     for ws in workspaces:
         load_workspace_cache(ws["id"])
 
-    sync_deletions = parse_bool_env("TOGGL_SYNC_DELETIONS", DEFAULT_SYNC_DELETIONS)
+    sync_deletions = (
+        parse_bool_env("TOGGL_SYNC_DELETIONS", DEFAULT_SYNC_DELETIONS)
+        if not current_sync_policy().is_trial
+        else False
+    )
     manual_backfill_start = parse_optional_date_env("TOGGL_BACKFILL_START")
     manual_backfill_end = parse_optional_date_env("TOGGL_BACKFILL_END")
+    if current_sync_policy().is_trial:
+        manual_backfill_start = None
+        manual_backfill_end = None
     if manual_backfill_start or manual_backfill_end:
         if not (manual_backfill_start and manual_backfill_end):
             stats.add_failure("backfill", "manual", "TOGGL_BACKFILL_START 和 TOGGL_BACKFILL_END 必须同时设置")
@@ -972,8 +985,8 @@ def insert_to_notion(progress=None):
     if latest_end:
         incremental_start = latest_end.subtract(days=lookback_days)
         utils.log(
-            f"🔄 Starting Incremental Sync from: {incremental_start.to_datetime_string()} "
-            f"(lookback {lookback_days} day(s))"
+            f"开始增量同步：{incremental_start.to_datetime_string()}，"
+            f"回看 {lookback_days} 天"
         )
         sync_data_range(
             incremental_start,
