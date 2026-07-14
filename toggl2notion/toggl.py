@@ -12,6 +12,7 @@ from .config import TAG_ICON_URL
 from .utils import get_icon, split_emoji_from_string
 from dotenv import load_dotenv
 from notionhub.log import sync_notification
+from notionhub.sync_policy import current_sync_policy
 load_dotenv()
 
 auth = None
@@ -802,6 +803,7 @@ def sync_deleted_notion_entries(start_date, end_date, source_entries, stats, pro
 def sync_data_range(start_date, end_date, workspace_ids, force_reports_api=False, progress=None, stats=None, sync_deletions=False):
     """Sync data for a specific date range."""
     stats = stats or SyncStats()
+    sync_policy = current_sync_policy()
     notion_helper.ensure_time_id_property()
     utils.log(f"正在同步 {start_date.to_iso8601_string()} 至 {end_date.to_iso8601_string()} 的记录")
     
@@ -877,8 +879,17 @@ def sync_data_range(start_date, end_date, workspace_ids, force_reports_api=False
                         notion_helper.update_page(page_id=existing_page_id, properties=properties, icon=icon)
                         page_id = existing_page_id
                     else:
+                        if not sync_policy.can_create("time_entries", toggl_id):
+                            continue
                         page = notion_helper.create_page(parent=parent, properties=properties, icon=icon)
                         page_id = page.get("id")
+                        sync_policy.record_success(
+                            "time_entries",
+                            toggl_id,
+                            occurred_at=task.get("start"),
+                            heatmap_value=max(1, round(int(task.get("duration") or 0) / 60)),
+                            created=True,
+                        )
                     stats.add_success(was_update=bool(existing_page_id))
                     if progress:
                         status = "已更新" if existing_page_id else "已新增"
@@ -1013,10 +1024,12 @@ def insert_to_notion(progress=None):
     
     # After forward sync, perform reverse sync for entries created in Notion
     # Note: Reverse sync is relatively cheap (queries Notion for missing IDs)
-    reverse_sync_notion_to_toggl()
+    if current_sync_policy().allows("reverse_sync"):
+        reverse_sync_notion_to_toggl()
     return stats
 
 def main():
+    sync_policy = current_sync_policy()
     with sync_notification("Toggl") as notification:
         if init():
             progress = notification.progress("同步", batch_size=10)
@@ -1028,6 +1041,7 @@ def main():
                 raise RuntimeError(f"{summary}。{stats.failure_summary()}")
             summary = f"Toggl 数据同步完成：{stats.summary() if stats else '无数据变更'}"
             notification.set_summary(summary)
+            sync_policy.write_report(status="success")
 
 
 if __name__ == "__main__":
