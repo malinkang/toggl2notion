@@ -142,7 +142,7 @@ class NotionHelper(NotionHelperBase):
     def query_entries_marked_for_toggl_sync(self):
         """Query Notion-created entries explicitly marked for reverse sync."""
         if self.time_props.get("同步到 Toggl") != "checkbox":
-            log("Time 数据源缺少可选的 '同步到 Toggl' checkbox 字段，跳过 Notion -> Toggl 反向同步。")
+            log("时间数据源缺少可选的“同步到 Toggl”复选框字段，跳过 Notion 到 Toggl 的反向同步。")
             return []
         filter = {
             "and": [
@@ -249,15 +249,15 @@ class NotionHelper(NotionHelperBase):
                     existing_name = results[0].get("properties", {}).get(title_prop, {}).get("title", [])
                     existing_name = existing_name[0].get("plain_text") if existing_name else ""
                     if existing_name != name:
-                        log(f"Updating name for ID {remote_id}: '{existing_name}' -> '{name}'")
+                        log(f"正在更新 ID {remote_id} 的名称: “{existing_name}” -> “{name}”")
                         properties[title_prop] = get_title(name)
                         self.update_page(page_id, properties, icon)
             except Exception as e:
                 error_str = str(e).lower()
                 if "id" in error_str and ("property" in error_str or "exists" in error_str):
-                    log(f"Property 'Id' missing in database {id}. Falling back to name-based lookup for '{name}'.")
+                    log(f"数据库 {id} 缺少 ID 属性，改用名称“{name}”查询")
                 else:
-                    log(f"Failed to query database {id} by remote_id: {e}")
+                    log(f"按远程 ID 查询数据库 {id} 失败: {e}")
                     raise e
 
         # 2. Fallback to name-based lookup if not found by ID or ID not provided
@@ -267,7 +267,7 @@ class NotionHelper(NotionHelperBase):
                 response = self.query(data_source_id=id, filter=filter)
                 results = response.get("results")
             except Exception as e:
-                log(f"Failed to query database {id} for name '{name}': {e}")
+                log(f"按名称“{name}”查询数据库 {id} 失败: {e}")
                 raise e
 
             if results:
@@ -279,9 +279,9 @@ class NotionHelper(NotionHelperBase):
                     except Exception as e:
                         error_str = str(e).lower()
                         if "id" in error_str and ("property" in error_str or "exists" in error_str):
-                            log(f"Could not write 'Id' to database {id}: Property missing.")
+                            log(f"无法向数据库 {id} 写入 ID: 缺少对应属性")
                         else:
-                            log(f"Error writing 'Id' to database {id}: {e}")
+                            log(f"向数据库 {id} 写入 ID 失败: {e}")
 
         # 3. Create if still not found
         if not page_id:
@@ -297,7 +297,7 @@ class NotionHelper(NotionHelperBase):
             except Exception as e:
                 error_str = str(e).lower()
                 if "id" in error_str and ("property" in error_str or "exists" in error_str) and "Id" in properties:
-                    log(f"Retrying page creation for '{name}' without 'Id' property...")
+                    log(f"正在重试创建“{name}”，本次不写入 ID 属性")
                     new_props = {k: v for k, v in properties.items() if k != "Id"}
                     page_id = self.create_page(
                         parent=parent, properties=new_props, icon=icon
@@ -381,7 +381,7 @@ class NotionHelper(NotionHelperBase):
         except Exception as e:
             error_str = str(e).lower()
             if "id" in error_str and ("property" in error_str or "exists" in error_str) and "Id" in properties:
-                log(f"Property 'Id' missing in database. Updating without 'Id'.")
+                log("数据库缺少 ID 属性，将跳过该属性继续更新")
                 new_props = {k: v for k, v in properties.items() if k != "Id"}
                 kwargs["properties"] = new_props
                 return self.client.pages.update(**kwargs)
@@ -397,7 +397,7 @@ class NotionHelper(NotionHelperBase):
         except Exception as e:
             error_str = str(e).lower()
             if "id" in error_str and ("property" in error_str or "exists" in error_str) and "Id" in properties:
-                log(f"Property 'Id' missing in main database. Retrying without 'Id'.")
+                log("主数据库缺少 ID 属性，将跳过该属性重试")
                 new_props = {k: v for k, v in properties.items() if k != "Id"}
                 return self.client.pages.create(parent=parent, properties=new_props, icon=icon)
             raise e

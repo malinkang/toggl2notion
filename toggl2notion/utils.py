@@ -77,10 +77,10 @@ def upload_image(activation_code, file_path, upload_name=None):
         }
         response = requests.post(upload_url, files=files, data=data, headers=headers, timeout=30)
     if response.status_code == 200:
-        log(f"File uploaded successfully. {response.text}")
+        log(f"文件上传成功。{response.text}")
         return response.json().get("svgUrl")
     else:
-        log(f"Failed to upload file. Status code: {response.status_code}")
+        log(f"文件上传失败，状态码: {response.status_code}")
         return None
 
 

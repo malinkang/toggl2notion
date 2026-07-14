@@ -125,7 +125,7 @@ class SyncLogicTest(unittest.TestCase):
         stats.add_failure("entry", "123", "boom")
 
         self.assertEqual(stats.summary(), "新增 1，更新 1，失败 1")
-        self.assertIn("entry 123: boom", stats.failure_summary())
+        self.assertIn("时间记录 123: boom", stats.failure_summary())
 
     def test_reverse_sync_requires_explicit_checkbox(self):
         helper = FakeQueryHelper({"Id": "number", "同步到 Toggl": "checkbox"})
