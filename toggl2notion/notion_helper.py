@@ -12,16 +12,17 @@ class NotionHelper(NotionHelperBase):
     def __init__(self):
         super().__init__()
 
-        _, self.time_data_source_id = self.get_database_and_data_source_ids("TIME")
+        self._data_source_database_map = {}
+        self.time_database_id, self.time_data_source_id = self.get_verified_database_and_data_source_ids("TIME")
         self.time_data_source_id = self.time_data_source_id or self.resolve_legacy_time_data_source_id()
-        _, self.day_data_source_id = self.get_database_and_data_source_ids("DAY")
-        _, self.week_data_source_id = self.get_database_and_data_source_ids("WEEK")
-        _, self.month_data_source_id = self.get_database_and_data_source_ids("MONTH")
-        _, self.year_data_source_id = self.get_database_and_data_source_ids("YEAR")
-        _, self.all_data_source_id = self.get_database_and_data_source_ids("ALL")
-        _, self.client_data_source_id = self.get_database_and_data_source_ids("CLIENT")
-        _, self.project_data_source_id = self.get_database_and_data_source_ids("PROJECT")
-        _, self.tag_data_source_id = self.get_database_and_data_source_ids("TAG")
+        self.day_database_id, self.day_data_source_id = self.get_verified_database_and_data_source_ids("DAY")
+        self.week_database_id, self.week_data_source_id = self.get_verified_database_and_data_source_ids("WEEK")
+        self.month_database_id, self.month_data_source_id = self.get_verified_database_and_data_source_ids("MONTH")
+        self.year_database_id, self.year_data_source_id = self.get_verified_database_and_data_source_ids("YEAR")
+        self.all_database_id, self.all_data_source_id = self.get_verified_database_and_data_source_ids("ALL")
+        self.client_database_id, self.client_data_source_id = self.get_verified_database_and_data_source_ids("CLIENT")
+        self.project_database_id, self.project_data_source_id = self.get_verified_database_and_data_source_ids("PROJECT")
+        self.tag_database_id, self.tag_data_source_id = self.get_verified_database_and_data_source_ids("TAG")
         self.heatmap_block_id = os.getenv("HEATMAP_BLOCK_ID")
         notion_page = os.getenv("NOTION_PAGE")
         if notion_page and not self.heatmap_block_id:
@@ -35,6 +36,58 @@ class NotionHelper(NotionHelperBase):
             self.write_data_source_id(self.time_data_source_id)
 
     # --- Unique methods ---
+
+    def get_verified_database_and_data_source_ids(self, env_prefix):
+        database_id, data_source_id = self.get_database_and_data_source_ids(env_prefix)
+        if database_id:
+            try:
+                fresh_data_source_id = self.resolve_data_source_id(database_id)
+                if data_source_id and fresh_data_source_id != data_source_id:
+                    log(
+                        f"{env_prefix} data_source_id 已变更，改用 database_id 解析到的最新 data_source_id"
+                    )
+                data_source_id = fresh_data_source_id
+            except Exception as e:
+                if not data_source_id:
+                    raise e
+                log(f"无法通过 {env_prefix}_DATABASE_ID 解析 data_source_id，暂用环境变量中的值: {e}")
+        if database_id and data_source_id:
+            self._data_source_database_map[data_source_id] = database_id
+        return database_id, data_source_id
+
+    def is_missing_data_source_error(self, error):
+        error_str = str(error).lower()
+        return (
+            "could not find data_source" in error_str
+            or ("data_source" in error_str and "not found" in error_str)
+            or ("object_not_found" in error_str and "data_source" in error_str)
+        )
+
+    def refresh_data_source_id(self, data_source_id):
+        database_id = self._data_source_database_map.get(data_source_id)
+        if not database_id:
+            return None
+        fresh_data_source_id = self.resolve_data_source_id(database_id)
+        if fresh_data_source_id and fresh_data_source_id != data_source_id:
+            log("检测到旧 data_source_id 失效，已通过 database_id 刷新")
+            self._data_source_database_map[fresh_data_source_id] = database_id
+            for attr, value in list(self.__dict__.items()):
+                if attr.endswith("_data_source_id") and value == data_source_id:
+                    setattr(self, attr, fresh_data_source_id)
+        return fresh_data_source_id
+
+    def query(self, **kwargs):
+        data_source_id = kwargs.get("data_source_id")
+        try:
+            return super().query(**kwargs)
+        except Exception as e:
+            if not (data_source_id and self.is_missing_data_source_error(e)):
+                raise
+            fresh_data_source_id = self.refresh_data_source_id(data_source_id)
+            if not fresh_data_source_id or fresh_data_source_id == data_source_id:
+                raise
+            kwargs["data_source_id"] = fresh_data_source_id
+            return super().query(**kwargs)
 
     def resolve_legacy_time_data_source_id(self):
         raw_id = self.get_optional_env_value("TIME_DATABASE_NAME")
@@ -308,18 +361,63 @@ class NotionHelper(NotionHelperBase):
         self._NotionHelperBase__cache[fetch_key] = page_id
         return page_id
 
+    def get_date_page_value(self, page):
+        date_value = page.get("properties", {}).get("日期", {}).get("date") or {}
+        start = (date_value.get("start") or "")[:10]
+        end = (date_value.get("end") or date_value.get("start") or "")[:10]
+        return start, end
+
+    def find_date_page_by_range(self, data_source_id, start, end):
+        start_text = format_date(start)
+        end_text = format_date(end or start)
+        filter = {
+            "and": [
+                {"property": "日期", "date": {"on_or_after": start_text}},
+                {"property": "日期", "date": {"on_or_before": end_text}},
+            ]
+        }
+        try:
+            response = self.query(data_source_id=data_source_id, filter=filter, page_size=100)
+        except Exception as e:
+            log(f"按日期范围查询数据库 {data_source_id} 失败: {e}")
+            return None
+
+        for page in response.get("results") or []:
+            page_start, page_end = self.get_date_page_value(page)
+            if page_start == start_text and page_end == end_text:
+                return page
+        return None
+
+    def get_date_relation_id_by_range(self, name, data_source_id, icon, properties, start, end=None):
+        cache_key = f"{data_source_id}{name}"
+        if cache_key in self._NotionHelperBase__cache:
+            return self._NotionHelperBase__cache.get(cache_key)
+        title_prop = self.get_title_property_name(data_source_id)
+        page = self.find_date_page_by_range(data_source_id, start, end or start)
+        if page:
+            page_id = page.get("id")
+            existing_title = get_property_value(page.get("properties", {}).get(title_prop, {}))
+            if existing_title != name:
+                fixed_properties = dict(properties or {})
+                fixed_properties[title_prop] = get_title(name)
+                self.update_page(page_id, fixed_properties, icon)
+            self._NotionHelperBase__cache[cache_key] = page_id
+            return page_id
+        return self.get_relation_id(name, data_source_id, icon, properties)
+
     # Override get_day_relation_id to keep Toggl naming while using a dynamic date icon.
     def get_day_relation_id(self, date):
         new_date = date.replace(hour=0, minute=0, second=0, microsecond=0)
-        day = new_date.strftime("%Y年%m月%d日")
+        day = f"{new_date.year}年{new_date.month:02d}月{new_date.day:02d}日"
         properties = {
-            "日期": get_date(format_date(date)),
+            "日期": get_date(format_date(new_date)),
         }
-        return self.get_relation_id(
+        return self.get_date_relation_id_by_range(
             day,
             self.day_data_source_id,
             self.get_date_icon_payload_lazy(new_date, "day"),
             properties,
+            new_date,
         )
 
     # Override date relation methods to keep Toggl naming while using dynamic date icons.
@@ -330,23 +428,27 @@ class NotionHelper(NotionHelperBase):
         week = f"{year}年第{week}周"
         start, end = get_first_and_last_day_of_week(date)
         properties = {"日期": get_date(format_date(start), format_date(end))}
-        return self.get_relation_id(
+        return self.get_date_relation_id_by_range(
             week,
             self.week_data_source_id,
             self.get_date_icon_payload_lazy(date, "week"),
             properties,
+            start,
+            end,
         )
 
     def get_month_relation_id(self, date):
         from notionhub.utils import get_first_and_last_day_of_month
-        month = date.strftime("%Y年%-m月")
+        month = f"{date.year}年{date.month}月"
         start, end = get_first_and_last_day_of_month(date)
         properties = {"日期": get_date(format_date(start), format_date(end))}
-        return self.get_relation_id(
+        return self.get_date_relation_id_by_range(
             month,
             self.month_data_source_id,
             self.get_date_icon_payload_lazy(date, "month"),
             properties,
+            start,
+            end,
         )
 
     def get_year_relation_id(self, date):
@@ -354,11 +456,13 @@ class NotionHelper(NotionHelperBase):
         year = date.strftime("%Y")
         start, end = get_first_and_last_day_of_year(date)
         properties = {"日期": get_date(format_date(start), format_date(end))}
-        return self.get_relation_id(
+        return self.get_date_relation_id_by_range(
             year,
             self.year_data_source_id,
             self.get_date_icon_payload_lazy(date, "year"),
             properties,
+            start,
+            end,
         )
 
     # Override get_date_relation to include 全部
@@ -396,6 +500,12 @@ class NotionHelper(NotionHelperBase):
             return self.client.pages.create(parent=parent, properties=properties, icon=icon)
         except Exception as e:
             error_str = str(e).lower()
+            data_source_id = parent.get("data_source_id")
+            if data_source_id and self.is_missing_data_source_error(e):
+                fresh_data_source_id = self.refresh_data_source_id(data_source_id)
+                if fresh_data_source_id and fresh_data_source_id != data_source_id:
+                    parent = {"type": "data_source_id", "data_source_id": fresh_data_source_id}
+                    return self.client.pages.create(parent=parent, properties=properties, icon=icon)
             if "id" in error_str and ("property" in error_str or "exists" in error_str) and "Id" in properties:
                 log("主数据库缺少 ID 属性，将跳过该属性重试")
                 new_props = {k: v for k, v in properties.items() if k != "Id"}

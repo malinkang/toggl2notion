@@ -32,6 +32,15 @@ REPORTS_PAGE_SIZE = 100
 TIME_ENTRIES_LIMIT_GUARD = 1000
 
 
+def is_blocking_notion_config_error(message):
+    message = str(message).lower()
+    return (
+        "could not find data_source" in message
+        or "could not find database" in message
+        or ("object_not_found" in message and ("data_source" in message or "database" in message))
+    )
+
+
 class SyncStats:
     def __init__(self):
         self.processed = 0
@@ -552,8 +561,9 @@ def process_entry(task):
         "data_source_id": notion_helper.time_data_source_id,
         "type": "data_source_id",
     }
+    # 时间记录按开始时间归属日/月/周/年，避免跨天记录被挂到结束日期。
     notion_helper.get_date_relation(
-        properties, pendulum.from_timestamp(stop_ts, tz="Asia/Shanghai")
+        properties, pendulum.from_timestamp(start_ts, tz="Asia/Shanghai")
     )
     
     icon = None
@@ -901,7 +911,11 @@ def sync_data_range(start_date, end_date, workspace_ids, force_reports_api=False
                         status = "已更新" if existing_page_id else "已新增"
                         progress.add(description_display, page_id=page_id, status=status)
                 except Exception as e:
-                    stats.add_failure("entry", task.get("id"), str(e))
+                    error_message = str(e)
+                    stats.add_failure("entry", task.get("id"), error_message)
+                    if is_blocking_notion_config_error(error_message):
+                        utils.log("检测到 Notion 模板数据库不可访问，停止本次同步以避免长时间重复失败")
+                        return False
 
         if sync_deletions:
             sync_deleted_notion_entries(current_start, current_end, entries or [], stats, progress=progress)
