@@ -308,68 +308,13 @@ class NotionHelper(NotionHelperBase):
         self._NotionHelperBase__cache[fetch_key] = page_id
         return page_id
 
-    # Override get_day_relation_id to keep Toggl naming while using a dynamic date icon.
-    def get_day_relation_id(self, date):
-        new_date = date.replace(hour=0, minute=0, second=0, microsecond=0)
-        day = new_date.strftime("%Y年%m月%d日")
-        properties = {
-            "日期": get_date(format_date(date)),
-        }
-        return self.get_relation_id(
-            day,
-            self.day_data_source_id,
-            self.get_date_icon_payload_lazy(new_date, "day"),
-            properties,
-        )
 
-    # Override date relation methods to keep Toggl naming while using dynamic date icons.
-    def get_week_relation_id(self, date):
-        from notionhub.utils import get_first_and_last_day_of_week
-        year = date.isocalendar().year
-        week = date.isocalendar().week
-        week = f"{year}年第{week}周"
-        start, end = get_first_and_last_day_of_week(date)
-        properties = {"日期": get_date(format_date(start), format_date(end))}
-        return self.get_relation_id(
-            week,
-            self.week_data_source_id,
-            self.get_date_icon_payload_lazy(date, "week"),
-            properties,
-        )
 
-    def get_month_relation_id(self, date):
-        from notionhub.utils import get_first_and_last_day_of_month
-        month = date.strftime("%Y年%-m月")
-        start, end = get_first_and_last_day_of_month(date)
-        properties = {"日期": get_date(format_date(start), format_date(end))}
-        return self.get_relation_id(
-            month,
-            self.month_data_source_id,
-            self.get_date_icon_payload_lazy(date, "month"),
-            properties,
-        )
 
-    def get_year_relation_id(self, date):
-        from notionhub.utils import get_first_and_last_day_of_year
-        year = date.strftime("%Y")
-        start, end = get_first_and_last_day_of_year(date)
-        properties = {"日期": get_date(format_date(start), format_date(end))}
-        return self.get_relation_id(
-            year,
-            self.year_data_source_id,
-            self.get_date_icon_payload_lazy(date, "year"),
-            properties,
-        )
 
     # Override get_date_relation to include 全部
     def get_date_relation(self, properties, date, include_day=True):
-        properties["年"] = get_relation([self.get_year_relation_id(date)])
-        properties["月"] = get_relation([self.get_month_relation_id(date)])
-        properties["周"] = get_relation([self.get_week_relation_id(date)])
-        properties["日"] = get_relation([self.get_day_relation_id(date)])
-        properties["全部"] = get_relation(
-            [self.get_relation_id("全部", id=self.all_data_source_id, icon=get_icon(TARGET_ICON_URL))]
-        )
+        return super().get_date_relation(properties, date, include_day=include_day)
 
     # Override update_page to support icon parameter
     def update_page(self, page_id, properties, icon=None, cover=None):
