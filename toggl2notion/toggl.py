@@ -32,6 +32,10 @@ REPORTS_PAGE_SIZE = 100
 TIME_ENTRIES_LIMIT_GUARD = 1000
 
 
+def is_full_sync_requested():
+    return os.getenv("SYNC_MODE", "").strip().lower() == "full" or os.getenv("TOGGL_FORCE_FULL_SYNC", "").strip().lower() in {"1", "true", "yes", "on"}
+
+
 def is_blocking_notion_config_error(message):
     message = str(message).lower()
     return (
@@ -988,6 +992,22 @@ def insert_to_notion(progress=None):
 
     # 3. Strategy Execution
     account_created_at = get_created_at().in_timezone("Asia/Shanghai")
+    if is_full_sync_requested() and not current_sync_policy().is_trial:
+        utils.log(
+            f"开始全量同步：从账号创建时间 {account_created_at.to_datetime_string()} "
+            f"同步到 {now.to_datetime_string()}"
+        )
+        sync_data_range(
+            account_created_at,
+            now,
+            workspace_ids,
+            force_reports_api=True,
+            progress=progress,
+            stats=stats,
+            sync_deletions=False,
+        )
+        return stats
+
     # Phase A: Incremental Forward Sync (Latest -> Now)
     # Re-scan a configurable recent window so older edits are not missed immediately.
     lookback_days = parse_int_env(
