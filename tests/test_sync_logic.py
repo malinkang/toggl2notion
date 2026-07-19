@@ -64,6 +64,12 @@ class FakeDateIconHelper(NotionHelper):
         })
         return f"{data_source_id}:{name}"
 
+    def get_title_property_name(self, _data_source_id, fallback="名称"):
+        return fallback
+
+    def find_date_page_by_range(self, _data_source_id, _start, _end):
+        return None
+
     def get_date_icon_payload(self, date, kind, color="red", content=None):
         return {"kind": kind}
 
