@@ -1,5 +1,5 @@
 requests
-notion-client==2.5.0
+notion-client>=3.0.0
 github-heatmap
 retrying
 pendulum
