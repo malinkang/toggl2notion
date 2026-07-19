@@ -390,6 +390,8 @@ class NotionHelper(NotionHelperBase):
 
     def get_date_relation_id_by_range(self, name, data_source_id, icon, properties, start, end=None):
         cache_key = f"{data_source_id}{name}"
+        if not hasattr(self, "_NotionHelperBase__cache"):
+            self._NotionHelperBase__cache = {}
         if cache_key in self._NotionHelperBase__cache:
             return self._NotionHelperBase__cache.get(cache_key)
         title_prop = self.get_title_property_name(data_source_id)
