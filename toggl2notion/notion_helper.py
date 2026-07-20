@@ -267,7 +267,7 @@ class NotionHelper(NotionHelperBase):
 
     def archive_page(self, page_id):
         """Archive a Notion page instead of permanently deleting it."""
-        return self.client.pages.update(page_id=page_id, archived=True)
+        return self.client.pages.update(page_id=page_id, in_trash=True)
 
     def get_remote_id_from_page(self, page_id):
         """Retrieve the 'Id' (Toggl ID) from a Notion page (Project/Client)."""

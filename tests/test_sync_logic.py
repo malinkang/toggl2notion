@@ -77,10 +77,15 @@ class FakeDateIconHelper(NotionHelper):
 class FakePages:
     def __init__(self):
         self.create_kwargs = None
+        self.update_kwargs = None
 
     def create(self, **kwargs):
         self.create_kwargs = kwargs
         return {"id": "created"}
+
+    def update(self, **kwargs):
+        self.update_kwargs = kwargs
+        return {"id": kwargs.get("page_id"), "in_trash": kwargs.get("in_trash")}
 
 
 class FakeCreateHelper(NotionHelper):
@@ -111,6 +116,17 @@ class FakeResponse:
 
 
 class SyncLogicTest(unittest.TestCase):
+    def test_archive_page_uses_current_notion_trash_parameter(self):
+        helper = FakeCreateHelper()
+
+        result = helper.archive_page("page-to-trash")
+
+        self.assertEqual(
+            helper.client.pages.update_kwargs,
+            {"page_id": "page-to-trash", "in_trash": True},
+        )
+        self.assertTrue(result["in_trash"])
+
     def test_trial_range_stops_before_fetching_when_quota_is_exhausted(self):
         class ExhaustedPolicy:
             is_trial = True
