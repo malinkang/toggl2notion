@@ -36,6 +36,19 @@ def is_full_sync_requested():
     return os.getenv("SYNC_MODE", "").strip().lower() == "full" or os.getenv("TOGGL_FORCE_FULL_SYNC", "").strip().lower() in {"1", "true", "yes", "on"}
 
 
+def get_service_options():
+    raw = os.getenv("SERVICE_OPTIONS") or os.getenv("TOGGL_SERVICE_OPTIONS") or "{}"
+    try:
+        value = json.loads(raw)
+        return value if isinstance(value, dict) else {}
+    except (TypeError, json.JSONDecodeError):
+        return {}
+
+
+def allow_reverse_sync():
+    return get_service_options().get("allowReverseSync", True) is not False
+
+
 def is_blocking_notion_config_error(message):
     message = str(message).lower()
     return (
@@ -209,10 +222,25 @@ def get_created_at():
     response = requests.get("https://api.track.toggl.com/api/v9/me", auth=auth, timeout=15)
     if response.ok:
         data = response.json()
-        return pendulum.parse(data.get("created_at"))
-    else:
-        utils.log(f"获取 Toggl 用户信息失败: {response.text}")
-        return pendulum.datetime(2010, 1, 1, tz="Asia/Shanghai")
+        if data.get("created_at"):
+            return pendulum.parse(data["created_at"])
+    options = get_service_options()
+    stored_created_at = options.get("accountCreatedAt")
+    if stored_created_at:
+        utils.log("Toggl 用户信息接口暂时不可用，使用已保存的注册时间")
+        return pendulum.parse(stored_created_at)
+    raise RuntimeError("无法获取 Toggl 注册时间，请重新连接 Toggl 后再试")
+
+
+def effective_sync_start(account_created_at, options=None):
+    options = options if isinstance(options, dict) else get_service_options()
+    timezone = str(options.get("timezone") or "Asia/Shanghai")
+    registered = account_created_at.in_timezone(timezone)
+    configured = options.get("syncStartDate")
+    if not configured:
+        return registered
+    custom = pendulum.parse(str(configured), tz=timezone).start_of("day")
+    return max(registered, custom)
 
 def get_workspaces():
     response = requests.get(
@@ -720,7 +748,7 @@ def find_time_gaps(ranges, threshold_days=GAP_THRESHOLD_DAYS, max_gaps=MAX_MIDDL
     return gaps
 
 
-def find_middle_gaps(max_gaps=MAX_MIDDLE_GAPS_PER_RUN, state=None):
+def find_middle_gaps(max_gaps=MAX_MIDDLE_GAPS_PER_RUN, state=None, lower_bound=None):
     pages = notion_helper.query_time_entries_sorted_by_time(toggl_only=True)
     ranges = []
     for page in pages:
@@ -728,6 +756,12 @@ def find_middle_gaps(max_gaps=MAX_MIDDLE_GAPS_PER_RUN, state=None):
         if time_range:
             ranges.append(time_range)
     gaps = find_time_gaps(ranges, max_gaps=None)
+    if lower_bound:
+        gaps = [
+            (max(start, lower_bound), end)
+            for start, end in gaps
+            if end >= lower_bound
+        ]
     if state:
         skipped = [gap for gap in gaps if state.is_empty_gap_checked(*gap)]
         gaps = [gap for gap in gaps if not state.is_empty_gap_checked(*gap)]
@@ -741,12 +775,10 @@ def find_middle_gaps(max_gaps=MAX_MIDDLE_GAPS_PER_RUN, state=None):
     return gaps
 
 
-def sync_middle_gaps(workspace_ids, stats, progress=None, state=None):
-    gaps = find_middle_gaps(state=state)
+def sync_middle_gaps(workspace_ids, stats, progress=None, state=None, lower_bound=None):
+    gaps = find_middle_gaps(state=state, lower_bound=lower_bound)
     for start_date, end_date in gaps:
-        utils.log(
-            f"🚀 Backfilling middle gap from {start_date.to_date_string()} to {end_date.to_date_string()} via Reports API."
-        )
+        utils.log(f"正在通过报表 API 回填 {start_date.to_date_string()} 至 {end_date.to_date_string()} 的历史缺口")
         processed_before = stats.processed
         sync_success = sync_data_range(
             start_date,
@@ -963,6 +995,8 @@ def insert_to_notion(progress=None):
         if not current_sync_policy().is_trial
         else False
     )
+    account_created_at = get_created_at().in_timezone("Asia/Shanghai")
+    sync_start = effective_sync_start(account_created_at).in_timezone("Asia/Shanghai")
     manual_backfill_start = parse_optional_date_env("TOGGL_BACKFILL_START")
     manual_backfill_end = parse_optional_date_env("TOGGL_BACKFILL_END")
     if current_sync_policy().is_trial:
@@ -972,6 +1006,7 @@ def insert_to_notion(progress=None):
         if not (manual_backfill_start and manual_backfill_end):
             stats.add_failure("backfill", "manual", "TOGGL_BACKFILL_START 和 TOGGL_BACKFILL_END 必须同时设置")
             return stats
+        manual_backfill_start = max(manual_backfill_start, sync_start)
         if manual_backfill_end <= manual_backfill_start:
             stats.add_failure("backfill", "manual", "TOGGL_BACKFILL_END 必须晚于 TOGGL_BACKFILL_START")
             return stats
@@ -991,14 +1026,13 @@ def insert_to_notion(progress=None):
         return stats
 
     # 3. Strategy Execution
-    account_created_at = get_created_at().in_timezone("Asia/Shanghai")
     if is_full_sync_requested() and not current_sync_policy().is_trial:
         utils.log(
-            f"开始全量同步：从账号创建时间 {account_created_at.to_datetime_string()} "
+            f"开始全量同步：从 {sync_start.to_datetime_string()} "
             f"同步到 {now.to_datetime_string()}"
         )
         sync_data_range(
-            account_created_at,
+            sync_start,
             now,
             workspace_ids,
             force_reports_api=True,
@@ -1017,7 +1051,7 @@ def insert_to_notion(progress=None):
         maximum=90,
     )
     if latest_end:
-        incremental_start = latest_end.subtract(days=lookback_days)
+        incremental_start = max(latest_end.subtract(days=lookback_days), sync_start)
         utils.log(
             f"开始增量同步：{incremental_start.to_datetime_string()}，"
             f"回看 {lookback_days} 天"
@@ -1037,23 +1071,23 @@ def insert_to_notion(progress=None):
             minimum=0,
         )
         incremental_start = (
-            max(account_created_at, now.subtract(days=initial_import_days))
+            max(sync_start, now.subtract(days=initial_import_days))
             if initial_import_days > 0
-            else account_created_at
+            else sync_start
         )
         utils.log("Notion 中没有关联 Toggl 的记录，开始首次导入")
         sync_data_range(incremental_start, now, workspace_ids, progress=progress, stats=stats)
         return stats # Initial sync done
 
     # Phase B: Historical Backfill (Gap Fill: Account Created -> Earliest Entry)
-    if earliest_start and ((earliest_start.int_timestamp - account_created_at.int_timestamp) / 86400) > GAP_THRESHOLD_DAYS:
-        utils.log(f"检测到历史记录缺口: 注册时间 {account_created_at.to_date_string()} 至最早记录 {earliest_start.to_date_string()}")
+    if earliest_start and ((earliest_start.int_timestamp - sync_start.int_timestamp) / 86400) > GAP_THRESHOLD_DAYS:
+        utils.log(f"检测到历史记录缺口: {sync_start.to_date_string()} 至最早记录 {earliest_start.to_date_string()}")
         utils.log("开始通过报表 API 回填历史记录缺口")
         
         # Sync from Created At -> Earliest Start
         # We stop at earliest_start because we assume data from there onwards exists
         sync_success = sync_data_range(
-            account_created_at,
+            sync_start,
             earliest_start.subtract(seconds=1),
             workspace_ids,
             force_reports_api=True,
@@ -1067,12 +1101,14 @@ def insert_to_notion(progress=None):
     else:
         utils.log("历史记录连续性检查完成，未发现明显缺口")
 
-    sync_middle_gaps(workspace_ids, stats, progress=progress, state=state)
+    sync_middle_gaps(workspace_ids, stats, progress=progress, state=state, lower_bound=sync_start)
     
     # After forward sync, perform reverse sync for entries created in Notion
     # Note: Reverse sync is relatively cheap (queries Notion for missing IDs)
-    if current_sync_policy().allows("reverse_sync"):
+    if current_sync_policy().allows("reverse_sync") and allow_reverse_sync():
         reverse_sync_notion_to_toggl()
+    elif not allow_reverse_sync():
+        utils.log("已关闭 Notion 到 Toggl 的反向同步")
     return stats
 
 def main():

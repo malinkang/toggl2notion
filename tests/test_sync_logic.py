@@ -1,5 +1,7 @@
 import unittest
 import tempfile
+import json
+from unittest import mock
 import pendulum
 
 from toggl2notion import toggl
@@ -116,6 +118,56 @@ class FakeResponse:
 
 
 class SyncLogicTest(unittest.TestCase):
+    def test_effective_sync_start_never_precedes_registration(self):
+        registered = pendulum.datetime(2020, 5, 10, 12, tz="Asia/Shanghai")
+        self.assertEqual(
+            toggl.effective_sync_start(registered, {"syncStartDate": "2020-01-01"}),
+            registered,
+        )
+        self.assertEqual(
+            toggl.effective_sync_start(registered, {"syncStartDate": "2021-02-03"}).to_date_string(),
+            "2021-02-03",
+        )
+
+    def test_get_created_at_uses_stored_profile_and_never_2010_fallback(self):
+        original_auth = toggl.auth
+        toggl.auth = object()
+        try:
+            with mock.patch.object(toggl.requests, "get", return_value=FakeResponse({}, 500)), mock.patch.dict(
+                "os.environ",
+                {"SERVICE_OPTIONS": json.dumps({"accountCreatedAt": "2022-03-04T10:00:00Z"})},
+                clear=False,
+            ):
+                self.assertEqual(toggl.get_created_at().to_date_string(), "2022-03-04")
+            with mock.patch.object(toggl.requests, "get", return_value=FakeResponse({}, 500)), mock.patch.dict(
+                "os.environ", {"SERVICE_OPTIONS": "{}"}, clear=False
+            ):
+                with self.assertRaisesRegex(RuntimeError, "注册时间"):
+                    toggl.get_created_at()
+        finally:
+            toggl.auth = original_auth
+
+    def test_reverse_sync_option_defaults_on_and_can_be_disabled(self):
+        with mock.patch.dict("os.environ", {"SERVICE_OPTIONS": "{}"}, clear=False):
+            self.assertTrue(toggl.allow_reverse_sync())
+        with mock.patch.dict("os.environ", {"SERVICE_OPTIONS": '{"allowReverseSync": false}'}, clear=False):
+            self.assertFalse(toggl.allow_reverse_sync())
+
+    def test_middle_gaps_are_clamped_to_configured_start(self):
+        ranges = [
+            (pendulum.datetime(2020, 1, 1, tz="Asia/Shanghai"), pendulum.datetime(2020, 1, 1, 1, tz="Asia/Shanghai")),
+            (pendulum.datetime(2020, 3, 1, tz="Asia/Shanghai"), pendulum.datetime(2020, 3, 1, 1, tz="Asia/Shanghai")),
+        ]
+        original_helper = toggl.notion_helper
+        toggl.notion_helper = type("Helper", (), {"query_time_entries_sorted_by_time": lambda self, toggl_only=True: [
+            {"properties": {"时间": {"date": {"start": start.to_iso8601_string(), "end": end.to_iso8601_string()}}}}
+            for start, end in ranges
+        ]})()
+        try:
+            gaps = toggl.find_middle_gaps(lower_bound=pendulum.datetime(2020, 2, 1, tz="Asia/Shanghai"))
+            self.assertEqual(gaps[0][0].to_date_string(), "2020-02-01")
+        finally:
+            toggl.notion_helper = original_helper
     def test_archive_page_uses_current_notion_trash_parameter(self):
         helper = FakeCreateHelper()
 
