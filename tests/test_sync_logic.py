@@ -106,6 +106,32 @@ class FakeEnsureHelper:
         return None
 
 
+class FakeProcessEntryHelper:
+    tag_data_source_id = "tag-ds"
+    client_data_source_id = "client-ds"
+    project_data_source_id = "project-ds"
+    time_data_source_id = "time-ds"
+
+    def __init__(self):
+        self.relation_calls = []
+
+    def get_relation_id(self, name, data_source_id, icon=None, properties=None, **kwargs):
+        self.relation_calls.append(
+            {
+                "name": name,
+                "data_source_id": data_source_id,
+                "properties": dict(properties or {}),
+            }
+        )
+        return f"{data_source_id}:{name}"
+
+    def build_properties(self, _data_source_id, raw_properties, mandatory_properties=None):
+        return raw_properties
+
+    def get_date_relation(self, _properties, _date):
+        return None
+
+
 class FakeResponse:
     def __init__(self, payload, status_code=200):
         self._payload = payload
@@ -118,6 +144,37 @@ class FakeResponse:
 
 
 class SyncLogicTest(unittest.TestCase):
+    def test_project_relation_does_not_require_optional_coin_property(self):
+        helper = FakeProcessEntryHelper()
+        original_helper = toggl.notion_helper
+        original_projects = toggl.project_cache
+        original_clients = toggl.client_cache
+        toggl.notion_helper = helper
+        toggl.project_cache = {
+            101: {"name": "Project A", "client_id": 202, "workspace_id": 303}
+        }
+        toggl.client_cache = {202: "Client A"}
+        try:
+            toggl.process_entry(
+                {
+                    "id": 404,
+                    "project_id": 101,
+                    "description": "测试记录",
+                    "start": "2026-07-22T08:00:00Z",
+                    "stop": "2026-07-22T09:00:00Z",
+                }
+            )
+        finally:
+            toggl.notion_helper = original_helper
+            toggl.project_cache = original_projects
+            toggl.client_cache = original_clients
+
+        project_call = next(
+            call for call in helper.relation_calls if call["data_source_id"] == "project-ds"
+        )
+        self.assertNotIn("金币", project_call["properties"])
+        self.assertIn("Client", project_call["properties"])
+
     def test_effective_sync_start_never_precedes_registration(self):
         registered = pendulum.datetime(2020, 5, 10, 12, tz="Asia/Shanghai")
         self.assertEqual(
