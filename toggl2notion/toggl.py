@@ -66,6 +66,7 @@ class SyncStats:
         self.archived = 0
         self.failed = 0
         self.failures = []
+        self.history_boundaries = []
 
     def add_success(self, was_update):
         if was_update:
@@ -90,10 +91,22 @@ class SyncStats:
         self.failures.append(detail)
         utils.log(f"❌ {detail}")
 
+    def add_history_boundary(self, start_date, end_date):
+        detail = (
+            f"{start_date.to_date_string()} 至 {end_date.to_date_string()}"
+        )
+        self.history_boundaries.append(detail)
+        utils.log(
+            "⚠️ 已确认 Toggl 当前订阅的历史访问边界："
+            f"{detail}；更晚且可访问的记录均已完成同步"
+        )
+
     def summary(self):
         parts = [f"新增 {self.created}", f"更新 {self.updated}"]
         if self.archived:
             parts.append(f"归档 {self.archived}")
+        if self.history_boundaries:
+            parts.append(f"历史边界 {len(self.history_boundaries)}")
         parts.append(f"失败 {self.failed}")
         return "，".join(parts)
 
@@ -620,6 +633,7 @@ def get_detailed_report(workspace_id, start_date, end_date):
     }
     
     all_entries = []
+    terminal_status = 200
     rate_limit_retries = 0
     max_rate_limit_retries = 10
     while True:
@@ -634,6 +648,14 @@ def get_detailed_report(workspace_id, start_date, end_date):
                 time.sleep(2)
                 continue
                 
+            if response.status_code == 402 and all_entries:
+                utils.log(
+                    "报表分页到达当前订阅的历史访问边界，"
+                    f"保留已读取的 {len(all_entries)} 条记录"
+                )
+                terminal_status = 402
+                break
+
             if not response.ok:
                 utils.log(f"获取详细报表失败: {response.status_code} {response.text}")
                 return None, response.status_code
@@ -690,7 +712,7 @@ def get_detailed_report(workspace_id, start_date, end_date):
         
         transformed_entries.append(transformed)
         
-    return transformed_entries, 200
+    return transformed_entries, terminal_status
 
 
 def get_historical_entries(workspace_ids, start_date, end_date):
@@ -701,8 +723,6 @@ def get_historical_entries(workspace_ids, start_date, end_date):
     for workspace_id in workspace_ids:
         utils.log(f"正在获取工作区 {workspace_id} 的历史记录")
         entries, status_code = get_detailed_report(workspace_id, start_date, end_date)
-        if status_code != 200:
-            return None, status_code
 
         for entry in entries or []:
             entry_id = entry.get("id")
@@ -715,6 +735,9 @@ def get_historical_entries(workspace_ids, start_date, end_date):
                 continue
             seen_ids.add(dedupe_key)
             all_entries.append(entry)
+
+        if status_code != 200:
+            return (all_entries or None), status_code
 
     return all_entries, 200
 
@@ -846,7 +869,16 @@ def sync_deleted_notion_entries(start_date, end_date, source_entries, stats, pro
         utils.log(f"已归档当前范围内从 Toggl 删除的 {archived} 条 Notion 记录")
 
 
-def sync_data_range(start_date, end_date, workspace_ids, force_reports_api=False, progress=None, stats=None, sync_deletions=False):
+def sync_data_range(
+    start_date,
+    end_date,
+    workspace_ids,
+    force_reports_api=False,
+    progress=None,
+    stats=None,
+    sync_deletions=False,
+    newer_history_confirmed=False,
+):
     """Sync data for a specific date range."""
     stats = stats or SyncStats()
     sync_policy = current_sync_policy()
@@ -854,6 +886,7 @@ def sync_data_range(start_date, end_date, workspace_ids, force_reports_api=False
     utils.log(f"正在同步 {start_date.to_iso8601_string()} 至 {end_date.to_iso8601_string()} 的记录")
     
     current_end = end_date
+    completed_report_ranges = 0
     while current_end > start_date:
         if sync_policy.is_trial and sync_policy.remaining("time_entries") <= 0:
             utils.log("免费体验时间记录额度已用完，停止继续读取历史数据")
@@ -864,6 +897,7 @@ def sync_data_range(start_date, end_date, workspace_ids, force_reports_api=False
             
         entries = None
         status_code = 200
+        subscription_boundary = False
         
         # Check if we are clearly out of 90 days range? 
         days_diff = (pendulum.now("Asia/Shanghai") - current_end).days
@@ -894,17 +928,24 @@ def sync_data_range(start_date, end_date, workspace_ids, force_reports_api=False
             entries, status_code = get_historical_entries(workspace_ids, current_start, current_end)
             
             if status_code == 402:
-                # Special handling for Free Tier limit on historical reports
                 utils.log(f"报表 API 为 {current_start.to_date_string()} 至 {current_end.to_date_string()} 返回 402")
-                utils.log("可能已达到免费套餐的历史数据访问范围，通常约为 1 年")
-                utils.log("已停止历史回填，避免产生更多错误")
-                stats.add_failure("range", f"{current_start.to_date_string()}-{current_end.to_date_string()}", "报表 API 返回 402")
-                return False # Stop sync completely for deeper history
+                if entries or completed_report_ranges > 0 or newer_history_confirmed:
+                    subscription_boundary = True
+                    stats.add_history_boundary(current_start, current_end)
+                else:
+                    stats.add_failure(
+                        "range",
+                        f"{current_start.to_date_string()}-{current_end.to_date_string()}",
+                        "报表 API 首个区间即返回 402，无法确认可访问历史范围",
+                    )
+                    return False
             
-            if status_code != 200:
+            elif status_code != 200:
                 utils.log(f"报表 API 请求失败，状态码 {status_code}，停止同步当前批次")
                 stats.add_failure("range", f"{current_start.to_date_string()}-{current_end.to_date_string()}", f"报表 API 返回 {status_code}")
                 return False
+            else:
+                completed_report_ranges += 1
 
         if entries:
             utils.log(f"找到 {current_start.to_date_string()} 至 {current_end.to_date_string()} 的 {len(entries)} 条记录，正在处理")
@@ -953,8 +994,11 @@ def sync_data_range(start_date, end_date, workspace_ids, force_reports_api=False
                         utils.log("检测到 Notion 模板数据库不可访问，停止本次同步以避免长时间重复失败")
                         return False
 
-        if sync_deletions:
+        if sync_deletions and not subscription_boundary:
             sync_deleted_notion_entries(current_start, current_end, entries or [], stats, progress=progress)
+
+        if subscription_boundary:
+            return True
         
         if current_start <= start_date:
             break
@@ -1093,6 +1137,7 @@ def insert_to_notion(progress=None):
             force_reports_api=True,
             progress=progress,
             stats=stats,
+            newer_history_confirmed=True,
         )
         
         if not sync_success:

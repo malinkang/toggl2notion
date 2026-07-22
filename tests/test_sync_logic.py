@@ -442,6 +442,103 @@ class SyncLogicTest(unittest.TestCase):
             toggl.requests.get = original_get
             toggl.time.sleep = original_sleep
 
+    def test_reports_api_keeps_partial_page_at_subscription_boundary(self):
+        original_get = toggl.requests.get
+        original_sleep = toggl.time.sleep
+        responses = [
+            FakeResponse({
+                "data": [{"id": index, "dur": 60000} for index in range(toggl.REPORTS_PAGE_SIZE)],
+                "per_page": toggl.REPORTS_PAGE_SIZE,
+            }),
+            FakeResponse({"error": {"message": "Payment Required"}}, 402),
+        ]
+        toggl.requests.get = lambda *args, **kwargs: responses.pop(0)
+        toggl.time.sleep = lambda _seconds: None
+        try:
+            entries, status_code = toggl.get_detailed_report(
+                "workspace-1",
+                pendulum.datetime(2026, 1, 1, tz="Asia/Shanghai"),
+                pendulum.datetime(2026, 1, 10, tz="Asia/Shanghai"),
+            )
+
+            self.assertEqual(status_code, 402)
+            self.assertEqual(len(entries), toggl.REPORTS_PAGE_SIZE)
+        finally:
+            toggl.requests.get = original_get
+            toggl.time.sleep = original_sleep
+
+    def test_reports_subscription_boundary_after_a_complete_range_is_success(self):
+        original_helper = toggl.notion_helper
+        original_get_historical_entries = toggl.get_historical_entries
+        toggl.notion_helper = FakeEnsureHelper()
+        responses = [([], 200), (None, 402)]
+        toggl.get_historical_entries = lambda *_args: responses.pop(0)
+        stats = toggl.SyncStats()
+        try:
+            end = pendulum.datetime(2026, 7, 21, tz="Asia/Shanghai")
+            success = toggl.sync_data_range(
+                end.subtract(days=20),
+                end,
+                ["workspace-1"],
+                force_reports_api=True,
+                stats=stats,
+            )
+
+            self.assertTrue(success)
+            self.assertEqual(stats.failed, 0)
+            self.assertEqual(len(stats.history_boundaries), 1)
+            self.assertIn("历史边界 1", stats.summary())
+        finally:
+            toggl.notion_helper = original_helper
+            toggl.get_historical_entries = original_get_historical_entries
+
+    def test_reports_402_on_the_first_range_remains_a_failure(self):
+        original_helper = toggl.notion_helper
+        original_get_historical_entries = toggl.get_historical_entries
+        toggl.notion_helper = FakeEnsureHelper()
+        toggl.get_historical_entries = lambda *_args: (None, 402)
+        stats = toggl.SyncStats()
+        try:
+            end = pendulum.datetime(2026, 7, 21, tz="Asia/Shanghai")
+            success = toggl.sync_data_range(
+                end.subtract(days=1),
+                end,
+                ["workspace-1"],
+                force_reports_api=True,
+                stats=stats,
+            )
+
+            self.assertFalse(success)
+            self.assertEqual(stats.failed, 1)
+            self.assertEqual(stats.history_boundaries, [])
+        finally:
+            toggl.notion_helper = original_helper
+            toggl.get_historical_entries = original_get_historical_entries
+
+    def test_known_newer_history_allows_an_immediate_subscription_boundary(self):
+        original_helper = toggl.notion_helper
+        original_get_historical_entries = toggl.get_historical_entries
+        toggl.notion_helper = FakeEnsureHelper()
+        toggl.get_historical_entries = lambda *_args: (None, 402)
+        stats = toggl.SyncStats()
+        try:
+            end = pendulum.datetime(2026, 7, 21, tz="Asia/Shanghai")
+            success = toggl.sync_data_range(
+                end.subtract(days=1),
+                end,
+                ["workspace-1"],
+                force_reports_api=True,
+                stats=stats,
+                newer_history_confirmed=True,
+            )
+
+            self.assertTrue(success)
+            self.assertEqual(stats.failed, 0)
+            self.assertEqual(len(stats.history_boundaries), 1)
+        finally:
+            toggl.notion_helper = original_helper
+            toggl.get_historical_entries = original_get_historical_entries
+
     def test_standard_api_limit_guard_falls_back_to_reports_api(self):
         original_helper = toggl.notion_helper
         original_get_time_entries = toggl.get_time_entries
