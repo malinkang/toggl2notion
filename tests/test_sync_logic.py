@@ -144,6 +144,22 @@ class FakeResponse:
 
 
 class SyncLogicTest(unittest.TestCase):
+    def test_workspace_cache_reports_partial_metadata_failure(self):
+        responses = [
+            FakeResponse([], 503),
+            FakeResponse([], 200),
+        ]
+        with mock.patch.object(toggl.requests, "get", side_effect=responses):
+            self.assertFalse(toggl.load_workspace_cache(123))
+
+    def test_workspace_cache_reports_complete_metadata(self):
+        responses = [
+            FakeResponse([], 200),
+            FakeResponse([], 200),
+        ]
+        with mock.patch.object(toggl.requests, "get", side_effect=responses):
+            self.assertTrue(toggl.load_workspace_cache(123))
+
     def test_project_relation_does_not_require_optional_coin_property(self):
         helper = FakeProcessEntryHelper()
         original_helper = toggl.notion_helper

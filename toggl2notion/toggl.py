@@ -271,6 +271,7 @@ def normalize_cache_name(name):
 
 def load_workspace_cache(workspace_id):
     global project_cache, client_cache, project_name_cache, client_name_cache
+    complete = True
     # Load Clients
     response = requests.get(f"https://api.track.toggl.com/api/v9/workspaces/{workspace_id}/clients", auth=auth, timeout=15)
     if response.ok:
@@ -281,6 +282,7 @@ def load_workspace_cache(workspace_id):
             client_name_cache[(workspace_id, normalize_cache_name(c.get("name")))] = c["id"]
     else:
         utils.log(f"加载工作区 {workspace_id} 的客户失败: {response.status_code} {response.text}")
+        complete = False
     
     # Load Projects
     response = requests.get(f"https://api.track.toggl.com/api/v9/workspaces/{workspace_id}/projects", auth=auth, timeout=15)
@@ -301,6 +303,8 @@ def load_workspace_cache(workspace_id):
             ] = p["id"]
     else:
         utils.log(f"加载工作区 {workspace_id} 的项目失败: {response.status_code} {response.text}")
+        complete = False
+    return complete
 
 def get_time_entries(start_date, end_date):
     """Fetch raw time entries using Track API v9 (Free)"""
@@ -976,6 +980,10 @@ def sync_data_range(
                             continue
                         page = notion_helper.create_page(parent=parent, properties=properties, icon=icon)
                         page_id = page.get("id")
+                        if not page_id:
+                            raise RuntimeError(
+                                f"Toggl 时间记录写入未返回 page_id: {toggl_id}"
+                            )
                         sync_policy.record_success(
                             "time_entries",
                             toggl_id,
@@ -1031,8 +1039,21 @@ def insert_to_notion(progress=None):
         stats.add_failure("workspace", "all", "未找到工作区，或 Toggl API 请求失败")
         return stats
     workspace_ids = [ws["id"] for ws in workspaces if ws.get("id") is not None]
+    workspace_cache_complete = True
     for ws in workspaces:
-        load_workspace_cache(ws["id"])
+        if not load_workspace_cache(ws["id"]):
+            workspace_cache_complete = False
+    if (
+        is_full_sync_requested()
+        and not current_sync_policy().is_trial
+        and not workspace_cache_complete
+    ):
+        stats.add_failure(
+            "workspace",
+            "metadata",
+            "全量同步未能完整加载客户和项目元数据",
+        )
+        return stats
 
     sync_deletions = (
         parse_bool_env("TOGGL_SYNC_DELETIONS", DEFAULT_SYNC_DELETIONS)
@@ -1159,17 +1180,18 @@ def insert_to_notion(progress=None):
 def main():
     sync_policy = current_sync_policy()
     with sync_notification("Toggl") as notification:
-        if init():
-            progress = notification.progress("同步", batch_size=10)
-            stats = insert_to_notion(progress=progress)
-            progress.flush()
-            if stats and stats.failed:
-                summary = f"Toggl 数据同步部分失败：{stats.summary()}"
-                notification.set_summary(summary)
-                raise RuntimeError(f"{summary}。{stats.failure_summary()}")
-            summary = f"Toggl 数据同步完成：{stats.summary() if stats else '无数据变更'}"
+        if not init():
+            raise RuntimeError("Toggl 初始化失败，请检查 TOGGL_TOKEN")
+        progress = notification.progress("同步", batch_size=10)
+        stats = insert_to_notion(progress=progress)
+        progress.flush()
+        if stats and stats.failed:
+            summary = f"Toggl 数据同步部分失败：{stats.summary()}"
             notification.set_summary(summary)
-            sync_policy.write_report(status="success")
+            raise RuntimeError(f"{summary}。{stats.failure_summary()}")
+        summary = f"Toggl 数据同步完成：{stats.summary() if stats else '无数据变更'}"
+        notification.set_summary(summary)
+        sync_policy.write_report(status="success")
 
 
 if __name__ == "__main__":
