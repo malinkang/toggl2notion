@@ -21,13 +21,16 @@ def get_heatmap_base_url():
 def build_heatmap_url():
     if NotionHubInternalClient.is_available():
         try:
-            return NotionHubInternalClient.from_env().public_heatmap_url(
-                {"format": "html", "v": str(int(time.time()))}
+            client = NotionHubInternalClient.from_env()
+            client.get_heatmap({"type": "time", "refresh": "1"})
+            log("已刷新 Toggl 热力图缓存。")
+            return client.public_heatmap_url(
+                {"type": "time", "format": "html", "v": str(int(time.time()))}
             )
         except InternalApiError as error:
             if not error.fallback_allowed:
                 raise
-            log("内部热力图链接接口暂不可用，回退旧链接。")
+            log("内部热力图刷新接口暂不可用，回退旧链接。")
     query = {"v": str(int(time.time()))}
     activation_code = normalize_optional_value(os.getenv("ACTIVATION_CODE"))
     user_id = normalize_optional_value(os.getenv("USER_ID"))
@@ -40,10 +43,10 @@ def build_heatmap_url():
 
 def main():
     notion_helper = NotionHelper()
-    url = build_heatmap_url()
     if not notion_helper.heatmap_block_id:
         log("跳过 Toggl 热力图更新: 未找到 heatmap block id")
         return
+    url = build_heatmap_url()
     notion_helper.update_heatmap(block_id=notion_helper.heatmap_block_id, url=url)
     log("更新 Toggl 热力图成功。")
 
