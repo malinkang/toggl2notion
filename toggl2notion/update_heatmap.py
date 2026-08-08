@@ -22,7 +22,7 @@ def build_heatmap_url():
     if NotionHubInternalClient.is_available():
         try:
             client = NotionHubInternalClient.from_env()
-            client.get_heatmap({"type": "time", "refresh": "1"})
+            client.refresh_heatmap("time", force=True)
             log("已刷新 Toggl 热力图缓存。")
             return client.public_heatmap_url(
                 {"type": "time", "format": "html", "v": str(int(time.time()))}

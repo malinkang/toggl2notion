@@ -26,7 +26,7 @@ class UpdateHeatmapTest(unittest.TestCase):
         self.assertEqual(
             client.method_calls,
             [
-                mock.call.get_heatmap({"type": "time", "refresh": "1"}),
+                mock.call.refresh_heatmap("time", force=True),
                 mock.call.public_heatmap_url(
                     {"type": "time", "format": "html", "v": "1234567890"}
                 ),
@@ -40,7 +40,7 @@ class UpdateHeatmapTest(unittest.TestCase):
     def test_unavailable_refresh_route_falls_back_to_legacy_url(
         self, _is_available, from_env, _time
     ):
-        from_env.return_value.get_heatmap.side_effect = InternalApiError(
+        from_env.return_value.refresh_heatmap.side_effect = InternalApiError(
             "route unavailable", fallback_allowed=True
         )
 
