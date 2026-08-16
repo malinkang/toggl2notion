@@ -57,8 +57,17 @@ class FakeDateIconHelper(NotionHelper):
         self.year_data_source_id = "year-ds"
         self.calls = []
 
-    def get_relation_id(self, name, id=None, icon=None, properties=None, **kwargs):
-        data_source_id = id or kwargs.get("data_source_id")
+    def get_date_relation_id_by_range(
+        self,
+        name,
+        data_source_id,
+        icon,
+        properties,
+        start,
+        end=None,
+        title_prop="标题",
+        cover=None,
+    ):
         self.calls.append({
             "name": name,
             "data_source_id": data_source_id,
