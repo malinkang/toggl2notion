@@ -12,6 +12,7 @@ from .config import TAG_ICON_URL
 from .utils import get_icon, split_emoji_from_string
 from dotenv import load_dotenv
 from notionhub.log import sync_notification
+from notionhub.sync_policy import current_sync_policy
 load_dotenv()
 
 auth = None
@@ -31,6 +32,32 @@ REPORTS_PAGE_SIZE = 100
 TIME_ENTRIES_LIMIT_GUARD = 1000
 
 
+def is_full_sync_requested():
+    return os.getenv("SYNC_MODE", "").strip().lower() == "full" or os.getenv("TOGGL_FORCE_FULL_SYNC", "").strip().lower() in {"1", "true", "yes", "on"}
+
+
+def get_service_options():
+    raw = os.getenv("SERVICE_OPTIONS") or os.getenv("TOGGL_SERVICE_OPTIONS") or "{}"
+    try:
+        value = json.loads(raw)
+        return value if isinstance(value, dict) else {}
+    except (TypeError, json.JSONDecodeError):
+        return {}
+
+
+def allow_reverse_sync():
+    return get_service_options().get("allowReverseSync", True) is not False
+
+
+def is_blocking_notion_config_error(message):
+    message = str(message).lower()
+    return (
+        "could not find data_source" in message
+        or "could not find database" in message
+        or ("object_not_found" in message and ("data_source" in message or "database" in message))
+    )
+
+
 class SyncStats:
     def __init__(self):
         self.processed = 0
@@ -39,6 +66,7 @@ class SyncStats:
         self.archived = 0
         self.failed = 0
         self.failures = []
+        self.history_boundaries = []
 
     def add_success(self, was_update):
         if was_update:
@@ -51,14 +79,34 @@ class SyncStats:
 
     def add_failure(self, scope, identifier, message):
         self.failed += 1
-        detail = f"{scope} {identifier}: {message}"
+        scope_label = {
+            "range": "时间范围",
+            "entry": "时间记录",
+            "delete": "删除记录",
+            "workspace": "工作区",
+            "backfill": "历史回填",
+        }.get(scope, scope)
+        identifier_label = {"all": "全部", "manual": "手动"}.get(identifier, identifier)
+        detail = f"{scope_label} {identifier_label}: {message}"
         self.failures.append(detail)
         utils.log(f"❌ {detail}")
+
+    def add_history_boundary(self, start_date, end_date):
+        detail = (
+            f"{start_date.to_date_string()} 至 {end_date.to_date_string()}"
+        )
+        self.history_boundaries.append(detail)
+        utils.log(
+            "⚠️ 已确认 Toggl 当前订阅的历史访问边界："
+            f"{detail}；更晚且可访问的记录均已完成同步"
+        )
 
     def summary(self):
         parts = [f"新增 {self.created}", f"更新 {self.updated}"]
         if self.archived:
             parts.append(f"归档 {self.archived}")
+        if self.history_boundaries:
+            parts.append(f"历史边界 {len(self.history_boundaries)}")
         parts.append(f"失败 {self.failed}")
         return "，".join(parts)
 
@@ -78,7 +126,7 @@ def parse_int_env(name, default, minimum=None, maximum=None):
     try:
         value = int(raw)
     except ValueError:
-        utils.log(f"⚠️ Invalid {name}={raw!r}; using default {default}.")
+        utils.log(f"配置 {name}={raw!r} 无效，将使用默认值 {default}")
         return default
     if minimum is not None and value < minimum:
         return minimum
@@ -139,7 +187,7 @@ class SyncState:
                 self.data.update(loaded)
                 self.data.setdefault("checked_empty_gaps", {})
         except Exception as e:
-            utils.log(f"⚠️ Failed to load sync state {self.path}: {e}")
+            utils.log(f"读取同步状态失败 {self.path}: {e}")
 
     def save(self):
         os.makedirs(os.path.dirname(self.path), exist_ok=True)
@@ -177,7 +225,7 @@ def init():
     notion_helper = NotionHelper()
     toggl_token = os.getenv("TOGGL_TOKEN")
     if not toggl_token:
-        utils.log("❌ Missing TOGGL_TOKEN environment variable.")
+        utils.log("缺少 TOGGL_TOKEN 环境变量")
         return False
     auth = HTTPBasicAuth(f"{toggl_token}", "api_token")
     return True
@@ -187,10 +235,25 @@ def get_created_at():
     response = requests.get("https://api.track.toggl.com/api/v9/me", auth=auth, timeout=15)
     if response.ok:
         data = response.json()
-        return pendulum.parse(data.get("created_at"))
-    else:
-        utils.log(f"Failed to get user info: {response.text}")
-        return pendulum.datetime(2010, 1, 1, tz="Asia/Shanghai")
+        if data.get("created_at"):
+            return pendulum.parse(data["created_at"])
+    options = get_service_options()
+    stored_created_at = options.get("accountCreatedAt")
+    if stored_created_at:
+        utils.log("Toggl 用户信息接口暂时不可用，使用已保存的注册时间")
+        return pendulum.parse(stored_created_at)
+    raise RuntimeError("无法获取 Toggl 注册时间，请重新连接 Toggl 后再试")
+
+
+def effective_sync_start(account_created_at, options=None):
+    options = options if isinstance(options, dict) else get_service_options()
+    timezone = str(options.get("timezone") or "Asia/Shanghai")
+    registered = account_created_at.in_timezone(timezone)
+    configured = options.get("syncStartDate")
+    if not configured:
+        return registered
+    custom = pendulum.parse(str(configured), tz=timezone).start_of("day")
+    return max(registered, custom)
 
 def get_workspaces():
     response = requests.get(
@@ -199,7 +262,7 @@ def get_workspaces():
     if response.ok:
         return response.json()
     else:
-        utils.log(f"Failed to get workspaces: {response.text}")
+        utils.log(f"获取 Toggl 工作区失败: {response.text}")
         return []
 
 def normalize_cache_name(name):
@@ -208,22 +271,24 @@ def normalize_cache_name(name):
 
 def load_workspace_cache(workspace_id):
     global project_cache, client_cache, project_name_cache, client_name_cache
+    complete = True
     # Load Clients
     response = requests.get(f"https://api.track.toggl.com/api/v9/workspaces/{workspace_id}/clients", auth=auth, timeout=15)
     if response.ok:
         clients = response.json()
-        utils.log(f"Loaded {len(clients)} clients for workspace {workspace_id}")
+        utils.log(f"已从工作区 {workspace_id} 加载 {len(clients)} 个客户")
         for c in clients:
             client_cache[c["id"]] = c["name"]
             client_name_cache[(workspace_id, normalize_cache_name(c.get("name")))] = c["id"]
     else:
-        utils.log(f"Failed to load clients for workspace {workspace_id}: {response.status_code} {response.text}")
+        utils.log(f"加载工作区 {workspace_id} 的客户失败: {response.status_code} {response.text}")
+        complete = False
     
     # Load Projects
     response = requests.get(f"https://api.track.toggl.com/api/v9/workspaces/{workspace_id}/projects", auth=auth, timeout=15)
     if response.ok:
         projects = response.json()
-        utils.log(f"Loaded {len(projects)} projects for workspace {workspace_id}")
+        utils.log(f"已从工作区 {workspace_id} 加载 {len(projects)} 个项目")
         for p in projects:
             project_cache[p["id"]] = {
                 "name": p["name"],
@@ -237,7 +302,9 @@ def load_workspace_cache(workspace_id):
                 (workspace_id, normalize_cache_name(p.get("name")), None)
             ] = p["id"]
     else:
-        utils.log(f"Failed to load projects for workspace {workspace_id}: {response.status_code} {response.text}")
+        utils.log(f"加载工作区 {workspace_id} 的项目失败: {response.status_code} {response.text}")
+        complete = False
+    return complete
 
 def get_time_entries(start_date, end_date):
     """Fetch raw time entries using Track API v9 (Free)"""
@@ -252,7 +319,7 @@ def get_time_entries(start_date, end_date):
     if response.ok:
         return response.json(), 200
     else:
-        utils.log(f"Failed to fetch time entries ({start_date.to_date_string()} to {end_date.to_date_string()}): {response.status_code} {response.text}")
+        utils.log(f"获取 {start_date.to_date_string()} 至 {end_date.to_date_string()} 的时间记录失败: {response.status_code} {response.text}")
         return None, response.status_code
 
 def create_toggl_entry(workspace_id, description, start, duration, pid=None):
@@ -275,10 +342,10 @@ def create_toggl_entry(workspace_id, description, start, duration, pid=None):
     )
     if response.ok:
         entry = response.json()
-        utils.log(f"✅ Created Toggl entry: [{description}] (ID: {entry['id']})")
+        utils.log(f"已创建 Toggl 时间记录: [{description}] (ID: {entry['id']})")
         return entry.get("id")
     else:
-        utils.log(f"Failed to create Toggl entry: {response.status_code} {response.text}")
+        utils.log(f"创建 Toggl 时间记录失败: {response.status_code} {response.text}")
         return None
 
 
@@ -298,14 +365,14 @@ def create_toggl_client(workspace_id, name):
         timeout=15,
     )
     if not response.ok:
-        utils.log(f"Failed to create Toggl client '{clean_name}': {response.status_code} {response.text}")
+        utils.log(f"创建 Toggl 客户“{clean_name}”失败: {response.status_code} {response.text}")
         return None
     client = response.json()
     client_id = client.get("id")
     if client_id:
         client_cache[client_id] = client.get("name") or clean_name
         client_name_cache[cache_key] = client_id
-        utils.log(f"✅ Created Toggl client: [{clean_name}] (ID: {client_id})")
+        utils.log(f"已创建 Toggl 客户: [{clean_name}] (ID: {client_id})")
     return client_id
 
 
@@ -339,7 +406,7 @@ def create_toggl_project(workspace_id, name, client_id=None):
         timeout=15,
     )
     if not response.ok:
-        utils.log(f"Failed to create Toggl project '{clean_name}': {response.status_code} {response.text}")
+        utils.log(f"创建 Toggl 项目“{clean_name}”失败: {response.status_code} {response.text}")
         return None
     project = response.json()
     project_id = project.get("id")
@@ -351,7 +418,7 @@ def create_toggl_project(workspace_id, name, client_id=None):
         }
         project_name_cache[(workspace_id, normalize_cache_name(clean_name), project_cache[project_id].get("client_id"))] = project_id
         project_name_cache[fallback_key] = project_id
-        utils.log(f"✅ Created Toggl project: [{clean_name}] (ID: {project_id})")
+        utils.log(f"已创建 Toggl 项目: [{clean_name}] (ID: {project_id})")
     return project_id
 
 
@@ -364,13 +431,13 @@ def ensure_remote_client(client_page_id, workspace_id):
 
     client_name, _ = notion_helper.get_page_title(client_page_id)
     if not client_name:
-        utils.log(f"⚠️ Client page {client_page_id} has no title. Skipping client sync.")
+        utils.log(f"Notion 客户页面 {client_page_id} 没有标题，跳过客户同步")
         return None
 
     client_id = create_toggl_client(workspace_id, client_name)
     if client_id:
         notion_helper.update_page(client_page_id, {"Id": {"number": int(client_id)}})
-        utils.log(f"🔗 Linked Notion client '{client_name}' with Toggl ID {client_id}")
+        utils.log(f"已将 Notion 客户“{client_name}”关联到 Toggl ID {client_id}")
     return client_id
 
 
@@ -383,7 +450,7 @@ def ensure_remote_project(project_page_id, workspace_id, client_page_id_override
 
     project_name, project_page = notion_helper.get_page_title(project_page_id)
     if not project_name:
-        utils.log(f"⚠️ Project page {project_page_id} has no title. Skipping project sync.")
+        utils.log(f"Notion 项目页面 {project_page_id} 没有标题，跳过项目同步")
         return None
 
     client_page_id = (
@@ -394,23 +461,23 @@ def ensure_remote_project(project_page_id, workspace_id, client_page_id_override
     project_id = create_toggl_project(workspace_id, project_name, client_id)
     if project_id:
         notion_helper.update_page(project_page_id, {"Id": {"number": int(project_id)}})
-        utils.log(f"🔗 Linked Notion project '{project_name}' with Toggl ID {project_id}")
+        utils.log(f"已将 Notion 项目“{project_name}”关联到 Toggl ID {project_id}")
     return project_id
 
 
 def reverse_sync_notion_to_toggl():
     """Find explicitly marked Notion entries without Toggl IDs and create them in Toggl."""
-    utils.log("🔄 Checking for Notion entries explicitly marked to sync back to Toggl...")
+    utils.log("正在检查明确标记为需要回写到 Toggl 的 Notion 记录")
     notion_helper.ensure_time_id_property()
     missing_entries = notion_helper.query_entries_marked_for_toggl_sync()
     if not missing_entries:
-        utils.log("No Notion entries marked for Toggl reverse sync.")
+        utils.log("没有标记为需要反向同步到 Toggl 的 Notion 记录")
         return
 
     # Use the first workspace as default for new entries
     workspaces = get_workspaces()
     if not workspaces:
-        utils.log("Cannot perform reverse sync: No Toggl workspaces found.")
+        utils.log("无法执行反向同步: 未找到 Toggl 工作区")
         return
     fallback_workspace_id = workspaces[0]["id"]
 
@@ -420,7 +487,7 @@ def reverse_sync_notion_to_toggl():
         
         date_prop = props.get("时间", {}).get("date", {})
         if not date_prop or not date_prop.get("start"):
-            utils.log(f"⚠️ Skipping Notion page {page.get('id')}: missing start time.")
+            utils.log(f"跳过 Notion 页面 {page.get('id')}: 缺少开始时间")
             continue
             
         start_time = date_prop.get("start")
@@ -432,10 +499,10 @@ def reverse_sync_notion_to_toggl():
             end_p = pendulum.parse(end_time)
             duration = (end_p - start_p).total_seconds()
         else:
-            utils.log(f"⚠️ Skipping Notion page {page.get('id')}: missing end time.")
+            utils.log(f"跳过 Notion 页面 {page.get('id')}: 缺少结束时间")
             continue
         if duration <= 0:
-            utils.log(f"⚠️ Skipping Notion page {page.get('id')}: duration must be positive.")
+            utils.log(f"跳过 Notion 页面 {page.get('id')}: 时长必须大于零")
             continue
             
         # Get Project ID from Notion relation
@@ -449,7 +516,7 @@ def reverse_sync_notion_to_toggl():
         if project_page_id:
             pid = ensure_remote_project(project_page_id, workspace_id, client_page_id_override=client_page_id)
             if not pid:
-                utils.log(f"⚠️ Project in Notion for '{title}' does not have a Toggl ID. Creating without Project.")
+                utils.log(f"Notion 中“{title}”的项目没有 Toggl ID，将不关联项目并继续创建")
             elif pid in project_cache:
                 workspace_id = project_cache[pid].get("workspace_id", fallback_workspace_id)
             else:
@@ -459,7 +526,7 @@ def reverse_sync_notion_to_toggl():
                 pid = None
         else:
             if client_page_id:
-                utils.log(f"⚠️ '{title}' has Client but no Project; Toggl time entries can only attach Client through a Project.")
+                utils.log(f"“{title}”已关联客户但未关联项目，Toggl 时间记录只能通过项目关联客户")
 
         # Create in Toggl
         new_toggl_id = create_toggl_entry(workspace_id, title, start_time, duration, pid)
@@ -468,9 +535,9 @@ def reverse_sync_notion_to_toggl():
         if new_toggl_id:
             try:
                 notion_helper.update_page(page["id"], {"Id": {"number": int(new_toggl_id)}})
-                utils.log(f"🔗 Linked Notion page {page['id']} with Toggl ID {new_toggl_id}")
+                utils.log(f"已将 Notion 页面 {page['id']} 关联到 Toggl ID {new_toggl_id}")
             except Exception as e:
-                utils.log(f"Failed to update Notion with new Toggl ID: {e}")
+                utils.log(f"将新 Toggl ID 写回 Notion 失败: {e}")
 
 def process_entry(task):
     item = {}
@@ -504,7 +571,7 @@ def process_entry(task):
         item["标题"] = description if description else project_display_name
         
         client_id = project_info.get("client_id")
-        project_properties = {"金币":{"number": 0}}
+        project_properties = {}
         
         if client_id and client_id in client_cache:
             client_name = client_cache[client_id]
@@ -532,7 +599,7 @@ def process_entry(task):
         ]
     else:
         if pid:
-             utils.log(f"⚠️ Project ID {pid} not found in cache. Falling back to description.")
+             utils.log(f"缓存中未找到项目 ID {pid}，改用描述作为标题")
         item["标题"] = description or "无描述"
         
     if description:
@@ -543,8 +610,9 @@ def process_entry(task):
         "data_source_id": notion_helper.time_data_source_id,
         "type": "data_source_id",
     }
+    # 时间记录按开始时间归属日/月/周/年，避免跨天记录被挂到结束日期。
     notion_helper.get_date_relation(
-        properties, pendulum.from_timestamp(stop_ts, tz="Asia/Shanghai")
+        properties, pendulum.from_timestamp(start_ts, tz="Asia/Shanghai")
     )
     
     icon = None
@@ -569,6 +637,7 @@ def get_detailed_report(workspace_id, start_date, end_date):
     }
     
     all_entries = []
+    terminal_status = 200
     rate_limit_retries = 0
     max_rate_limit_retries = 10
     while True:
@@ -579,12 +648,20 @@ def get_detailed_report(workspace_id, start_date, end_date):
                 if rate_limit_retries > max_rate_limit_retries:
                     utils.log(f"⚠️ Reports API rate limit 连续 {max_rate_limit_retries} 次，放弃重试")
                     return None, 429
-                utils.log(f"⚠️ Reports API rate limit hit ({rate_limit_retries}/{max_rate_limit_retries}). Sleeping for 2 seconds...")
+                utils.log(f"报表 API 触发限流（{rate_limit_retries}/{max_rate_limit_retries}），等待 2 秒后重试")
                 time.sleep(2)
                 continue
                 
+            if response.status_code == 402 and all_entries:
+                utils.log(
+                    "报表分页到达当前订阅的历史访问边界，"
+                    f"保留已读取的 {len(all_entries)} 条记录"
+                )
+                terminal_status = 402
+                break
+
             if not response.ok:
-                utils.log(f"Failed to fetch detailed report: {response.status_code} {response.text}")
+                utils.log(f"获取详细报表失败: {response.status_code} {response.text}")
                 return None, response.status_code
             
             data = response.json()
@@ -592,11 +669,11 @@ def get_detailed_report(workspace_id, start_date, end_date):
             all_entries.extend(entries)
             per_page = data.get("per_page") or params["page_size"]
             total_count = data.get("total_count")
-            total_suffix = f" / total {total_count}" if total_count is not None else ""
+            total_suffix = f"，共 {total_count} 条" if total_count is not None else ""
 
             utils.log(
-                f"Fetched Reports page {params['page']} "
-                f"({len(entries)} entries, per_page={per_page}{total_suffix})..."
+                f"已获取报表第 {params['page']} 页"
+                f"（本页 {len(entries)} 条，每页 {per_page} 条{total_suffix}）"
             )
             
             if len(entries) < per_page:
@@ -606,7 +683,7 @@ def get_detailed_report(workspace_id, start_date, end_date):
             time.sleep(1.1)  # Rate limiting (conservative)
             
         except Exception as e:
-            utils.log(f"Exception during report fetch: {e}")
+            utils.log(f"获取报表时发生异常: {e}")
             return None, 500
             
     # Transform to match Time Entries API format
@@ -639,7 +716,7 @@ def get_detailed_report(workspace_id, start_date, end_date):
         
         transformed_entries.append(transformed)
         
-    return transformed_entries, 200
+    return transformed_entries, terminal_status
 
 
 def get_historical_entries(workspace_ids, start_date, end_date):
@@ -648,10 +725,8 @@ def get_historical_entries(workspace_ids, start_date, end_date):
     seen_ids = set()
 
     for workspace_id in workspace_ids:
-        utils.log(f"Fetching historical entries for workspace {workspace_id}...")
+        utils.log(f"正在获取工作区 {workspace_id} 的历史记录")
         entries, status_code = get_detailed_report(workspace_id, start_date, end_date)
-        if status_code != 200:
-            return None, status_code
 
         for entry in entries or []:
             entry_id = entry.get("id")
@@ -664,6 +739,9 @@ def get_historical_entries(workspace_ids, start_date, end_date):
                 continue
             seen_ids.add(dedupe_key)
             all_entries.append(entry)
+
+        if status_code != 200:
+            return (all_entries or None), status_code
 
     return all_entries, 200
 
@@ -697,7 +775,7 @@ def find_time_gaps(ranges, threshold_days=GAP_THRESHOLD_DAYS, max_gaps=MAX_MIDDL
     return gaps
 
 
-def find_middle_gaps(max_gaps=MAX_MIDDLE_GAPS_PER_RUN, state=None):
+def find_middle_gaps(max_gaps=MAX_MIDDLE_GAPS_PER_RUN, state=None, lower_bound=None):
     pages = notion_helper.query_time_entries_sorted_by_time(toggl_only=True)
     ranges = []
     for page in pages:
@@ -705,25 +783,29 @@ def find_middle_gaps(max_gaps=MAX_MIDDLE_GAPS_PER_RUN, state=None):
         if time_range:
             ranges.append(time_range)
     gaps = find_time_gaps(ranges, max_gaps=None)
+    if lower_bound:
+        gaps = [
+            (max(start, lower_bound), end)
+            for start, end in gaps
+            if end >= lower_bound
+        ]
     if state:
         skipped = [gap for gap in gaps if state.is_empty_gap_checked(*gap)]
         gaps = [gap for gap in gaps if not state.is_empty_gap_checked(*gap)]
         if skipped:
-            utils.log(f"✅ Skipping {len(skipped)} checked empty middle gap(s).")
+            utils.log(f"已跳过 {len(skipped)} 个确认无数据的历史记录缺口")
     gaps = gaps[:max_gaps]
     if gaps:
-        utils.log(f"⚠️ Found {len(gaps)} middle history gap(s) larger than {GAP_THRESHOLD_DAYS} days.")
+        utils.log(f"发现 {len(gaps)} 个超过 {GAP_THRESHOLD_DAYS} 天的历史记录缺口")
     else:
-        utils.log("✅ No middle history gaps found.")
+        utils.log("未发现历史记录缺口")
     return gaps
 
 
-def sync_middle_gaps(workspace_ids, stats, progress=None, state=None):
-    gaps = find_middle_gaps(state=state)
+def sync_middle_gaps(workspace_ids, stats, progress=None, state=None, lower_bound=None):
+    gaps = find_middle_gaps(state=state, lower_bound=lower_bound)
     for start_date, end_date in gaps:
-        utils.log(
-            f"🚀 Backfilling middle gap from {start_date.to_date_string()} to {end_date.to_date_string()} via Reports API."
-        )
+        utils.log(f"正在通过报表 API 回填 {start_date.to_date_string()} 至 {end_date.to_date_string()} 的历史缺口")
         processed_before = stats.processed
         sync_success = sync_data_range(
             start_date,
@@ -734,7 +816,7 @@ def sync_middle_gaps(workspace_ids, stats, progress=None, state=None):
             stats=stats,
         )
         if sync_success and state and stats.processed == processed_before:
-            utils.log("✅ Reports API returned no entries for this gap; marking it as checked.")
+            utils.log("报表 API 未返回该缺口内的记录，已标记为检查完成")
             state.mark_empty_gap_checked(start_date, end_date)
 
 
@@ -782,29 +864,44 @@ def sync_deleted_notion_entries(start_date, end_date, source_entries, stats, pro
             notion_helper.archive_page(page_id)
             archived += 1
             stats.add_archive()
-            utils.log(f"🗑️ Archived Notion time entry deleted from Toggl: {notion_toggl_id}")
+            utils.log(f"已归档从 Toggl 删除的 Notion 时间记录: {notion_toggl_id}")
             if progress:
                 progress.add(f"Toggl 删除记录 {notion_toggl_id}", page_id=page_id, status="已归档")
         except Exception as e:
             stats.add_failure("delete", notion_toggl_id, str(e))
     if archived:
-        utils.log(f"✅ Archived {archived} Notion entries deleted from Toggl in this range.")
+        utils.log(f"已归档当前范围内从 Toggl 删除的 {archived} 条 Notion 记录")
 
 
-def sync_data_range(start_date, end_date, workspace_ids, force_reports_api=False, progress=None, stats=None, sync_deletions=False):
+def sync_data_range(
+    start_date,
+    end_date,
+    workspace_ids,
+    force_reports_api=False,
+    progress=None,
+    stats=None,
+    sync_deletions=False,
+    newer_history_confirmed=False,
+):
     """Sync data for a specific date range."""
     stats = stats or SyncStats()
+    sync_policy = current_sync_policy()
     notion_helper.ensure_time_id_property()
-    utils.log(f"Synchronizing from {start_date.to_iso8601_string()} to {end_date.to_iso8601_string()}")
+    utils.log(f"正在同步 {start_date.to_iso8601_string()} 至 {end_date.to_iso8601_string()} 的记录")
     
     current_end = end_date
+    completed_report_ranges = 0
     while current_end > start_date:
+        if sync_policy.is_trial and sync_policy.remaining("time_entries") <= 0:
+            utils.log("免费体验时间记录额度已用完，停止继续读取历史数据")
+            return True
         current_start = current_end.subtract(days=10)
         if current_start < start_date:
             current_start = start_date
             
         entries = None
         status_code = 200
+        subscription_boundary = False
         
         # Check if we are clearly out of 90 days range? 
         days_diff = (pendulum.now("Asia/Shanghai") - current_end).days
@@ -813,21 +910,20 @@ def sync_data_range(start_date, end_date, workspace_ids, force_reports_api=False
         if not use_reports_api:
             entries, status_code = get_time_entries(current_start, current_end)
             if status_code == 400:
-                 utils.log(f"⚠️ Standard API failed with 400 (likely historical limit). Retrying with Reports API...")
+                 utils.log("标准 API 返回 400，可能超出历史数据范围，改用报表 API 重试")
                  use_reports_api = True
                  status_code = 200 # Reset for retry
             elif status_code == 402:
-                 utils.log(f"🛑 Hit Toggl API limit (402). Stopping.")
-                 stats.add_failure("range", f"{current_start.to_date_string()}-{current_end.to_date_string()}", "Toggl API returned 402")
+                 utils.log("Toggl API 返回 402，已停止同步")
+                 stats.add_failure("range", f"{current_start.to_date_string()}-{current_end.to_date_string()}", "Toggl API 返回 402")
                  return False # Stop sync
             elif status_code != 200:
-                 stats.add_failure("range", f"{current_start.to_date_string()}-{current_end.to_date_string()}", f"Toggl API returned {status_code}")
+                 stats.add_failure("range", f"{current_start.to_date_string()}-{current_end.to_date_string()}", f"Toggl API 返回 {status_code}")
                  return False
             elif entries is not None and len(entries) >= TIME_ENTRIES_LIMIT_GUARD:
                  utils.log(
-                     f"⚠️ Standard API returned {len(entries)} entries for "
-                     f"{current_start.to_date_string()}-{current_end.to_date_string()}, "
-                     f"near the API limit. Retrying with Reports API to avoid missing data..."
+                     f"标准 API 为 {current_start.to_date_string()} 至 {current_end.to_date_string()} "
+                     f"返回 {len(entries)} 条记录，接近接口上限，改用报表 API 重试以避免遗漏"
                  )
                  use_reports_api = True
                  entries = None
@@ -836,24 +932,34 @@ def sync_data_range(start_date, end_date, workspace_ids, force_reports_api=False
             entries, status_code = get_historical_entries(workspace_ids, current_start, current_end)
             
             if status_code == 402:
-                # Special handling for Free Tier limit on historical reports
-                utils.log(f"🛑 Payment Required (402) for range {current_start.to_date_string()} - {current_end.to_date_string()}.")
-                utils.log(f"⚠️ Likely reached the limit of historical data access for Free Plan (approx 1 year).")
-                utils.log(f"🛑 Stoping backfill to avoid further errors.")
-                stats.add_failure("range", f"{current_start.to_date_string()}-{current_end.to_date_string()}", "Reports API returned 402")
-                return False # Stop sync completely for deeper history
+                utils.log(f"报表 API 为 {current_start.to_date_string()} 至 {current_end.to_date_string()} 返回 402")
+                if entries or completed_report_ranges > 0 or newer_history_confirmed:
+                    subscription_boundary = True
+                    stats.add_history_boundary(current_start, current_end)
+                else:
+                    stats.add_failure(
+                        "range",
+                        f"{current_start.to_date_string()}-{current_end.to_date_string()}",
+                        "报表 API 首个区间即返回 402，无法确认可访问历史范围",
+                    )
+                    return False
             
-            if status_code != 200:
-                utils.log(f"🛑 Reports API failed with {status_code}. Stopping sync for this chunk.")
-                stats.add_failure("range", f"{current_start.to_date_string()}-{current_end.to_date_string()}", f"Reports API returned {status_code}")
+            elif status_code != 200:
+                utils.log(f"报表 API 请求失败，状态码 {status_code}，停止同步当前批次")
+                stats.add_failure("range", f"{current_start.to_date_string()}-{current_end.to_date_string()}", f"报表 API 返回 {status_code}")
                 return False
+            else:
+                completed_report_ranges += 1
 
         if entries:
-            utils.log(f"Found {len(entries)} entries from {current_start.to_date_string()} to {current_end.to_date_string()}. Processing...")
+            utils.log(f"找到 {current_start.to_date_string()} 至 {current_end.to_date_string()} 的 {len(entries)} 条记录，正在处理")
             # Sort newest first
             entries.sort(key=lambda x: pendulum.parse(x['start']), reverse=True)
             
             for task in entries:
+                if sync_policy.is_trial and sync_policy.remaining("time_entries") <= 0:
+                    utils.log("免费体验时间记录额度已用完，停止继续读取历史数据")
+                    return True
                 if task.get("server_deleted_at"):
                     continue
                 
@@ -863,24 +969,44 @@ def sync_data_range(start_date, end_date, workspace_ids, force_reports_api=False
                 
                 try:
                     existing_page_id = notion_helper.get_page_by_toggl_id(toggl_id)
-                    action = "Updating" if existing_page_id else "Syncing"
-                    utils.log(f"📝 {action}: [{description_display}] ({task.get('start')})")
+                    action = "正在更新" if existing_page_id else "正在同步"
+                    utils.log(f"{action}: [{description_display}] ({task.get('start')})")
                     parent, properties, icon = process_entry(task)
                     if existing_page_id:
                         notion_helper.update_page(page_id=existing_page_id, properties=properties, icon=icon)
                         page_id = existing_page_id
                     else:
+                        if not sync_policy.can_create("time_entries", toggl_id):
+                            continue
                         page = notion_helper.create_page(parent=parent, properties=properties, icon=icon)
                         page_id = page.get("id")
+                        if not page_id:
+                            raise RuntimeError(
+                                f"Toggl 时间记录写入未返回 page_id: {toggl_id}"
+                            )
+                        sync_policy.record_success(
+                            "time_entries",
+                            toggl_id,
+                            occurred_at=task.get("start"),
+                            heatmap_value=max(1, round(int(task.get("duration") or 0) / 60)),
+                            created=True,
+                        )
                     stats.add_success(was_update=bool(existing_page_id))
                     if progress:
                         status = "已更新" if existing_page_id else "已新增"
                         progress.add(description_display, page_id=page_id, status=status)
                 except Exception as e:
-                    stats.add_failure("entry", task.get("id"), str(e))
+                    error_message = str(e)
+                    stats.add_failure("entry", task.get("id"), error_message)
+                    if is_blocking_notion_config_error(error_message):
+                        utils.log("检测到 Notion 模板数据库不可访问，停止本次同步以避免长时间重复失败")
+                        return False
 
-        if sync_deletions:
+        if sync_deletions and not subscription_boundary:
             sync_deleted_notion_entries(current_start, current_end, entries or [], stats, progress=progress)
+
+        if subscription_boundary:
+            return True
         
         if current_start <= start_date:
             break
@@ -904,31 +1030,54 @@ def insert_to_notion(progress=None):
     earliest_page = notion_helper.query_time_entry_boundary(direction="ascending", toggl_only=True)
     earliest_start = get_time_boundary(earliest_page)
     if earliest_start:
-        utils.log(f"🔍 Found earliest Toggl-linked entry in Notion: {earliest_start.to_iso8601_string()}")
+        utils.log(f"Notion 中最早关联 Toggl 的记录: {earliest_start.to_iso8601_string()}")
 
     # Track API v9 returns all entries for the user
     workspaces = get_workspaces()
     if not workspaces:
-        utils.log("No workspaces found or API error.")
-        stats.add_failure("workspace", "all", "No workspaces found or Toggl API error")
+        utils.log("未找到工作区，或 API 请求失败")
+        stats.add_failure("workspace", "all", "未找到工作区，或 Toggl API 请求失败")
         return stats
     workspace_ids = [ws["id"] for ws in workspaces if ws.get("id") is not None]
+    workspace_cache_complete = True
     for ws in workspaces:
-        load_workspace_cache(ws["id"])
+        if not load_workspace_cache(ws["id"]):
+            workspace_cache_complete = False
+    if (
+        is_full_sync_requested()
+        and not current_sync_policy().is_trial
+        and not workspace_cache_complete
+    ):
+        stats.add_failure(
+            "workspace",
+            "metadata",
+            "全量同步未能完整加载客户和项目元数据",
+        )
+        return stats
 
-    sync_deletions = parse_bool_env("TOGGL_SYNC_DELETIONS", DEFAULT_SYNC_DELETIONS)
+    sync_deletions = (
+        parse_bool_env("TOGGL_SYNC_DELETIONS", DEFAULT_SYNC_DELETIONS)
+        if not current_sync_policy().is_trial
+        else False
+    )
+    account_created_at = get_created_at().in_timezone("Asia/Shanghai")
+    sync_start = effective_sync_start(account_created_at).in_timezone("Asia/Shanghai")
     manual_backfill_start = parse_optional_date_env("TOGGL_BACKFILL_START")
     manual_backfill_end = parse_optional_date_env("TOGGL_BACKFILL_END")
+    if current_sync_policy().is_trial:
+        manual_backfill_start = None
+        manual_backfill_end = None
     if manual_backfill_start or manual_backfill_end:
         if not (manual_backfill_start and manual_backfill_end):
             stats.add_failure("backfill", "manual", "TOGGL_BACKFILL_START 和 TOGGL_BACKFILL_END 必须同时设置")
             return stats
+        manual_backfill_start = max(manual_backfill_start, sync_start)
         if manual_backfill_end <= manual_backfill_start:
             stats.add_failure("backfill", "manual", "TOGGL_BACKFILL_END 必须晚于 TOGGL_BACKFILL_START")
             return stats
         utils.log(
-            f"🚀 Manual backfill from {manual_backfill_start.to_iso8601_string()} "
-            f"to {manual_backfill_end.to_iso8601_string()} via Reports API."
+            f"正在通过报表 API 手动回填 {manual_backfill_start.to_iso8601_string()} "
+            f"至 {manual_backfill_end.to_iso8601_string()} 的历史记录"
         )
         sync_data_range(
             manual_backfill_start,
@@ -942,7 +1091,22 @@ def insert_to_notion(progress=None):
         return stats
 
     # 3. Strategy Execution
-    account_created_at = get_created_at().in_timezone("Asia/Shanghai")
+    if is_full_sync_requested() and not current_sync_policy().is_trial:
+        utils.log(
+            f"开始全量同步：从 {sync_start.to_datetime_string()} "
+            f"同步到 {now.to_datetime_string()}"
+        )
+        sync_data_range(
+            sync_start,
+            now,
+            workspace_ids,
+            force_reports_api=True,
+            progress=progress,
+            stats=stats,
+            sync_deletions=False,
+        )
+        return stats
+
     # Phase A: Incremental Forward Sync (Latest -> Now)
     # Re-scan a configurable recent window so older edits are not missed immediately.
     lookback_days = parse_int_env(
@@ -952,10 +1116,10 @@ def insert_to_notion(progress=None):
         maximum=90,
     )
     if latest_end:
-        incremental_start = latest_end.subtract(days=lookback_days)
+        incremental_start = max(latest_end.subtract(days=lookback_days), sync_start)
         utils.log(
-            f"🔄 Starting Incremental Sync from: {incremental_start.to_datetime_string()} "
-            f"(lookback {lookback_days} day(s))"
+            f"开始增量同步：{incremental_start.to_datetime_string()}，"
+            f"回看 {lookback_days} 天"
         )
         sync_data_range(
             incremental_start,
@@ -972,55 +1136,62 @@ def insert_to_notion(progress=None):
             minimum=0,
         )
         incremental_start = (
-            max(account_created_at, now.subtract(days=initial_import_days))
+            max(sync_start, now.subtract(days=initial_import_days))
             if initial_import_days > 0
-            else account_created_at
+            else sync_start
         )
-        utils.log(f"🚀 Notion has no Toggl-linked entries. Starting initial import.")
+        utils.log("Notion 中没有关联 Toggl 的记录，开始首次导入")
         sync_data_range(incremental_start, now, workspace_ids, progress=progress, stats=stats)
         return stats # Initial sync done
 
     # Phase B: Historical Backfill (Gap Fill: Account Created -> Earliest Entry)
-    if earliest_start and ((earliest_start.int_timestamp - account_created_at.int_timestamp) / 86400) > GAP_THRESHOLD_DAYS:
-        utils.log(f"⚠️ Missing history detected! Gap between registration ({account_created_at.to_date_string()}) and earliest entry ({earliest_start.to_date_string()}).")
-        utils.log(f"🚀 Triggering GAP BACKFILL (Reports API).")
+    if earliest_start and ((earliest_start.int_timestamp - sync_start.int_timestamp) / 86400) > GAP_THRESHOLD_DAYS:
+        utils.log(f"检测到历史记录缺口: {sync_start.to_date_string()} 至最早记录 {earliest_start.to_date_string()}")
+        utils.log("开始通过报表 API 回填历史记录缺口")
         
         # Sync from Created At -> Earliest Start
         # We stop at earliest_start because we assume data from there onwards exists
         sync_success = sync_data_range(
-            account_created_at,
+            sync_start,
             earliest_start.subtract(seconds=1),
             workspace_ids,
             force_reports_api=True,
             progress=progress,
             stats=stats,
+            newer_history_confirmed=True,
         )
         
         if not sync_success:
-            utils.log("⚠️ Backfill stopped early due to API limit or error.")
+            utils.log("历史回填因 API 限制或错误提前停止")
             
     else:
-        utils.log(f"✅ History continuity checked. No significant gaps found.")
+        utils.log("历史记录连续性检查完成，未发现明显缺口")
 
-    sync_middle_gaps(workspace_ids, stats, progress=progress, state=state)
+    sync_middle_gaps(workspace_ids, stats, progress=progress, state=state, lower_bound=sync_start)
     
     # After forward sync, perform reverse sync for entries created in Notion
     # Note: Reverse sync is relatively cheap (queries Notion for missing IDs)
-    reverse_sync_notion_to_toggl()
+    if current_sync_policy().allows("reverse_sync") and allow_reverse_sync():
+        reverse_sync_notion_to_toggl()
+    elif not allow_reverse_sync():
+        utils.log("已关闭 Notion 到 Toggl 的反向同步")
     return stats
 
 def main():
+    sync_policy = current_sync_policy()
     with sync_notification("Toggl") as notification:
-        if init():
-            progress = notification.progress("同步", batch_size=10)
-            stats = insert_to_notion(progress=progress)
-            progress.flush()
-            if stats and stats.failed:
-                summary = f"Toggl 数据同步部分失败：{stats.summary()}"
-                notification.set_summary(summary)
-                raise RuntimeError(f"{summary}。{stats.failure_summary()}")
-            summary = f"Toggl 数据同步完成：{stats.summary() if stats else '无数据变更'}"
+        if not init():
+            raise RuntimeError("Toggl 初始化失败，请检查 TOGGL_TOKEN")
+        progress = notification.progress("同步", batch_size=10)
+        stats = insert_to_notion(progress=progress)
+        progress.flush()
+        if stats and stats.failed:
+            summary = f"Toggl 数据同步部分失败：{stats.summary()}"
             notification.set_summary(summary)
+            raise RuntimeError(f"{summary}。{stats.failure_summary()}")
+        summary = f"Toggl 数据同步完成：{stats.summary() if stats else '无数据变更'}"
+        notification.set_summary(summary)
+        sync_policy.write_report(status="success")
 
 
 if __name__ == "__main__":

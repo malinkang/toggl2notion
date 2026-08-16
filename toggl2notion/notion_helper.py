@@ -12,16 +12,17 @@ class NotionHelper(NotionHelperBase):
     def __init__(self):
         super().__init__()
 
-        _, self.time_data_source_id = self.get_database_and_data_source_ids("TIME")
+        self._data_source_database_map = {}
+        self.time_database_id, self.time_data_source_id = self.get_verified_database_and_data_source_ids("TIME")
         self.time_data_source_id = self.time_data_source_id or self.resolve_legacy_time_data_source_id()
-        _, self.day_data_source_id = self.get_database_and_data_source_ids("DAY")
-        _, self.week_data_source_id = self.get_database_and_data_source_ids("WEEK")
-        _, self.month_data_source_id = self.get_database_and_data_source_ids("MONTH")
-        _, self.year_data_source_id = self.get_database_and_data_source_ids("YEAR")
-        _, self.all_data_source_id = self.get_database_and_data_source_ids("ALL")
-        _, self.client_data_source_id = self.get_database_and_data_source_ids("CLIENT")
-        _, self.project_data_source_id = self.get_database_and_data_source_ids("PROJECT")
-        _, self.tag_data_source_id = self.get_database_and_data_source_ids("TAG")
+        self.day_database_id, self.day_data_source_id = self.get_verified_database_and_data_source_ids("DAY")
+        self.week_database_id, self.week_data_source_id = self.get_verified_database_and_data_source_ids("WEEK")
+        self.month_database_id, self.month_data_source_id = self.get_verified_database_and_data_source_ids("MONTH")
+        self.year_database_id, self.year_data_source_id = self.get_verified_database_and_data_source_ids("YEAR")
+        self.all_database_id, self.all_data_source_id = self.get_verified_database_and_data_source_ids("ALL")
+        self.client_database_id, self.client_data_source_id = self.get_verified_database_and_data_source_ids("CLIENT")
+        self.project_database_id, self.project_data_source_id = self.get_verified_database_and_data_source_ids("PROJECT")
+        self.tag_database_id, self.tag_data_source_id = self.get_verified_database_and_data_source_ids("TAG")
         self.heatmap_block_id = os.getenv("HEATMAP_BLOCK_ID")
         notion_page = os.getenv("NOTION_PAGE")
         if notion_page and not self.heatmap_block_id:
@@ -35,6 +36,58 @@ class NotionHelper(NotionHelperBase):
             self.write_data_source_id(self.time_data_source_id)
 
     # --- Unique methods ---
+
+    def get_verified_database_and_data_source_ids(self, env_prefix):
+        database_id, data_source_id = self.get_database_and_data_source_ids(env_prefix)
+        if database_id:
+            try:
+                fresh_data_source_id = self.resolve_data_source_id(database_id)
+                if data_source_id and fresh_data_source_id != data_source_id:
+                    log(
+                        f"{env_prefix} data_source_id 已变更，改用 database_id 解析到的最新 data_source_id"
+                    )
+                data_source_id = fresh_data_source_id
+            except Exception as e:
+                if not data_source_id:
+                    raise e
+                log(f"无法通过 {env_prefix}_DATABASE_ID 解析 data_source_id，暂用环境变量中的值: {e}")
+        if database_id and data_source_id:
+            self._data_source_database_map[data_source_id] = database_id
+        return database_id, data_source_id
+
+    def is_missing_data_source_error(self, error):
+        error_str = str(error).lower()
+        return (
+            "could not find data_source" in error_str
+            or ("data_source" in error_str and "not found" in error_str)
+            or ("object_not_found" in error_str and "data_source" in error_str)
+        )
+
+    def refresh_data_source_id(self, data_source_id):
+        database_id = self._data_source_database_map.get(data_source_id)
+        if not database_id:
+            return None
+        fresh_data_source_id = self.resolve_data_source_id(database_id)
+        if fresh_data_source_id and fresh_data_source_id != data_source_id:
+            log("检测到旧 data_source_id 失效，已通过 database_id 刷新")
+            self._data_source_database_map[fresh_data_source_id] = database_id
+            for attr, value in list(self.__dict__.items()):
+                if attr.endswith("_data_source_id") and value == data_source_id:
+                    setattr(self, attr, fresh_data_source_id)
+        return fresh_data_source_id
+
+    def query(self, **kwargs):
+        data_source_id = kwargs.get("data_source_id")
+        try:
+            return super().query(**kwargs)
+        except Exception as e:
+            if not (data_source_id and self.is_missing_data_source_error(e)):
+                raise
+            fresh_data_source_id = self.refresh_data_source_id(data_source_id)
+            if not fresh_data_source_id or fresh_data_source_id == data_source_id:
+                raise
+            kwargs["data_source_id"] = fresh_data_source_id
+            return super().query(**kwargs)
 
     def resolve_legacy_time_data_source_id(self):
         raw_id = self.get_optional_env_value("TIME_DATABASE_NAME")
@@ -142,7 +195,7 @@ class NotionHelper(NotionHelperBase):
     def query_entries_marked_for_toggl_sync(self):
         """Query Notion-created entries explicitly marked for reverse sync."""
         if self.time_props.get("同步到 Toggl") != "checkbox":
-            log("Time 数据源缺少可选的 '同步到 Toggl' checkbox 字段，跳过 Notion -> Toggl 反向同步。")
+            log("时间数据源缺少可选的“同步到 Toggl”复选框字段，跳过 Notion 到 Toggl 的反向同步。")
             return []
         filter = {
             "and": [
@@ -214,7 +267,7 @@ class NotionHelper(NotionHelperBase):
 
     def archive_page(self, page_id):
         """Archive a Notion page instead of permanently deleting it."""
-        return self.client.pages.update(page_id=page_id, archived=True)
+        return self.client.pages.update(page_id=page_id, in_trash=True)
 
     def get_remote_id_from_page(self, page_id):
         """Retrieve the 'Id' (Toggl ID) from a Notion page (Project/Client)."""
@@ -249,15 +302,15 @@ class NotionHelper(NotionHelperBase):
                     existing_name = results[0].get("properties", {}).get(title_prop, {}).get("title", [])
                     existing_name = existing_name[0].get("plain_text") if existing_name else ""
                     if existing_name != name:
-                        log(f"Updating name for ID {remote_id}: '{existing_name}' -> '{name}'")
+                        log(f"正在更新 ID {remote_id} 的名称: “{existing_name}” -> “{name}”")
                         properties[title_prop] = get_title(name)
                         self.update_page(page_id, properties, icon)
             except Exception as e:
                 error_str = str(e).lower()
                 if "id" in error_str and ("property" in error_str or "exists" in error_str):
-                    log(f"Property 'Id' missing in database {id}. Falling back to name-based lookup for '{name}'.")
+                    log(f"数据库 {id} 缺少 ID 属性，改用名称“{name}”查询")
                 else:
-                    log(f"Failed to query database {id} by remote_id: {e}")
+                    log(f"按远程 ID 查询数据库 {id} 失败: {e}")
                     raise e
 
         # 2. Fallback to name-based lookup if not found by ID or ID not provided
@@ -267,7 +320,7 @@ class NotionHelper(NotionHelperBase):
                 response = self.query(data_source_id=id, filter=filter)
                 results = response.get("results")
             except Exception as e:
-                log(f"Failed to query database {id} for name '{name}': {e}")
+                log(f"按名称“{name}”查询数据库 {id} 失败: {e}")
                 raise e
 
             if results:
@@ -279,9 +332,9 @@ class NotionHelper(NotionHelperBase):
                     except Exception as e:
                         error_str = str(e).lower()
                         if "id" in error_str and ("property" in error_str or "exists" in error_str):
-                            log(f"Could not write 'Id' to database {id}: Property missing.")
+                            log(f"无法向数据库 {id} 写入 ID: 缺少对应属性")
                         else:
-                            log(f"Error writing 'Id' to database {id}: {e}")
+                            log(f"向数据库 {id} 写入 ID 失败: {e}")
 
         # 3. Create if still not found
         if not page_id:
@@ -297,7 +350,7 @@ class NotionHelper(NotionHelperBase):
             except Exception as e:
                 error_str = str(e).lower()
                 if "id" in error_str and ("property" in error_str or "exists" in error_str) and "Id" in properties:
-                    log(f"Retrying page creation for '{name}' without 'Id' property...")
+                    log(f"正在重试创建“{name}”，本次不写入 ID 属性")
                     new_props = {k: v for k, v in properties.items() if k != "Id"}
                     page_id = self.create_page(
                         parent=parent, properties=new_props, icon=icon
@@ -307,10 +360,6 @@ class NotionHelper(NotionHelperBase):
 
         self._NotionHelperBase__cache[fetch_key] = page_id
         return page_id
-
-
-
-
 
     # Override get_date_relation to include 全部
     def get_date_relation(self, properties, date, include_day=True):
@@ -326,7 +375,7 @@ class NotionHelper(NotionHelperBase):
         except Exception as e:
             error_str = str(e).lower()
             if "id" in error_str and ("property" in error_str or "exists" in error_str) and "Id" in properties:
-                log(f"Property 'Id' missing in database. Updating without 'Id'.")
+                log("数据库缺少 ID 属性，将跳过该属性继续更新")
                 new_props = {k: v for k, v in properties.items() if k != "Id"}
                 kwargs["properties"] = new_props
                 return self.client.pages.update(**kwargs)
@@ -341,8 +390,14 @@ class NotionHelper(NotionHelperBase):
             return self.client.pages.create(parent=parent, properties=properties, icon=icon)
         except Exception as e:
             error_str = str(e).lower()
+            data_source_id = parent.get("data_source_id")
+            if data_source_id and self.is_missing_data_source_error(e):
+                fresh_data_source_id = self.refresh_data_source_id(data_source_id)
+                if fresh_data_source_id and fresh_data_source_id != data_source_id:
+                    parent = {"type": "data_source_id", "data_source_id": fresh_data_source_id}
+                    return self.client.pages.create(parent=parent, properties=properties, icon=icon)
             if "id" in error_str and ("property" in error_str or "exists" in error_str) and "Id" in properties:
-                log(f"Property 'Id' missing in main database. Retrying without 'Id'.")
+                log("主数据库缺少 ID 属性，将跳过该属性重试")
                 new_props = {k: v for k, v in properties.items() if k != "Id"}
                 return self.client.pages.create(parent=parent, properties=new_props, icon=icon)
             raise e

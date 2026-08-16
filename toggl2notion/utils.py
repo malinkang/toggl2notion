@@ -47,6 +47,7 @@ from notionhub.utils import (
     MULTI_SELECT,
 )
 from notionhub.log import log, timeit
+from notionhub.internal_api import InternalApiError, NotionHubInternalClient
 
 # --- Script-specific functions ---
 
@@ -65,6 +66,21 @@ upload_url = "https://toggl.notionhub.app/upload-svg"
 
 def upload_image(activation_code, file_path, upload_name=None):
     upload_name = upload_name or os.path.basename(file_path)
+    if NotionHubInternalClient.is_available():
+        try:
+            with open(file_path, "rb") as file:
+                result = NotionHubInternalClient.from_env().upload_asset(
+                    file.read(),
+                    content_type="image/svg+xml",
+                    filename=upload_name,
+                    asset_type="heatmap-svg",
+                )
+            return (result.get("data") or {}).get("url")
+        except InternalApiError as error:
+            if not error.fallback_allowed:
+                log(f"文件上传失败，不允许回退旧接口: {error}")
+                return None
+            log("内部资源接口暂不可用，回退旧上传接口。")
     with open(file_path, "rb") as file:
         files = {
             "svgFile": (upload_name, file, "image/svg+xml")
@@ -77,10 +93,10 @@ def upload_image(activation_code, file_path, upload_name=None):
         }
         response = requests.post(upload_url, files=files, data=data, headers=headers, timeout=30)
     if response.status_code == 200:
-        log(f"File uploaded successfully. {response.text}")
+        log(f"文件上传成功。{response.text}")
         return response.json().get("svgUrl")
     else:
-        log(f"Failed to upload file. Status code: {response.status_code}")
+        log(f"文件上传失败，状态码: {response.status_code}")
         return None
 
 
