@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-31T22:45:48.953814+08:00",
+  "repository": "scripts/toggl2notion",
+  "sourceRemote": "git@github.com:malinkang/toggl2notion.git",
+  "sourceHead": "0d27117839dfe3b056589eff226c279868cec480",
+  "preservationBranch": "codex/mac-preserve-history-20261031",
+  "archiveOnly": true,
+  "productionAcceptance": "not_performed",
+  "encryption": "AES-256-GCM; 32-byte key retained outside all repositories",
+  "refCount": 9,
+  "stashCount": 0,
+  "containsIncrementalBundle": true,
+  "archives": [
+    {
+      "filename": "history.tar.gz.enc",
+      "encryptedSha256": "3f9bcc82d5be7cb492e9dbd33d5ae7c15b0ad6218de00342b7b2df5ed7639e88",
+      "encryptedBytes": 4427,
+      "plaintextFilename": "history.tar.gz",
+      "plaintextSha256": "3d46ca09a723defb415ee98fc0a6877fde61f0a4f0cd7411053afdbaeb0cf9c8"
+    }
+  ]
+}
