@@ -40,3 +40,8 @@ branches and the encrypted inventory provides their exact names and IDs.
 
 Linked worktrees still require their original common Git directory until they
 are explicitly relocated or reconnected. This archive does not move them.
+
+The archive tip pins existing, independently verified origin baseline commits as
+parents. A clone of this archive branch therefore retains the bundle prerequisites
+even after the original origin branch names are removed. Local-only histories and
+stashes remain exclusively inside the encrypted payload.

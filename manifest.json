@@ -19,5 +19,31 @@
       "plaintextFilename": "history.tar.gz",
       "plaintextSha256": "3d46ca09a723defb415ee98fc0a6877fde61f0a4f0cd7411053afdbaeb0cf9c8"
     }
-  ]
+  ],
+  "baselinePinning": {
+    "originProofs": [
+      {
+        "sha": "636850c6de071e8afc90cedeac3a852fb64c6b7c",
+        "originRef": "refs/heads/codex/branch-consolidation-toggl2notion",
+        "verifiedBy": "live git ls-remote origin"
+      },
+      {
+        "sha": "ba97e3ef2419fbc8bed5defda3ea4e02300a1b45",
+        "originRef": "refs/heads/codex/free-trial",
+        "verifiedBy": "live git ls-remote origin"
+      },
+      {
+        "sha": "0d27117839dfe3b056589eff226c279868cec480",
+        "originRef": "refs/heads/main",
+        "verifiedBy": "live git ls-remote origin"
+      },
+      {
+        "sha": "bac7d67413825d23d22a2f7e00d8163d9abdf446",
+        "originRef": "refs/heads/runner",
+        "verifiedBy": "live git ls-remote origin"
+      }
+    ],
+    "bundlePrerequisites": [],
+    "mode": "existing-origin commits pinned as archive ancestry"
+  }
 }
